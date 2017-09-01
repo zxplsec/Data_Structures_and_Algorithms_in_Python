@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xelatex lec1.tex
+pdflatex lec1.tex
 rm -f lec1.nav lec1.snm lec1.toc lec1.vrb lec1.aux lec1.log lec1.out
 
 cd ..

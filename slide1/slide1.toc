@@ -1,0 +1,2 @@
+\beamer@sectionintoc {2}{目标}{3}{0}{1}
+\beamer@sectionintoc {3}{线性数据结构}{5}{0}{2}

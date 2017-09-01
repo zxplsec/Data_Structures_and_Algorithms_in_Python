@@ -1,1 +1,1 @@
-Git is very cool!
+Git is very cool and I love it!

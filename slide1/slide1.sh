@@ -1,7 +1,7 @@
 #!/bin/bash
 
 xelatex slide1.tex
-rm -f slide1.ps  slide1.log slide1.aux slide1.out slide1.dvi slide1.bbl slide1.blg
+rm -f slide1.nav slide1.snm slide1.toc slide1.vrb
 
 cd ..
 git add -A .

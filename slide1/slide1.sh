@@ -6,6 +6,7 @@ rm -f slide1.ps  slide1.log slide1.aux slide1.out slide1.dvi slide1.bbl slide1.b
 cd ..
 git add -A .
 git commit -m "Update"
+git push origin master
 cd slide1
 
 mupdf slide1.pdf &

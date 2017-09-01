@@ -1,0 +1,60 @@
+% -*- coding: utf-8 -*-
+% !TEX program = xelatex
+
+\documentclass[9pt]{beamer}
+
+\usetheme[style=beta]{epyt} % alpha, beta, delta, gamma, zeta
+% \usetheme{Warsaw}
+\usepackage[UTF8,noindent]{ctex}
+\input{global_newcommand}
+% \input{newtheorem}
+\input{global_usepackage}
+\input{global_newenviroment}
+
+\newcommand{\mylead}[1]{\textcolor{acolor1}{#1}}
+\newcommand{\mybold}[1]{\textcolor{acolor2}{#1}}
+\newcommand{\mywarn}[1]{\textcolor{acolor3}{#1}}
+
+
+
+\begin{document}
+
+\title{数据结构与算法}
+\subtitle{基本数据结构}
+\author{张晓平}
+\institute{武汉大学数学与统计学院}
+
+
+\begin{frame}[plain]\transboxout
+  \titlepage
+\end{frame}
+
+\section*{目录}
+\frame{  
+  \frametitle{\secname}
+  \begin{multicols}{2}  %两行目录
+    \tableofcontents
+  \end{multicols}
+}
+\AtBeginSection[] {  %在每个subsection前面显示一次目录
+  \frame{
+    \frametitle{\secname}
+    \begin{multicols}{2}  %两行目录
+      \tableofcontents[current,currentsection]
+    \end{multicols}
+  }
+}
+
+\AtBeginSubsection[] {  %在每个subsection前面显示一次目录
+  \frame{
+    \frametitle{\secname}
+    \begin{multicols}{2}  %两行目录
+      \tableofcontents[current,currentsubsection]
+    \end{multicols}
+  }
+}
+
+
+
+
+\end{document}

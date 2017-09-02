@@ -1,0 +1,210 @@
+\section{Python介绍}
+
+%Python is a high-level, dynamically typed multiparadigm programming language. Python code is often said to be almost like pseudocode, since it allows you to express very powerful ideas in very few lines of code while being very readable. As an example, here is an implementation of the classic quicksort algorithm in Python:
+
+Python 是一种高级的、动态的多范型编程语言。很多时候，大家会说Python看起来简直和伪代码一样，因为你可以使用很少几行可读性很高的代码来表达很有力的想法。举个例子，下面是经典快速排序算法的Python实现：
+
+\lstinputlisting[]{code/quicksort.py}
+
+\subsection{Python versions}
+
+%There are currently two different supported versions of Python, 2.7 and 3.5. Somewhat confusingly, Python 3.0 introduced many backwards-incompatible changes to the language, so code written for 2.7 may not work under 3.5 and vice versa. For this class all code will use Python 3.5.
+%
+%You can check your Python version at the command line by running 
+
+
+目前Python有两个支持的版本，分别是2.7和3.4。这有点让人迷惑，Python 3.0引入了很多不可向下兼容的变化，2.7下的代码有时候在3.4下是行不通的。%在本课程中代码都是运行在2.7版本上的。
+
+如何查看版本呢？可使用如下命令：
+
+\begin{lstlisting}
+python --version
+\end{lstlisting}
+
+
+
+\subsection{基本数据类型}
+
+%Like most languages, Python has a number of basic types including integers, floats, booleans, and strings. These data types behave in ways that are familiar from other programming languages.
+%
+%Numbers: Integers and floats work as you would expect from other languages:
+%
+
+和大多数编程语言一样，Python 拥有一系列的基本数据类型，比如整型、浮点型、布尔型和字符串等。这些数据类型的使用方式和在其他语言中的使用方式是类似的。
+
+
+\subsubsection{Numbers}
+整型和浮点型的使用和其他语言类似。
+
+\lstinputlisting[]{code/numbers.py}
+
+%Note that unlike many languages, Python does not have unary increment (x++) or decrement (x--) operators.
+%
+%Python also has built-in types for complex numbers; you can find all of the details in the documentation.
+
+注意：Python没有类似于 \lstinline|++| 和 \lstinline|--| 的一元运算的操作。 Python也有内置的长整型和复数类型，具体细节可查看\href{https://docs.python.org/3.5/library/stdtypes.html#numeric-types-int-float-complex}{文档}。
+
+
+%Booleans: Python implements all of the usual operators for Boolean logic, but uses English words rather than symbols (\lstinline|&&, |||, etc.):
+%
+
+\subsubsection{Booleans}
+Python实现了所有的布尔逻辑，但用的是英语，而不是我们习惯的操作符(如\lstinline|&&, |||等):
+
+
+\lstinputlisting[]{code/boolean.py}
+%
+%Strings: Python has great support for strings:
+
+\subsubsection{Strings}
+Python 对字符串的支持非常强大。
+
+\lstinputlisting[]{code/string1.py}
+
+%String objects have a bunch of useful methods; for example:
+
+字符串对象有一系列常用的方法，例如：
+
+\lstinputlisting[]{code/string2.py}
+
+如果想详细查看字符串方法，请查看\href{https://docs.python.org/3.5/library/stdtypes.html#string-methods}{文档}。
+
+\subsection{容器（Containers）}
+
+%Python includes several built-in container types: lists, dictionaries, sets, and tuples.
+Python包含了几个内置的容器类型：列表（lists）、字典（dictionaries）、集合（sets）、 元组（tuples）
+
+\subsubsection{列表（list）}
+
+%A list is the Python equivalent of an array, but is resizeable and can contain elements of different types:
+
+列表就是Python中的数组，但列表长度可变，且能包含不同类型的元素。 
+\lstinputlisting[]{code/list.py}
+列表的细节，可以查阅\href{https://docs.python.org/3.5/tutorial/datastructures.html#more-on-lists}{文档}。
+
+%Slicing: In addition to accessing list elements one at a time, Python provides concise syntax to access sublists; this is known as slicing:
+
+切片（Slicing）：
+%除了每次访问一个列表元素，Python还提供了一种简洁的语法去访问子列表，这被称为slicing:
+为了一次性地获取列表中的多个元素，Python提供了一种简洁的语法，这就是切片。
+
+\lstinputlisting[]{code/list_slices.py}
+
+%We will see slicing again in the context of numpy arrays.
+
+在Numpy数组的内容中，我们会再次看到切片语法。
+
+
+%Loops: You can loop over the elements of a list like this:
+
+循环（Loops）：我们可以这样遍历列表中的每一个元素：
+
+\lstinputlisting[]{code/list_loops.py}
+
+%If you want access to the index of each element within the body of a loop, use the built-in enumerate function:
+
+如果你想在循环体内访问每个元素的索引，可使用内置的enumerate函数：
+
+\lstinputlisting[]{code/list_enumerate.py}
+
+
+%List comprehensions: When programming, frequently we want to transform one type of data into another. As a simple example, consider the following code that computes square numbers:
+
+列表推导：在编程的时候，我们经常会想要将一种数据类型转换成另一种。下面是一个简单例子，将列表中的每个元素变成它的平方：
+
+
+\lstinputlisting[]{code/list_comprehensions.py}
+
+%You can make this code simpler using a list comprehension:
+
+使用列表推导，你可以让代码简化很多：
+
+\lstinputlisting[]{code/list_comprehensions1.py}
+
+%List comprehensions can also contain conditions:
+
+列表推导还可以包含条件：
+
+\lstinputlisting[]{code/list_comprehensions2.py}
+
+
+\subsubsection{字典（Dictionaries）}
+
+%A dictionary stores (key, value) pairs, similar to a Map in Java or an object in Javascript. You can use it like this:
+
+字典用来存储（键，值）对。%就像JAVA里面的map，以及JavaScript中的Object。
+你可以这样使用它：
+
+\lstinputlisting[]{code/dict.py}
+想要知道字典的其他特性，请查阅\href{https://docs.python.org/3.5/library/stdtypes.html#dict}{文档}。
+
+
+
+%Loops: It is easy to iterate over the keys in a dictionary:
+
+循环（Loops）：在字典中，用键来迭代更加容易。
+\lstinputlisting[]{code/dict_loops.py}
+
+
+
+%If you want access to keys and their corresponding values, use the items method:
+
+如果你想要访问键和对应的值，那就使用 items 方法：
+\lstinputlisting[]{code/dict_items.py}
+
+%Dictionary comprehensions: These are similar to list comprehensions, but allow you to easily construct dictionaries. For example:
+
+字典推导（Dictionary comprehensions）: 和列表推导类似，但允许你方便地构建字典。
+
+\lstinputlisting[]{code/dict_comprehensions.py}
+
+\subsubsection{集合（Sets）}
+
+%A set is an unordered collection of distinct elements. As a simple example, consider the following:
+
+sets是离散元的无序集合。示例如下：
+
+\lstinputlisting[]{code/set.py}
+和前面一样，要知道更详细的，查看\href{https://docs.python.org/3.5/library/stdtypes.html#set}{文档}。
+
+
+%Loops: Iterating over a set has the same syntax as iterating over a list; however since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
+
+循环（Loops）：在集合中循环的语法和在列表中一样，但是集合是无序的，所以你在访问集合的元素的时候，不能做关于顺序的假设。
+\lstinputlisting[]{code/set_loops.py}
+
+%Set comprehensions: Like lists and dictionaries, we can easily construct sets using set comprehensions:
+
+集合推导（Set comprehensions）: 和列表推导及字典推导类似，可以很方便地构建集合：
+\lstinputlisting[]{code/set_comprehensions.py}
+
+\subsubsection{元组（Tuples）}
+
+%A tuple is an (immutable) ordered list of values. A tuple is in many ways similar to a list; one of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. Here is a trivial example:
+
+元组是一个值的有序列表（不可改变）。从很多方面来说，元组和列表都很相似。和列表最重要的不同在于，元组可以在字典中用作键，还可以作为集合的元素，而列表不行。例子如下：
+\lstinputlisting[]{code/tuple.py}
+\href{https://docs.python.org/3.5/tutorial/datastructures.html#tuples-and-sequences}{文档}有更多关于元组的信息。
+
+\subsection{函数}
+
+%Python functions are defined using the def keyword. For example:
+
+Python 中使用 def 关键字来定义函数，如：
+\lstinputlisting[]{code/def.py}
+
+%We will often define functions to take optional keyword arguments, like this:
+
+我们常常使用可选参数来定义函数，例如：
+\lstinputlisting[]{code/hello.py}
+
+
+\subsection{类}
+
+%The syntax for defining classes in Python is straightforward:
+
+Python中，对类的定义是简单直接的：
+
+
+\lstinputlisting[]{code/class.py}
+更多类的信息请查阅\href{https://docs.python.org/3.5/tutorial/classes.html}{文档}。

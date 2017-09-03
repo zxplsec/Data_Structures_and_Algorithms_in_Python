@@ -21,7 +21,15 @@ Python 是一种高级的、动态的多范型编程语言。很多时候，大�
 python --version
 \end{lstlisting}
 
+\subsection{Python、numpy、scipy、matplotlib 与 Jupyter notebook安装}
 
+Python 安装及教程请查看\href{https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000}{廖雪峰的官方网站}。
+
+关于numpy、scipy、matplotlib 与 Jupyter notebook的安装请查看：
+\begin{itemize}
+\item \href{http://www.linuxidc.com/Linux/2017-03/142295.htm}{Ubuntu下Jupyter Notebook的安装与使用}
+\item \href{http://blog.csdn.net/withchris/article/details/51262211}{Windows, Ubuntu 下 Numpy, Scipy, matplotlib, jupyter notebook 安装配置}
+\end{itemize}
 
 \subsection{基本数据类型}
 
@@ -56,6 +64,34 @@ Python实现了所有的布尔逻辑，但用的是英语，而不是我们习�
 %
 %Strings: Python has great support for strings:
 
+
+% Operation Name        Operator        Explanation
+% less than     <<      Less than operator
+% greater than  >>      Greater than operator
+% less than or equal    <=<=    Less than or equal to operator
+% greater than or equal >=>=    Greater than or equal to operator
+% equal ====    Equality operator
+% not equal     !=!=    Not equal operator
+% logical and   andand  Both operands True for result to be True
+% logical or    oror    One or the other operand is True for the result to be True
+% logical not   notnot  Negates the truth value, False becomes True, True becomes False
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{l|l}\hline
+    名称&操作符\\\hline
+    小于& \lstinline|<| \\
+    大于& \lstinline|>| \\
+    小于等于& \lstinline|<=| \\
+    小于等于& \lstinline|>=| \\
+    等于&\lstinline|==|\\
+    不等于&\lstinline|!=|\\
+    逻辑与&\lstinline|and|\\
+    逻辑或&\lstinline|or|\\
+    逻辑非&\lstinline|not|\\\hline
+  \end{tabular}
+\end{table}
+
 \subsubsection{Strings}
 Python 对字符串的支持非常强大。
 
@@ -68,6 +104,7 @@ Python 对字符串的支持非常强大。
 \lstinputlisting[]{code/string2.py}
 
 如果想详细查看字符串方法，请查看\href{https://docs.python.org/3.5/library/stdtypes.html#string-methods}{文档}。
+
 
 \subsection{容器（Containers）}
 
@@ -128,6 +165,36 @@ Python包含了几个内置的容器类型：列表（lists）、字典（dictio
 \lstinputlisting[]{code/list_comprehensions2.py}
 
 
+
+\begin{table}[htbp]
+  \centering
+  \caption{列表包含的函数}
+  \begin{tabular}{l|l}\hline
+    \lstinline|cmp(list1, list2)| &比较两个列表的元素\\
+    \lstinline|len(list)        | &列表元素个数\\
+    \lstinline|max(list)        | &返回列表元素最大值\\
+    \lstinline|min(list)        | &返回列表元素最小值\\
+    \lstinline|list(seq)        | &将元组转换为列表\\\hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{列表包含的方法}
+  \begin{tabular}{l|l}\hline
+    \lstinline|list.append(obj)       |  &在列表末尾添加新的对象 \\
+    \lstinline|list.count(obj)        |  &统计某个元素在列表中出现的次数\\
+    \lstinline|list.extend(seq)       |  &在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）\\
+    \lstinline|list.index(obj)        |  &从列表中找出某个值第一个匹配项的索引位置\\
+    \lstinline|list.insert(index, obj)|  &将对象插入列表\\
+    \lstinline|list.pop(obj=list[-1]) |  &移除列表中的一个元素（默认最后一个元素），并且返回该元素的值\\
+    \lstinline|list.remove(obj)       |  &移除列表中某个值的第一个匹配项\\
+    \lstinline|list.reverse()         |  &反向列表中元素\\
+    \lstinline|list.sort([func])      |  &对原列表进行排序\\\hline
+  \end{tabular}                          
+\end{table}
+
+  
 \subsubsection{字典（Dictionaries）}
 
 %A dictionary stores (key, value) pairs, similar to a Map in Java or an object in Javascript. You can use it like this:
@@ -158,6 +225,39 @@ Python包含了几个内置的容器类型：列表（lists）、字典（dictio
 
 \lstinputlisting[]{code/dict_comprehensions.py}
 
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{字典包含的函数}
+  \begin{tabular}{l|l}\hline
+    \lstinline|cmp(dict1, dict2)| &比较两个字典的元素\\
+    \lstinline|len(dict)        | &计算字典元素个数，即键的总数\\
+    \lstinline|str(dict)        | &输出字典可打印的字符串表示\\
+    \lstinline|type(variable)   | &返回输入的变量类型，如果变量是字典就返回字典类型\\\hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{字典包含的方法}
+  \begin{tabular}{p{0.4\columnwidth}|p{0.5\columnwidth}}\hline
+    \lstinline|dict.clear()                      | &删除字典内所有元素\\
+    \lstinline|dict.copy()                       | &返回一个字典的浅复制\\
+    \lstinline|dict.fromkeys(seq[, val]))        | &创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值\\
+    \lstinline|dict.get(key, default=None)       | &返回指定键的值，如果值不在字典中返回default值\\
+    \lstinline|dict.has_key(key)                 | &如果键在字典dict里返回true，否则返回false\\
+    \lstinline|dict.items()                      | &以列表返回可遍历的(键, 值) 元组数组\\
+    \lstinline|dict.keys()                       | &以列表返回一个字典所有的键\\
+    \lstinline|dict.setdefault(key, default=None)| &和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default\\
+    \lstinline|dict.update(dict2)                | &把字典dict2的键/值对更新到dict里\\
+    \lstinline|dict.values()                     | &以列表返回字典中的所有值\\
+    \lstinline|dict.pop(key[,default])                | &删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值\\
+    \lstinline|dict.popitem()                         | &随机返回并删除字典中的一对键和值\\\hline
+  \end{tabular}                          
+\end{table}
+
+
 \subsubsection{集合（Sets）}
 
 %A set is an unordered collection of distinct elements. As a simple example, consider the following:
@@ -184,7 +284,21 @@ sets是离散元的无序集合。示例如下：
 
 元组是一个值的有序列表（不可改变）。从很多方面来说，元组和列表都很相似。和列表最重要的不同在于，元组可以在字典中用作键，还可以作为集合的元素，而列表不行。例子如下：
 \lstinputlisting[]{code/tuple.py}
+
+\begin{table}[htbp]
+  \centering
+  \caption{元组的内置函数}
+  \begin{tabular}{l|l}\hline
+    \lstinline|cmp(tuple1, tuple2)| &比较两个元组的元素\\
+    \lstinline|len(tuple)        | &计算元组元素个数\\
+    \lstinline|max(tuple)        | &返回元组中元素最大值\\
+    \lstinline|min(tuple)        | &返回元组中元素最小值\\
+    \lstinline|tuple(seq)   | &将列表转换为元组\\\hline
+  \end{tabular}
+\end{table}
+
 \href{https://docs.python.org/3.5/tutorial/datastructures.html#tuples-and-sequences}{文档}有更多关于元组的信息。
+
 
 \subsection{函数}
 

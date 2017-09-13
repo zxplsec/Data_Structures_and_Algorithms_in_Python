@@ -9,5 +9,8 @@
 # Pandas DF Fontsize	-dfs	9
 # Output Area Fontsize	-ofs	8.5
 
-jt -t monokai -fs 16 -altp -tfs 25 -nfs 16 -ofs 22 -dfs 24
-# jt -t monokai -fs 11 -altp -tfs 11 -nfs 11 -ofs 12 -dfs 11
+#jt -t monokai -fs 16 -altp -tfs 25 -nfs 16 -ofs 22 -dfs 24
+#jt -t monokai -fs 11 -altp -tfs 11 -nfs 11 -ofs 12 -dfs 11
+#jt -t monokai
+jt -t solarizedl -fs 16 -altp -tfs 25 -nfs 16 -ofs 22 -dfs 24 -cellw 100%
+#jt -t solarizedl

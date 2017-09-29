@@ -1,41 +1,57 @@
 \section{Numpy}
-
+\begin{frame}
 %Numpy is the core library for scientific computing in Python. It provides a high-performance multidimensional array object, and tools for working with these arrays. If you are already familiar with MATLAB, you might find this tutorial useful to get started with Numpy.
 
 Numpy 是 Python 中用于科学计算的核心库。它提供一个高性能的多维数据对象，以及相关工具。 
+\end{frame}
 
 \subsection{数组}
+\begin{frame}
+
 
 %A numpy array is a grid of values, all of the same type, and is indexed by a tuple of nonnegative integers. The number of dimensions is the rank of the array; the shape of an array is a tuple of integers giving the size of the array along each dimension.
 %
 %We can initialize numpy arrays from nested Python lists, and access elements using square brackets:
 
 一个numpy数组是一个由不同数值组成的网格。网格中的数据都是同一种数据类型，可以通过非负整型数的元组来访问。维度的数量被称为数组的阶，数组的大小是一个由整型数构成的元组，可以描述数组不同维度上的大小。
+\end{frame}
 
+\begin{frame}
 我们可以从列表创建数组，然后利用方括号访问其中的元素：
 
 
 \lstinputlisting[]{code/np_array1.py}
+\end{frame}
+
+\begin{frame}
 
 %Numpy also provides many functions to create arrays:
 
 Numpy还提供了很多其他创建数组的方法：
 \lstinputlisting[]{code/np_array2.py}
-
+\end{frame}
 
 \subsection{访问数组}
+
+\begin{frame}
 
 %Numpy offers several ways to index into arrays.
 %
 %Slicing: Similar to Python lists, numpy arrays can be sliced. Since arrays may be multidimensional, you must specify a slice for each dimension of the array:
 
 Numpy提供了多种访问数组的方法。
+\end{frame}
 
-切片：和Python列表类似，numpy数组也是可以使用切片语法。因为数组可以是多维的，所以你必须为每个维度指定好切片。
+\begin{frame}
+
+切片：和Python列表类似，numpy数组也可以使用切片语法。因为数组可以是多维的，所以你必须为每个维度指定好切片。
 
 
 \lstinputlisting[]{code/np_array_slice.py}
 
+\end{frame}
+
+\begin{frame}
 
 %You can also mix integer indexing with slice indexing. However, doing so will yield an array of lower rank than the original array. Note that this is quite different from the way that MATLAB handles array slicing:
 
@@ -44,6 +60,9 @@ Numpy提供了多种访问数组的方法。
 \lstinputlisting[]{code/np_array_shape.py}
 
 
+\end{frame}
+
+\begin{frame}
 
 %Integer array indexing: When you index into numpy arrays using slicing, the resulting array view will always be a subarray of the original array. In contrast, integer array indexing allows you to construct arbitrary arrays using the data from another array. Here is an example:
 
@@ -51,62 +70,96 @@ Numpy提供了多种访问数组的方法。
 
 
 \lstinputlisting[]{code/np_integer_array_index.py}
+\end{frame}
+
+\begin{frame}
 
 %One useful trick with integer array indexing is selecting or mutating one element from each row of a matrix:
 
 整型数组访问语法还有个有用的技巧，可以用来选择或者更改矩阵中每行中的一个元素：
 \lstinputlisting[]{code/np_integer_array_index1.py}
 
+\end{frame}
+
+\begin{frame}
 
 %Boolean array indexing: Boolean array indexing lets you pick out arbitrary elements of an array. Frequently this type of indexing is used to select the elements of an array that satisfy some condition. Here is an example:
 
 布尔型数组访问：布尔型数组访问可以让你选择数组中任意元素。通常，这种访问方式用于选取数组中满足某些条件的元素，举例如下：
 
 \lstinputlisting[]{code/np_boolean_array_index.py}
+\end{frame}
+
+\begin{frame}
 
 为了教程的简洁，有很多数组访问的细节我们没有详细说明，可以查看\href{http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html}{文档}。
+\end{frame}
 
 \subsection{数据类型}
+
+\begin{frame}
+
 
 %Every numpy array is a grid of elements of the same type. Numpy provides a large set of numeric datatypes that you can use to construct arrays. Numpy tries to guess a datatype when you create an array, but functions that construct arrays usually also include an optional argument to explicitly specify the datatype. Here is an example:
 
 每个Numpy数组都是数据类型相同的元素组成的网格。Numpy提供了很多的数据类型用于创建数组。当你创建数组的时候，Numpy会尝试猜测数组的数据类型，你也可以通过参数直接指定数据类型，例子如下：
 \lstinputlisting[]{code/np_datatype.py}
 
+\end{frame}
 \subsection{Array math}
+
+\begin{frame}[allowframebreaks]
 
 %Basic mathematical functions operate elementwise on arrays, and are available both as operator overloads and as functions in the numpy module:
 基本数学函数会对数组进行逐元计算，既可以利用操作符重载，也可以使用函数方式：
 
 
 \lstinputlisting[]{code/np_array_math.py}
+\end{frame}
 
 
+\begin{frame}
 %Note that unlike MATLAB, * is elementwise multiplication, not matrix multiplication. We instead use the dot function to compute inner products of vectors, to multiply a vector by a matrix, and to multiply matrices. dot is available both as a function in the numpy module and as an instance method of array objects:
 
 不同于MATLAB，* 是逐元乘法，而不是矩阵乘法。在 numpy 中，使用 dot 函数计算向量的的内积、矩阵向量乘法、矩阵乘法。%dot 可作为 numpy 模块的一个函数，也可以作为数组对象的一个实例方法：
 \lstinputlisting[]{code/np_dot.py}
 
+\end{frame}
 
 
+\begin{frame}
 
 %Numpy provides many useful functions for performing computations on arrays; one of the most useful is sum:
 
-Numpy 提供很多计算数组的函数；其中最常用的一个是 sum :
+  Numpy 提供很多计算数组的函数。
+
+
+  其中最常用的一个是 sum :
 \lstinputlisting[]{code/np_sum.py}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
 
 其他一些数学函数：
 \lstinputlisting[]{code/np_math.py}
 
 想要了解更多数学函数，可以查看\href{http://docs.scipy.org/doc/numpy/reference/routines.math.html}{文档}。
 
+\end{frame}
+
+\begin{frame}
+
+
 %Apart from computing mathematical functions using arrays, we frequently need to reshape or otherwise manipulate data in arrays. The simplest example of this type of operation is transposing a matrix; to transpose a matrix, simply use the T attribute of an array object:
 
 除了计算，我们还常常改变数组或者操作其中的元素。其中将矩阵转置是常用的一个，在Numpy中，使用T来转置矩阵：
 \lstinputlisting[]{code/np_transpose.py}
 
-
+\end{frame}
 \subsection{广播机制（Broadcasting）}
+
+\begin{frame}
 
 
 %Broadcasting is a powerful mechanism that allows numpy to work with arrays of different shapes when performing arithmetic operations. Frequently we have a smaller array and a larger array, and we want to use the smaller array multiple times to perform some operation on the larger array.
@@ -115,20 +168,24 @@ Numpy 提供很多计算数组的函数；其中最常用的一个是 sum :
 
 %广播是一种强有力的机制，它允许numpy在实现算术操作时去处理不同不同shape的数组。假设有一个小数组和一个大数组，我们想多次使用小数组去对大数组做某些操作。例如，假设我们想对矩阵的每一行加上一个常向量，可以这么做：
 
-广播是一种强有力的机制，它允许 numpy 让不同大小的矩阵在一起进行数学计算。我们常常会有一个小的矩阵和一个大的矩阵，然后我们会需要用小的矩阵对大的矩阵做一些计算。
+  广播是一种强有力的机制，它允许 numpy 让不同大小的矩阵在一起进行数学计算。我们常常会有一个小的矩阵和一个大的矩阵，然后我们会需要用小的矩阵对大的矩阵做一些计算。
 
-举个例子，如果我们想要把一个向量加到矩阵的每一行，我们可以这样做：
-\lstinputlisting[]{code/np_broadcast.py}
+  举个例子，如果我们想要把一个向量加到矩阵的每一行，我们可以这样做：
+  \lstinputlisting[]{code/np_broadcast.py}
+\end{frame}
 
-
+\begin{frame}
 %This works; however when the matrix x is very large, computing an explicit loop in Python could be slow. Note that adding the vector v to each row of the matrix x is equivalent to forming a matrix vv by stacking multiple copies of v vertically, then performing elementwise summation of x and vv. We could implement this approach like this:
 这样是行得通的，但是当x矩阵非常大，利用循环来计算就会变得很慢很慢。我们可以换一种思路：
 
-%可以这么做；然而当矩阵 x 很大时，在 Python 中计算一个显示的循环会很慢。注意对矩阵 x 的每一行加上向量 v 等价于通过按垂直方向复制 v 若干次而叠加成一个矩阵 vv，然后对 x 和 vv 进行逐元加法。我们可以这样实现这一过程： 
+% %可以这么做；然而当矩阵 x 很大时，在 Python 中计算一个显示的循环会很慢。注意对矩阵 x 的每一行加上向量 v 等价于通过按垂直方向复制 v 若干次而叠加成一个矩阵 vv，然后对 x 和 vv 进行逐元加法。我们可以这样实现这一过程： 
 
 
 \lstinputlisting[]{code/np_broadcast1.py}
 
+\end{frame}
+
+\begin{frame}
 
 %Numpy broadcasting allows us to perform this computation without actually creating multiple copies of v. Consider this version, using broadcasting:
 
@@ -140,21 +197,25 @@ Numpy广播机制可以让我们不用创建vv，就能直接运算，看看下�
 \lstinputlisting[]{code/np_broadcast2.py}
 
 
-%The line y = x + v works even though x has shape (4, 3) and v has shape (3,) due to broadcasting; this line works as if v actually had shape (4, 3), where each row was a copy of v, and the sum was performed elementwise.
+% %The line y = x + v works even though x has shape (4, 3) and v has shape (3,) due to broadcasting; this line works as if v actually had shape (4, 3), where each row was a copy of v, and the sum was performed elementwise.
 
-由于广播机制，即使 x 有shape (4, 3), v 有shape (3,)，行\lstinline|y = x + v| 仍可工作； 这就如同 v 有shape (4, 3)，其中每一行为v的拷贝，求和按逐元进行。
+\pause 
+由于广播机制，即使 x 有shape (4, 3), v 有shape (3,)，\lstinline|y = x + v| 仍可工作； 这就如同 v 有shape (4, 3)，其中每一行为v的拷贝，求和按逐元进行。
+
+\end{frame}
+
+\begin{frame}
 
 
-
-Broadcasting two arrays together follows these rules:
-\begin{enumerate}
-\item If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.
-\item The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.
-\item The arrays can be broadcast together if they are compatible in all dimensions.
-\item After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.
-\item In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension
-\item If this explanation does not make sense, try reading the explanation from the documentation or this explanation.
-\end{enumerate}
+% Broadcasting two arrays together follows these rules:
+% \begin{enumerate}
+% \item If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.
+% \item The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.
+% \item The arrays can be broadcast together if they are compatible in all dimensions.
+% \item After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.
+% \item In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension
+% \item If this explanation does not make sense, try reading the explanation from the documentation or this explanation.
+% \end{enumerate}
 
 广播两个数组遵循以下原则：
 \begin{enumerate}
@@ -165,12 +226,15 @@ Broadcasting two arrays together follows these rules:
 \item 在任何一个维度上，如果一个数组的长度为1，另一个数组长度大于1，那么在该维度上，就好像是对第一个数组进行了复制。
 \end{enumerate}
 
-如果上述解释看不明白，可以读一读\href{http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html}{文档}和这个\href{http://wiki.scipy.org/EricsBroadcastingDoc}{解释}。
-%Functions that support broadcasting are known as universal functions. You can find the list of all universal functions in the documentation.
-%
-%Here are some applications of broadcasting:
+% 如果上述解释看不明白，可以读一读\href{http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html}{文档}和这个\href{http://wiki.scipy.org/EricsBroadcastingDoc}{解释}。
+% %Functions that support broadcasting are known as universal functions. You can find the list of all universal functions in the documentation.
+% %
+% %Here are some applications of broadcasting:
+\end{frame}
 
-支持广播机制的函数是全局函数。哪些是全局函数可以在\href{http://docs.scipy.org/doc/numpy/reference/ufuncs.html#available-ufuncs}{文档}中查找。
+\begin{frame}[allowframebreaks]
+
+%支持广播机制的函数是全局函数。%哪些是全局函数可以在\href{http://docs.scipy.org/doc/numpy/reference/ufuncs.html#available-ufuncs}{文档}中查找。
 
 下面是一些广播机制的使用：
 
@@ -179,3 +243,4 @@ Broadcasting two arrays together follows these rules:
 %Broadcasting typically makes your code more concise and faster, so you should strive to use it where possible.
 
 广播机制能够让你的代码更简洁更迅速，能够用的时候请尽量使用！
+\end{frame}

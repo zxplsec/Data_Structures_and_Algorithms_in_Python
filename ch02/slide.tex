@@ -1,0 +1,56 @@
+% -*- coding: utf-8 -*-
+% !TEX program = xelatex
+
+\documentclass[9pt]{beamer}
+
+\usetheme[style=beta]{epyt} % alpha, beta, delta, gamma, zeta
+% \usetheme{Warsaw}
+\usepackage[UTF8,noindent]{ctex}
+\input{../asset/global_newcommand}
+\input{../asset/global_usepackage}
+\input{../asset/global_newenviroment}
+\input{../asset/global_newtheorem}
+
+
+\begin{document}
+
+\title{数据结构与算法}
+\subtitle{算法分析}
+\author{张晓平}
+\institute{武汉大学数学与统计学院}
+
+
+\begin{frame}[plain]\transboxout
+  \titlepage
+\end{frame}
+
+\section*{目录}
+\frame{  
+  \frametitle{\secname}
+  \begin{multicols}{2}  %两行目录
+    \tableofcontents
+  \end{multicols}
+}
+\AtBeginSection[] {  %在每个subsection前面显示一次目录
+  \frame{
+    \begin{multicols}{2}  %两行目录
+      \tableofcontents[current,currentsection]
+    \end{multicols}
+  }
+}
+
+\AtBeginSubsection[] {  %在每个subsection前面显示一次目录
+  \frame{
+    \begin{multicols}{2}  %两行目录
+      \tableofcontents[current,currentsubsection]
+    \end{multicols}
+  }
+}
+
+
+\input{slide/lec01.tex}
+\input{slide/lec02.tex}
+\input{slide/lec03.tex}
+\input{slide/lec04.tex}
+\input{slide/lec05.tex}
+\end{document}

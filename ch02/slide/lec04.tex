@@ -1,0 +1,114 @@
+\section{一个乱序字符串检查的例子}
+\begin{frame}\ft{\secname}
+
+  举一个“字符串乱序检查”的例子，以展示不同量级的算法。
+
+  \begin{dingyi*}[乱序字符串]
+    乱序字符串是指一个字符串只是另一个字符串的重新排列。
+  \end{dingyi*}
+  \vskip.1in \pause 
+
+  \begin{li*}
+    'heart' 和 'earth' 就是乱序字符串。'python' 和 'typhon'也是。
+  \end{li*}
+  \vskip.1in \pause
+
+  为简单起见，假定所讨论的两个字符串长度相等，且都由 26 个小写字母组成。
+
+  \blue{编写一个布尔函数，将两个字符串做参数并返回它们是不是乱序。}
+
+\end{frame}
+\subsection{方案一：检查}
+\begin{frame}\ft{\subsecname}
+  第一种方法是检查第一个字符串是不是出现在第二个字符串中。如果可以检验到每一个字符，那这两个字符串一定是乱序。 \pause 
+
+  可以通过用 None 替换字符来了解一个字符是否完成检查。\pause
+
+  但是，由于 Python 字符串是不可变的，所以第一步是将第二个字符串转换为列表。\pause
+
+  检查第一个字符串中的每个字符是否存在于第二个列表中，如果存在，替换成 None。 
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+  \lstinputlisting{code/anagramSolution1.py}  
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+注意到 $s_1$ 的每个字符都会在 $s_2$ 中进行 $n$ 个字符的比较，比较次数为 
+$n^2$。所以这个算法复杂度为 $O(n^2 )$。
+\end{frame}
+
+\subsection{方案二：排序和比较}
+\begin{frame}\ft{\subsecname}
+注意到：\red{即使 $s_1,s_2$ 不同，它们都是由完全相同的字符组成的。} 所以，可以按照字母顺序排列每个字符串，如果排列后的两个字符串相同，则它们就是乱序字符串。 \pause 
+
+\lstinputlisting{code/anagramSolution2.py}  
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+  你可能认为该算法的时间复杂度是 $O(n)$，因为只用了一个简单的循环来比较排序后的字符串。 \pause 
+
+  但是，调用 Python 的排序函数是有开销的。我们在后面将会讲到，排序的时间复杂度通常是 $O(n^2)$ 或 $O(n\log n)$。\pause 
+
+
+  所以排序操作比循环花费更多，从而该算法跟排序过程有同样的时间复杂度。
+\end{frame}
+
+\subsection{方案三： 穷举法}
+
+\begin{frame}\ft{\subsecname}
+
+  解决这类问题的一种强有力的方法是穷举所有可能性。 \pause 
+
+
+  对于乱序检测，我们可以生成 $s_1$ 的所有乱序字符串列表，然后查看是不是有 $s_2$。这种方法有一点困难。 \pause 
+
+  当 $s_1$ 生成所有可能的字符串时，第一个位置有 $n$ 种可能，第二个位置有 $n-1$ 种，第三个位置有 $n-2$ 种，等等。总数为 $n\cdot(n-1)\cdot(n-2)\cdots 3\cdot 2\cdot 1=n!$。虽然一些字符串可能是重复的，程序也不可能提前知道这样，所以他仍然会生成 $n!$ 个字符串。 \pause 
+
+  事实上，$n!$ 比 $n^2$ 增长要快很多。如果 $s_1$ 有 $20$ 个字符长，则会产生 $20! = 2~432~902~008~176~640~000$ 个字符串。
+
+  如果我们每秒处理一种可能字符串，那么需要 $77~146~816~596$ 年才能过完整个列表。所以这不是很好的解决方案。
+\end{frame}
+
+\subsection{方案四：计数和比较}
+
+\begin{frame}\ft{\subsecname}
+  最后一种解决方法是：利用两个乱序字符串具有相同数目的 $a, b, c$ 等字符的事实。
+  \begin{enumerate}
+  \item 首先计算的是每个字母出现的次数。由于有 $26$ 个可能的字符，我们就用 一个长度为 $26$ 的列表，每个可能的字符占一个位置。
+  \item 每次看到一个特定的字符，就增加该位置的计数器。
+  \item 最后如果两个列表的计数器一样，则字符串为乱序字符串。 
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \lstinputlisting{code/anagramSolution4.py}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+  该方案仍有多次迭代，但与方案一不同，它不嵌套。
+
+  前两个迭代的时间复杂度为$O(n)$， 第三个迭代用于比较两个计数列表，时间复杂度为$26$，共计$T(n)=2n+26$，即 $O(n)$。
+
+
+  这样，我们就找到了一个线性量级的算法。
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+
+  最后，我们来讨论下空间复杂度。虽然最后一个方案的时间复杂度是线性的，但它需要额外的存储来保存两个字符计数列表。
+  换句话说，该算法\red{牺牲空间以换取时间}。 \pause 
+
+
+  很多情况下，你需要在空间和时间之间做出权衡。
+  上述程序中开辟的额外空间不大，但是如果有数百万个字符，就需要关注。\pause 
+
+  作为一名计算机科学家，当给定一个特定的算法，将由你决定如何使用计算资源。
+\end{frame}

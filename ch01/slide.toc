@@ -1,0 +1,14 @@
+\beamer@sectionintoc {2}{Numpy}{3}{0}{1}
+\beamer@subsectionintoc {2}{1}{数组}{5}{0}{1}
+\beamer@subsectionintoc {2}{2}{访问数组}{9}{0}{1}
+\beamer@subsectionintoc {2}{3}{数据类型}{17}{0}{1}
+\beamer@subsectionintoc {2}{4}{Array math}{19}{0}{1}
+\beamer@subsectionintoc {2}{5}{广播机制（Broadcasting）}{27}{0}{1}
+\beamer@sectionintoc {3}{SciPy}{35}{0}{2}
+\beamer@subsectionintoc {3}{1}{图像操作}{37}{0}{2}
+\beamer@subsectionintoc {3}{2}{MATLAB文件}{40}{0}{2}
+\beamer@subsectionintoc {3}{3}{点之间的距离}{42}{0}{2}
+\beamer@sectionintoc {4}{Matplotlib}{44}{0}{3}
+\beamer@subsectionintoc {4}{1}{Plotting}{46}{0}{3}
+\beamer@subsectionintoc {4}{2}{Subplots}{51}{0}{3}
+\beamer@subsectionintoc {4}{3}{Images}{54}{0}{3}

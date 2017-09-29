@@ -14747,7 +14747,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>面向对象编程(Object Oriented Programming，简称OOP)，是一种程序设计思想。OOP把对象作为程序的基本单元，一个对象包含了数据和操作数据的函数。</p>
+<p>面向对象编程(Object Oriented Programming，OOP)，是一种程序设计思想。OOP把对象作为程序的基本单元，一个对象包含数据和操作数据的函数。</p>
 
 </div>
 </div>
@@ -14756,7 +14756,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>面向过程的程序设计把计算机程序视为一系列的命令集合，即一组函数的顺序执行。为了简化程序设计，面向过程把函数继续切分为子函数，即把大块函数通过切割成小块函数来降低系统的复杂度。</p>
+<p>面向过程编程(Procedure Oriented Programming, DOP)，把计算机程序视为一系列的命令集合，即一组函数的顺序执行。</p>
 
 </div>
 </div>
@@ -14765,7 +14765,12 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>而面向对象的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。</p>
+<ul>
+<li>为了简化程序设计，DOP把函数细分为子函数，即把大块函数通过切割成小块函数来降低系统的复杂度。</li>
+</ul>
+<ul>
+<li>OOP把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。</li>
+</ul>
 
 </div>
 </div>
@@ -14774,7 +14779,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>在Python中，所有数据类型都可以视为对象，当然也可以自定义对象。自定义的对象数据类型就是面向对象中的类（Class）的概念。</p>
+<p>在Python中，所有数据类型都可以视为对象，当然也可以自定义对象。自定义的对象数据类型就是OOP中的类（Class）的概念。</p>
 
 </div>
 </div>
@@ -14783,8 +14788,11 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>我们以一个例子来说明面向过程和面向对象在程序流程上的不同之处。</p>
-<p>假设我们要处理学生的成绩表，为了表示一个学生的成绩，面向过程的程序可以用一个dict表示：</p>
+<p>我们以一个例子来说明DOP和OOP在流程上的不同之处。</p>
+<p>假设我们要处理学生的成绩表。</p>
+<ol>
+<li>如果使用DOP，为表示一个学生的成绩，可以用一个dict表示：</li>
+</ol>
 
 </div>
 </div>
@@ -14852,7 +14860,9 @@ Bob: 81
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>如果采用面向对象的程序设计思想，我们首选思考的不是程序的执行流程，而是Student这种数据类型应该被视为一个对象，这个对象拥有name和score这两个属性（Property）。</p>
+<ol>
+<li>如果采用OOP，我们首选思考的不是程序的执行流程，而是Student这种数据类型应该被视为一个对象，它拥有name和score两个属性（Property）。</li>
+</ol>
 
 </div>
 </div>
@@ -14864,7 +14874,7 @@ Bob: 81
 <p>如果要打印一个学生的成绩，</p>
 <ul>
 <li>首先，必须创建出这个学生对应的对象；</li>
-<li>然后，给对象发一个print_score消息，让对象自己把自己的数据打印出来。</li>
+<li>然后，给对象发一个print_score消息，让对象把自己的数据打印出来。</li>
 </ul>
 
 </div>
@@ -14947,7 +14957,7 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>面向对象的设计思想是从自然界中来的，因为在自然界中，类（Class）和实例（Instance）的概念是很自然的。</p>
+<p>OOP的设计思想是从自然界中来的，因为在自然界中，类（Class）和实例（Instance）的概念是很自然的。</p>
 <p>Class是一种抽象概念，比如：</p>
 <ul>
 <li><p>我们定义的Class，也就是Student，是指学生这个概念；</p>
@@ -14964,8 +14974,8 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>所以，面向对象的设计思想是抽象出Class，根据Class创建Instance。</p>
-<p>面向对象的抽象程度又比函数要高，因为一个Class既包含数据，又包含操作数据的方法。</p>
+<p>所以，OOP的设计思想是抽象出Class，根据Class创建Instance。</p>
+<p>OOP的抽象程度又比函数要高，因为一个Class既包含数据，又包含操作数据的方法。</p>
 
 </div>
 </div>
@@ -15021,7 +15031,7 @@ Lisa Simpson: 87
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -15042,6 +15052,8 @@ Lisa Simpson: 87
 <li><p>class后面紧接着是类名，即Student。</p>
 <p>类名通常以大写开头</p>
 </li>
+</ul>
+<ul>
 <li><p>紧接着是(object)，表示该类是从哪个类继承下来的。</p>
 <p>继承的概念我们后面再讲，通常，如果没有合适的继承类，就使用object类，这是所有类最终都会继承的类。</p>
 </li>
@@ -15062,7 +15074,7 @@ Lisa Simpson: 87
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bart</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
@@ -15084,7 +15096,7 @@ Lisa Simpson: 87
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;__main__.Student object at 0x7f5bb854c110&gt;
+<pre>&lt;__main__.Student object at 0x7f24d4119518&gt;
 &lt;class &#39;__main__.Student&#39;&gt;
 </pre>
 </div>
@@ -15119,7 +15131,7 @@ Lisa Simpson: 87
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bart</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Bart Simpson&#39;</span>
@@ -15210,6 +15222,8 @@ Lisa Simpson: 87
 <p>有了__init__方法，创建实例时，</p>
 <ul>
 <li>就不能传入空的参数了，必须传入与__init__方法匹配的参数；</li>
+</ul>
+<ul>
 <li>但self不需要传，Python解释器自己会把实例变量传进去。</li>
 </ul>
 
@@ -15254,7 +15268,8 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>和普通的函数相比，在类中定义的函数只有一点不同，就是第一个参数永远是实例变量self，并且，调用时，不用传递该参数。</p>
+<p>和普通的函数相比，在类中定义的函数只有一点不同，即：</p>
+<p><strong> 第一个参数永远是self，并且，调用时，不用传递该参数。</strong></p>
 <p>除此之外，类的方法和普通函数没有什么区别。所以，你仍然可以用默认参数、可变参数、关键字参数和命名关键字参数。</p>
 
 </div>
@@ -15272,7 +15287,7 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>面向对象编程的一个重要特点就是数据封装。</p>
+<p>OOP的一个重要特点就是数据封装。</p>
 
 </div>
 </div>
@@ -15324,7 +15339,7 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>但是，既然Student实例本身就拥有这些数据，要访问这些数据，就没有必要从外面的函数去访问，可以直接在Student类的内部定义访问数据的函数，这样，就把“数据”给封装起来了。</p>
+<p>既然Student实例本身就拥有这些数据，要访问这些数据，就没有必要从外面的函数去访问，可以直接在Student类的内部定义访问数据的函数，这样，就把“数据”给封装起来了。</p>
 <p>这些封装数据的函数是和Student类本身是关联起来的，我们称之为类的方法。</p>
 
 </div>
@@ -15407,9 +15422,11 @@ Lisa Simpson: 87
 <p>这样一来，我们从外部看Student类，就只需要知道，</p>
 <ul>
 <li>创建实例需要给出name和score；</li>
-<li>而如何打印，都是在Student类的内部定义的，</li>
 </ul>
-<p>这些数据和逻辑被“封装”起来了，调用很容易，但却不用知道内部实现的细节。</p>
+<ul>
+<li>至于如何打印，在Student类中定义。</li>
+</ul>
+<p>这些数据和逻辑被“封装”起来了，调用很容易，但却<strong>不用知道内部实现的细节</strong>。</p>
 
 </div>
 </div>
@@ -15418,7 +15435,7 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>封装的另一个好处是可以给Student类增加新的方法，比如get_grade：</p>
+<p>封装的另一个好处是<strong>可以给Student类增加新的方法</strong>，比如get_grade：</p>
 
 </div>
 </div>
@@ -15493,12 +15510,13 @@ Lisa Simpson: 87
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#23567;&#32467;">&#23567;&#32467;<a class="anchor-link" href="#&#23567;&#32467;">&#182;</a></h2><ul>
-<li><p>类是创建实例的模板，而实例则是一个一个具体的对象，各个实例拥有的数据都互相独立，互不影响。</p>
-</li>
-<li><p>方法就是与实例绑定的函数。和普通函数不同，方法可以直接访问实例的数据。</p>
-</li>
-<li><p>通过在实例上调用方法，我们就直接操作了对象内部的数据，但无需知道方法内部的实现细节。</p>
-</li>
+<li>类是创建实例的模板，而实例则是一个一个具体的对象，各个实例拥有的数据都互相独立，互不影响。</li>
+</ul>
+<ul>
+<li>方法就是与实例绑定的函数。和普通函数不同，方法可以直接访问实例的数据。</li>
+</ul>
+<ul>
+<li>通过在实例上调用方法，我们就直接操作了对象内部的数据，但无需知道方法内部的实现细节。</li>
 </ul>
 
 </div>
@@ -15509,7 +15527,7 @@ Lisa Simpson: 87
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>和静态语言不同，Python允许对实例变量绑定任何数据，也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</li>
+<li>和静态语言不同，Python允许对实例变量绑定任何数据。也就是说，对于两个实例变量，虽然它们都是同一个类的不同实例，但拥有的变量名称都可能不同：</li>
 </ul>
 
 </div>
@@ -15640,7 +15658,7 @@ Lisa Simpson: 87
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -15669,7 +15687,7 @@ Lisa Simpson: 87
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bart</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;Bart Simpson&#39;</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
@@ -15693,9 +15711,9 @@ Lisa Simpson: 87
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-37-fdb65aeaa12d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-fdb65aeaa12d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> bart <span class="ansi-blue-fg">=</span> Student<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Bart Simpson&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">98</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">print</span><span class="ansi-blue-fg">(</span>bart<span class="ansi-blue-fg">.</span>__name<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>bart<span class="ansi-blue-fg">.</span>__name<span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">AttributeError</span>: &#39;Student&#39; object has no attribute &#39;__name&#39;</pre>
 </div>
@@ -15719,11 +15737,19 @@ Lisa Simpson: 87
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>但是如果外部代码要获取name和score怎么办？</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>可以给Student类增加get_name和get_score这样的方法。</p>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
@@ -15785,11 +15811,19 @@ Lisa Simpson: 87
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>如果又要允许外部代码修改score怎么办？</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>可以再给Student类增加set_score方法：</p>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
@@ -15854,14 +15888,22 @@ Lisa Simpson: 87
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>你也许会问，原先那种直接通过bart.score = 59也可以修改啊，为什么要定义一个方法大费周折？</p>
-<p>因为在方法中，可以对参数做检查，避免传入无效的参数：</p>
 
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>因为在方法中，可以对参数做检查，避免传入无效的参数。</p>
+
+</div>
+</div>
+</div></div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -15888,7 +15930,7 @@ Lisa Simpson: 87
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bart</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;Bart Simpson&#39;</span><span class="p">,</span> <span class="mi">98</span><span class="p">)</span>
@@ -15913,12 +15955,12 @@ Lisa Simpson: 87
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-11-d7d30a7adbba&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-15-d7d30a7adbba&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> bart <span class="ansi-blue-fg">=</span> Student<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Bart Simpson&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">98</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>bart<span class="ansi-blue-fg">.</span>set_score<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">101</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span> print<span class="ansi-blue-fg">(</span>bart<span class="ansi-blue-fg">.</span>get_score<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-10-eea158d9d6b7&gt;</span> in <span class="ansi-cyan-fg">set_score</span><span class="ansi-blue-fg">(self, score)</span>
+<span class="ansi-green-fg">&lt;ipython-input-14-eea158d9d6b7&gt;</span> in <span class="ansi-cyan-fg">set_score</span><span class="ansi-blue-fg">(self, score)</span>
 <span class="ansi-green-intense-fg ansi-bold">     13</span>             self<span class="ansi-blue-fg">.</span>__score <span class="ansi-blue-fg">=</span> score
 <span class="ansi-green-intense-fg ansi-bold">     14</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;bad score&#39;</span><span class="ansi-blue-fg">)</span>
@@ -15935,9 +15977,17 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>需要注意的是，在Python中，类似 __xxx__ 的变量是特殊变量。</p>
-<p>特殊变量是可以直接访问的，不是private变量。</p>
-<p>所以，不能用__name__、__score__这样的变量名。</p>
+<h3 id="&#19968;&#20123;&#26377;&#24847;&#24605;&#30340;&#21464;&#37327;&#24418;&#24335;">&#19968;&#20123;&#26377;&#24847;&#24605;&#30340;&#21464;&#37327;&#24418;&#24335;<a class="anchor-link" href="#&#19968;&#20123;&#26377;&#24847;&#24605;&#30340;&#21464;&#37327;&#24418;&#24335;">&#182;</a></h3><ol>
+<li>__xxx：以两个下划线开头，会被限制访问。</li>
+</ol>
+<ol>
+<li><p>__xxx__：以两个下划线开头，两个下划线结尾，是<strong>特殊变量</strong></p>
+<p>特殊变量是可以直接访问的，不是private变量。所以，访问限制时，不能用__name__、__score__这样的变量名。</p>
+</li>
+<li><p>_xxx：以一个下划线开头</p>
+<p>这样的实例变量外部可以访问。但是，按照约定俗成的规定，当你看到这样的变量时，它会向你倾诉：“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。</p>
+</li>
+</ol>
 
 </div>
 </div>
@@ -15946,21 +15996,21 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>有些时候，你会看到以一个下划线开头的实例变量名，比如_name，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。</p>
-<p>不能直接访问__name是因为Python解释器对外把__name变量改成了_Student__name，所以，仍然可以通过_Student__name来访问__name变量：</p>
+<p>__xxx真的不能从外部访问呢？其实也不是。</p>
 
 </div>
 </div>
 </div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>不能直接访问__name是因为Python解释器对外把__name变量改成了_Student__name。</p>
+<p>所以，仍然可以通过_Student__name来访问__name变量：</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[46]:</div>
@@ -16104,7 +16154,7 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>在OOP程序设计中，当我们定义一个class的时候，可以从某个现有的class继承，新的class称为子类（Subclass），而被继承的class称为基类、父类或超类（Base class、Super class）。</p>
+<p>在OOP中，定义一个class时，可以从某个现有的class继承，新的class称为子类（Subclass），而被继承的class称为基类、父类或超类（Base class、Super class）。</p>
 
 </div>
 </div>
@@ -16113,14 +16163,14 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>比如，我们已经编写了一个名为Animal的class，有一个run()方法可以直接打印：</p>
+<p>比如，假设已经定义了一个名为Animal的class，有一个run()方法可以直接打印：</p>
 
 </div>
 </div>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -16137,14 +16187,14 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>当我们需要编写Dog和Cat类时，就可以直接从Animal类继承：</p>
+<p>定义Dog和Cat类时，就可以直接从Animal类继承：</p>
 
 </div>
 </div>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
@@ -16172,7 +16222,24 @@ Lisa Simpson: 87
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>继承有什么好处？最大的好处是子类获得了父类的全部功能。</p>
+<p><strong> 继承有什么好处？ </strong></p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>最大的好处是子类获得了父类的全部功能。</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>由于Animial实现了run()方法，因此，Dog和Cat作为它的子类，什么事也没干，就自动拥有了run()方法：</p>
 
 </div>
@@ -16180,7 +16247,7 @@ Lisa Simpson: 87
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
@@ -16225,7 +16292,7 @@ Animal is running...
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
@@ -16267,7 +16334,7 @@ Animal is running...
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
@@ -16324,7 +16391,7 @@ Cat is running...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>当子类和父类都存在相同的run()方法时，我们说，子类的run()覆盖了父类的run()，在代码运行的时候，总是会调用子类的run()。</p>
+<p>当子类和父类都存在相同的run()方法时，我们说，<strong>子类的run()覆盖了父类的run()</strong>，在代码运行的时候，总是会调用子类的run()。</p>
 <p>这样，我们就获得了继承的另一个好处：<strong>多态</strong>。</p>
 
 </div>
@@ -16336,10 +16403,10 @@ Cat is running...
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>要理解什么是多态，我们首先要对数据类型再作一点说明。</p>
 <ul>
-<li><p>当我们定义一个class的时候，我们实际上就定义了一种数据类型。</p>
-</li>
-<li><p>我们定义的数据类型和Python自带的数据类型，比如str、list、dict没什么两样：</p>
-</li>
+<li>当我们定义一个class的时候，我们实际上就定义了一种数据类型。</li>
+</ul>
+<ul>
+<li>我们定义的数据类型和Python自带的数据类型，比如str、list、dict没什么两样：</li>
 </ul>
 
 </div>
@@ -16347,7 +16414,7 @@ Cat is running...
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1"># a是list类型</span>
@@ -16364,14 +16431,14 @@ Cat is running...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>判断一个变量是否是某个类型可以用isinstance()判断：</p>
+<p><strong> 判断一个变量是否是某个类型，可以用 isinstance() 判断 </strong></p>
 
 </div>
 </div>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span>
@@ -16416,10 +16483,10 @@ True
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Dog</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Animal</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -16665,7 +16732,8 @@ Cat is running...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>看上去没啥意思，但是仔细想想，现在，如果我们再定义一个Tortoise类型，也从Animal派生：</p>
+<p>看上去没啥意思  :(</p>
+<p>但如果我们再定义一个Tortoise类型，也从Animal派生：</p>
 
 </div>
 </div>
@@ -16730,7 +16798,8 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>你会发现，新增一个Animal的子类，不必对run_twice()做任何修改，实际上，任何依赖Animal作为参数的函数或者方法都可以不加修改地正常运行，原因就在于多态。</p>
+<p>你会发现，新增一个Animal的子类，不必对run_twice()做任何修改。</p>
+<p>实际上，任何依赖Animal作为参数的函数或者方法都可以不加修改地正常运行，原因就在于多态。</p>
 
 </div>
 </div>
@@ -16749,7 +16818,10 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>对于一个变量，我们只需要知道它是Animal类型，无需确切地知道它的子类型，就可以放心地调用run()方法，而具体调用的run()方法是作用在Animal、Dog、Cat还是Tortoise对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：调用方只管调用，不管细节，而当我们新增一种Animal的子类时，只要确保run()方法编写正确，不用管原来的代码是如何调用的。</p>
+<p>对于一个变量，我们只需要知道它是Animal类型，无需确切地知道它的子类型，就可以放心地调用run()方法。</p>
+<p>而具体调用的run()方法是作用在Animal、Dog、Cat还是Tortoise对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：</p>
+<p><strong> 调用方只管调用，不管细节</strong></p>
+<p>而当我们新增一种Animal的子类时，只要确保run()方法编写正确，不用管原来的代码是如何调用的。</p>
 
 </div>
 </div>
@@ -16758,12 +16830,12 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>这就是著名的“开闭”原则：</p>
+<p>这就是著名的<strong>“开闭”原则：</strong></p>
 <ul>
-<li><p>对扩展开放：允许新增Animal子类；</p>
-</li>
-<li><p>对修改封闭：不需要修改依赖Animal类型的run_twice()等函数。</p>
-</li>
+<li><strong> 对扩展开放 </strong> ：允许新增Animal子类；</li>
+</ul>
+<ul>
+<li><strong> 对修改封闭 </strong> ：不需要修改依赖Animal类型的run_twice()等函数。</li>
 </ul>
 
 </div>
@@ -16885,8 +16957,10 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>首先，我们来判断对象类型，使用type()函数：</p>
-<p>基本类型都可以用type()判断：</p>
+<p><strong> 判断对象类型，请使用type()：</strong></p>
+<ul>
+<li>基本类型都可以用type()判断：</li>
+</ul>
 
 </div>
 </div>
@@ -16930,7 +17004,9 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>如果一个变量指向函数或者类，也可以用type()判断：</p>
+<ul>
+<li>如果一个变量指向函数或者类，也可以用type()判断：</li>
+</ul>
 
 </div>
 </div>
@@ -16973,12 +17049,21 @@ Tortoise is running slowly...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>但是type()函数返回的是什么类型呢？它返回对应的Class类型。</p>
-<p>如果我们要在if语句中判断，就需要比较两个变量的type类型是否相同：</p>
+<p><strong> type()返回的是什么类型呢？</strong></p>
 
 </div>
 </div>
 </div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>它返回对应的Class类型。</p>
+<p>如果我们要在if语句中判断，就需要比较两个变量的type类型是否相同：</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[88]:</div>
@@ -17022,7 +17107,17 @@ False
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>判断基本数据类型可以直接写int，str等，但如果要判断一个对象是否是函数怎么办？</p>
+<ul>
+<li>判断基本数据类型可以直接写int，str等，但如果<strong>要判断一个对象是否是函数怎么办</strong>？</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>可以使用types模块中定义的常量。</p>
 
 </div>
@@ -17081,7 +17176,7 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>对于class的继承关系来说，使用type()就很不方便。我们要判断class的类型，可以使用isinstance()。</p>
+<p>对于class的继承关系来说，使用type()就很不方便。我们<strong>要判断class的类型，可以使用isinstance()</strong>。</p>
 
 </div>
 </div>
@@ -17170,7 +17265,7 @@ True
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>h虽然自身是Husky类型，但由于Husky是从Dog继承下来的，所以，h也还是Dog类型。</p>
-<p>换句话说，isinstance()判断的是一个对象是否是该类型本身，或者位于该类型的父继承链上。当然，h还是Animal类型。</p>
+<p>换句话说，<strong> isinstance()判断的是一个对象是否是该类型本身，或者位于该类型的父继承链上。</strong> 当然，h还是Animal类型。</p>
 
 </div>
 </div>
@@ -17256,7 +17351,8 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>并且还可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是list或者tuple：</p>
+<p><strong> isinstance() 还可以判断一个变量是否是某些类型中的一种。</strong></p>
+<p>比如下面的代码就可以判断是否是list或者tuple：</p>
 
 </div>
 </div>
@@ -17306,7 +17402,7 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list。</p>
+<p><strong> 如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list。</strong></p>
 <p>比如，获得一个str对象的所有属性和方法：</p>
 
 </div>
@@ -17419,12 +17515,8 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>类似__xxx__的属性和方法在Python中都是有特殊用途的，比如__len__方法返回长度。</p>
-</li>
-<li><p>在Python中，如果你调用len()函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的__len__()方法。</p>
-</li>
-</ul>
+<p><strong> 类似__xxx__的属性和方法在Python中都是有特殊用途的，比如__len__方法返回长度。</strong></p>
+<p>在Python中，如果你调用len()函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的__len__()方法。</p>
 
 </div>
 </div>
@@ -17580,7 +17672,7 @@ True
 </div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -17599,13 +17691,13 @@ True
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">MyObject</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">)</span>      <span class="c1"># 有属性&#39;x&#39;吗？</span>
-<span class="nb">print</span><span class="p">(</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">)</span>     <span class="c1"># 获取属性&#39;x&#39;</span>
-<span class="nb">print</span><span class="p">(</span> <span class="n">obj</span><span class="o">.</span><span class="n">x</span> <span class="p">)</span>                 <span class="c1"># 获取属性&#39;x&#39;</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">)</span>      <span class="c1"># 获取属性&#39;x&#39;</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">obj</span><span class="o">.</span><span class="n">x</span> <span class="p">)</span>                  <span class="c1"># 获取属性&#39;x&#39;</span>
 </pre></div>
 
 </div>
@@ -17644,10 +17736,10 @@ True
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>           <span class="c1"># 获取属性&#39;z&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="p">)</span>          <span class="c1"># 获取属性&#39;z&#39;</span>
 </pre></div>
 
 </div>
@@ -17667,8 +17759,8 @@ True
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-124-8228521ccf56&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">print</span> getattr<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;z&#39;</span><span class="ansi-blue-fg">)</span>           <span class="ansi-red-fg"># 获取属性&#39;z&#39;</span>
+<span class="ansi-green-fg">&lt;ipython-input-37-9740960fd131&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span> getattr<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;z&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">)</span>          <span class="ansi-red-fg"># 获取属性&#39;z&#39;</span>
 
 <span class="ansi-red-fg">AttributeError</span>: &#39;MyObject&#39; object has no attribute &#39;z&#39;</pre>
 </div>
@@ -17689,10 +17781,10 @@ True
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">404</span><span class="p">)</span> <span class="c1"># 获取属性&#39;z&#39;，如果不存在，返回默认值404</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">404</span><span class="p">)</span> <span class="p">)</span><span class="c1"># 获取属性&#39;z&#39;，如果不存在，返回默认值404</span>
 </pre></div>
 
 </div>
@@ -17729,13 +17821,13 @@ True
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span> <span class="c1"># 有属性&#39;power&#39;吗？</span>
-<span class="nb">print</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span> <span class="c1"># 获取属性&#39;power&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span> <span class="p">)</span><span class="c1"># 有属性&#39;power&#39;吗？</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span> <span class="p">)</span><span class="c1"># 获取属性&#39;power&#39;</span>
 <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">)</span>  <span class="c1"># 获取属性&#39;power&#39;并赋值到变量fn</span>
-<span class="nb">print</span> <span class="n">fn</span><span class="p">()</span>                  <span class="c1"># 调用fn()与调用obj.power()是一样的</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">fn</span><span class="p">()</span> <span class="p">)</span>                 <span class="c1"># 调用fn()与调用obj.power()是一样的</span>
 </pre></div>
 
 </div>
@@ -17753,7 +17845,7 @@ True
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>True
-&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x7f5bb84e0210&gt;&gt;
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x7f24d40d24a8&gt;&gt;
 81
 </pre>
 </div>
@@ -17850,6 +17942,8 @@ True
 <p>假设我们希望从文件流fp中读取图像，我们首先要判断该fp对象是否存在read方法，</p>
 <ul>
 <li>如果存在，则该对象是一个流；</li>
+</ul>
+<ul>
 <li>如果不存在，则无法读取。</li>
 </ul>
 <p>hasattr()就派上了用场。</p>

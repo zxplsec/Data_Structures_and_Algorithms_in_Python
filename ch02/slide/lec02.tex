@@ -1,0 +1,146 @@
+\section{什么是算法分析}
+
+% 一些普遍的现象是，刚接触计算机科学的学生会将自己的程序和其他人的相比较。你可能还注意到，这些计算机程序看起来很相似，尤其是简单的程序。经常出现一个有趣的问题。当两个程序解决同样的问题，但看起来不同，哪一个更好呢？
+% 为了回答这个问题，我们需要记住，程序和程序代表的底层算法之间有一个重要的区别。正如我们在第 1 章中所说，一种算法是一个通用的，一步一步解决某种问题的指令列表。它是用于解决一种问题的任何实例的方法，给定特定输入，产生期望的结果。另一方面，程序是使用某种编程语言编码的算法。根据程序员和他们所使用的编程语言的不同，可能存在描述相同算法的许多不同的程序。
+% 要进一步探讨这种差异，请参考 ActiveCode 1 中显示的函数。这个函数解决了一个我们熟悉的问题，计算前 n 个整数的和。该算法使用初始化值为 0 的累加器（accumulator）变量。然后迭代 n 个整数，将每个依次添加到累加器。
+
+\begin{frame}\ft{\secname}
+\begin{wenti}
+	编写程序，计算前 n 个整数的和。
+\end{wenti} \pause 
+
+\lstinputlisting{code/sumofN.py}
+\end{frame}
+
+
+\begin{frame}
+% 现在看看 ActiveCode 2 中的函数。乍一看，它可能很奇怪，但进一步的观察，你可以看到这个函数本质上和前一个函数在做同样的事情。不直观的原因在于编码习惯不好。我们没有使用良好的标识符（identifier）名称来提升可读性，我们在迭代步骤中使用了一个额外的赋值语句，这并不是真正必要的。
+ \lstinputlisting{code/foo.py}\pause 
+ 
+编码习惯不好，没有使用好的标识符来提升可读性，循环中使用了一个额外的赋值语句，这没有必要。
+
+% 先前我们提出一个问题是哪个函数更好，答案取决于你的标准。如果你关注可读性，函数 sumOfN 肯定比 foo 好。事实上，你可能已经在介绍编程的课程中看到过很多例子，他们的目标之一就是帮助你编写易于阅读和理解的程序。然而，在本课程中，我们对算法本身的表示更感兴趣（当然我们希望你继续努力编写可读的，易于理解的代码）。
+\end{frame}
+
+
+\begin{frame}
+算法分析是基于每种算法使用的计算资源量来比较算法。我们说一个算法比另一个好，在于前者在使用资源方面更有效，或使用的资源更少。
+
+从这个角度来看，上述两个函数很相似，都使用基本相同的算法来解决求和问题。
+
+\end{frame}
+
+
+\begin{frame}
+我们需要更多地考虑真正意义上的计算资源，有两种方式：
+\begin{enumerate}
+	\item 空间复杂度，即算法解决问题所需的空间或者内存，通常由问题本身决定。有时一些算法会有特殊的空间需求，需要特别注意。
+	\item 时间复杂度，即算法执行所需的时间，可以通过基准分析（benchmark analysis）来测试程序的执行时间。%这意味着我们将记录程序计算出结果所需的实际时间。
+\end{enumerate}
+
+
+%有两种方法，一种是考虑解决方案所需的空间通常由问题本身决定。但是，有时候有的算法会有一些特殊的空间需求，这种情况下我们需要非常仔细地解释这些变动。
+% 作为空间需求的一种替代方法，我们可以基于算法执行所需的时间来分析和比较算法。这种测量方式有时被称为算法的“执行时间”或“运行时间”。我们可以通过基准分析（benchmark analysis）来测量函数 SumOfN 的执行时间。这意味着我们将记录程序计算出结果所需的实际时间。在 Python 中，我们可以通过记录相对于系统的开始时间和结束时间来对函数进行基准测试。在 time 模块中有一个 time 函数，它可以在任意被调用的地方返回系统时钟的当前时间（以秒为单位）。通过在开始和结束的时候分别调用两次 time 函数，然后计算差异，就可以得到一个函数执行花费的精确秒数（大多数情况下是这样）。
+\end{frame}
+
+
+\begin{frame}
+
+  \lstinputlisting{code/sumofN2.py}
+
+  该函数嵌入了时间函数，返回一个包含了执行结果和消耗时间的元组。
+\end{frame}
+
+
+\begin{frame}[fragile]
+执行上述函数 5 次，每次计算前 10,000 个整数的和：
+\begin{lstlisting}
+>>>for i in range(5):
+        print("Sum is %d required %10.7f seconds"%sumOfN(10000))
+
+Sum is 50005000 required  0.0018950 seconds
+Sum is 50005000 required  0.0018620 seconds
+Sum is 50005000 required  0.0019171 seconds
+Sum is 50005000 required  0.0019162 seconds
+Sum is 50005000 required  0.0019360 seconds
+\end{lstlisting}
+
+时间相当一致，平均需要0.0019秒。
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+若计算前 100,000 个整数的和：
+\begin{lstlisting}
+>>>for i in range(5):
+        print("Sum is %d required %10.7f seconds"%sumOfN(100000))
+
+Sum is 5000050000 required  0.0199420 seconds
+Sum is 5000050000 required  0.0180972 seconds
+Sum is 5000050000 required  0.0194821 seconds
+Sum is 5000050000 required  0.0178988 seconds
+Sum is 5000050000 required  0.0188949 seconds
+\end{lstlisting}
+尽管时间更长（平均大约多10倍），但每次运行的时间仍非常一致。
+\end{frame}
+
+
+\begin{frame}[fragile]
+若计算前 1000,000 个整数的和：
+\begin{lstlisting}
+>>>for i in range(5):
+        print("Sum is %d required %10.7f seconds"%sumOfN(1000000))
+
+Sum is 500000500000 required  0.1948988 seconds
+Sum is 500000500000 required  0.1850290 seconds
+Sum is 500000500000 required  0.1809771 seconds
+Sum is 500000500000 required  0.1729250 seconds
+Sum is 500000500000 required  0.1646299 seconds
+\end{lstlisting}
+平均运行时间也大约是前一次的10倍。
+\end{frame}
+
+
+\begin{frame}[fragile]
+现改用求和公式
+$$
+\sum_{i=1}^n i = \frac{n(n+1)}2
+$$
+来设计函数 sumOfN3()。
+\lstinputlisting{code/sumofN3.py}
+\end{frame}
+
+
+\begin{frame}[fragile]
+对 sumOfN3() 做同样的基准测试，使用 5 个不同的 n (10 000, 100 000, 1 000 000, 10 000 000 和 100 000 000)：
+\begin{lstlisting}
+Sum is 50005000 required 0.00000095 seconds
+Sum is 5000050000 required 0.00000191 seconds
+Sum is 500000500000 required 0.00000095 seconds
+Sum is 50000005000000 required 0.00000095 seconds
+Sum is 5000000050000000 required 0.00000119 seconds
+\end{lstlisting}
+
+\pause
+输出结果表明：
+\begin{enumerate}
+\item 执行时间比之前任何例子都短
+\item 执行时间与 n 无关。
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  这个基准测试告诉我们：
+\begin{itemize}
+\item 直观上看，迭代方案需要做更多的工作，因一些步骤被重复执行。
+\item 迭代方案的执行时间随 n 递增。
+\item 使用不同程序语言，或在不同计算机上执行，可能会导致不同的执行时间。
+\end{itemize} \pause 
+基准测试计算的是程序执行的实际时间， 它并不能真正地提供一个有用的度量，因为它取决于特定的机器、程序、时间、编译器和编程语言。
+\pause
+
+
+我们希望能找到一种独立于程序或计算机的度量方式，用于比较不同算法的效率。
+\end{frame}

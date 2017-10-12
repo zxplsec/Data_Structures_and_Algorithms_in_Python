@@ -1,0 +1,15 @@
+\ft{\secname}
+
+  看一个抽象的例子---Python 数学模块。一旦导入模块，就可以执行计算
+\begin{lstlisting}
+  >>> import math
+  >>> math.sqrt(16)
+  4.0
+\end{lstlisting} \pause
+
+你无需知道计算平方根的细节，只需知道sqrt函数的功能及其使用方式。这就像一个“黑盒子”，其接口可描述为：函数名、参数、返回值，其细节隐藏在内部。
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=2in]{images/blackbox.png}
+\end{figure}
+

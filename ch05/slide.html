@@ -14840,15 +14840,6 @@ a.anchor-link {
 </div>
 </div>
 
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>虽然这样写很简单，不过这个算法后面的处理过程我们还是要学习，查找有很多种方法，我们感兴趣的是算法以及算法之间的比较。</p>
-
-</div>
-</div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -14862,7 +14853,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>从列表的第一个元素开始，逐个检查，直到找到或全部找完。如果找完了全部项，则意味着该项在列表中不存在。</p>
+<p>从列表的第一个元素开始，逐个检查，要么找到，要么全部检查完还没找到。</p>
 <p><img src='images/seqsearch.png'><img></p>
 
 </div>
@@ -14938,17 +14929,21 @@ False
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>对长度为$n$的无序列表进行查找时，可能有三种情形：</p>
 <ul>
-<li>最好的情况：第一个项就是我们要找的，此时只需1次比较；</li>
-<li>最坏的情况：需要经过$n$次比较才知道找不到；</li>
-<li><p>平均情况： 定义平均查找长度（Averaged Search Length, ASL）为
-$$
-ASL = \sum_{i=1}^n p_i c_i
-$$
-其中</p>
+<li><p>最好情况：第一个元素就是我们要找的，只需1次比较；</p>
 </li>
-<li><p>$p_i$表示查找表中第$i$个元素的概率</p>
+<li><p>最坏情况：全部检查完还没找到，需要$n$次比较；</p>
 </li>
+<li><p>平均情况：</p>
+<p>定义平均查找长度（Averaged Search Length, ASL）:
+  $$
+  ASL = \sum_{i=1}^n p_i c_i
+  $$
+  其中</p>
+<ul>
+<li>$p_i$表示查找表中第$i$个元素的概率</li>
 <li>$c_i$表示找到第$i$个元素时已经比较过的次数</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -14970,10 +14965,12 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>对有序列表（设列表元素是升序排列的）进行顺序查找时，</p>
+<p>对有序列表（假设是升序排列）进行顺序查找时，</p>
 <ul>
-<li>若元素在列表中，我们将仍然比较相同的次数来找到它。</li>
-<li>若元素不在列表中，在性能上会稍有提高。</li>
+<li><p>若元素在列表中，比较次数跟无序列表一样。</p>
+</li>
+<li><p>若元素不在列表中，性能上会稍有提高。</p>
+</li>
 </ul>
 
 </div>
@@ -14983,10 +14980,11 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下图展示了查找50的过程。</p>
-<p><img src='images/seqsearch2.png'> <img></p>
-<p>当数据项50与列表元素逐个比较直到54，我们会发现，不但54不是我们要找的，而且54后面的元素也不是我们要找的，因为元素是有序的！</p>
-<p>这时算法就不必继续遍历所有元素后才报告找不到，它可以在找到54后立即终止查找。</p>
+<table><tr>
+<td><img src='images/seqsearch2.png' border=0></td>
+<td>查找50</td>
+</tr></table><p>让50与列表中的元素逐个进行比较，当比较到54时你会发现，54以及其后面的元素都会大于50！</p>
+<p>也就是说，程序此时可以停止遍历。</p>
 
 </div>
 </div>
@@ -15063,9 +15061,19 @@ True
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>前提：有序列表（如升序）</p>
+<li><p>处理对象：有序列表（如升序）</p>
 </li>
-<li><p>基本思想： 从中间元素开始比较，若给定值与中间元素相等，则查找成功；若给定值小于中间元素，则在前半部分继续查找；否则，在后半部分查找。不断重复，知道查找成功或者查找失败为止。</p>
+<li><p>算法原理</p>
+<p>从中间元素开始比较，对于要查找的值，</p>
+<ul>
+<li><p>若等于中间元素，则查找成功；</p>
+</li>
+<li><p>若小于中间元素，则在前半部分继续查找；</p>
+</li>
+<li><p>若大于中间元素，则在后半部分继续查找。</p>
+</li>
+</ul>
+<p>不断重复，知道查找成功或者查找失败为止。</p>
 </li>
 </ul>
 
@@ -15076,9 +15084,10 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下图展示了折半查找54的过程：
-<img src='images/binsearch.png'> <img></p>
-
+<table><tr>
+<td><img src='images/binsearch.png' border=0></td>
+<td>折半查找54</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
@@ -15147,13 +15156,23 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>在分析性能之前，我们应该注意到这种算法是"分而治之"策略的一个很好实例。</p>
-<p>"分而治之"是把问题分解成小片，想法解决小问题然后把整个问题解决。在列表中查找时，先检查中间元素，如果小于中间元素，就在左半表中继续查找；类似地，如果大于中间元素，就在右边查找。</p>
-<p>这也是一个递归的方法，如下面的代码就用了递归法：</p>
+<p>折半查找算法采用的是"分而治之（ divide and conquer）"策略。</p>
+<p>分而治之的基本思想是将一个规模为$n$的问题分解为$k$个规模较小的子问题，这些子问题互相独立且与原问题相同。</p>
+<p>找出各部分的解，然后把各部分的解组合成整个问题的解。</p>
 
 </div>
 </div>
 </div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在列表中查找时，先检查中间元素，如果小于中间元素，就在左半表中继续查找；类似地，如果大于中间元素，就在右边查找。</p>
+<p>于是，折半查找可用递归来实现。</p>
+
+</div>
+</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
@@ -15216,7 +15235,7 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#21704;&#24076;&#26597;&#25214;">&#21704;&#24076;&#26597;&#25214;<a class="anchor-link" href="#&#21704;&#24076;&#26597;&#25214;">&#182;</a></h1>
+<h1 id="&#21704;&#24076;&#26597;&#25214;&#65288;Hash-Search&#65289;">&#21704;&#24076;&#26597;&#25214;&#65288;Hash Search&#65289;<a class="anchor-link" href="#&#21704;&#24076;&#26597;&#25214;&#65288;Hash-Search&#65289;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -15224,8 +15243,7 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>前面我们利用了数据集中元素的相对位置信息来提高查找算法的性能。比如知道列表是有序的，可以使用二分查找。</p>
-<p>本节我们将创建一个数据结构，使得查找性能提高到$O(1)$，称为哈希查找。</p>
+<p>本节将创建一个数据结构（哈希表），使得查找性能提高到$O(1)$，称为哈希查找。</p>
 
 </div>
 </div>
@@ -15234,19 +15252,7 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>哈希表是一种数据集合，元素保存时就放在容易找到的位置上。</p>
-<p>哈希表中的每一个位置称为“槽位”，每个槽位都能保存一个数据元素并以一个整数命名(从0开始)。这样我们就有0号槽位，1号槽位等等。</p>
-<p>起始时，哈希表里没有数据，槽位是空的。</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>构建哈希表时，可以把槽位值都初始化为None。下图显示一个大小为11的哈希表，或者是说有11个槽位的哈希表。</p>
-
+<h2 id="&#21704;&#24076;&#34920;-(Hash-Table)">&#21704;&#24076;&#34920; (Hash Table)<a class="anchor-link" href="#&#21704;&#24076;&#34920;-(Hash-Table)">&#182;</a></h2>
 </div>
 </div>
 </div><div class="fragment">
@@ -15254,7 +15260,13 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/hashtable.png'> <img></p>
+<p>哈希表是一种根据关键码值(key-value)而直接进行访问的数据结构。</p>
+<p>也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。</p>
+<ul>
+<li><p>哈希表中的每一个位置称为“槽位”，每个槽位都能保存一个数据元素并以一个整数命名(从0开始)。这样我们就有0号槽位，1号槽位等等。</p>
+<p>构建哈希表时，可以把槽位值都初始化为None。</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -15263,8 +15275,27 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/hashtable.png' border=0></td>
+<td>一个大小为11的哈希表</td>
+</tr></table>
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#21704;&#24076;&#20989;&#25968;&#65288;Hash-Function&#65289;">&#21704;&#24076;&#20989;&#25968;&#65288;Hash Function&#65289;<a class="anchor-link" href="#&#21704;&#24076;&#20989;&#25968;&#65288;Hash-Function&#65289;">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>元素和其槽位之间的映射关系，称为哈希函数。</p>
-<p>哈希函数接受一个元素作为参数，返回一个$0$到$m-1$的整数作为槽位名。</p>
+<p>哈希函数接受一个元素作为参数，返回一个整数作为槽位名。</p>
 
 </div>
 </div>
@@ -15273,11 +15304,22 @@ True
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>假如我们有一个整数集
+<p>设有一个整数集合
 $$
 54，26，93，17，77, 31
 $$
-第一个哈希函数可用“余数法”构造：简单地将元素除以表的大小（11），所得余数作为哈希值。</p>
+下面介绍哈希函数的几种构造方法。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1、<strong>余数法</strong></p>
+
+<pre><code>将元素除以表的大小（11），所得余数作为哈希值。</code></pre>
 
 </div>
 </div>
@@ -15286,7 +15328,6 @@ $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下表是上述整数集的哈希值。</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -15323,22 +15364,12 @@ $$
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>注意：余数法一般以某种形式存于所有哈希函数中，因为它的结果一定在槽位范围内。</p>
 <p>一旦哈希值计算出来，就要把元素插入到哈希表中指定的位置。</p>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/hashtable2.png'> <img></p>
 
 </div>
 </div>
@@ -15347,15 +15378,10 @@ $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>由上图可知，11个槽位中有6个已经填满。可引入满载因子的概念，一般表述为
-$$
-\lambda  = \frac{\mbox{number of items}}{\mbox{table size}}
-$$
-在该例中，
-$$
-\lambda  = \frac{6}{11}.
-$$</p>
-
+<table><tr>
+<td><img src='images/hashtable2.png' border=0></td>
+<td>11个槽位中，6个已经填满</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
@@ -15363,9 +15389,14 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>查找时，先用哈希函数计算出槽位值，然后到表中检查是否存在就可以了。</p>
-<p>该查找操作的时间复杂度是$O(1)$，因为计算哈希值，以及到表中查找的时间是个常数。</p>
-<p>如果每个元素都各守其位，我们就发现了一个常数级的查找算法。</p>
+<p><strong>满载因子</strong></p>
+<p>$$
+\lambda  = \frac{\mbox{number of items}}{\mbox{table size}}
+$$</p>
+<p>该例中，
+$$
+\lambda  = \frac{6}{11}.
+$$</p>
 
 </div>
 </div>
@@ -15374,8 +15405,14 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>也许你已经注意到，这个技术仅在每个元素对应一个位置时有效。</p>
-<p>例如，如果在数据集中增加一个44，则其哈希值是0，而77的哈希值也是0。这就出现了2个值对应同一个槽位的情况，被称为“冲突”。很明显，collision给哈希技术造成了困难，我们随后详细讨论。</p>
+<p><strong> 如何查找？</strong></p>
+<ol>
+<li><p>先用哈希函数计算出槽位值；</p>
+</li>
+<li><p>然后到表中检查是否存在。</p>
+</li>
+</ol>
+<p>其时间复杂度是$O(1)$。</p>
 
 </div>
 </div>
@@ -15384,7 +15421,14 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#21704;&#24076;&#20989;&#25968;">&#21704;&#24076;&#20989;&#25968;<a class="anchor-link" href="#&#21704;&#24076;&#20989;&#25968;">&#182;</a></h1>
+<p>对于集合
+$$
+54，26，93，17，77, 31
+$$
+若增加一个$44$，则其哈希值是0，跟77的哈希值一样。</p>
+<p>这就出现了2个值对应同一个槽位的情况，称为“冲突(Collision)”。</p>
+<p>很明显，冲突给哈希技术造成了困难。</p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -15423,7 +15467,6 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>我们的目标是：冲突最少，计算简单，分布均匀。</p>
-<p>有几种扩展余数法的方案，下面讨论其中几个。</p>
 
 </div>
 </div>
@@ -15432,7 +15475,9 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#25240;&#21472;&#27861;">&#25240;&#21472;&#27861;<a class="anchor-link" href="#&#25240;&#21472;&#27861;">&#182;</a></h2><p>把元素分成相等的几块（最后一块可能不相等），然后再把这些块加起来求哈希值。</p>
+<p>2、<strong>折叠法</strong></p>
+
+<pre><code>把元素分成相等的几块（最后一块可能不相等），然后再把这些块求哈希值。</code></pre>
 
 </div>
 </div>
@@ -15441,30 +15486,21 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>假设哈希表有11个槽位，数据项是一个电话号码 436-555-4601。折叠法的处理过程如下：</p>
+<p>假设哈希表有11个槽位，数据项是一个电话号码 436 555 4601。折叠法的处理过程如下：</p>
 <ol>
 <li>按2个一组分块，然后加起来，即 $43+65+55+46+01$，得到 $210$ 。</li>
-<li>用11除210来得到槽位，即$210\%11=1$，故 436-555-4601 的哈希值是 $1$。</li>
+<li>用11除210来得到槽位，即$210\%11=1$，故 436 555 4601 的哈希值是 $1$。</li>
 </ol>
 
 </div>
 </div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>有些折叠法多了一步，在相加之前，把数据位顺序反转。</p>
-<p>即 43+56+55+64+01=219 计算219 % 11=10。</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#24179;&#26041;&#21462;&#20013;&#27861;">&#24179;&#26041;&#21462;&#20013;&#27861;<a class="anchor-link" href="#&#24179;&#26041;&#21462;&#20013;&#27861;">&#182;</a></h2><p>先计算元素的平方值，再从中提取几位数字。</p>
+<p>3、<strong>平方取中法</strong></p>
+<p>先计算元素的平方值，再从中提取几位数字。</p>
 <p>例如，对元素44，先计算$44^2=1936$，提取中间两位 $93$，然后再取余数法，得到$5 ~~(93\%11=5)$。</p>
 
 </div>
@@ -15638,23 +15674,16 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>将这三个数字相加，再用余数法来计算哈希值。</p>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/stringhash.png'> <img></p>
-
+<table><tr>
+<td><img src='images/stringhash.png' border=0></td>
+<td>将字母的ASCII码相加，再用余数法来计算哈希值。</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="n">astring</span><span class="p">,</span> <span class="n">tablesize</span><span class="p">):</span>
@@ -15674,7 +15703,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>有意思的是，该算法中，相同字母不同顺序的单词得到的哈希值相等，解决办法是加上字母的位置作为权重。下图中，使用了位置作为权重因子：</p>
+<p>但对于字母相同而顺序不同的单词，用该函数算得的哈希值相等，解决办法是加上字母的位置作为权重。</p>
 
 </div>
 </div>
@@ -15692,7 +15721,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>你也可以思考几种计算哈希值的方法，但必须要记住，哈希函数必须要简单高效，不能成为计算的主要负担。</p>
+<p><strong>原则</strong></p>
+<p>哈希函数必须要简单高效，不能成为计算的主要负担。</p>
 <p>如果哈希函数太复杂，计算槽位名的时间超过了简单的顺序查找或二分查找的时间，那么哈希函数还有什么意义呢？</p>
 
 </div>
@@ -15710,20 +15740,27 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>现在回到前面提到的冲突问题。</p>
 <p>当两个元素的哈希值指向同一个槽位，就应该有办法把第二个元素放进表中，这个过程叫做“冲突解决”。</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>我们前面说过的，如果哈希函数是完美的，不会发生冲突。但完美无缺的事很少，所以冲突解决就成为哈希算法中的重要部分。</p>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#19968;">&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#19968;<a class="anchor-link" href="#&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#19968;">&#182;</a></h2><p>为引起冲突的元素找到另一个位置。</p>
-<p>简单的做法就是从原来的位置开始，顺序向前查找，直到遇到一个空闲的槽位为止。</p>
-<p>注意的是我们可能需要循环地从第一个槽位开始以便覆盖整个哈希表。这种方法叫做开放地址法，因为它就是在哈希表中找下一个空闲槽位。通过系统地访问每个槽位，我们的开放地址技术叫做线性探测。</p>
+<h2 id="&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#19968;&#65306;&#24320;&#25918;&#22320;&#22336;+&#32447;&#24615;&#25506;&#27979;">&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#19968;&#65306;&#24320;&#25918;&#22320;&#22336;+&#32447;&#24615;&#25506;&#27979;<a class="anchor-link" href="#&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#19968;&#65306;&#24320;&#25918;&#22320;&#22336;+&#32447;&#24615;&#25506;&#27979;">&#182;</a></h2><p>从冲突的槽位开始，顺序（循环）向前查找，直到遇到一个空闲的槽位为止。</p>
+<p>这种方法称为<strong>开放地址法</strong>。</p>
+<p>通过系统地访问每个槽位，我们的开放地址技术叫做线性探测。</p>
 
 </div>
 </div>
@@ -15732,7 +15769,6 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>以(54, 26, 93, 17, 77, 31, 44, 55, 20)为例</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -15767,13 +15803,10 @@ $$</p>
 </tbody>
 </table>
 <p><img src='images/hashtable2.png'> <img></p>
-<ul>
-<li>当我们试图放置 44 到 0 位的时候，冲突发生了。使用线性探测技术，我们按顺序一个槽位一个槽位地找，最终找到一个空闲槽位，即 1 位。</li>
-<li>55 也应该在 0 位上，但不得不放在 2 位上，因为这是第二个空闲位置。</li>
-<li>20 的哈希值是 9，但 9 已经被占了，不得不再作探测，我们查找了 10，0，1，和 2 位，最后在 3 位上发现一个空位。</li>
-</ul>
-<p><img src='images/linearprobing1.png'> <img></p>
-
+<table><tr>
+<td><img src='images/linearprobing1.png' border=0></td>
+<td>依次加入44、55、20</td>
+</tr></table>
 </div>
 </div>
 </div></section></section><section><section>
@@ -15781,26 +15814,63 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>一旦我们用开放地址和线性探测法建立了一个哈希表，那就有必要用同样的方法实现查找。</p>
+<p><strong>如何查找？</strong></p>
+<p><img src='images/linearprobing1.png' border=0></p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>假设我们要找 93，计算哈希值，得到 5，查找 5 号槽，果然发现 93，这时可以返回 True 值。</p>
+<li><p>若查找<strong>93</strong></p>
+<ul>
+<li><p>计算哈希值5</p>
 </li>
-<li><p>如果要找 20 呢？ 哈希值是 9，但 9 位上坐着 31，这就不能简单地返回False。因为我们知道可能存在冲突，这时就要进行一下顺序查找，从 10 位开始，逐个查找直到找到 20 或发现空槽位。</p>
+<li><p>查找5号槽</p>
+</li>
+<li><p>返回True</p>
+</li>
+</ul>
 </li>
 </ul>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>线性探测一个不好的地方就是可能引起聚类现象，元素在表里成群出现。</p>
-<p>这是因为如果在同一槽位上发生很多冲突的话，周边的槽位就会被线性探测找到并填满，这会影响到其他插入的元素。</p>
+<ul>
+<li><p>若查找<strong>20</strong></p>
+<ul>
+<li><p>计算哈希值9</p>
+</li>
+<li><p>查找9号槽，因可能存在冲突，不能直接返回False。</p>
+</li>
+<li><p>从10号槽开始顺序查找，直到<strong>找到20</strong>或<strong>发现空槽位</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>线性探测的缺点是可能引起<strong>聚类现象</strong>，元素在表里成群出现。</p>
+<p>因为如果在同一槽位上发生很多次冲突，附近的空槽位就会被线性探测找到并被填满，这就会影响到其他插入的元素。</p>
 <p>就象前面我们看到插入20的情况，20不得不跨过0后面好几个元素才找到开放地址，如下图所示。</p>
-<p><img src='images/clustering.png'> <img></p>
-
+<table><tr>
+<td><img src='images/clustering.png' border=0></td>
+<td>聚类现象：插入20时，不得不跨过0号槽位后好几个槽位才找到开放地址</td>
+</tr></table>
 </div>
 </div>
 </div></section></section><section><section>
@@ -15808,10 +15878,11 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>一种解决办法是延伸线性探测，改变就近查找空槽的方法，而是跳过几个槽位，这样冲突的元素可以分散开来，从而潜在减少了聚类现象的可能性。</p>
-<p>下图显示的是线性+3探测，即冲突发生时，我们每隔3个位置探测一下是否空槽。</p>
-<p><img src='images/linearprobing2.png'> <img></p>
-
+<h2 id="&#32447;&#24615;+k&#25506;&#27979;">&#32447;&#24615;+k&#25506;&#27979;<a class="anchor-link" href="#&#32447;&#24615;+k&#25506;&#27979;">&#182;</a></h2><p>避免聚类现象的一种方法是延伸线性探测，改变就近查找空槽的方法，而是跳过几个槽位，这样冲突的元素可以分散开来，从而潜在减少了聚类现象的可能性。</p>
+<table><tr>
+<td><img src='images/linearprobing2.png' border=0></td>
+<td>线性+3探测：冲突发生时，每隔3个位置探测一下是否空槽</td>
+</tr></table>
 </div>
 </div>
 </div></section></section><section><section>
@@ -15819,7 +15890,16 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>在发生冲突后查找另一个空槽的方法称为“再哈希”，再哈希函数的一般定义为
+<h2 id="&#20877;&#21704;&#24076;&#65288;Rehash&#65289;">&#20877;&#21704;&#24076;&#65288;Rehash&#65289;<a class="anchor-link" href="#&#20877;&#21704;&#24076;&#65288;Rehash&#65289;">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>冲突发生后查找另一个空槽的方法称为<strong>“再哈希”</strong>。</p>
+<p>再哈希函数的一般定义为
 $$ NewHashValue = rehash(OldHashValue)$$</p>
 <ul>
 <li>用线性探测法时，
@@ -15842,30 +15922,32 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 
 </div>
 </div>
-</div><div class="fragment">
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>线性探测思想的一个变种称为二次探测。它不再使用一个常数的“跳步”，而是用再哈希函数来逐次提高哈希值如1，3，5，7，9等。</p>
+<h2 id="&#20108;&#27425;&#25506;&#27979;">&#20108;&#27425;&#25506;&#27979;<a class="anchor-link" href="#&#20108;&#27425;&#25506;&#27979;">&#182;</a></h2><p>线性探测思想的一个变种，它不再使用一个常数的“跳步”，而是用再哈希函数来逐次提高哈希值。</p>
 <p>这就是说，如果第一次计算得到的哈希值是$h$,那么后续的值就是$h+1, h+4, h+9, h+16$等。</p>
-<p>换句话说，二次探测使用了完全平方数作为跳步。下图使用了这个技术。</p>
-<p><img src='images/quadratic.png'> <img></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#20108;">&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#20108;<a class="anchor-link" href="#&#22788;&#29702;&#20914;&#31361;&#30340;&#26041;&#27861;&#20108;">&#182;</a></h2><p>让槽位上保存一个指向链地址的引用，这个方法可以在一个槽位上存在很多元素。这样当发生冲突时，元素仍然可以放在这个槽位上。但是如果越来越多的元素放置在同一槽位上，查找的难度也要增加。</p>
-<p>下图使用了链地址方法解决冲突。</p>
-<p><img src='images/chaining.png'> <img></p>
-
+<table><tr>
+<td><img src='images/quadratic.png' border=0></td>
+<td>二次探测：使用完全平方数作为跳步</td>
+</tr></table>
 </div>
 </div>
 </div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#20108;&#65306;&#38142;&#34920;&#26041;&#27861;">&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#20108;&#65306;&#38142;&#34920;&#26041;&#27861;<a class="anchor-link" href="#&#20914;&#31361;&#35299;&#20915;&#20043;&#26041;&#27861;&#20108;&#65306;&#38142;&#34920;&#26041;&#27861;">&#182;</a></h2><p>让槽位上保存一个指向链地址的引用，这个方法可以在一个槽位上存在很多元素。这样当发生冲突时，元素仍然可以放在这个槽位上。但是如果越来越多的元素放置在同一槽位上，查找的难度也要增加。</p>
+<table><tr>
+<td><img src='images/chaining.png' border=0></td>
+<td>使用链表方法解决冲突</td>
+</tr></table>
+</div>
+</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -15874,7 +15956,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -16162,7 +16244,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#20882;&#27873;&#25490;&#24207;">&#20882;&#27873;&#25490;&#24207;<a class="anchor-link" href="#&#20882;&#27873;&#25490;&#24207;">&#182;</a></h1>
+<h1 id="&#20882;&#27873;&#25490;&#24207;&#65288;Bubble-Sort&#65289;">&#20882;&#27873;&#25490;&#24207;&#65288;Bubble Sort&#65289;<a class="anchor-link" href="#&#20882;&#27873;&#25490;&#24207;&#65288;Bubble-Sort&#65289;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -16170,7 +16252,8 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>冒泡排序算法需要多次访问列表，它比较相邻的两个元素，如果次序不对，就交换位置。每次遍历都把最大元素放到合适的位置上，这就象气泡上浮到合适的位置。</p>
+<p>冒泡排序是一种最简单的排序算法。它重复地访问要排序的元素，依次比较相邻两个元素，如果它们的顺序错误就进行调换，直到没有元素再需要交换，排序完成。</p>
+<p>因为越小(或越大)的元素会经由交换慢慢“浮”到数列的顶端，这就是“冒泡”的由来。</p>
 
 </div>
 </div>
@@ -16179,8 +16262,10 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下图是冒泡排序的第一次遍历。阴影部分是正在比较元素位置是否合适。如果有 $n$ 个元素，那么就要有 $n-1$ 次比较。注意：如果最大元素在参与比较，它就被一直推动着向上直到最顶。</p>
-
+<table><tr>
+<td><img src='images/bubblepass.png' border=0 width=400></td>
+<td>冒泡排序的第一次遍历</td>
+</tr></table>
 </div>
 </div>
 </div><div class="fragment">
@@ -16188,7 +16273,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/bubblepass.png'> <img></p>
+<p>若列表中有 $n$ 个元素，则第一次遍历时需要进行 $n-1$ 次比较。</p>
 
 </div>
 </div>
@@ -16197,7 +16282,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>第二次遍历开始时，最大元素已经就位。此时只剩下 $n-1$ 个元素要排序，意味着要进行 $n-2$ 次比较。</p>
+<p>第二次遍历开始时，因最大元素已经就位，只需对剩余的 $n-1$ 个元进行要排序，这需要 $n-2$ 次比较。</p>
 
 </div>
 </div>
@@ -16206,7 +16291,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>经过 $n-1$ 次比较、交换之后，最小元素也一定就位，不再需要交换。</p>
+<p>经过 $n-1$ 次遍历后，最小元素也一定就位，不再需要交换。</p>
 
 </div>
 </div>
@@ -16215,7 +16300,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>对于交换操作，交换两个元素时，需要一个临时变量(需要额外的地址空间)：</p>
+<p>交换两个元素时，需要一个临时变量：</p>
 
 </div>
 </div>
@@ -16234,18 +16319,23 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 </div>
 
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>如果不用临时变量，其中一个值会被覆盖。</p>
+
+</div>
+</div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>如果不用临时变量，其中一个值会被覆盖。</p>
-</li>
-<li><p>在 python 中，允许进行同时赋值。</p>
-<p>赋值语句 a, b = b, a 能够一次完成两次赋值命令（见下图）。使用同时赋值语句，交换操作也可以一次完成。</p>
-</li>
-</ul>
+<p>在 python 中，允许进行同时赋值，即</p>
+
+<pre><code>    a, b = b, a</code></pre>
 
 </div>
 </div>
@@ -16304,7 +16394,7 @@ $$ rehash(pos) ~~=~~ (pos+skip) ~~\%~~ sizeoftable$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;<a class="anchor-link" href="#&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#182;</a></h2><p>不管列表元素原来如何排列，必须进行 $n-1$ 次遍历。下表显示了每次遍历所要进行的比较次数。</p>
+<h2 id="&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;<a class="anchor-link" href="#&#20882;&#27873;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#182;</a></h2><p>无论原列表的元素如何排列，冒泡算法都必须进行 $n-1$ 次遍历。</p>
 <table>
 <thead><tr>
 <th>Pass</th>
@@ -16348,9 +16438,9 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>关于交换：</p>
 <ul>
-<li><p>最好情况：如果列表是有序的，一次交换也没有。</p>
+<li><p>最好情况：若列表有序，不要做任何交换。</p>
 </li>
-<li><p>最坏情况：每次比较都引起一次交换；</p>
+<li><p>最坏情况：每次比较都引起了一次交换；</p>
 </li>
 <li><p>平均情况：有一半的交换。</p>
 </li>
@@ -16363,7 +16453,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>一般认为冒泡排序是效率最差的排序算法，因为它在元素最终确定位置之前反复交换。这些浪费的交换操作很费资源。</p>
+<p>冒泡排序是最简单的、但同时也是效率最差的排序算法，
+因为它在元素最终确定位置之前需要反复交换，这非常浪费资源。</p>
 
 </div>
 </div>
@@ -16372,9 +16463,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>不过，因为冒泡排序对整个未排序部分遍历，它也能做到一些其他算法做不到的事情。</p>
-<p>在特殊情况下，如果一次遍历也没有发生交换，就可以确定该列表一定是有序的，冒泡排序就可以提前停止。这意味着列表只需要一次遍历就知道自身是有序的，从而提高效率。</p>
-<p>利用了这个特点的冒泡算法，通常称为”短冒泡算法“。</p>
+<p>但冒泡排序也能做到一些其他排序算法做不到的事情。</p>
+<p>如果在做某一次遍历时没有发生任何交换，则可马上确定此时的列表有序，从而冒泡排序可以提前停止。 利用了该特点的冒泡算法通常称为<strong>”短冒泡算法“</strong>。</p>
 
 </div>
 </div>
@@ -16429,7 +16519,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#36873;&#25321;&#25490;&#24207;">&#36873;&#25321;&#25490;&#24207;<a class="anchor-link" href="#&#36873;&#25321;&#25490;&#24207;">&#182;</a></h1>
+<h1 id="&#36873;&#25321;&#25490;&#24207;&#65288;Selection-Sort&#65289;">&#36873;&#25321;&#25490;&#24207;&#65288;Selection Sort&#65289;<a class="anchor-link" href="#&#36873;&#25321;&#25490;&#24207;&#65288;Selection-Sort&#65289;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -16437,7 +16527,21 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>选择排序是冒泡排序的改进，每一次遍历只做一次交换。它在一次遍历中找到最大的元素，结束时放到合适的位置，正如冒泡排序一样，一次遍历后最大的元素就位。第二次遍历后，第二大的元素就位，这样持续进行，需要 $n-1$ 个遍历来为 $n$ 个元素排序。</p>
+<p>选择排序是冒泡排序的改进。</p>
+<ul>
+<li><p>第一次遍历时，找到其中最大的元素，将其与最后一个元素交换位置。</p>
+</li>
+<li><p>第二次遍历时，因最后一个元素最大，只对前$n-1$个元素重复上述操作。</p>
+</li>
+<li><p>第三次遍历时，因最后两个元素的位置已经确定，只对前$n-2$个元素重复上述操作。</p>
+</li>
+<li><p>...</p>
+</li>
+<li><p>至第$n-1$次遍历完成后，排序完成。</p>
+</li>
+</ul>
+<p><strong>注意</strong></p>
+<p>与冒泡算法不同，选择排序每遍历一次只进行一次交换。</p>
 
 </div>
 </div>
@@ -16446,20 +16550,13 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下图展示了一个完整的排序过程：每一次遍历，剩余最大的元素被选中并正确就位，所以第一次选择了93、第二次选择77、第三次选择55、等等。</p>
-
+<table><tr>
+<td><img src='images/selectionsortnew.png' border=0 width=500></td>
+<td>完整的选择排序过程</td>
+</tr></table>
 </div>
 </div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/selectionsortnew.png' width="400" height="400"> <img></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[52]:</div>
@@ -16510,8 +16607,10 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="&#36873;&#25321;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#36873;&#25321;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;<a class="anchor-link" href="#&#36873;&#25321;&#25490;&#24207;&#31639;&#27861;&#30340;&#20998;&#26512;">&#182;</a></h3><ul>
 <li><p>比较次数</p>
-<p>和冒泡排序一样多，所以它的性能依然是 $O(n^2)$。</p>
+<p>和冒泡排序一样多，依然是 $O(n^2)$。</p>
 </li>
+</ul>
+<ul>
 <li><p>交换次数</p>
 <p>比冒泡排序要少，所以选择排序一般运行得比冒泡要快。</p>
 </li>
@@ -16524,7 +16623,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#25554;&#20837;&#25490;&#24207;">&#25554;&#20837;&#25490;&#24207;<a class="anchor-link" href="#&#25554;&#20837;&#25490;&#24207;">&#182;</a></h1>
+<h1 id="&#25554;&#20837;&#25490;&#24207;-&#65288;Insertion-Sort&#65289;">&#25554;&#20837;&#25490;&#24207; &#65288;Insertion Sort&#65289;<a class="anchor-link" href="#&#25554;&#20837;&#25490;&#24207;-&#65288;Insertion-Sort&#65289;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -16532,35 +16631,9 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>插入排序的性能仍然是$O(n^2)$，但工作模式稍有不同。它总是在列表的低端保持一个有序的子列表，后面的元素被逐个“插入”到前面的有序子表，这样有序的子表就逐渐变大。</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>下图是插入排序的过程，阴影部分是排好序的子列表。</p>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/insertionsort.png'></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>开始时假设一个只有一个元素（在 $0$ 位上）的列表而且是有序的。</p>
-<p>在进行第 $i(i=1,2,\cdots,n-1)$ 次遍历时，将位于第 $i$ 位的元素（称为”当前元素“）与有序的子列表进行比较。若子列表中的元素比当前元素大，往前移动；当遇到一个比它小的元素或到达子列表的终点时，当前元素就插在这个位置上。</p>
+<p>插入排序的工作模式与冒泡、选择排序稍有不同。</p>
+<p>它总在列表左端保持一个有序的子列表，后面的元素被逐个“插入”到前面的有序子表中。</p>
+<p>这样，有序的子表会逐渐变大，直到跟原列表一样长，排序结束。</p>
 
 </div>
 </div>
@@ -16569,26 +16642,41 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>下图展示了第5次遍历的细节。</p>
-
+<table><tr>
+<td><img src='images/insertionsort.png' border=0 width=500></td>
+<td>
+完整的插入排序过程 
+</td>
+</tr></table>
 </div>
 </div>
-</div><div class="fragment">
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/insertionpass.png'></p>
+<p>开始时，只有包含一个元素（在 $0$ 位上）的列表，并且它是有序的。</p>
+<p>在进行第 $i$ 次遍历时，将位于第 $i$ 位的元素（<strong>”当前元素“</strong>）与有序子表进行比较（从右至左）。</p>
+<ul>
+<li><p>若子表中的元素比当前元素大，往前移动；</p>
+</li>
+<li><p>当遇到一个比它小的元素、或到达子表的最左端时，当前元素就插在这个位置上。</p>
+</li>
+</ul>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>插入排序仍然需要 $n-1$ 次遍历来移动 $n$ 个元素。迭代过程从 $1$ 开始到 $n-1$，因为这些位置上的元素是需要向后插入到有序子表中的。</p>
-
+<table><tr>
+<td><img src='images/insertionpass.png' border=0 width=500></td>
+<td>
+第5次遍历 
+</td>
+</tr></table>
 </div>
 </div>
 </div></section></section><section><section>
@@ -16657,7 +16745,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#24076;&#23572;&#25490;&#24207;(shell-sort)">&#24076;&#23572;&#25490;&#24207;(shell sort)<a class="anchor-link" href="#&#24076;&#23572;&#25490;&#24207;(shell-sort)">&#182;</a></h1>
+<h1 id="&#24076;&#23572;&#25490;&#24207;&#65288;Shell-Sort&#65289;">&#24076;&#23572;&#25490;&#24207;&#65288;Shell Sort&#65289;<a class="anchor-link" href="#&#24076;&#23572;&#25490;&#24207;&#65288;Shell-Sort&#65289;">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
@@ -16665,7 +16753,18 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>希尔排序，有时也称”递减增量排序“，是在插入排序的基础上，把列表拆成几个较小的子表，然后对每个子表使用插入排序的方法。</p>
+<p>希尔排序的实质就是分组插入排序，也称”缩小增量排序“，因D.L. Shell于1959年提出而得名。</p>
+<p>其思想是将列表拆分称若干个较小的子表，然后对每个子表使用插入排序。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>第一步</strong></p>
+<p>希尔排序的关键是选出子表，它需要用到一个增量值 $i$（也称“间隙”），然后每隔一个间隙选中一个元素来组成子表。</p>
 
 </div>
 </div>
@@ -16674,26 +16773,13 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>选出子表的方法是希尔排序的关键，它并不是把列表的中相近的元素取出来组成子表，而是使用了一个增量值 $i$，有时也叫做“间隙”，然后每隔一个间隙选中一个元素来组成子表。</p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>如下图，列表中有9个元素，若使用增量3，就有3个子表，每个子表单独做插入排序。</p>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/shellsortA.png'></p>
-
+<table><tr>
+<td><img src='images/shellsortA.png' border=0 width=500></td>
+<td align="center">
+<b>选出子表</b> <br>
+间隙为3，得到3个子表
+</td>
+</tr></table>
 </div>
 </div>
 </div></div><div class="fragment">
@@ -16701,17 +16787,13 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>完成后的列表如下图，这个表没有完全排序。但可以发现，对子表排序后，元素已经很接近它们的最终位置。</p>
-
-</div>
-</div>
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/shellsortB.png'></p>
-
+<table><tr>
+<td><img src='images/shellsortB.png' border=0 width=500></td>
+<td align="center">
+<b>对子表进行插入排序</b> <br>
+注意该表没有完全排序，但已经非常接近。
+</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
@@ -16719,7 +16801,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>最后使用一个增量为1的插入排序，亦即标准的插入排序。得益于前面的子表排序过程，现在需要移动操作要少得多。在这个例子中，只需要移动4次就完成了排序。</p>
+<p><strong>第二步</strong></p>
+<p>对所得的列表进行标准的插入排序，此时需要的移动操作要少很多。</p>
 
 </div>
 </div>
@@ -16728,8 +16811,14 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/shellsortC.png'></p>
+<table><tr>
+<td><img src='images/shellsortC.png' border=0 width=500></td>
+<td align="center">
+<b>标准插入排序</b> <br>
 
+该例只需要移动4次便可完成排序。
+</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
@@ -16737,7 +16826,8 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>希尔排序的独特性就是增量的选取，以下函数使用了一个不同增量的集合，从 n/2 个子表开始，下一步就是 n/4 个子表要排序，最终是 1 个子表进行插入排序。</p>
+<p>希尔排序的独特性就是<strong>间隙的选取</strong>。</p>
+<p>以下函数使用了一个不同增量的集合，从 n/2 个子表开始，下一步就是 n/4 个子表要排序，最终是 1 个子表进行插入排序。</p>
 <p>下图是这种增量的第一批4个子表。</p>
 
 </div>
@@ -16747,27 +16837,28 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src='images/shellsortD.png'></p>
-
+<table><tr>
+<td><img src='images/shellsortD.png' border=0 width=500></td>
+<td align="center">
+<b></b> <br>
+</td>
+</tr></table>
 </div>
 </div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shellSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
     <span class="n">sublistcount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
     <span class="k">while</span> <span class="n">sublistcount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-
-      <span class="k">for</span> <span class="n">startposition</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sublistcount</span><span class="p">):</span>
-        <span class="n">gapInsertionSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">startposition</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">)</span>
-
-      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After increments of size&quot;</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">,</span>
-                                   <span class="s2">&quot;The list is&quot;</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
-
-      <span class="n">sublistcount</span> <span class="o">=</span> <span class="n">sublistcount</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">startposition</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sublistcount</span><span class="p">):</span>
+            <span class="n">gapInsertionSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">startposition</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After increments of size&quot;</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">,</span>
+              <span class="s2">&quot;The list is&quot;</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+        <span class="n">sublistcount</span> <span class="o">=</span> <span class="n">sublistcount</span> <span class="o">//</span> <span class="mi">2</span>
 </pre></div>
 
 </div>
@@ -16777,19 +16868,16 @@ $$</p>
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gapInsertionSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">gap</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">gap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">),</span> <span class="n">gap</span><span class="p">):</span>
-
         <span class="n">currentvalue</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">position</span> <span class="o">=</span> <span class="n">i</span>
-
         <span class="k">while</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="n">gap</span> <span class="ow">and</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="o">-</span><span class="n">gap</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">currentvalue</span><span class="p">:</span>
             <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="o">-</span><span class="n">gap</span><span class="p">]</span>
             <span class="n">position</span> <span class="o">=</span> <span class="n">position</span><span class="o">-</span><span class="n">gap</span>
-
         <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentvalue</span>
 </pre></div>
 
@@ -16800,7 +16888,7 @@ $$</p>
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
@@ -16838,12 +16926,358 @@ After increments of size 1 The list is [17, 20, 26, 31, 44, 54, 55, 77, 93]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>乍看起来，希尔排序不见得比插入排序更好，因为最后一步就完全是一个插入排序。但是，最后一步的插入排序，不需要很多步骤来完成比较和移动，因为通过前面的增量插入排序，列表已经做了“预排序”，也就是说，这个列表已经比普通列表“更有序”，所以在效率上有很大的不同。
-对希尔排序的详细分析超出本书的范围，不过我们可以说，它趋向于O(n) 和 O(n2) 之间。对listing5中的增量，性能是O(n2)，变更增量，例如使用 2k−1 (1, 3, 7,15, 31, 等)，性能可达到O(n3/2).</p>
+<p>乍一看，希尔排序不见得比插入排序更好，因为最后一步就完全是一个插入排序。</p>
+<p>但是，最后一步的插入排序，不需要很多次的比较和移动，因为通过前面的增量插入排序，列表已经做了“预排序”。</p>
+<p>也就是说，这个列表已经比普通列表“更有序”，所以在效率上有很大的不同。</p>
 
 </div>
 </div>
-</div></section></section>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>希尔排序的时间复杂度介于$O(n)$与$O(n^2)$之间。</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#24402;&#24182;&#25490;&#24207;&#65288;Merge-Sort&#65289;">&#24402;&#24182;&#25490;&#24207;&#65288;Merge Sort&#65289;<a class="anchor-link" href="#&#24402;&#24182;&#25490;&#24207;&#65288;Merge-Sort&#65289;">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>归并排序是建立在归并操作上的一种有效的排序算法，该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>将已有序的子列表合并，得到完全有序的列表。亦即，先使每个子列表有序，再使子列表段间有序。</p>
+<p>将两个有序表合并成一个有序表，称为二路归并。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/mergesortA.png' border=0 width=400></td>
+<td>切分过程</td>
+</tr></table>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/mergesortB.png' border=0 width=400></td>
+<td>归并过程</td>
+</tr></table>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Splitting &quot;</span><span class="p">,</span><span class="n">alist</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>  
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>  
+        <span class="n">lefthalf</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>  
+        <span class="n">righthalf</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>  
+  
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">lefthalf</span><span class="p">)</span>  
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">righthalf</span><span class="p">)</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>  
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>  
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>  
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lefthalf</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">righthalf</span><span class="p">):</span>  
+            <span class="k">if</span> <span class="n">lefthalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">righthalf</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>  
+                <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">lefthalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>  
+            <span class="k">else</span><span class="p">:</span>  
+                <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">righthalf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>  
+                <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>  
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lefthalf</span><span class="p">):</span>  
+            <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">lefthalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>  
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>  
+  
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">righthalf</span><span class="p">):</span>  
+            <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">righthalf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>  
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span>  
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>  
+            
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Merging &quot;</span><span class="p">,</span><span class="n">alist</span><span class="p">)</span>    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">55</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>  
+<span class="n">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#24402;&#24182;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;">&#24402;&#24182;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;<a class="anchor-link" href="#&#24402;&#24182;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;">&#182;</a></h2><p>考虑其中的两个过程。</p>
+<ul>
+<li><p>切分过程</p>
+<p>对于长为$n$的列表，需要$\log n$的时间来切分。</p>
+</li>
+</ul>
+<ul>
+<li><p>归并过程</p>
+<p>列表中每个元素都要被处理并放在有序表中，所有归并操作$n$个元素的列表，需要$n$步操作。</p>
+</li>
+</ul>
+<p>因此，总共需要$\log n$次切分，每次切分包括$n$次归并，总的时间复杂度为$O(n\log n)$。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#24555;&#36895;&#25490;&#24207;-&#65288;Quick-Sort&#65289;">&#24555;&#36895;&#25490;&#24207; &#65288;Quick Sort&#65289;<a class="anchor-link" href="#&#24555;&#36895;&#25490;&#24207;-&#65288;Quick-Sort&#65289;">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>快速排序也使用了分而治之的策略来提高性能，而且不需要额外的内存，但是这么做的代价就是，列表不是对半切分的，因而，性能上就有所下降。</p>
+<p>快速排序选择一个“关键值(pivot value)”，一般选为列表中的第一个元素。</p>
+<p>关键值的作用是帮助把列表分为两个部分。列表完成后，关键值所在的位置叫做“切分点”，从这一点上把列表分成两部分供后续调用。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/firstsplit.png' border=0 width=400></td>
+<td>快速排序的第一个关键值（**54**）</td>
+</tr></table>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/partitionA.png' border=0 width=400></td>
+<td>找到**54**的切分点</td>
+</tr></table>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table><tr>
+<td><img src='images/partitionB.png' border=0 width=400></td>
+<td>完成切分</td>
+</tr></table>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>  
+    <span class="n">pivotvalue</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>
+    <span class="n">leftmark</span> <span class="o">=</span> <span class="n">first</span><span class="o">+</span><span class="mi">1</span>  
+    <span class="n">rightmark</span> <span class="o">=</span> <span class="n">last</span>  
+  
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>  
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>    
+        <span class="k">while</span> <span class="n">leftmark</span> <span class="o">&lt;=</span> <span class="n">rightmark</span> <span class="ow">and</span> \
+        <span class="n">alist</span><span class="p">[</span><span class="n">leftmark</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivotvalue</span><span class="p">:</span>
+            <span class="n">leftmark</span> <span class="o">=</span> <span class="n">leftmark</span> <span class="o">+</span> <span class="mi">1</span>
+        
+        <span class="k">while</span> <span class="n">alist</span><span class="p">[</span><span class="n">rightmark</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivotvalue</span> <span class="ow">and</span> \
+        <span class="n">rightmark</span> <span class="o">&gt;=</span> <span class="n">leftmark</span><span class="p">:</span>
+            <span class="n">rightmark</span> <span class="o">=</span> <span class="n">rightmark</span> <span class="o">-</span><span class="mi">1</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>        <span class="k">if</span> <span class="n">rightmark</span> <span class="o">&lt;</span> <span class="n">leftmark</span><span class="p">:</span>  
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>  
+        <span class="k">else</span><span class="p">:</span>  
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">leftmark</span><span class="p">]</span>  
+            <span class="n">alist</span><span class="p">[</span><span class="n">leftmark</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">rightmark</span><span class="p">]</span>  
+            <span class="n">alist</span><span class="p">[</span><span class="n">rightmark</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>  
+  
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>  
+    <span class="n">alist</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">rightmark</span><span class="p">]</span>  
+    <span class="n">alist</span><span class="p">[</span><span class="n">rightmark</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rightmark</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">quickSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>  
+    <span class="n">quickSortHelper</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  
+
+<span class="k">def</span> <span class="nf">quickSortHelper</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>  
+    <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>  
+        <span class="n">splitpoint</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>  
+        <span class="n">quickSortHelper</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">splitpoint</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  
+        <span class="n">quickSortHelper</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">splitpoint</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>  
+     
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>  
+<span class="n">quickSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finally&quot;</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#24555;&#36895;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;">&#24555;&#36895;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;<a class="anchor-link" href="#&#24555;&#36895;&#25490;&#24207;&#30340;&#24615;&#33021;&#20998;&#26512;">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>注意到一个长度为n的列表，若切分点总在列表的中间，则要做$\log n$次切分。
+为了找到切分点，$n$个元素都要与关键值作一次比较，故总的时间复杂度为$n\log n$。</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>另外，与归并排序不同，快速排序不需要消耗额外的内存。</p>
+<p>遗憾的是，切分点一般不在列表的中间，而是偏左或者偏右，从而生成很不均匀的子表。</p>
+<p>最坏的情况是，生成的两个子表中，其中一个为空表，另一个包含$n-1$个元素；继续切分，又生成两个子表，其中一个仍为空表，另一个包含$n-2$个元素，等等。此时的时间复杂度就是$O(n^2)$。</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#20851;&#38190;&#20540;&#30340;&#36873;&#21462;">&#20851;&#38190;&#20540;&#30340;&#36873;&#21462;<a class="anchor-link" href="#&#20851;&#38190;&#20540;&#30340;&#36873;&#21462;">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>可以用不同的方式来选择关键值，这里介绍一种叫做<strong>“三数取中”</strong>的技术，以降低不均匀切分的可能性。</p>
+<p><strong>具体做法</strong></p>
+<p>从列表的第一个，中间的一个，最后的一个元素中，取中间值。</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>对于列表 <strong>[54, 26, 93, 17, 77, 31, 44, 55, 20]</strong>，取54，77和20三个数的中间值54作为关键值。</p>
+<p>该思想的来源：认为第一个元素大小可能并不在中间的位置，但是三个数的中间值就比较靠近中间。</p>
+<p>这种方法特别适合那些已经部分有序的列表。</p>
+
+</div>
+</div>
+</div></div></section></section>
 </div>
 </div>
 

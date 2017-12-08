@@ -1,0 +1,30 @@
+\begin{figure}
+  
+  \centering
+  \begin{tikzpicture}
+    The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=0.8cm]{
+      算法设计要求
+    };
+    \pause
+    %% \node at (0,2) [right,fill=red!20,draw,rectangle callout,callout relative pointer={(-0.6,-0.5)},rounded corners=3mm,text width=3cm]{ 
+    \node at (1.5,0) [right,fill=red!20,draw,rectangle split, rectangle split parts=4,rounded corners=3mm,text width=7cm]{\small 
+      \blue{正确性}\\
+      算法至少应该具有输入、输出和加工处理无歧义性，能正确反映问题的需求、能得到问题的正确答案。
+      \begin{itemize}
+      \item 无语法错误
+      \item 对合法输入能产生满足要求的输出
+      \item 对非法输入能给出满足规格的说明
+      \item 对精心选择的甚至是刁难的测试数据都有满足要求的输出
+      \end{itemize}
+      \nodepart{second}
+      \blue{可读性}\\
+      便于阅读、理解和交流
+      \nodepart{third}
+      \blue{健壮性(鲁棒性)}\\
+      当输入不合法时，也能做出相应处理，而不是产生异常或莫名其妙的结果
+      \nodepart{fourth}
+      \blue{时间效率高和存储量低}
+    };   
+  \end{tikzpicture}  
+\end{figure}

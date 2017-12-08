@@ -17288,23 +17288,23 @@ After increments of size 1 The list is [17, 20, 26, 31, 44, 54, 55, 77, 93]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>注意到一个长度为n的列表，若切分点总在列表的中间，则要做$\log n$次切分。
-为了找到切分点，$n$个元素都要与关键值作一次比较，故总的时间复杂度为$n\log n$。</p>
+<p>注意到一个长度为n的列表，若分界点总在列表的中间，则要做$\log n$次切分。
+为了找到分界点，$n$个元素都要与关键值作一次比较，故总的时间复杂度为$n\log n$。</p>
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>另外，与归并排序不同，快速排序不需要消耗额外的内存。</p>
-<p>遗憾的是，切分点一般不在列表的中间，而是偏左或者偏右，从而生成很不均匀的子表。</p>
+<p>遗憾的是，分界点一般不在列表的中间，而是偏左或者偏右，从而生成很不均匀的子表。</p>
 <p>最坏的情况是，生成的两个子表中，其中一个为空表，另一个包含$n-1$个元素；继续切分，又生成两个子表，其中一个仍为空表，另一个包含$n-2$个元素，等等。此时的时间复杂度就是$O(n^2)$。</p>
 
 </div>
 </div>
-</div></div></section></section>
+</div></section></section>
 </div>
 </div>
 

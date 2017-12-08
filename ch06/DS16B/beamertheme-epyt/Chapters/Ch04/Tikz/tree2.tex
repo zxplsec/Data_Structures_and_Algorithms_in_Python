@@ -1,0 +1,34 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+
+    %% \tikzstyle{every node}=[ball color=red!70,circle,text=white]
+
+    \draw[fill=red!60] (-4,2)circle(1em) node[below=1em]{根结点};
+    \draw[fill=blue!60] (0,2)circle(1em) node[below=1em]{内部结点};
+    \draw[] (4,2)circle(1em) node[below=1em]{叶结点或终端结点};
+
+    \node [circle,draw,fill=red!60] at (0,0) {A}[sibling distance=2.2cm] 
+    child { node[circle,draw,fill=blue!60]{B}[sibling distance=1.6cm]
+      child {node[circle,draw,fill=blue!60]{E}[sibling distance=1.5cm]
+	child {node[circle,draw]{K}}
+        child {node[circle,draw]{L}}
+      }
+      child {node[circle,draw]{F}}      
+    }
+    child { node[circle,draw,fill=blue!60]{C}
+      child {node[circle,draw,fill=blue!60]{G}[sibling distance=1.5cm]          
+        child {node[circle,draw]{M}} 
+        child {node[circle,draw]{N}}   
+      }			
+    }	
+    child { node[circle,draw,fill=blue!60]{D}[sibling distance=1.1cm]
+      child {node[circle,draw]{H}} 
+      child {node[circle,draw]{I}}
+      child {node[circle,draw]{J}}
+    };  
+
+
+
+  \end{tikzpicture}
+\end{figure}

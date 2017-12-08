@@ -1,0 +1,184 @@
+\section{线性表的顺序存储}
+\subsection{线性表的顺序存储结构}
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[顺序存储 Sequence List]
+把结点按逻辑顺序依次存放在一组地址连续的存储单元里. 
+以这种方式存储的线性表简称顺序表. 
+\end{dingyi}
+
+\pause 
+\begin{block}{特点}
+\begin{itemize}
+\item
+逻辑顺序与物理顺序一致；
+\item
+数据元素之间的关系是以元素在计算机内“物理位置相邻”来体现的. 
+\end{itemize}•
+
+\end{block}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  设有非空线性表$(a_1,a_2,\cd,a_n)$,  $l(a_{i})$表示$a_i$的存储位置,  $k$为每个元素需占用的存储单元. 
+\input{Chapters/Fig02/SqList.tex}
+
+%第$i+1$个数据元素的存储位置$Loc(a_{i+1})$和第$i$个数据元素的存储位置$Loc(a_{i})$之间满足
+$$
+l(a_{i+1})=l(a_{i})+k
+$$
+%其中$l$为线性表每个元素需占用的存储单元. 特别地,  
+$$
+l(a_{i})=l(a_{1})+(i-1)k
+$$
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\input{Chapters/Lst02/Def_SqList}
+\end{frame}
+
+\subsection{顺序表的基本操作}
+\begin{frame}\ft{\subsecname}
+\begin{itemize}
+\item
+初始化
+\item
+赋值
+\item
+查找
+\item
+修改
+\item
+插入
+\item
+删除
+\item
+求长度
+\item
+$\cd$
+\end{itemize}•
+\end{frame}
+
+\begin{frame}[fragile]\ft{初始化}
+\input{Chapters/Lst02/Init_SqList}
+\end{frame}
+
+\begin{frame}[fragile]\ft{插入结点}
+\begin{block}{目标}
+在$L=(a_1,\cd,a_{i-1},\red{a_i},a_{i+1},\cd,a_n)$中的第$i$个位置上插入新结点$e$,  使其成为
+$$
+L=(a_1,\cd,a_{i-1},e,a_i,a_{i+1},\cd,a_n)
+$$
+\end{block}
+
+\begin{block}{实现步骤}
+\begin{itemize}
+\item[(1)]
+将第$i$个至第$n$个结点后移一个位置；
+\item[(2)]
+将结点$e$插入到结点$a_{i-1}$之后；
+\item[(3)]
+线性表长度加1.
+\end{itemize}•
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{插入结点}
+\input{Chapters/Lst02/Insert_SqList}
+\end{frame}
+
+\begin{frame}\ft{插入结点}
+在$L$的第$i$个元素之前插入新结点,  其时间主要耗费在结点的移动上. 因此,  可用结点的移动来估计算法的时间复杂度. \vspace{0.1in}
+
+设在$L$的第$i$个元素之前插入结点的概率为$p_i$. 不失一般性,  设各位置插入等概率,  则$p_i=\frac1{n+1}$,  而插入时移动结点的次数为$n-i+1$,  故总的平均移动次数为
+$$
+E_{insert}=\sum_{i=1}^n p_i (n-i+1)=\frac n2.
+$$\vspace{0.1in}
+
+这表明,  在顺序表上做插入运算,  平均要移动表上一半的结点. 当表长$n$较大时,  算法效率相当低. 因此算法的平均时间复杂度为$O(n)$. 
+\end{frame}
+
+\begin{frame}\ft{删除结点}
+\begin{block}{目标}
+在
+$$
+L=(a_1,\cd,a_{i-1},\red{a_i},a_{i+1},\cd,a_n)
+$$
+中删除结点$a_i$,  使其成为 
+$$
+L=(a_1,\cd,a_{i-1},a_{i+1},\cd,a_n)
+$$
+\end{block}
+
+\begin{block}{实现步骤}
+\begin{itemize}
+\item[(1)]
+将$L$中的第$i+1$个至第$n$个结点依次前移一个位置；
+\item[(2)]
+线性表长度减1.
+\end{itemize}•
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{删除结点}
+\input{Chapters/Lst02/Delete_SqList}
+\end{frame}
+
+
+\begin{frame}\ft{删除结点}
+删除$L$的第$i$个元素,  其时间主要耗费在表中结点的移动操作上. 因此,  可用结点的移动来估计算法的时间复杂度. \vspace{0.1in}
+
+设在$L$中删除第$i$个元素的概率为$p_i$,  不失一般性,  设各个位置插入等概率,  则$p_i=\frac1{n}$,  而插入时移动结点的次数为$n-i$,  故总的平均移动次数为
+$$
+E_{delete}=\sum_{i=1}^n p_i (n-i)=\frac {n-1}2.
+$$\vspace{0.1in}
+
+这表明,  在顺序表上做删除运算,  平均要移动表上一半的结点. 当表长$n$较大时,  算法效率相当低. 因此算法的平均时间复杂度为$O(n)$. 
+\end{frame}
+
+\begin{frame}\ft{查找、定位删除}
+\begin{block}{目标}
+在$L=(a_1,a_2,\cd,a_n)$中删除值为$x$的第一个结点. 
+\end{block}
+
+\begin{block}{实现步骤}
+\begin{itemize}
+\item[(1)]
+在$L$中查找值为$x$的第一个数据元素；
+\item[(2)]
+将从找到的位置至最后一个结点依次向前移动一个位置；
+\item[(3)]
+线性表长度减1. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{查找、定位删除}
+\input{Chapters/Lst02/Locate_Delete_SqList}
+\end{frame}
+
+\begin{frame}\ft{查找、定位删除}
+时间主要耗费在数据元素的比较和移动操作上. \vspace{0.1in}
+
+ 
+设在$L$中删除数据元素的概率为$p_i$,  不失一般性,  设各个位置等概率,  则$p_i=\frac1{n}$. 
+\begin{itemize}
+\item 比较的平均次数为：
+$$
+E_{compare} = \sum_{i=1}^n p_i i= \frac{n+1}2
+$$
+\item 删除时的平均移动次数为
+$$
+E_{delete} =\sum_{i=1}^n p_i (n-i)=\frac {n-1}2.
+$$\
+\end{itemize}•
+平均时间复杂度为
+\[
+E_{compare}+E_{delete}=n
+\]
+
+\end{frame}
+
+

@@ -1,0 +1,11 @@
+\begin{lstlisting}[language=C]
+LinkList Locate_Node_Key(LinkList L,int key) {
+  LinkList p=L->next;  
+  while (p!=NULL&&p->data!=key)  p=p->next;  
+  if (p->data==key) return p;
+  else {
+    printf("要查找的结点不存在!\n");
+    return (NULL);
+  }
+}
+\end{lstlisting}

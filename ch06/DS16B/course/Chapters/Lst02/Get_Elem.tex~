@@ -1,0 +1,11 @@
+\begin{lstlisting}[language=C]
+ElemType Get_Elem(LNode *L, int i) {
+  int j; LNode *p;
+  p=L->next; j=1;
+  while (p!=NULL&&j<i){
+    p=p->next; j++;
+  }
+  if (j!=i) return (-32768);
+  else return (p->data);
+}
+\end{lstlisting}

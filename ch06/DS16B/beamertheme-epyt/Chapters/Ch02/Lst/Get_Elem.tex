@@ -1,0 +1,13 @@
+\begin{lstlisting}[language=C,frame=tb,backgroundcolor=\color{red!10}]
+Status Get_Elem(LinkList L,int i,ElemType *e) {
+  int j; LinkList p;
+  p=L->next; j=1;
+  while (p!=NULL&&j<i){
+    p=p->next; j++;
+  }
+  if (!p || j>i) 
+    return error; //`第i个元素不存在`
+  *e=p->data;     //`取第i个元素的数据`
+  return OK;
+}
+\end{lstlisting}

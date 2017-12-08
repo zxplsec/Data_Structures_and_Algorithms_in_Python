@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{FuncAymInc}
+  \begin{tikzpicture}[node distance=4.3cm]
+  \node [fill=blue!20,draw,starburst,drop shadow,text width=6cm] (1) {
+  \blue{\large 函数的渐近增长}\\
+  给定两个函数$f(n)$和$g(n)$，若$\exists N \in \mathbb N$, s.t. $\forall n>N$, $f(n)$总是比$g(n)$大，
+  我们就说$f(n)$的增长渐近快于$g(n)$.
+  };
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

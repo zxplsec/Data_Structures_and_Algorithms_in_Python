@@ -1,0 +1,26 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node at(0,0) [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue,text centered] (1) {
+      {\large 总结回顾}
+    };
+    \pause     
+    \node[below left of=1,fill=green!20,draw,rectangle split,rectangle split parts=5,rounded corners=2mm,text width=4cm,text centered,text=blue] (2) {
+      \red{逻辑结构} \nodepart{two}
+      集合结构 \nodepart{three}
+      线性结构 \nodepart{four}
+      树形结构 \nodepart{five}
+      图形结构 
+    };
+    \pause 
+    \node[below right of=1,fill=green!20,draw,rectangle split,rectangle split parts=3,rounded corners=2mm,text width=4cm,text centered,text=blue] (2) {
+      \red{物理结构} \nodepart{two}
+      顺序存储结构 \nodepart{three}
+      链式存储结构 
+    };
+  \end{tikzpicture}
+  
+\end{figure}
+
+
+

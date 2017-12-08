@@ -1,0 +1,31 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}[scale=1.5]
+    \tikzstyle{state}=[draw,circle]
+
+        % The graphic
+    \node at (-.5,0)[left,fill=blue!20,draw,starburst,drop shadow,text=red,text centered]
+    (1){
+      {物理结构}
+    } ;
+    \node at (0.5,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text=blue,text width=6.5cm]
+    (2){
+      数据的逻辑结构在计算机中的存储方式.
+    }; 
+    \pause
+    \node at (2.5,-1.5) [fill=red!20,draw,ellipse callout, callout relative pointer={(-1.,0.4)},text width=5.5cm]{\small
+      数据的存储结构应正确反映数据元素之间的逻辑关系。如何存储数据元素之间的逻辑关系，是实现物理结构的重点和难点。
+    };
+    \pause 
+    \node at (-1.5,-1.8) [text width=1.8cm,decorate,decoration=saw,fill=green!20,draw,circle,text width=3cm]{
+    \begin{itemize}
+    \item 顺序存储\\
+    \item 链式存储
+    \end{itemize}
+    };
+
+    
+  \end{tikzpicture}
+\end{figure}
+
+

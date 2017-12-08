@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{AlgEffBefore2}
+  \begin{tikzpicture}[node distance=2.5cm]
+
+    \begin{axis}[
+        xmin=0, xmax=12,
+        ymin=0, ymax=120,
+        extra x ticks={2,4,6,8,10},
+        extra y ticks={20,40,60,80,100},
+        extra tick style={grid=major},
+        ylabel=算法实际操作数量,
+        xlabel=问题输入规模$n$,
+        legend style={at={(1,0.5)},anchor=east}
+      ]
+      \addplot[domain=1:10,purple]{1};
+      \addplot[domain=1:10,blue]{x};
+      \addplot[domain=1:10,red]{x*x};
+      \legend{$1$,$n$,$n^2$}
+    \end{axis}
+    
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

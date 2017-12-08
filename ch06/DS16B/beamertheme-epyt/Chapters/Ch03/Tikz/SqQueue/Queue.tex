@@ -1,0 +1,33 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+\def\x{1.2}
+\def\y{0.8}
+
+\foreach \c in {0}{
+\ifthenelse{\c=0}{
+\draw[very thick](0,\c*\y)--(5*\x,\c*\y);
+\draw[very thick](0,\c*\y+\y)--(5*\x,\c*\y+\y);
+\def\r{1}
+\draw[->,very thick](\r*\x-1.2*\x,\c*\y+0.5*\y)--node[above]{ 出队列}(\r*\x-2.2*\x,\c*\y+0.5*\y);
+\def\r{5}
+\draw[->,very thick](\r*\x+1.2*\x,\c*\y+0.5*\y)--node[above]{ 入队列}(\r*\x+0.2*\x,\c*\y+0.5*\y);
+
+\foreach \r in {1,2,3,4,5}{         
+  \draw[thick,fill=red!10,rounded corners](\r*\x-\x,\c*\y+0.1*\y)rectangle(\r*\x-0.1*\x,\c*\y+0.9*\y);
+}
+\pause 
+\foreach \r in {1,2,3,4,5}{         
+  \node[]at(\r*\x-0.5*\x,\c*\y+0.5*\y){$a_{\r}$};
+  \pause 
+}
+\def\r{1}
+\draw[<-,very thick](\r*\x-0.3*\x,\c*\y+0.7*\y)--(\r*\x-0.2*\x,\c*\y+1.5*\y) node[above]{队头};
+\pause 
+\def\r{5}
+\draw[<-,very thick](\r*\x-0.3*\x,\c*\y+0.7*\y)--(\r*\x-0.2*\x,\c*\y+1.5*\y) node[above]{队尾};
+}
+}
+\end{tikzpicture}
+\end{figure}

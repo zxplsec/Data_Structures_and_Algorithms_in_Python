@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale=0.8]
+
+  \tikzstyle{every node}=[thick,draw]
+
+  \node[circle] at (0,0) {A}[sibling distance=4cm] 
+  child { node[circle]{B}[sibling distance=3cm] 
+    child{ node[circle] {D}[sibling distance=2cm]
+      child[fill=none] {edge from parent[draw=none]}  
+      child{ node[circle] {G}}
+    }
+    child{ node[circle] {E}[sibling distance=2cm]
+      child{ node[circle] {H}}
+      child{ node[circle] {I}}
+    }
+  }
+  child { node[ellipse]{C}[sibling distance=3cm] 
+    child[fill=none] {edge from parent[draw=none]}  
+    child{ node[ellipse] {F}[sibling distance=2cm]
+      child{ node[ellipse] {J}}
+      child[fill=none] {edge from parent[draw=none]}  
+    }
+  };
+\end{tikzpicture}

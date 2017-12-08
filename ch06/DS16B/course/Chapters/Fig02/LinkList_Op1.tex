@@ -1,0 +1,23 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\def \x{0.5}
+\foreach \d in {0,5}{
+\filldraw[fill=red!20](\d+0,0)rectangle(\d+\x,\x);  
+\filldraw[fill=red!20](\d+\x,0)rectangle(\d+2*\x,\x);  
+\node [] at (\d+0.5*\x,0.5*\x) {a};
+\node [above] at (\d+0.5*\x,2*\x) {p};
+\draw[->](\d+0.5*\x,2*\x)--(\d+0.5*\x,\x);
+\draw[->](\d-1*\x,0.5*\x)--(\d+0*\x,0.5*\x);
+\draw[->](\d+1.5*\x,0.5*\x)--(\d+2.5*\x,0.5*\x);
+}
+
+\def \d{5}
+\node[below] at (\x,0) {操作前};
+\node[below] at (\d+\x,0) {操作后};
+\node [above] at (\d-\x,2*\x) {q};
+\draw[->] (\d-1*\x,2*\x)--(\d-1*\x,\x)--(\d+0*\x,\x);
+
+\end{tikzpicture}
+\caption{q=p}
+\end{figure}

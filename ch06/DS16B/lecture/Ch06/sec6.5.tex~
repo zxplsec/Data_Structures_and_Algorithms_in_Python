@@ -1,0 +1,976 @@
+\section{最小生成树}
+\begin{frame}\ft{\secname}
+  \begin{small}
+\begin{wenti}
+如图所示的九个村庄，想架设通信网络，如何以最小的成本完成设计？
+\end{wenti}	
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/mcst.tex}
+\end{figure}
+\pause
+
+所谓最小成本，就是用$n$个顶点，$n-1$条边把一个连通图连接起来，并使得权值的和最小。
+    
+  \end{small}
+\end{frame}
+
+\begin{frame}\ft{\secname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/mcst1.tex}
+\caption{方案一：$11+26+20+22+18+21+24+19=161$}
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{\secname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/mcst2.tex}
+\caption{方案二：$8+12+10+11+17+19+16+7=100$}
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{\secname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/mcst3.tex}
+\caption{方案三：$8+12+10+11+16+19+16+7=99$}
+\end{figure}
+\end{frame}
+
+\subsection{\tf Prim算法}
+\begin{frame}\ft{\subsecname}
+\tf Prim算法以某顶点为起点，逐步找各顶点上最小权值的边来构建最小生成树。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/prim.tex}
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \begin{small}
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+linerange={68-77},
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+    
+  \end{small}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+linerange={78-96},
+firstnumber=11,
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\tf 创建两个一维数组lowcost和adjvtx，长度均为9。\pause\vspace{0.1in} 
+
+
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={72-73},
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+
+\tf adjvtx[0]=0表示从顶点$v_0$开始，lowcost[0]=0表示$v_0$已被纳入到最小生成树中。 \vspace{0.1in} \pause 
+
+\tf注：之后凡是lowcost数值中的值被设置为0就表示此下标的顶点被纳入到最小生成树中。
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={74-77},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+读取邻接矩阵的第一行，赋值给lowcost，此时 
+\begin{lstlisting}[xleftmargin=2em]
+  0, 10,INF,INF,INF, 11,INF,INF,INF  (lowcost)
+  0,  0,  0,  0,  0,  0,  0,  0,  0  (adjvtx)
+\end{lstlisting}
+ 
+
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=1 
+\lstinputlisting[
+language=c,
+linerange={79-87},
+basicstyle=\ttfamily\scriptsize,
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+\pause
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0, 10,INF,INF,INF, 11,INF,INF,INF  (lowcost)
+  0,  0,  0,  0,  0,  0,  0,  0,  0  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=10，k=1，adjvtx[k]=0，打印结果为(0,1)，表示边$(v_0,v_1)$为最小生成树的第一条边。
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/prim1.tex}
+\end{figure}
+\end{frame}
+
+ 
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=1 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+ 
+
+执行前，k=1，
+\begin{lstlisting}[xleftmargin=2em]
+  0, 10,INF,INF,INF, 11,INF,INF,INF  (lowcost)
+ 10,  0, 18,INF,INF,INF, 16,INF, 12  (`第`v_1`行`)
+  0,  0,  0,  0,  0,  0,  0,  0,  0  (adjvtx)
+\end{lstlisting} \pause 
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF,INF, 11, 16,INF, 12  (lowcost)
+  0,  0,  1,  0,  0,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=2  
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF,INF, 11, 16,INF, 12  (lowcost)
+  0,  0,  1,  0,  0,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}
+执行后，min=11, k=5, adjvtx[5]=0，打印结果为(0,5)，表示边$(v_0,v_1)$为最小生成树的第二条边。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/prim2.tex}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=2
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=5,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF,INF, 11, 16,INF, 12  (lowcost)
+ 11,INF,INF,INF, 26,  0, 17,INF,INF  (`第`v_5`行`)
+  0,  0,  1,  0,  0,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}  
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF, 26,  0, 16,INF, 12  (lowcost)
+  0,  0,  1,  0,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=3  
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF, 26,  0, 16,INF, 12  (lowcost)
+  0,  0,  1,  0,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=12, k=8, adjvtx[8]=1，打印结果为(1,8)，表示边$(v_1,v_8)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim3}
+\end{figure}•
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=3 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=8,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0, 18,INF, 26,  0, 16,INF, 12  (lowcost)
+INF, 12,  8, 21,INF,INF,INF,INF,  0  (`第`v_8`行`)
+  0,  0,  1,  0,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}  
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  8, 21, 26,  0, 16,INF,  0  (lowcost)
+  0,  0,  8,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=4 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  8, 21, 26,  0, 16,INF,  0  (lowcost)
+  0,  0,  8,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=8, k=2, adjvtx[2]=8，打印结果为(8,2)，表示边$(v_8,v_2)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim4}
+\end{figure}•
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=4
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=2,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  8, 21, 26,  0, 16,INF,  0  (lowcost)
+INF,INF,  0, 22,INF,INF,INF,INF,  8  (`第`v_2`行`)
+  0,  0,  8,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}  
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0, 16,INF,  0  (lowcost)
+  0,  0,  2,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=5 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0, 16,INF,  0  (lowcost)
+  0,  0,  2,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=16, k=6, adjvtx[6]=1，打印结果为(1,6)，表示边$(v_1,v_6)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim5}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=5 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=6,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0, 16,INF,  0  (lowcost)
+INF, 16,INF,INF,INF, 17,  0, 19,INF  (`第`v_6`行`)
+  0,  0,  2,  8,  5,  0,  1,  0,  1  (adjvtx)
+\end{lstlisting}  
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0,  0, 19,  0  (lowcost)
+  0,  0,  2,  8,  5,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=6  
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0,  0, 19,  0  (lowcost)
+  0,  0,  2,  8,  5,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=19, k=7, adjvtx[7]=6，打印结果为(7,6)，表示边$(v_7,v_6)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim6}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=6
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=7,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 21, 26,  0,  0, 19,  0  (lowcost)
+INF,INF,INF, 16,  7,INF, 19,  0,INF  (`第`v_7`行`)
+  0,  0,  2,  8,  5,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting}   \pause 
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 16,  7,  0,  0,  0,  0  (lowcost)
+  0,  0,  2,  7,  7,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=7
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 16,  7,  0,  0,  0,  0  (lowcost)
+  0,  0,  2,  7,  7,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=7, k=4, adjvtx[4]=7，打印结果为(7,4)，表示边$(v_7,v_4)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim7}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=7 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={88-94},
+firstnumber=21,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+
+\tf执行前，k=4,  
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 16,  7,  0,  0,  0,  0  (lowcost)
+INF,INF,INF, 20,  0, 26,INF,  7,INF  (`第`v_4`行`)
+  0,  0,  2,  7,  7,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting}  
+执行后，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 16,  0,  0,  0,  0,  0  (lowcost)
+  0,  0,  2,  7,  7,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=8 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={79-87},
+firstnumber=12,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+执行前，
+\begin{lstlisting}[xleftmargin=2em]
+  0,  0,  0, 16,  0,  0,  0,  0,  0  (lowcost)
+  0,  0,  2,  7,  7,  0,  1,  6,  1  (adjvtx)
+\end{lstlisting} \pause 
+执行后，min=16, k=3, adjvtx[3]=7，打印结果为(7,3)，表示边$(v_7,v_3)$为最小生成树的第二条边。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/prim8}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\tf 设$G=(V,E)$为连通网，$\bar E$为$G$上最小生成树中边的集合。算法从$U=\{u_0\}, u_0\in V, \bar E=\{\}$开始。重复执行以下操作：在所有$u\in U, v\in V/U$的边$(u,v)\in E$中找一条代价最小的边$(u_0,v_0)$并入集合$\bar E$，同时$v_0$并入$U$，直到$U=V$为止。此时$\bar E$中必有$n-1$条边，则$T=(V,\bar E)$为$G$的最小生成树。 \vspace{0.1in}
+
+算法复杂度为$O(n^2)$。
+\end{frame}
+
+
+\subsection{\tf Kruskal算法}
+\begin{frame}\ft{\subsecname}
+\tf Kruskal算法直接以边为目标去构建最小生成树。由于权值在边上，直接找最小权值的边构建生成树是很自然的想法，不过构建时需考虑是否会形成环路。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal}
+\end{figure}•
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+linerange={98-113},
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+linerange={115-119},
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\tf  
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={101-103},
+firstnumber=4,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+定义数组parent，并初始化为0。
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=0
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+
+第8行：调用Find，传入parent和边$(v_4,v_7)$的begin：4，返回n=4。 \vspace{0.05in}\pause
+
+第9行：调用Find，传入parent和边$(v_4,v_7)$的end：7，返回m=7。 \vspace{0.05in} \pause 
+
+第10-14行：因n!=m，故parent[4]=7，此时
+\begin{lstlisting}[xleftmargin=2em]
+0, 0, 0, 0, 7, 0, 0, 0, 0
+\end{lstlisting}
+打印结果为(4,7) 7，将边$(v_4,v_7)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal1}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=1
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_2,v_8)$的begin：2，返回n=2。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_2,v_8)$的end：8，返回m=8。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[2]=8，此时
+\begin{lstlisting}[xleftmargin=2em]
+0, 0, 8, 0, 7, 0, 0, 0, 0
+\end{lstlisting}
+打印结果为(2,8) 8，将边$(v_2,v_8)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal2}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=2
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_0,v_1)$的begin：0，返回n=0。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_0,v_1)$的end：1，返回m=1。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[0]=1，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 0, 8, 0, 7, 0, 0, 0, 0
+\end{lstlisting}
+打印结果为(0,1) 10，将边$(v_0,v_1)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal3}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=3
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_0,v_5)$的begin：0，返回n=1。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_0,v_5)$的end：5，返回m=5。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[1]=5，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 5, 8, 0, 7, 0, 0, 0, 0
+\end{lstlisting}
+打印结果为(0,5) 11，将边$(v_0,v_5)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal4}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=4
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_1,v_8)$的begin：1，返回n=5。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_1,v_8)$的end：8，返回m=8。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[5]=8，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 5, 8, 0, 7, 8, 0, 0, 0
+\end{lstlisting}
+打印结果为(1,8) 12，将边$(v_1,v_8)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal5}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=5
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_3,v_7)$的begin：3，返回n=3。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_3,v_7)$的end：7，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[3]=7，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 5, 8, 7, 7, 8, 0, 0, 0
+\end{lstlisting}
+打印结果为(3,7) 16，将边$(v_3,v_7)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal6}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=6
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_1,v_6)$的begin：1，返回n=8。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_1,v_6)$的end：6，返回m=6。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[8]=6，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 5, 8, 7, 7, 8, 0, 0, 6
+\end{lstlisting}
+打印结果为(1,6) 16，将边$(v_1,v_6)$纳入到最小生成树中。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal7}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=7 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_5,v_6)$的begin：5，返回n=6。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_5,v_6)$的end：6，返回m=6。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_5,v_6)$导致形成回路。
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=8 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_1,v_2)$的begin：1，返回n=6。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_1,v_2)$的end：2，返回m=6。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_1,v_2)$导致形成回路。
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=9 
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_6,v_7)$的begin：6，返回n=6。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_6,v_7)$的end：7，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n!=m，故parent[6]=7，此时
+\begin{lstlisting}[xleftmargin=2em]
+1, 5, 8, 7, 7, 8, 7, 0, 6
+\end{lstlisting}
+打印结果为(6,7) 19，将边$(v_6,v_7)$纳入到最小生成树中。
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\input{Chapters/Ch06/Tikz/kruskal8}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=10
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_3,v_4)$的begin：3，返回n=7。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_3,v_4)$的end：4，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_3,v_4)$导致形成回路。
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=11
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_3,v_8)$的begin：3，返回n=7。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_3,v_8)$的end：8，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_3,v_8)$导致形成回路。
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=12
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_3,v_6)$的begin：3，返回n=7。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_3,v_6)$的end：6，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_3,v_6)$导致形成回路。
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\tf i=12
+\lstinputlisting[
+language=c,
+basicstyle=\ttfamily\scriptsize,
+linerange={104-112},
+firstnumber=7,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin=0.5em,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c} \pause 
+\vspace{0.05in}
+
+第8行：调用Find，传入parent和边$(v_4,v_5)$的begin：4，返回n=7。 \vspace{0.05in}
+
+第9行：调用Find，传入parent和边$(v_4,v_5)$的end：5，返回m=7。 \vspace{0.05in}
+
+第10-14行：因n==m，不打印，继续下一循环。此时边$(v_4,v_5)$导致形成回路。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+设$G=(V,E)$是连通网，令最小生成树的初始状态为只有$n$个顶点但无边的非连通图$T=(V,\{\})$，图中每个顶点自成一个连通分量。在$E$中选择代价最小的边，若该边依附的顶点落在$T$中不同的连通分量上，则将此边加入到$T$中，否则舍去此边而选择下一条代价最小的边。依次类推，直到$T$中所有顶点都在同一连通分量上为止。
+\pause \vspace{0.1in}
+
+时间复杂度为$O(e\log e)$。
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+\end{frame}

@@ -1,0 +1,16 @@
+\begin{lstlisting}[language=C]
+LNode *create_LinkList(void){
+  int data;
+  LNode *head, *p, *q;
+  head=p=(LNode *) malloc(sizeof(LNode));
+  p->next=NULL;
+  while(1) {
+    scanf("%d",&data);
+    if(data==32767) break;
+    q=(LNode *) malloc(sizeof(LNode));
+    q->data=data;
+    q->next=p->next; p->next=q; p=q;
+  }
+  return (head);
+}
+\end{lstlisting}

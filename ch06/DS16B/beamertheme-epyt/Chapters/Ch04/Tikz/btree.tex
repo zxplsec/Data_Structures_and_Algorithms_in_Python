@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=0.8]
+
+  \node[] at (0,0) {$\Huge \varnothing$};
+  \node[above] at (0,0.5){空二叉树};
+
+  \node[circle,draw,text width=0.3cm] at (2.5,0) {};
+  \node[above,text width=1.5cm] at (2.5,0.5){单结点二叉树};
+
+
+  \node[circle,draw,text width=0.3cm] at (6,0) {}  
+  child {node[circle,draw,text width=0.3cm]{} }
+  child[fill=none] {edge from parent[draw=none]};  
+  \node[above,text width=1.5cm] at (6,0.5){右子树为空};
+
+  \node[circle,draw,text width=0.3cm] at (9,0) {}
+  child[fill=none] {edge from parent[draw=none]}
+  child {node[circle,draw,text width=0.3cm]{} };
+  \node[above,text width=1.5cm] at (9,0.5){左子树为空};
+
+  \node[circle,draw,text width=0.3cm] at (12,0) {}
+  child {node[circle,draw,text width=0.3cm]{} }
+  child {node[circle,draw,text width=0.3cm]{} };  
+  \node[above,text width=1.5cm] at (12,0.5){左、右子树都不空};
+
+\end{tikzpicture}

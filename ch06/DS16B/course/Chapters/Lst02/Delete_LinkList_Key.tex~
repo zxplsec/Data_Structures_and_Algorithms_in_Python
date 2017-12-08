@@ -1,0 +1,14 @@
+\begin{lstlisting}[language=C]
+void Delete_LinkList_Key(LNode *L, int key) {
+  LNode *p=L, *q=L->next;  
+  while (q!=NULL&&q->data!=key){
+    p=q; q=q->next;   
+  }
+  if (q->data==key) {
+    p->next=q->next; free(q);
+  }
+  else {
+        printf("`要删除的结点不存在`!\n");
+  }
+}
+\end{lstlisting}

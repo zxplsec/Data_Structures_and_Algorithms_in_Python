@@ -1,0 +1,34 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}[level distance=1.5cm,
+    level 1/.style={sibling distance=3cm},
+    level 2/.style={sibling distance=1.5cm},
+    ]
+    \tikzstyle{state}=[draw,circle]
+        % The graphic
+    \node at (-.5,2)[left,fill=blue!20,draw,starburst,drop shadow,text=red,text centered]
+    (1){
+      {树形结构}
+    } ;
+    \node at (0.5,2)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text=blue,text width=6cm]
+    (2){
+      其中的数据元素之间是一对多的层次关系.
+    };
+    \pause
+    
+    \node[state]{A}
+    child {node[state]{B}     
+      child {node[state]{E}}
+      child {node[state]{F}}
+      child {node[state]{G}}
+    }
+    child {node[state]{C}
+      child {node[state]{H}}
+    }
+    child {node[state]{D}     
+      child {node[state]{I}}
+      child {node[state]{J}}
+    };
+    
+  \end{tikzpicture}
+\end{figure}

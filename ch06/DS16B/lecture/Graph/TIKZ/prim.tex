@@ -1,0 +1,61 @@
+\begin{tikzpicture}[scale=1,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[circle,draw] (v0)  at (0,0)   {$v_0$};
+\node[circle,draw] (v5)  at (1.5,-1) {$v_5$};
+\node[circle,draw] (v1) at (-1.5,-1) {$v_1$};
+\node[circle,draw] (v2)  at (-2.5,-2.5)   {$v_2$};
+\node[circle,draw] (v8)  at (-1.5,-2.2) {$v_8$};
+\node[circle,draw] (v6)  at (0.1,-1.5) {$v_6$};
+\node[circle,draw] (v3)  at (0.3,-3.5) {$v_3$};
+\node[circle,draw] (v7)  at (0.8,-2.6) {$v_7$};
+\node[circle,draw] (v4)  at (1.8,-3.0) {$v_4$};
+%%
+\path
+(v0) edge node{\tiny $10$} (v1)
+     edge node{\tiny $11$} (v5)
+(v1) edge node{\tiny $18$} (v2)
+     edge node{\tiny $16$} (v6)
+     edge node{\tiny $12$} (v8)
+(v2) edge node{\tiny $8$} (v8)
+     edge node{\tiny $22$} (v3)
+(v3) edge node{\tiny $21$} (v8)
+     edge node{\tiny $24$} (v6)
+     edge node{\tiny $16$} (v7)
+     edge node{\tiny $20$} (v4)
+(v4) edge node{\tiny $7$} (v7)
+     edge node{\tiny $26$} (v5)
+(v5) edge node{\tiny $17$} (v6)
+(v6) edge node{\tiny $19$} (v7);  
+
+\matrix (am) at (3.5,-1) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=3pt,column sep=3pt,right] 
+  {
+    0 & 10& \infty & \infty & \infty & 11 & \infty & \infty & \infty\\
+    10 & 0 & 18 & \infty & \infty & \infty & 16 & \infty & 12 \\
+    \infty & \infty & 0 & 22 & \infty & \infty & \infty & \infty & 8\\
+    \infty & \infty & 22 & 0 & 20 & \infty & \infty  & 16 & 21\\
+    \infty & \infty & \infty & 20 & 0 & 26 & \infty & 7 & \infty\\
+    11 & \infty & \infty & \infty & 26 & 0 & 17 & \infty & \infty\\
+    \infty & 16 & \infty & \infty & \infty & 17 & 0 & 19 & \infty\\
+    \infty & \infty & \infty & 16 & 7 & \infty & 19 & 0 & \infty\\
+    \infty & 12 & 8 & 21 & \infty & \infty & \infty & \infty & 0\\
+  };
+  \node at (am-1-1) [above=10pt] {$v_0$}; 
+  \node at (am-1-2) [above=10pt] {$v_1$};       
+  \node at (am-1-3) [above=10pt] {$v_2$};       
+  \node at (am-1-4) [above=10pt] {$v_3$};
+  \node at (am-1-5) [above=10pt] {$v_4$};
+  \node at (am-1-6) [above=10pt] {$v_5$};
+  \node at (am-1-7) [above=10pt] {$v_6$};
+  \node at (am-1-8) [above=10pt] {$v_7$};
+  \node at (am-1-9) [above=10pt] {$v_8$};
+  \node at (am-1-1) [left=18pt] {$v_0$}; 
+  \node at (am-2-1) [left=18pt] {$v_1$};       
+  \node at (am-3-1) [left=18pt] {$v_2$};       
+  \node at (am-4-1) [left=18pt] {$v_3$};             
+  \node at (am-5-1) [left=18pt] {$v_4$};
+  \node at (am-6-1) [left=18pt] {$v_5$};       
+  \node at (am-7-1) [left=18pt] {$v_6$};       
+  \node at (am-8-1) [left=18pt] {$v_7$};             
+  \node at (am-9-1) [left=18pt] {$v_8$};             
+
+\end{tikzpicture}

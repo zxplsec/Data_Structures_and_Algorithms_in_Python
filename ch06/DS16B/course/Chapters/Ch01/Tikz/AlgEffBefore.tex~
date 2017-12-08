@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{AlgEffBefore}
+  \begin{tikzpicture}[node distance=4.3cm]
+  \node [fill=blue!20,draw,starburst,drop shadow,text width=6cm] (1) {
+  \blue{\large 事前分析估算方法}\\
+  在编制程序前，依据统计方法对算法进行估算。
+  };
+
+
+\node[below left of=1,rectangle split,rectangle split parts=5,rounded corners=3mm,draw,text width=7cm,fill=red!20] (2){
+\blue{程序运行时间取决于}
+      \nodepart{two}
+      (1)~算法采用的策略、方法 (\red{算法好坏的根本})
+      \nodepart{three}
+      (2)~编译产生的代码质量 (\red{软件支持})
+      \nodepart{four}
+      (3)~问题的输入规模 
+      \nodepart{five}
+      (4)~机器执行指令的速度 (\red{硬件性能})
+    };
+    \node[below right of=1,rectangle split,ellipse,draw,text width=2.5cm,fill=red!20] {
+      程序的运行时间，依赖于算法的好坏和问题的输入规模。
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

@@ -1,0 +1,6 @@
+
+int length(LinkList L)
+{
+
+
+}

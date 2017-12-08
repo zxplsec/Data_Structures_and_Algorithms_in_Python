@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes,trees}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{TreeStruct}
+  \begin{tikzpicture}[level distance=1.5cm,
+    level 1/.style={sibling distance=3cm},
+    level 2/.style={sibling distance=1.5cm},
+    ]
+    \tikzstyle{state}=[draw,circle]
+        % The graphic
+    \node at (0,2)[fill=blue!20,draw,starburst,drop shadow,text width=6.5cm]
+    {
+      \blue{\large 树形结构}: 其中的数据元素之间是一对多的层次关系.
+    } ;
+
+    
+    \node[state]{A}
+    child {node[state]{B}     
+      child {node[state]{E}}
+      child {node[state]{F}}
+      child {node[state]{G}}
+    }
+    child {node[state]{C}
+      child {node[state]{H}}
+    }
+    child {node[state]{D}     
+      child {node[state]{I}}
+      child {node[state]{J}}
+    };
+    
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

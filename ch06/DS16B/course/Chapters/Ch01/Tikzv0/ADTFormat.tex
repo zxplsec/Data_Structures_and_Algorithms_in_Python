@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{ADTFormat}
+  \begin{tikzpicture}
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=1cm]{
+      ADT标准格式
+    };
+
+    \node at (1.5,0) [right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=5cm]{
+      \begin{lstlisting}
+ADT `抽象数据类型名`
+Data
+   `数据元素之间逻辑关系的定义`
+Operation
+   `操作1`
+       `初始条件`
+       `操作结果描述`
+   `操作2`
+       ______
+   `操作3`
+       ______
+      \end{lstlisting}
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

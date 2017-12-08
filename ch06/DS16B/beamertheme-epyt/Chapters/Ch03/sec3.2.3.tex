@@ -1,0 +1,88 @@
+\subsection{链队列}
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}
+队列的链式存储结构，就是线性表的单链表，只不过它只能尾进头出，简称为链队列。
+\end{dingyi}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{zhu}
+  为操作方便，通常将队头指针指向链队列的头结点，而队尾指针指向终端结点。
+\end{zhu}
+\pause
+
+\input{Chapters/Ch03/Tikz/LinkQueue/LinkQueue}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{zhu}
+队列为空时，{\tt front}和{\tt rear}都指向头结点。  
+\end{zhu}
+
+\pause
+\input{Chapters/Ch03/Tikz/LinkQueue/LinkQueueEmpty}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile,allowframebreaks]\ft{\tt LinkQueue.h}
+\lstinputlisting[
+title={},
+language=C,
+]{Chapters/Ch03/Code/LinkQueue/LinkQueue.h}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+入队操作，就是在链表尾部插入结点。\pause 
+\input{Chapters/Ch03/Tikz/LinkQueue/EnLinkQueue}
+\end{frame}
+
+
+
+\begin{frame}\ft{\tt Enter.c}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkQueue/Enter.c}
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+出队操作，就是头结点的后继结点出队，将头结点的后继改为它后面的结点。\pause 
+\input{Chapters/Ch03/Tikz/LinkQueue/DeLinkQueue}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+若链表处头结点外只剩一个元素时，则需将{\tt rear}指向头结点。
+\input{Chapters/Ch03/Tikz/LinkQueue/DeLinkQueue1}
+\end{frame}
+
+\begin{frame}\ft{\tt Exit.c}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkQueue/Exit.c}  
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+循环队列和链队列的比较：
+
+\begin{itemize}
+\item 从时间上看，其基本操作的复杂度均为$O(1)$，不过循环队列事先申请好空间，使用期间不释放，而对于链队列，每次申请和释放结点会存在一些时间开销。若入队出队频繁，两者会有细微差异。\\[0.1in]
+\item 从空间上看，循环队列须有一个固定长度，故存在存储元素个数和空间浪费的问题。而链队列不存在该问题，尽管它需要一个指针域，会产生一些空间上的开销，但也可以接受。所以在空间上，链表更加灵活。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{itemize}
+\item 在可以确定队列长度最大值的情况下，建议使用循环队列；\\[0.1in]
+\item 若无法预估队列长度，请使用链队列。
+\end{itemize}
+\end{frame}
+
+
+
+
+
+

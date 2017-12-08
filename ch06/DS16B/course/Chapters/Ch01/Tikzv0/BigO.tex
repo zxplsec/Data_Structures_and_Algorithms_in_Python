@@ -1,0 +1,20 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=3.2cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=6cm,text=blue] (1) {
+      如何分析一个算法的时间复杂度？即如何推导大O阶？
+    };
+
+    \pause 
+    \node [below of=1,fill=red!20,draw,rectangle split,rectangle split parts=4,rounded corners=4mm,text width=8.5cm,text=blue]{
+      1.~用常数1取代运行次数中的所有加法常数；
+      \nodepart{two}
+      2.~在修改后的运行次数函数中，只保留最高阶项；
+      \nodepart{three}
+      3.~如果最高阶项存在且不是1，则去除最高阶项的系数。
+      \nodepart{four}
+      得到的结果就是大O阶。
+    };
+  \end{tikzpicture}
+  
+\end{figure}

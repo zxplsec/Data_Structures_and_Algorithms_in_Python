@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DSsource}
+  \begin{tikzpicture}[scale=2,cap=round]
+    % Local definitions
+    \def\costhirty{0.8660256}
+    % Colors
+    \colorlet{anglecolor}{green!50!black}
+    \colorlet{sincolor}{red}
+    \colorlet{tancolor}{orange!80!black}
+    \colorlet{coscolor}{blue}
+    % Styles
+    \tikzstyle{axes}=[]
+    \tikzstyle{important line}=[very thick]
+    \tikzstyle{information text}=[rounded corners,fill=red!30,inner sep=1ex]
+
+    % The graphic
+    %% \draw[style=help lines,step=0.5cm] (-1.4,-1.4) grid (1.4,1.4);
+    \node at (0,0) [ball color=red,circle,text=white] {数值计算};
+    \node at (2,0) [ball color=red,circle,text=white] {非数值计算};
+    
+    \node at (1,-0.6)[below,text width=6cm,ball color=blue,ellipse,text=green]
+    {
+      数据结构是一门研究非数值计算的程序设计问题中的操作对象, 以及它们之间的关系和操作等相关问题的学科.
+    } ;
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

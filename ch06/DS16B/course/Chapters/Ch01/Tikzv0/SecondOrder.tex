@@ -1,0 +1,56 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4.6cm]
+    
+    
+    \node [fill=red!20,draw,rectangle split,rectangle split parts=3,rounded corners=4mm,text width=6cm,text=blue]
+    (2){
+      \begin{lstlisting}[language=C,frame=no]
+int i,j;
+for (i=0;i<n;i++)
+  for (j=0;j<n;j++)
+    //`时间复杂度为$O(1)$的语句块`
+      \end{lstlisting}
+      \nodepart{two}
+      \begin{lstlisting}[language=C,frame=no]
+int i,j;
+for (i=0;i<m;i++)
+  for (j=0;j<n;j++)
+    //`时间复杂度为$O(1)$的语句块`
+      \end{lstlisting}
+      \nodepart{three}
+      \begin{lstlisting}[language=C,frame=no]
+int i,j;
+for (i=0;i<n;i++)
+  for (j=i;j<n;j++)
+    //`时间复杂度为$O(1)$的语句块`
+      \end{lstlisting}
+    };
+
+    \node at(5,4) [fill=blue!20,draw,starburst,drop shadow,text width=3cm,text=blue]
+    (1) {
+      平方阶$O(n^2)$
+    };
+    \pause 
+    \node at (4.8,2.2)[fill=green!40,draw,ellipse callout,callout relative pointer={(-1,0.5)},text width=1cm,text=blue]
+    (3) {
+      $O(n^2)$
+    };
+
+    \pause 
+    \node at (4.8,0)[fill=green!40,draw,ellipse callout,callout relative pointer={(-1,-0.5)},text width=2cm,text=blue]
+    (4) {
+      $O(m\times n)$
+    };
+
+    \pause 
+    \node at (4.6,-2)[fill=green!40,draw,rectangle callout,callout relative pointer={(-0.7,-0.2)},rounded corners=3mm,text width=7.5cm,text=blue]
+    (5) {
+      因$f(n)=n+\cdots+2+1=\frac{n(n+1)}{2}=\frac{n^2}2+\frac n2$,
+      故时间复杂度为$O(n^2)$.
+    };
+
+
+  \end{tikzpicture}
+\end{figure}
+

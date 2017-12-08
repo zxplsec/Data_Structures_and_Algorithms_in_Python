@@ -1,0 +1,10 @@
+BSTree mod_search(BSTree root, int key)
+{
+  if (!root) return NULL;
+  while (root) {
+    if (key == root->data.key) return NULL;
+    
+    
+  }
+
+}

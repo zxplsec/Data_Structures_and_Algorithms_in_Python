@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+  \def\x{1.5}\def\y{0.8}
+  \draw[very thick](0,0)rectangle(2*\x,\y) (\x,0)--(\x,\y);
+  \node at (0.5*\x,0.5*\y) [] {\tt child};
+  \node at (1.5*\x,0.5*\y) [] {\tt next};
+
+  \tikzstyle{every node}=[]
+  \tikzstyle{information text}=[rounded corners,inner sep=1ex]
+
+  \draw
+  node at (1*\x,0*\y) [below,text width=10cm,style=information text]
+  {
+    \begin{table}
+      \centering
+      \begin{tabular}{l|l|l} \hline
+         {\tt child} & 数据域 & 存储某个结点在表头数组中的下标 \\[0.1in]
+         {\tt next} & 指针域 & 存储指向某结点的下一个孩子的指针 \\\hline
+      \end{tabular}
+      
+    \end{table}
+  };
+
+\end{tikzpicture}

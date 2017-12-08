@@ -1,0 +1,106 @@
+\section{线性表}
+
+\begin{frame}
+
+  
+  线性表是一种典型的线性结构，其中的数据元素是\red{有序且有限}, 并且
+  \begin{itemize}
+  \item
+    有唯一首元；
+  \item
+    有唯一末元；
+  \item
+    除首元外，每个元素均有唯一的直接前驱；
+  \item
+    除末元外，每个元素均有唯一的直接后继. 
+  \end{itemize}•
+
+\end{frame}
+
+
+\subsection{线性表的逻辑结构}
+\begin{frame}\ft{\secname}
+\begin{dingyi}[线性表 Link List]
+由$n$个数据元素$a_1,a_2,\cd,a_n$组成的有限序列($n\ge 0$, 数据元素又称结点).
+\begin{itemize}
+\item $a_i$的数据类型相同;
+\item $n$称为线性表的长度.
+\end{itemize}
+\end{dingyi}
+
+\pause 
+\begin{enumerate}
+\item $n=0$为空表；\\[0.1in]
+\item $n>0$为非空的线性表, 记为$(a_1,a_2,\cd,a_n)$. \\[0.1in]
+\item[$\diamond$]
+$a_1$称为首结点, $a_n$称为尾结点.  
+\item[$\diamond$]
+$a_1,a_2,\cd,a_{i-1}$都是$a_i%(2\le i \le n)
+$的前驱, 其中$a_{i-1}$是$a_i$的直接前驱. 
+\item[$\diamond$]
+$a_{i+1},a_{i+2},\cd,a_{n}$都是$a_i%(1\le i \le n-1)
+$的后继, 其中$a_{i+1}$是$a_i$的直接后继. 
+\end{enumerate}•
+\end{frame}
+
+\begin{frame}\ft{线性表的逻辑结构}
+%线性表中的数据元素$a_i$所代表的具体含义随具体应用的不同而不同, 
+%只不过是一个抽象的表示符号. 
+\begin{itemize}
+\item%[$\spadesuit$]
+结点可以是单值元素%（每个元素只有一个数据项）
+\end{itemize}
+
+\begin{li}
+字母表：(A,~B,~C,~$\cd$,~Z)
+\end{li}	
+
+\begin{li}
+扑克点数：(2,~3,~4,~$\cd$,~J,~Q,~K,~A)
+\end{li}	
+
+\end{frame}
+
+\begin{frame}\ft{线性表的逻辑结构}
+\begin{itemize}
+\item%[$\spadesuit$]
+结点可以是记录型元素. 
+\item[] 每个元素可含多个数据项, 每一项称为结点的一个域. 
+每个元素有一个可以唯一标识每个结点的域, 称为\red{关键字(key word)}. 
+\end{itemize}
+
+\begin{li}
+\begin{table}
+  \centering
+  \caption{某班2014级同学的基本情况}
+  \begin{tabular}{cccc}\hline
+    学号&姓名&性别&出生日期\\\hline
+    $20140212001$&张强&男&$06/24/1992$\\
+    $20140212002$&王明&男&$08/22/1992$\\
+    $\cd$&$\cd$&$\cd$&$\cd$\\
+    $20140212030$&李娟&女&$09/12/1992$\\\hline
+  \end{tabular}  
+\end{table}
+\end{li}
+
+\end{frame}
+
+\begin{frame}\ft{线性表的逻辑结构}
+\begin{itemize}
+\item%[$\spadesuit$]
+若结点按值从小到大（或从大到小）排列, 
+称线性表是\red{有序}的. \\[0.2in]
+\item%[$\spadesuit$]
+线性表的长度可根据需要增长或缩短. \\[0.2in]
+\item%[$\spadesuit$]
+可对结点进行访问、插入和删除操作. 
+\end{itemize}
+
+\end{frame}
+
+
+\subsection{线性表的抽象数据类型定义}
+\begin{frame}[fragile]
+  \input{Chapters/Ch02/Lst/ADTList}
+\end{frame}
+

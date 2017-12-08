@@ -1,0 +1,128 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+%%%% Package
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[UTF8,noindent]{ctex}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes,shadows}
+\usetikzlibrary{matrix,fit,positioning,decorations.pathmorphing}
+\usepackage{listings}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily,
+  commentstyle=\small\color{red},
+  breakindent=0pt,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  rulecolor=\color{black},
+  tabsize=4,
+  numbersep=5pt,
+  breaklines=true,
+  %% backgroundcolor=\color{red!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no,
+}
+
+%%%% New Commands
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{electricpurple}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\cd}{\cdots}
+\newcommand{\dd}{\ddots}
+\newcommand{\vd}{\vdots}
+\newcommand{\id}{\iddots}
+
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\begin{document}
+\renewcommand{\proofname}{\textbf{证明}}
+%%%% New Theorem
+\newtheorem{li}{例}
+\newtheorem{jielun}{结论}
+\newtheorem{dingli}{定理}
+\newtheorem{mingti}{{命题}} 
+\newtheorem{yinli}{{引理}} 
+\newtheorem{tuilun}{{推论}}
+\newtheorem{dingyi}{{定义}} 
+\newtheorem*{jie}{{解}}
+\newtheorem*{zhengming}{{证明}}
+\newtheorem{zhu}{{注}}
+\newtheorem*{zhu*}{{注}}
+\newtheorem{xingzhi}{{性质}}
+\newtheorem{wenti}{{问题}}
+
+\title{哈夫曼树(Huffman Tree)}
+\author{张晓平}
+%\date{}                                           % Activate to display a given date or no date
+\maketitle
+
+\section{定义}
+哈夫曼树是一种带权路径长度最短的二叉树，也称最优二叉树。
+
+
+\section{构造}
+构造过程如下：
+\begin{enumerate}
+\item 将所有左、右子树都为空的结点作为根结点；
+\item 选出两颗根结点的权值最小的树作为一棵新树的左、右子树，且置新树的根结点的权值为其左、右子树上根结点的权值之和。\red{注：左子树的权值应小于右子树的权值。}
+\item 从森林中删除这两棵树，同时把新树加入到森林中。
+\item 重复2、3，直到森林中只有一棵树为止，此树便是Huffman树。
+\end{enumerate}
+
+
+\section{Huffman编码}
+利用Huffman树求得的用于通信的二进制编码称为Huffman编码。树中从根到每个叶子结点都有一条路径，对路径上各分支作如下约定：指向左子树的分支表示0码，指向右子树的分支表示1码。取每条路径上的0或1的序列作为各叶子结点对应的字符编码，即是Huffman编码。
+
+
+\section{程序实现}
+\lstinputlisting[language=C,frame=single]{Huffman/Huffman.h}
+
+\lstinputlisting[language=C,frame=single]{Huffman/Huffman.c}
+
+\lstinputlisting[language=C,frame=single]{Huffman/HuffmanTest.c}
+
+
+\begin{lstlisting}[title=运行结果,frame=single]
+input character:
+aaaabbbcccddddddeeeeeffffffggggggg
+
+Depth of Huffman Tree is 5
+
+Huffman Codes are:
+d:6 00
+g:7 01
+a:4 100
+e:5 101
+f:6 111
+c:3 1100
+b:3 1101
+\end{lstlisting}
+
+\end{document}  

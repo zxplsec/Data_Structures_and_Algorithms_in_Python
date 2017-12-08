@@ -1,0 +1,81 @@
+\begin{tikzpicture}[scale=1]
+  \def\x{0.6} \def\y{0.6}
+  %% \draw[dashed,step=\x] (0*\x,0*\y) grid (16*\x,12*\y);
+
+  %%%%%%%%%Level 4%%%%%%%%%
+  \foreach \i in {0,3,6,10}{
+    \def\j{0}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+2*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y);
+    \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};    
+  }
+  \def\i{0}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{G};
+
+  \def\i{3}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{H};
+  
+  \def\i{6}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{I};
+  
+  \def\i{10}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{J};
+
+  %%%%%%%%%Level 3%%%%%%%%% 
+  \def\i{1}\def\j{3}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+5*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y)
+  (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y)
+  (\i*\x+3*\x,\j*\y)--(\i*\x+3*\x,\j*\y+\y)
+  (\i*\x+4*\x,\j*\y)--(\i*\x+4*\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{D};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{3};
+  \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(0*\x+0.5*\x,\j*\y-2*\y);
+  \draw[blue,thick,->,>=latex] (\i*\x+3.5*\x,\j*\y+0.5*\y)--(3*\x+0.5*\x,\j*\y-2*\y);
+  \draw[blue,thick,->,>=latex] (\i*\x+4.5*\x,\j*\y+0.5*\y)--(6*\x+0.5*\x,\j*\y-2*\y);
+
+  \def\i{9}\def\j{3}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y)
+  (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{E};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{1};
+  \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(10*\x+0.5*\x,\j*\y-2*\y);
+  
+  \def\i{13}\def\j{3}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+2*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{F};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  %%%%%%%%%Level 2%%%%%%%%%
+  \def\i{3}\def\j{6}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y)
+  (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{B};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{1};
+  \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(1*\x+0.5*\x,\j*\y-2*\y);
+  
+  \def\i{7}\def\j{6}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+4*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y)
+  (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y)
+  (\i*\x+3*\x,\j*\y)--(\i*\x+3*\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{C};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{2};
+  \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(9*\x+0.5*\x,\j*\y-2*\y);
+  \draw[blue,thick,->,>=latex] (\i*\x+3.5*\x,\j*\y+0.5*\y)--(13*\x+0.5*\x,\j*\y-2*\y);
+
+  %%%%%%%%%Level 1%%%%%%%%%
+  \def\i{5}\def\j{9}
+  \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+4*\x,\j*\y+\y)
+  (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y)
+  (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y)
+  (\i*\x+3*\x,\j*\y)--(\i*\x+3*\x,\j*\y+\y);
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{A};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{2};
+  \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(3*\x+0.5*\x,\j*\y-2*\y);
+  \draw[blue,thick,->,>=latex] (\i*\x+3.5*\x,\j*\y+0.5*\y)--(7*\x+0.5*\x,\j*\y-2*\y);
+  
+\end{tikzpicture}

@@ -1,0 +1,56 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+    \tikzstyle{information text}=[fill=white,inner sep=1ex]
+    \def\x{1.5}
+    \def\y{0.7}
+
+    %% 
+    \def\r{0}    
+    \draw[very thick] (\r,5*\y)--(\r,0*\y)--(\r+\x,0*\y)--(\r+\x,5*\y);
+    \foreach \c in {1,2,...,5}{
+      \edef\cc{\number\numexpr\c-1\relax}
+      \filldraw[fill=red!40,fill opacity=0.5] (\r+0.05*\x,\c*\y-0.95*\y)rectangle(\r+0.95*\x,\c*\y-0.05*\y);
+    }
+    \def\c{5}
+    \draw[->,>=stealth] (\r-0.5*\x,\c*\y-0.5*\y) --node[above] {\tf{top1}}(\r-0.1*\x,\c*\y-0.5*\y);
+
+    \def\r{2}    
+    \draw[red,very thick] (\r,5*\y)--(\r,0*\y)--(\r+\x,0*\y)--(\r+\x,5*\y);
+    \foreach \c in {1,2,...,5}{
+      \ifthenelse{\c=1 \OR \c=2}{
+        \filldraw[fill=red!40,fill opacity=0.5] (\r+0.05*\x,\c*\y-0.95*\y)rectangle(\r+0.95*\x,\c*\y-0.05*\y);
+        \ifthenelse{\c=2}{          
+          \draw[->,>=stealth] (\r+1.7*\x,\c*\y-0.5*\y) --node[above] {\tf{top2}}(\r+1.1*\x,\c*\y-0.5*\y);
+        }{}
+      }{
+        %% \filldraw[fill=white,fill opacity=0.5] (\r+0.05*\x,\c*\y-0.95*\y)rectangle(\r+0.95*\x,\c*\y-0.05*\y);
+      }
+    }
+
+    \pause 
+    %% 
+    \def\c{0}
+    \def\r{8}
+    \draw[very thick] (\r*\y+5*\y,0*\x)--(\r*\y+0*\y,0*\x)--(\r*\y+0*\y,1*\x)--(\r*\y+5*\y,1*\x);
+    \foreach \r in {8,...,12}{
+      \filldraw[fill=red!40,fill opacity=0.5] (\r*\y+0.05*\y,0.05*\x)rectangle(\r*\y+0.95*\y,0.95*\x);
+    }
+    \def\c{5}
+    \draw[->,>=stealth] (12.5*\y,1.5*\x) --node[left] {\tf{top1}}(12.5*\y,1.*\x);
+
+    %% 
+    \def\c{0}
+    \def\r{13}
+    \draw[red,very thick] (\r*\y+0*\y,0*\x)--(\r*\y+5*\y,0*\x)--(\r*\y+5*\y,1*\x)--(\r*\y+0*\y,1*\x);
+    \foreach \r in {13,...,17}{
+      \ifthenelse{\r=16 \OR \r=17 }{
+        \filldraw[fill=red!40,fill opacity=0.5] (\r*\y+0.05*\y,0.05*\x)rectangle(\r*\y+0.95*\y,0.95*\x);
+      }{}
+    }
+    \def\c{5}
+    \draw[->,>=stealth] (16.5*\y,1.5*\x) --node[left] {\tf{top2}}(16.5*\y,1.*\x);
+
+
+  \end{tikzpicture}
+\end{figure}

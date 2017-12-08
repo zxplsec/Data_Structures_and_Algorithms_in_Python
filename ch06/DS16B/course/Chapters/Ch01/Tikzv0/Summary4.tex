@@ -1,0 +1,22 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node at(0,0) [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue,text centered] (1) {
+      {\large 总结回顾}
+    };
+    \pause     
+    \node[below of=1,fill=green!20,draw,ellipse,text width=8cm,text=blue] (3) {
+      \red{大$O$阶推导过程}\\
+      \begin{enumerate}[(1)]
+      \item 用常数1取代运行次数中的所有加法常数；
+      \item 在修改后的运行次数函数中，只保留最高阶项；
+      \item 如果最高阶项存在且不是1，则去除最高阶项的系数。
+      \end{enumerate}
+      得到的结果就是大O阶。
+    };
+  \end{tikzpicture}
+  
+\end{figure}
+
+
+

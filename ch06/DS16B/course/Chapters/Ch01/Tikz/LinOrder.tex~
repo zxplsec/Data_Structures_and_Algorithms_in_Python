@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{LinOrder}
+  \begin{tikzpicture}[node distance=3cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue] (1) {
+      线性阶$O(n)$
+    };
+
+    \node [below of=1,fill=red!20,draw,rectangle,rounded corners=4mm,text width=6cm,text=blue]{
+      \begin{lstlisting}[language=C]
+int i;
+for (i=0;i<n;i++}
+    //`时间复杂度为$O(1)$的语句块`
+      \end{lstlisting}
+    };
+  \end{tikzpicture}
+  
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

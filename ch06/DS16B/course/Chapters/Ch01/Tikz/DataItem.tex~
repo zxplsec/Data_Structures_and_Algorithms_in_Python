@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DataElem}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=5cm]
+    {
+      \blue{\Large 数据元素}: 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。又称为记录.
+    } ;
+
+    \node at (0,-2) [fill=blue!20,draw,ellipse callout, callout relative pointer={(0,1)},text width=6cm]
+    { 
+      例如:
+      \begin{itemize}
+      \item  在人类中，数据元素是人;
+      \item  在畜类中, 数据元素为牛、马、羊、猪、狗等.
+      \end{itemize}
+    };
+
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

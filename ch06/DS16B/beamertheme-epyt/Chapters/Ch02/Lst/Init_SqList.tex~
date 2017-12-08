@@ -1,0 +1,10 @@
+\begin{lstlisting} [language=C,breaklines]
+Status Init_SqList(SqList *L) {
+  L->elem_array=(ElemType *) malloc(MAX_SIZE*sizeof(ElemType));
+  if(!L->elem_array) return ERROR;
+  else {
+    L->length=0;
+    return OK;
+  }
+}
+\end{lstlisting}

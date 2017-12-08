@@ -1,0 +1,189 @@
+\documentclass[10pt,a4paper,twoside,openright,titlepage,fleqn,
+tablecaptionabove]{article}
+
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{courier}
+
+\usepackage{extarrows}
+\usepackage{verbatim,color,xcolor}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{matrix,fit,positioning,decorations.pathmorphing}
+%% \usepackage{classicthesis}
+\usepackage{CJK}
+\usepackage{mathdots}
+
+\usepackage{listings}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\small,
+  commentstyle=\small\color{red},
+  breakindent=0pt,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  rulecolor=\color{black},
+  tabsize=4,
+  numbersep=5pt,
+  breaklines=true,
+  %% backgroundcolor=\color{red!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no,
+}
+
+
+
+\begin{document}
+
+\begin{CJK}{UTF8}{gkai}
+
+%%%% 设置标题
+\title{第二次作业：栈(Stack)}
+\author{李明（2014******）} %% 请在此处写上你的姓名和学号
+\maketitle
+
+%%%% 
+\newtheorem*{jie}{{解}}
+\newtheorem{wenti}{{问题}}
+
+
+
+请完成以下问题。
+
+%%%% 第一题 %%%%
+\begin{wenti}
+%%%%%
+设共享栈的结构描述为：
+\begin{lstlisting}[language=C]
+#define MAXSIZE 100
+#define ERROR 0
+#define OK 1
+
+typedef int ElemType;
+typedef int Status;
+typedef struct {
+  ElemType data[MAXSIZE];
+  int top1;
+  int top2;
+} Share_SqStack;
+\end{lstlisting}
+请编写能运行的完整程序，自行设计入栈、出栈过程，并输出相关结果。程序应包括以下函数：
+\begin{lstlisting}[language=C]
+Status Init(Share_SqStack * S)  //`初始化共享栈为空`
+{
+   ...
+}
+Status IsFull(Share_SqStack * S) //`判断共享栈是否满栈`
+{
+   ...
+}
+
+Status IsEmpty(Share_SqStack * S, int StackNumber) //`判断栈1或栈2是否为空`
+{
+   ...
+}
+
+Status Push(Share_SqStack * S, ElemType e, int StackNumber)
+{
+   ...
+}
+
+ElemType Pop(Share_SqStack * S, int StackNumber)
+{
+   ...
+}
+
+void PringS(Share_SqStack * S, int StackNumber) //`打印栈1或栈2`
+{
+   ...
+}
+
+Status Clear(Share_SqStack * S) //`将共享栈清空`
+{
+   ...
+}
+
+Status Destroy(Share_SqStack * S) //`将共享栈销毁`
+{
+   ...
+}
+
+int main(void)
+{
+  ...
+}
+\end{lstlisting}
+返回链表的结点个数。
+\end{wenti}
+
+
+\begin{jie}
+
+%%%%%%%%请将解答写在 \begin{jie} ... \end{jie}之间。建议在Visual Studio或XCode中把代码写好(代码放在code文件夹中)，各函数分别写在一个单独的C文件中，文件名与函数名一致，然后用以下命令添加代码即可。
+
+源代码：
+\lstinputlisting[language=C]
+{code/length.c}
+
+
+运行结果：%（可将运行结果直接粘贴至以下环境，示例如下：）
+\begin{lstlisting}
+Initiation:
+Stack #1: 
+Stack #2:
+
+After pushing 1 2 3 into Stack #1 and 4 5 6 into Stack #2:
+Stack #1: 1 2 3
+Stack #2: 4 5 6
+
+After 1 pop in Stack #1 and 2 pop in Stack #2:
+Stack #1: 1 2 
+Stack #2: 4 
+
+After clearing the sharing stack:
+Stack #1:  
+Stack #2:  
+\end{lstlisting}
+
+\end{jie}
+
+%%%% 第2题 %%%%
+\begin{wenti}
+修改数值转换中的Convert函数，使其能处理十进制数到二、八、十六进制数的转换。
+最后编写测试函数(即main函数)，任意输入一个十进制数，输出二、八、十六进制数。
+提示：可在Convert函数中设置字符数组
+\begin{lstlisting}
+char s[] = "0123456789ABCDEF";
+\end{lstlisting}
+在输出结果时用
+\begin{lstlisting}
+putc(s[*e]); 
+\end{lstlisting}
+\end{wenti}
+
+\begin{jie}
+源代码：% 可使用以下命令导入C文件（要求C文件放在code中）
+\lstinputlisting[language=C]
+{code/length.c}
+
+运行结果：% 以下仅为示例
+\begin{lstlisting} 
+Enter a decimal number: 123
+binary: 1111011    
+octal: 173
+hexadecimal: 7B
+\end{lstlisting}
+	
+\end{jie}
+
+ 
+
+\end{CJK}
+\end{document}

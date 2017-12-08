@@ -1,0 +1,138 @@
+% XeLaTeX can use any Mac OS X font. See the setromanfont command below.
+% Input to XeLaTeX is full Unicode, so Unicode characters can be typed directly into the source.
+
+% The next lines tell TeXShop to typeset with xelatex, and to open and save the source with Unicode encoding.
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt]{article}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+%%%% Package
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[UTF8,noindent]{ctex}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes,shadows}
+\usetikzlibrary{matrix,fit,positioning,decorations.pathmorphing}
+\usepackage{listings}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily,
+  commentstyle=\small\color{red},
+  breakindent=0pt,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  rulecolor=\color{black},
+  tabsize=4,
+  numbersep=5pt,
+  breaklines=true,
+  %% backgroundcolor=\color{red!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no,
+}
+
+%%%% New Commands
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{electricpurple}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\cd}{\cdots}
+\newcommand{\dd}{\ddots}
+\newcommand{\vd}{\vdots}
+\newcommand{\id}{\iddots}
+
+
+% Will Robertson's fontspec.sty can be used to simplify font choices.
+% To experiment, open /Applications/Font Book to examine the fonts provided on Mac OS X,
+% and change "Hoefler Text" to any of these choices.
+
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text}
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+\begin{document}
+\renewcommand{\proofname}{\textbf{证明}}
+%%%% New Theorem
+\newtheorem{li}{例}
+\newtheorem{jielun}{结论}
+\newtheorem{dingli}{定理}
+\newtheorem{mingti}{{命题}} 
+\newtheorem{yinli}{{引理}} 
+\newtheorem{tuilun}{{推论}}
+\newtheorem{dingyi}{{定义}} 
+\newtheorem*{jie}{{解}}
+\newtheorem*{zhengming}{{证明}}
+\newtheorem{zhu}{{注}}
+\newtheorem*{zhu*}{{注}}
+\newtheorem{xingzhi}{{性质}}
+\newtheorem{wenti}{{问题}}
+\newtheorem{xiti}{{习题}}
+
+\title{图的表示}
+\author{张晓平}
+%\date{}                                           % Activate to display a given date or no date
+\maketitle
+
+\section{邻接矩阵}
+%由于图是有顶点和边或弧两部分组成的，可以考虑分两个结构分别来存储。
+%\begin{itemize}
+%\item[(1)] 顶点不分大小、主次，可用一个一维数组来存储。
+%\item[(2)] 边或弧为顶点与顶点之间的关系，可用一个二维数组来存储。
+%\end{itemize}
+%此即邻接矩阵的存储方案。
+
+
+图的邻接矩阵(Adjacency matrix)存储方式是用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组(称为邻接矩阵)存储图中的边或弧的信息。
+
+设图$G$有$n$个顶点，则邻接矩阵为一个$n\times n$的方阵，定义为
+$$
+e[i][j]=\left\{
+\begin{array}{ll}
+1,& \mbox{ if $(v_i,v_j)\in E$ or $\langle v_i,v_j\rangle\in E$}, \\[0.05in]
+0,& \mbox{ otherwise}.
+\end{array}
+\right.
+$$
+
+
+\tikzstyle{state}=[circle,draw=blue!50,fill=blue!20,thick,inner sep=0pt,minimum size=6mm]
+
+\begin{figure}
+\centering
+\input{Tikz/adjmatrix}
+\caption{无向图的邻接矩阵为对称矩阵}
+\end{figure}
+
+有了邻接矩阵，可以很容易地得到无向图中的信息：
+\begin{itemize}
+\item[1] 可以很容易地判定任意两顶点是否有边。 
+\item[2] 顶点$v_i$的度等于邻接矩阵中第$i$行的元素之和。
+\item[3] 欲求顶点$v_i$的所有邻接点，只需扫描邻接矩阵的第$i$行，若$e[i][j]=1$，则$v_j$为其邻接点。
+\end{itemize}
+
+
+\begin{figure}[htbp]
+\centering
+\input{Tikz/adjmatrix_dg}
+\caption{有向图的邻接矩阵不是对称矩阵}
+\end{figure}
+
+有了邻接矩阵，可以很容易地得到图中的信息。
+\begin{itemize}
+\item[1] 顶点$v_i$的入度等于邻接矩阵中第$i$列的元素之和；顶点$v_i$的出度等于邻接矩阵中第$i$行的元素之和。
+\item[2] 欲判断顶点$v_i$到$v_j$是否有弧，只需查找$e[i][j]$是否为1。
+\item[3] 欲求顶点$v_i$的所有邻接点，只需扫描邻接矩阵的第$i$行，若$e[i][j]=1$，则$v_j$为其邻接点。
+\end{itemize}
+\end{document}  

@@ -1,0 +1,45 @@
+\begin{tikzpicture}[scale=0.8]
+
+  \tikzstyle{every node}=[ball color=red!70,circle,text=white]
+
+\node [below right,circle,draw] at (2,0) {A}[sibling distance=2.2cm] 
+  child { node[circle,draw]{B}[sibling distance=1.6cm]
+	 child {node[circle,draw]{E}[sibling distance=1.5cm]
+		child {node[circle,draw]{K}}
+      child {node[circle,draw]{L}}
+    }
+	 child {node[circle,draw]{F}}      
+  }
+  child { node[circle,draw]{C}
+    child {node[circle,draw]{G}[sibling distance=1.5cm]          
+      child {node[circle,draw]{M}} 
+      child {node[circle,draw]{N}}   
+    }			
+  }	
+  child { node[circle,draw]{D}[sibling distance=1.1cm]
+    child {node[circle,draw]{H}} 
+    child {node[circle,draw]{I}}
+    child {node[circle,draw]{J}}
+  };  
+
+\tikzstyle{every node}=[]
+\tikzstyle{information text}=[rounded corners,fill=blue!20!red!40,inner sep=1ex]
+
+\draw[xshift=-2.cm,yshift=-5.6cm]
+node[below right,text width=11cm%,style=information text
+]
+{
+ \begin{block}{叶子结点、非叶子结点}
+树中度为0的结点称为叶子结点(或终端结点)。相对应地，度不为0的结点称为非叶子结点(或非终端结点或分支结点)。除根结点外，分支结点又称为内部结点。
+\end{block}
+};
+
+\pause 
+\tikzstyle{information text}=[rounded corners,fill=blue!40!red!40,inner sep=1ex]
+\draw[xshift=6.cm,yshift=0cm]
+node[below right,text width=4.8cm,style=information text]
+{
+H、I、J、K、L、M、N是叶子结点，而所有其它结点都是分支结点。
+};
+ 
+\end{tikzpicture}

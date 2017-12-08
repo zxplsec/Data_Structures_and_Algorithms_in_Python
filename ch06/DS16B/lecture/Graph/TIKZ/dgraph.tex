@@ -1,0 +1,13 @@
+\tikzstyle{state}=[circle,draw=blue!50,fill=blue!20,thick,inner sep=0pt,minimum size=6mm]
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,node distance=2cm,semithick,inner sep=1pt,bend angle=45,auto]
+\node[state]   (A)                    {A};
+\node[state]   (B) [below left  of=A] {B};
+\node[state]   (C) [below right of=B] {C};
+\node[state]   (D) [below right of=A] {D};
+\path
+(A) edge node{} (D)
+(B) edge node{} (A)
+    edge node{} (C)
+(C) edge node{} (A);                     
+\end{tikzpicture}

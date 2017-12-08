@@ -1,0 +1,23 @@
+\section{数据结构起源}
+
+\begin{frame}
+  \begin{figure}
+    \includegraphics[]{Chapters/Ch01/Tikz/DSsource}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+      \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=1.2in]{Chapters/Ch01/Fig/Donald}
+      \end{minipage}
+      \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=1.2in]{Chapters/Ch01/Fig/TheArtOfComputerProgramming}
+      \end{minipage}
+  \end{figure}
+
+  \pause 
+  \input{Chapters/Ch01/Tikz/DS1}
+
+\end{frame}

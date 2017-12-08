@@ -1,0 +1,35 @@
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-1,-1) grid (5,3);
+\node[state]   (v0) at (30:1)  {$v_0$};
+\node[state]   (v1) at (0:0)   {$v_1$};
+\node[state]   (v2) at (-40:1) {$v_2$};
+\node[state]   (v3) at (-5:1.8)  {$v_3$};
+\path
+(v0) edge (v1)
+     edge (v2)   
+     edge (v3)
+(v1) edge (v2)
+(v2) edge (v3);   
+
+\matrix (am) at (3,0) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=10pt,column sep=10pt,right] 
+  {
+    0 & 1 & 1 & 1\\
+    1 & 0 & 1 & 0\\
+    1 & 1 & 0 & 1\\
+    1 & 0 & 1 & 0\\
+  };
+  \node at (am-1-1) [above=10pt] {$v_0$}; 
+  \node at (am-1-2) [above=10pt] {$v_1$};       
+  \node at (am-1-3) [above=10pt] {$v_2$};       
+  \node at (am-1-4) [above=10pt] {$v_3$};
+  \node at (am-1-1) [left=15pt] {$v_0$}; 
+  \node at (am-2-1) [left=15pt] {$v_1$};       
+  \node at (am-3-1) [left=15pt] {$v_2$};       
+  \node at (am-4-1) [left=15pt] {$v_3$};             
+
+%\matrix (v) at (3,2) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=10pt,column sep=10pt,right]{
+%  v_0 & v_1 & v_2 & v_3\\
+%};
+
+
+\end{tikzpicture}

@@ -1,0 +1,59 @@
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (80:1) {$a$};
+\node[state]   (b) at (170:1.5) {$b$};
+\node[state]   (c) at (260:1) {$c$};
+\node[state]   (d) at  (-10:1.5) {$d$};
+\node[state]   (e) at (170:0.7) {$e$};
+\node[state]   (f) at  (-15:0.5) {$f$};
+\path
+(a) edge (b)  
+    edge (d)  
+(b) edge (c) 
+(c) edge (d)
+(e) edge (f) ;             
+\end{tikzpicture}
+\caption{非连通图}
+\end{minipage}
+%%%%%
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (80:1) {$a$};
+\node[state]   (b) at (170:1.5) {$b$};
+\node[state]   (c) at (260:1) {$c$};
+\node[state]   (d) at  (-10:1.5) {$d$};
+\path
+(a) edge (b)  
+    edge (d)  
+(b) edge (c) 
+(c) edge (d) ;             
+\end{tikzpicture}
+\caption{连通分量}
+\end{minipage}  
+
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (e) at (170:0.7) {$e$};
+\node[state]   (f) at  (-15:0.5) {$f$};
+\path
+(e) edge (f) ;         
+\end{tikzpicture}
+\caption{连通分量}
+\end{minipage}
+%%%%%
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (80:1) {$a$};
+\node[state]   (b) at (170:1.5) {$b$};
+\node[state]   (c) at (260:1) {$c$};
+\path
+(a) edge (b)  
+(b) edge (c);             
+\end{tikzpicture}
+\caption{不是连通分量}
+\end{minipage} 
+

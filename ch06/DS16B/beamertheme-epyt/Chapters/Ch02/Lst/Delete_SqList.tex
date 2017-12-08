@@ -1,0 +1,19 @@
+\begin{lstlisting} [language=C]
+Status SqListDelete(SqList * L, int i, ElemType * e) {
+  int j; 
+  if (L->length == 0){
+    printf("List is empty!\n"); return ERROR;
+  }
+  if (i<0||i>L->length){
+    printf("Element deleted does not exist!\n"); 
+    return ERROR;
+  }
+  else {
+    *e=L->data[i-1];
+    for (j=i; j<L->length; j++)
+      L->data[j-1]=L->data[j];
+    L->length--;
+    return OK;
+  }
+}
+\end{lstlisting}

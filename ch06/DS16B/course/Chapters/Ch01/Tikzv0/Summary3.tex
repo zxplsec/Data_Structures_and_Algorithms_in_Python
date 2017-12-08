@@ -1,0 +1,21 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=3cm]
+    \node at(0,0) [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue,text centered] (1) {
+      {\large 总结回顾}
+    };
+    \pause     
+    \node[below of=1,fill=green!20,draw,ellipse,text width=7.5cm,text=blue] (2) {
+      \red{算法度量方法}：事后统计方法(不科学、不准确)、事前分析估算方法。
+    };
+    \pause 
+    \node[below of=2,fill=green!20,draw,ellipse,text width=7.5cm,text=blue] (3) {
+      \red{函数的渐近增长}：  给定两个函数$f(n)$和$g(n)$，若$\exists N \in \mathbb N$, s.t. $\forall n>N$, $f(n)$总是比$g(n)$大，
+      我们就说$f(n)$的增长渐近快于$g(n)$.
+    };
+  \end{tikzpicture}
+  
+\end{figure}
+
+
+

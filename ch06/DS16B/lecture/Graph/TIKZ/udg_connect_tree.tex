@@ -1,0 +1,23 @@
+
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (80:1.5) {$a$};
+\node[state]   (b) at (170:2.5) {$b$};
+\node[state]   (c) at (260:1.5) {$c$};
+\node[state]   (d) at  (-10:2.5) {$d$};
+\node[state]   (e) at (30:0.8) {$e$};
+\node[state]   (f) at  (150:0.9) {$f$};
+\node[state]   (g) at (220:0.8) {$g$};
+\node[state]   (h) at  (320:0.8) {$h$};
+\path
+(a) edge (b)  
+    edge (d)  
+(b) edge (c) 
+(c) edge (d)
+(e) edge (f) 
+    edge (d)
+    edge (h)
+(f) edge (g)
+(g) edge (h);             
+\end{tikzpicture}
+

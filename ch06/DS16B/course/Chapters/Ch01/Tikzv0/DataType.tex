@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DataType}
+  \begin{tikzpicture}
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=6cm]{
+      \blue{\large 数据类型}\\
+      指一组性质相同的值的集合及定义在此集合上的一些操作的总称。
+    };
+
+    \node at (0,-4) [fill=blue!20,draw,ellipse,text width=7cm]
+    { 
+      在C语言中，按照取值的不同，数据类型可分为：
+      \begin{itemize}
+      \item 原子类型：是不可再分解的基本类型，包括整型、浮点型、字符型等；
+      \item 由若干个类型组合而成，是可以再分解。如整型数组由若干个整型数据组成。
+      \end{itemize}
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

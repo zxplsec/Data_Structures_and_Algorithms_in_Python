@@ -1,0 +1,8 @@
+\begin{tikzpicture}[scale=0.6]
+  \node [circle,draw] at (0,0) {B}[sibling distance=1.6cm] 
+  child { node[circle,draw]{E}[sibling distance=1.5cm]
+    child {node[circle,draw]{K}}
+    child {node[circle,draw]{L}}
+  }
+  child {node[circle,draw]{F}};
+\end{tikzpicture}

@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{ListDef}
+  \begin{tikzpicture}
+    %The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=6cm]{
+      \blue{\large 线性表(List)}\\
+      零个或多个数据元素的有限序列。
+    };
+
+    \node at (0,-1.5) [below,fill=blue!20,draw,rectangle callout,callout relative pointer={(0.7,0.7)},rounded corners=3mm,text width=9cm]{
+      若记线性表为$(a_1,\cdots,a_{i+1},a_i,a_{i+1},\cdots,a_n)$，则
+      \begin{itemize}
+      \item $n$为线性表的长度，当$n=0$时，称为空表;
+      \item $a_1$称为首结点，$a_n$称为尾结点;
+      \item $a_{i-1}$是$a_i$的直接前驱, $a_{i+1}$是$a_i$的直接后继。
+      \item[] 当$i=1,2,\cdots,n-1$时，$a_i$有且仅有一个直接后继；
+      \item[] 当$i=2,3,\cdots,n$时，$a_i$有且仅有一个直接前驱。
+        
+      \end{itemize}
+    };
+    
+    %% \node at (0,-2.5) [fill=blue!20,draw,ellipse callout, callout relative pointer={(0.7,0.7)},text width=5cm]{ 
+    %% 
+    %% };
+    
+    %% \node at (0,-2.5) [text width=2cm,decorate,decoration=saw,fill=blue!20,draw,circle]{
+    %% 
+      
+    %% };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

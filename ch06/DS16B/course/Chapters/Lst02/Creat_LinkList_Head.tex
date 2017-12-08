@@ -1,0 +1,16 @@
+\begin{lstlisting}[language=C,frame=tb,backgroundcolor=\color{red!10}]
+//`随机生成n个元素，建立带表头结点的单链表L`
+void CreateLinkListHead(LinkList *L, int n){
+  LinkList p;
+  int i;
+  srand(time(0));
+  *L=(LinkList) malloc(sizeof(LNode));
+  (*L)->next=NULL;
+  LNode *head, *p;
+  for(i=0;i<n;i++)
+    p=(LinkList)malloc(sizeof(LNode));
+    p->data=rand()%100+1;
+    p->next=(*L)->next;
+    (*L)->next=p;
+}
+\end{lstlisting}

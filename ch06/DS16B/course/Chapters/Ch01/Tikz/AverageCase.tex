@@ -1,0 +1,20 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue] (1) {
+      {\large 平均情况}
+    };
+    \node [below left of=1,fill=red!20,draw,rectangle,rounded corners=4mm,text width=5.5cm] (2) {
+      在$n$维随机数组中查找某个数字，
+      \begin{itemize}
+      \item 从概率角度讲，该数字在每个位置的可能性相同，故平均查找时间为$n/2$。
+      \end{itemize}
+    };
+
+    \pause 
+    \node at (3,-5)[text width=4.5cm,decorate,decoration=saw,fill=blue!20,draw,circle]{
+      平均运行时间是所有情况中最有意义的，因为它是期望的运行时间。
+    };
+  \end{tikzpicture}
+  
+\end{figure}

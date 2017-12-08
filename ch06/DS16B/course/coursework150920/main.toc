@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{数据结构起源}{5}{0}{1}
+\beamer@sectionintoc {2}{基本概念和术语}{10}{0}{2}
+\beamer@sectionintoc {3}{逻辑结构和物理结构}{23}{0}{3}
+\beamer@subsectionintoc {3}{1}{逻辑结构}{24}{0}{3}
+\beamer@subsectionintoc {3}{2}{物理结构}{36}{0}{3}
+\beamer@sectionintoc {4}{抽象数据类型}{44}{0}{4}
+\beamer@sectionintoc {5}{算法}{55}{0}{5}
+\beamer@sectionintoc {6}{线性表的链式存储}{135}{0}{6}
+\beamer@subsectionintoc {6}{1}{线性表的链式存储结构}{136}{0}{6}
+\beamer@subsectionintoc {6}{2}{单线性链表的基本操作}{152}{0}{6}

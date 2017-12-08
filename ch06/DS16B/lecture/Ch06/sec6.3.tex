@@ -1,0 +1,237 @@
+\subsection{图的存储结构}
+
+\subsubsection{邻接矩阵}
+\begin{frame}\ft{\subsubsecname}
+由于图是有顶点和边或弧两部分组成的，可以考虑分两个结构分别来存储。
+\begin{itemize}
+\item[(1)] 顶点不分大小、主次，可用一个一维数组来存储。
+\item[(2)] 边或弧为顶点与顶点之间的关系，可用一个二维数组来存储。\end{itemize}
+此即邻接矩阵的存储方案。
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[邻接矩阵]
+\tf图的邻接矩阵(Adjacency matrix)存储方式是用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组(称为邻接矩阵)存储图中的边或弧的信息。
+\end{dingyi}
+设图$G$有$n$个顶点，则邻接矩阵为一个$n\times n$的方阵，定义为
+$$
+e[i][j]=\left\{
+\begin{array}{ll}
+1,& \mbox{\tf if $(v_i,v_j)\in E$ or $<v_i,v_j>\in E$}, \\[0.05in]
+0,& \mbox{\tf otherwise}.
+\end{array}
+\right.
+$$
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure} 
+\centering
+\input{Chapters/Ch06/Tikz/adjmatrix}
+\caption{无向图的邻接矩阵为对称矩阵}
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+%有了邻接矩阵，可以很容易地得到无向图中的信息。\\[0.03in]
+\begin{itemize}
+\item[1] 可以很容易地判定任意两顶点是否有边。\\[0.1in]
+\item[2] 顶点$v_i$的度等于邻接矩阵中第$i$行的元素之和。\\[0.1in]
+\item[3] 欲求顶点$v_i$的所有邻接点，只需扫描邻接矩阵的第$i$行，若$e[i][j]=1$，则$v_j$为其邻接点。
+
+\end{itemize}•
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjmatrix_dg}
+\caption{有向图的邻接矩阵不是对称矩阵}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+%有了邻接矩阵，可以很容易地得到图中的信息。\\[0.03in]
+\begin{itemize}
+\item[1] 顶点$v_i$的入度等于邻接矩阵中第$i$列的元素之和；顶点$v_i$的出度等于邻接矩阵中第$i$行的元素之和。\\[0.1in]
+\item[2] 欲判断顶点$v_i$到$v_j$是否有弧，只需查找$e[i][j]$是否为1。\\[0.1in]
+\item[3] 欲求顶点$v_i$的所有邻接点，只需扫描邻接矩阵的第$i$行，若$e[i][j]=1$，则$v_j$为其邻接点。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+设图$G$是网，有$n$个顶点，则邻接矩阵是一个$n\times n$的方阵，定义为
+$$
+e[i][j]=\left\{
+\begin{array}{ll}
+w_{ij}, & \mbox{\tf if $(v_i,v_j)\in E$ or $<v_i,v_j>\in E$}, \\[0.05in]
+0,& \mbox{if i=j}\\[0.05in]
+\infty,&\mbox{\tf otherwise}.
+\end{array}
+\right.
+$$
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjmatrix_network}
+\caption{网的邻接矩阵}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\lstinputlisting[
+title=\tf adjmatrix.h,
+language=C,
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.h}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\lstinputlisting[
+title=\tf adjmatrix.h,
+language=C,
+frame=tb,
+]{Chapters/Ch06/Code/adjmatrix/adjmatrix.c}
+\end{frame}
+
+
+
+\subsubsection{邻接表}
+
+\begin{frame}\ft{\subsubsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjmatrix_network1}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}
+数组与链表结合的存储方法称为邻接表。
+\end{dingyi}
+
+
+\begin{itemize}
+\item
+顶点用一维数组存储。数组中每个元素还需存储指向第一个邻接点的指针，以便于查找该顶点的边信息。 \\[0.1in]
+\item
+每个顶点$v_i$的所有邻接点构成一个线性表。由于邻接点个数不定，故以单链表存储，无向图称为$v_i$的边表，有向图则称为$v_i$作为弧尾的出边表。
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjlist_udg}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjlist_dg}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch06/Tikz/adjlist_network}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+  \lstinputlisting[
+    language=C,
+    title=\tf adjlist.h,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=tb,
+    xleftmargin=3pt,
+  ]{Chapters/Ch06/Code/adjlist/adjlist.h}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \lstinputlisting[
+    language=C,
+    title=\tf CreateALGraph.c,
+    numbers=left,
+    numberstyle=\tiny,
+    linerange={3-12},
+    frame=tb,
+    xleftmargin=3pt,
+  ]{Chapters/Ch06/Code/adjlist/adjlist.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \lstinputlisting[
+    language=C,
+    title=\tf CreateALGraph.c,
+    numbers=left,
+    numberstyle=\tiny,
+    firstnumber=11,
+    linerange={14-27},
+    frame=tb,
+    xleftmargin=3pt,
+  ]{Chapters/Ch06/Code/adjlist/adjlist.c}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{十字链表}
+%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}  
+  \begin{figure}
+    \centering
+    \input{Chapters/Ch06/Tikz/olist_vertex.tex}
+    \caption{十字链表的顶点表结点结构}    
+  \end{figure}  
+  \begin{itemize}
+  \item \tf firstin：入边表头指针，指向该顶点的入边表中第一个结点\\[0.1in]
+  \item \tf firstout：出边表头指针，指向该顶点的出边表中的第一个结点
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}  
+  \begin{figure}
+    \centering
+    \input{Chapters/Ch06/Tikz/olist_edge.tex}
+    \caption{十字链表的边表结点结构}    
+  \end{figure}  
+  
+  \begin{itemize}
+  \item \tf tailvtx：弧起点在顶点表的下标 \\[0.1in]
+  \item \tf headvtx：弧终点在顶点表中的下标 \\[0.1in]
+  \item \tf headlink：入边表指针域，指向终点相同的下一条边 \\[0.1in]
+  \item \tf taillink：出边表指针域，指向起点相同的下一条边 \\[0.1in]
+  \item \tf 若是网，还可再增加一个weight值来存储权值。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\subsubsecname}
+  \begin{figure}
+    \centering
+    \input{Chapters/Ch06/Tikz/olist}
+  \end{figure}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsubsecname}
+  十字链表的好处是把邻接表和逆邻接表整合在了一起，这样既可以容易地找到以$v_i$为尾的弧，也可以容易地找到以$v_i$为头的弧，因而可以容易地求得顶点的出度和入度。在有向图的应用中，十字链表是非常好的数据类型结构。
+\end{frame}

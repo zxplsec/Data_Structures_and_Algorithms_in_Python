@@ -1,0 +1,29 @@
+\subsection{图的抽象数据类型}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{lstlisting}[frame=tb]
+ADT `图`(graph)
+Data: 
+   `顶点的有穷非空集合与边的集合`
+Operation:
+   CreateGraph(G,V,E): `按照顶点集V和边弧集合E的定义构造图G`
+   DestroyGraph(G): `图G存在则销毁`
+   LocateVertex(G,u): `若图中存在顶点u，则返回在图中的位置`
+   GetVertex(G,v): `返回图G中顶点v的值`
+   PutVertex(G,v,value): `将图G中顶点v赋值value`
+   FirstAdjVertex(G,*v): `返回顶点v的一个邻接顶点，若顶点在G中无邻接顶点返回空`
+   NextAdjVertex(G,v,*w): `返回顶点相对于顶点w的下一个邻接顶点，若w是v的最后一个邻接点则返回空`
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{lstlisting}[frame=tb]
+   InsertVertex(G,v): `在图中增添新顶点v`
+   DeleteVertex(G,v): `删除图中顶点v及其相关的弧`
+   InsertArc(G,v,w): `在图中增添弧<v,w>，若G是无向图，还需增添对称弧<w,v>`
+   DeleteArc(G,v,w): `在图中删除弧<v,w>，若G是无向图，还需删除对称弧<w,v>`
+   DFSTraverse(G): `对图G进行深度优先遍历`
+   HFSTraverse(G): `对图G进行广度优先遍历`
+endADT
+\end{lstlisting}
+\end{frame}

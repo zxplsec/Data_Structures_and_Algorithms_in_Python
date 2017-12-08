@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{AlgEffAfter}
+  \begin{tikzpicture}[node distance=4.5cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=7.5cm] (1) {
+      \blue{\large 事后统计方法}\\
+      通过设计好的测试程序和数据，利用计算机计时器对不同算法编制的程序的运行时间进行比较，从而确定效率的高低。
+    };
+
+    \node[below of=1,rectangle split,rectangle split parts=4,rounded corners=3mm,draw,text width=10cm,fill=red!20] {
+      \blue{缺点}
+      \nodepart{second}
+      须依据算法事先编制好程序
+      \nodepart{third}
+      时间的比较依赖于软硬件等环境因素\\
+      \begin{itemize}
+      \item 不同性能的机器上算法的表现不尽相同;
+      \item 不同操作系统、编译器等也会影响算法的运行结果;\\
+      \item CPU使用率和内存占用情况也会造成微小差异。
+      \end{itemize}
+      \nodepart{fourth}
+      测试数据设计困难，且程序运行时间还与测试数据的规模有很大关系，
+      效率高的算法在小的测试数据面前往往得不到体现。
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{LogicStruct}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=4.5cm]
+    {
+      \blue{\Large 逻辑结构}: 指数据结构中数据元素之间的相互关系.
+    } ;
+
+    \node at (0,-1.6) [text width=2.3cm,decorate,decoration=saw,fill=blue!20,draw,circle]
+          {
+            \begin{itemize}
+            \item 集合结构
+            \item 线性结构
+            \item 树形结构
+            \item 图形结构
+            \end{itemize}
+          };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

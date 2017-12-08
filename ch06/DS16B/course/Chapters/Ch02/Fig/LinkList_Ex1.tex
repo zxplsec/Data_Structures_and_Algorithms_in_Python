@@ -1,0 +1,54 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\node [right] at (0,6.5) {例1：线性表$L=(bat,cat,eat,fat,hat)$};
+
+\pause 
+
+\foreach \i in {1,3,5,7} {
+\filldraw[fill=red!20] (\i-1,2)rectangle(\i,3);
+\filldraw[fill=red!20] (\i,2)rectangle(\i+0.3,3);
+}
+\foreach \i in {1,3,5} {
+\draw[->] (\i+0.15,2.5)--(\i+1,2.5);
+}
+\draw[->] (7.15,2.5)--(7.5,2.5)--(7.5,1.75)--(3.15,1.75)--(3.15,1)--(4,1);
+
+\foreach \i in {5,7} {
+\filldraw[fill=red!20] (\i-1,0.5)rectangle(\i,1.5);
+\ifthenelse{5=\i}
+{\filldraw[fill=red!20] (\i,0.5)rectangle(\i+0.3,1.5);}
+{\filldraw[fill=black!20] (\i,0.5)rectangle(\i+0.3,1.5);}
+}
+\foreach \i in {5} {
+\draw[->] (\i+0.15,1)--(\i+1,1);
+}
+
+\node [above] at (0.5,3) {head};
+\node [] at (2.5,2.5) {bat};
+\node [] at (4.5,2.5) {cat};
+\node [] at (6.5,2.5) {eat};
+\node [] at (4.5,1) {fat};
+\node [] at (6.5,1) {hat};
+
+\pause 
+
+\foreach \i in {1,2,...,14} {
+\filldraw[fill=blue!20] (10,\i*0.5-0.5)rectangle(11.5,\i*0.5);
+}
+\node [] at (10.75,6.75) {$\cd$};
+\node [] at (10.75,6.25) {hat};         \node [left] at (10,6.25) {1100};
+\node [] at (10.75,5.75) {NULL};
+\node [] at (10.75,5.25) {$\cd$};
+\node [] at (10.75,4.75) {cat};        \node [left] at (10,4.75) {1300};
+\node [] at (10.75,4.25) {$13$};
+\node [] at (10.75,3.75) {eat};     \node [left] at (10,3.75) {1305};
+\node [] at (10.75,3.25) {3700};
+\node [] at (10.75,2.75) {$\vd$};
+\node [] at (10.75,2.25) {bat};
+\node [] at (10.75,1.75) {1300};
+\node [] at (10.75,1.25) {fat};    \node [left] at (10,1.25) {3700};
+\node [] at (10.75,0.75) {1100};
+\node [] at (10.75,0.25) {$\cd$};
+\end{tikzpicture}
+\end{figure}

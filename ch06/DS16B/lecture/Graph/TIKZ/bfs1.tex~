@@ -1,0 +1,30 @@
+\begin{tikzpicture}[scale=0.5,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (A)                    {A};
+\node[]   (A1)[right of=A]       {};
+\node[state]   (B) [below left  of=A] {B};
+\node[state]   (F) [below right of=A1] {F};
+\node[state]   (C) [below left  of=B] {C};
+\node[state]   (G) [below left  of=F] {G};
+\node[state]   (E) [below right of=F] {E};
+\node[state]   (H) [below       of=G] {H};
+\node[state]   (I) [below right of=B] {I};
+\node[state]   (D) [below       of=I] {D};
+
+\path
+(A) edge node{} (B)
+    edge node{} (F)
+(B) edge node{} (C)
+    edge node{} (G)
+    edge node{} (I)
+(F) edge node{} (G)
+    edge node{} (E)
+(C) edge node{} (I)
+    edge node{} (D)
+(G) edge node{} (H)
+    edge node{} (D)
+(E) edge node{} (H)
+    edge node{} (D)
+(H) edge node{} (D)
+(I) edge node{} (D);                     
+\end{tikzpicture}

@@ -1,0 +1,78 @@
+\begin{tikzpicture}[scale=0.9,node distance=2cm,semithick,inner sep=1pt,bend angle=45,sloped]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[circle,draw] (v1)  at (0,0)   {$v_1$};
+\node[circle,draw] (v2)  at (2,0) {$v_2$};
+\node[circle,draw] (v0) at (1,1.732) {$v_0$};
+ 
+%%
+\path
+(v0) edge node{\small $2$} (v1)
+     edge node{\small $1$} (v2)
+(v1) edge node{\small $5$} (v2);  
+ 
+       
+\matrix (dm) at (4,1.5) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=5pt,column sep=5pt,right] 
+  {
+    0 & 2& 1\\
+    2& 0 & 5 \\
+    1& 5&  0\\
+  };
+  \node at (dm-1-1) [above left=15pt] {$D^{(-1)}$}; 
+  \node at (dm-1-1) [above=10pt] {$\small v_0$}; 
+  \node at (dm-1-2) [above=10pt] {$\small v_1$};       
+  \node at (dm-1-3) [above=10pt] {$\small v_2$};   
+  \node at (dm-1-1) [left=18pt] {$\small v_0$}; 
+  \node at (dm-2-1) [left=18pt] {$\small v_1$};       
+  \node at (dm-3-1) [left=18pt] {$\small v_2$};   
+  
+  \matrix (d0) at (7.5,1.5)  [matrix of math nodes]
+  {
+  \xlongrightarrow[{\therefore~ D^{(-1)}[1][2]=\atop D^{(-1)}[1][0]+D^{-1}[0][2]}]{\because~ D^{(-1)}[1][2]>\atop D^{(-1)}[1][0]+D^{(-1)}[0][2]}\\
+  };
+\matrix (d0) at (10.5,1.5) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=5pt,column sep=5pt,right] 
+  {
+    0 & 2& 1\\
+    2& 0 & 3 \\
+    1& 3&  0\\
+  };
+  \node at (d0-1-1) [above left=15pt] {$D^{(0)}$}; 
+  \node at (d0-1-1) [above=10pt] {$\small v_0$}; 
+  \node at (d0-1-2) [above=10pt] {$\small v_1$};       
+  \node at (d0-1-3) [above=10pt] {$\small v_2$};   
+  \node at (d0-1-1) [left=18pt] {$\small v_0$}; 
+  \node at (d0-2-1) [left=18pt] {$\small v_1$};       
+  \node at (d0-3-1) [left=18pt] {$\small v_2$};       
+  
+  \matrix (pm) at (4,-1.2)  [matrix of math nodes,left delimiter=(,right delimiter=),row sep=5pt,column sep=5pt,right] 
+  {
+    0 & 1& 2\\
+    0 & 1& 2 \\
+    0 & 1& 2\\
+  };
+    \node at (pm-1-1) [above left=15pt] {$P^{(-1)}$}; 
+  \node at (pm-1-1) [above=10pt] {$\small v_0$}; 
+  \node at (pm-1-2) [above=10pt] {$\small v_1$};       
+  \node at (pm-1-3) [above=10pt] {$\small v_2$};   
+  \node at (pm-1-1) [left=18pt] {$\small v_0$}; 
+  \node at (pm-2-1) [left=18pt] {$\small v_1$};       
+  \node at (pm-3-1) [left=18pt] {$\small v_2$};       
+      
+  \matrix (d0) at (7.5,-1.2)  [matrix of math nodes]
+  {
+  \xlongrightarrow[]{}\\
+  };
+  
+  \matrix (p0) at (10.5,-1.2)  [matrix of math nodes,left delimiter=(,right delimiter=),row sep=5pt,column sep=5pt,right] 
+  {
+    0 & 1& 2\\
+    0 & 1& 0 \\
+    0 & 0& 2\\
+  };
+    \node at (p0-1-1) [above left=15pt] {$P^{(0)}$}; 
+  \node at (p0-1-1) [above=10pt] {$\small v_0$}; 
+  \node at (p0-1-2) [above=10pt] {$\small v_1$};       
+  \node at (p0-1-3) [above=10pt] {$\small v_2$};   
+  \node at (p0-1-1) [left=18pt] {$\small v_0$}; 
+  \node at (p0-2-1) [left=18pt] {$\small v_1$};       
+  \node at (p0-3-1) [left=18pt] {$\small v_2$}; 
+\end{tikzpicture}

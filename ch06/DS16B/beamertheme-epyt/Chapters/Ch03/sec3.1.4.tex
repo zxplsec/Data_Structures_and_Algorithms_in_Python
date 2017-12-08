@@ -1,0 +1,71 @@
+\subsection{链栈}
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{dingyi}
+栈的链式存储结构称为链栈，是操作受限的单链表，其插入和删除操作只能在表头位置上进行。
+\end{dingyi}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\input{Chapters/Ch03/Tikz/LinkStack/LinkStack}
+\end{frame}
+%
+%
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{itemize}
+\item 对于链栈，通常不需要头结点；\\[0.1in]
+\item 对于链栈，基本不存在栈满的情况；\\[0.1in]
+\item 对于空栈，通常指的是{\tt top == NULL}.
+\end{itemize}
+\end{frame}
+%
+
+
+
+
+\begin{frame}
+\begin{center}
+\textcolor{acolor5}{\Large 链栈之完整程序}
+\end{center}
+\end{frame}
+%
+
+
+
+
+\begin{frame}[fragile,allowframebreaks]\ft{{\tt linkstack.h}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/LinkStack.h}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\ft{{\tt Init.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/Init.c}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{{\tt Push.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/Push.c}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{{\tt Pop.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/Pop.c}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{{\tt PrintS.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/PrintS.c}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{{\tt main.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/LinkStack/main.c}
+\end{frame}

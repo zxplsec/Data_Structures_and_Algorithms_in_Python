@@ -1,0 +1,447 @@
+%%%%%%%%%%%%%%%%%%%%
+\subsection{2.3~~线性表的链式存储}
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[链式存储]
+用一组任意的存储单元存储线性表中的数据元素。
+用这种方法存储的线性表简称线性链表。
+\end{dingyi}
+
+\pause 
+\begin{itemize}
+\item[$\diamond$]
+存储链表中结点的存储单元可以是连续的，也可以是不连续的，甚至是零散分布在内存中的任意位置上的。
+\item[$\diamond$]
+链表中的逻辑顺序和物理顺序不一定相同。
+\end{itemize}•
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\input{Chapters/Fig02/LinkList}
+
+\begin{itemize}
+\item[$\diamond$]
+链表是通过每个结点的指针域将线性表的$n$个结点按其逻辑次序链接在一起的。
+\item[$\diamond$]
+每一个结点只包含一个指针域的链表，称为单链表。
+\item[$\diamond$]
+为操作方便，总在链表的第一个结点之前附设一个头结点（头指针）head指向第一个结点。头结点的数据域可以不存储任何信息（或链表长度等信息）。
+\item[$\diamond$]
+单链表由表头唯一确定，因此单链表可用头指针的名字来命名。
+\end{itemize}•
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+ \input{Chapters/Fig02/LinkList_Ex1}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{block}{结点的描述与实现}
+  \lstinputlisting[language=C,linerange={11-15}]
+                  {Chapters/Ch02/Code/LinkList/LinkList.h}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+\begin{block}{结点的实现}
+结点是通过动态分配和释放来实现的，即需要时分配，不需要时释放。
+\begin{lstlisting}[frame=no,backgroundcolor=\color{red!0!green!0!blue!0}]
+malloc(), realloc(), sizeof(), free();
+\end{lstlisting}
+\pause 
+\begin{itemize}
+\item[$\diamond$]
+动态分配
+\begin{lstlisting}[frame=no,backgroundcolor=\color{red!0!green!0!blue!0}]
+p=(LNode*)malloc(sizeof(LNode));
+\end{lstlisting}
+分配了一个类型为{\ttfamily LNode}的结点变量的空间，并将其首地址放入指针变量{\ttfamily p}中。\\[0.1in]
+\item[$\diamond$]
+动态释放
+\begin{lstlisting}[frame=no,backgroundcolor=\color{red!0!green!0!blue!0}]
+free(p);
+\end{lstlisting}
+系统回收由指针变量{\ttfamily p}指向的内存区。
+\end{itemize}•
+\end{block}
+\end{frame}
+
+%% \begin{frame}[fragile]\ft{常用操作}
+%% \begin{itemize}
+%% \item[(1)] 结点的赋值
+%% \input{Chapters/Lst02/Assign_Lnode}
+%% \input{Chapters/Fig02/Assign_Lnode}
+%% \end{itemize}
+ 
+%% \end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{常用操作}
+\begin{itemize}
+\item[(2)] 常见的指针操作
+\input{Chapters/Fig02/LinkList_Op1}
+\pause 
+\input{Chapters/Fig02/LinkList_Op2}
+
+\end{itemize}
+ 
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{常用操作}
+\input{Chapters/Fig02/LinkList_Op3}
+\pause 
+\input{Chapters/Fig02/LinkList_Op4}
+
+ 
+ 
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{常用操作}
+ \input{Chapters/Fig02/LinkList_Op5} 
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{常用操作}
+\input{Chapters/Fig02/LinkList_Op6} 
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{常用操作}
+\input{Chapters/Fig02/LinkList_Op7}  
+\end{frame}
+
+\begin{frame}\ft{\subsecname}\fst{单链表的整表创建}
+  \begin{itemize}
+  \item  顺序存储结构的创建，就是一个数组的初始化。而单链表则不同，它可以很散，是一个动态结构。
+  \item 对每个链表而言，它所占用空间的大小和位置不需要预先分配，可根据系统的情况和实际需求即时生成。
+  \end{itemize}
+  
+  所以创建单链表的过程就是一个动态生成链表的过程，即从空表的初始状态起，一次建立各元素结点，并逐个插入链表。
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{单链表的整表创建} 
+动态地建立单链表的常用方法有两种：
+\begin{itemize}
+\item[$\diamond$]
+头插入法
+\item[$\diamond$]
+尾插入法
+\end{itemize}•
+\end{frame}
+
+\begin{frame}\ft{\subsecname}\fst{单链表的整表创建（头插入法）}
+  \begin{itemize}
+  \item 声明一结点{\ttfamily p}和计数器变量{\ttfamily i}
+  \item 初始化一空链表{\ttfamily L}
+  \item 让{\ttfamily L}的头结点的指针指向{\ttfamily NULL}，即建立一个带头结点的单链表
+  \item 循环
+    \begin{itemize}
+    \item 生成一个新结点赋值给{\ttfamily p}\\[0.1in]
+    \item 随机生成一个数赋给{\ttfamily p}的数据域{\ttfamily p->data}\\[0.1in]
+    \item 将{\ttfamily p}插入到头结点与前一新结点之间
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的整表创建（头插入法）}
+
+  %% \input{Chapters/Lst02/Creat_LinkList_Head}
+  \lstinputlisting[
+    language=C,
+    linerange={3-5,7-14},
+    frame=tb,
+  ]{Chapters/Ch02/Code/LinkList/CreateLinkListHead.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}\fst{单链表的整表创建（尾插入法）}
+ 头插入法建立链表虽然算法简单，但生成的链表中结点的次序和输入的顺序相反。若希望二者次序一致，可采用尾插法建表。该方法是将新结点插入到当前链表的表尾，使其成为当前链表的尾结点。
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的整表创建（尾插入法）}
+  
+  %% \input{Chapters/Lst02/Creat_LinkList_Tail}
+
+  \lstinputlisting[
+    language=C,
+    linerange={3-5,7-15},
+    frame=tb,
+  ]{Chapters/Ch02/Code/LinkList/CreateLinkListTail.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}\fst{单链表的查找}
+\begin{enumerate}
+\item 按序号查找
+\item 按值查找
+\end{enumerate}•
+\end{frame}
+
+\begin{frame}\ft{\subsecname}\fst{单链表的查找（按序号）}
+ 
+
+对于单链表，不能像顺序表中那样直接按序号$i$访问结点，而只能从链表的头结点出发，沿指针域next逐个结点往下搜索，知道搜到第$i$个结点为止。因此，链表不是随机存储结构。
+
+\vspace{0.2in}
+
+设单链表长度为$n$，要查找第$i$个结点，仅当$1\le i \le n$时，$i$的值是合法的。
+ 
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的查找（按序号）}
+%% \input{Chapters/Lst02/Get_Elem} 
+
+\lstinputlisting[
+  language=C,
+  linerange={3-15},
+  frame=tb,
+]{Chapters/Ch02/Code/LinkList/GetElem.c}
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的查找（按序号）}
+\begin{block}{移动指针{\tt p}的频度}
+\[\left\{
+\begin{array}{rl}
+0\mbox{次},& i<1;\\[0.1in]
+i-1\mbox{次}, & i  \in [1,n];\\[0.1in]
+n\mbox{次}, & i>n.
+\end{array}
+\right.
+~~\Rightarrow~~\mbox{时间复杂度为}O(n).
+\] 
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{单链表的查找（按值）}
+ 
+按值查找是在链表中，查找是否有结点值等于给定值key的结点？
+\begin{itemize}
+\item
+若有，则返回首次找到的值为{\tt key}的结点的存储位置；
+\item
+否则返回{\tt NULL}。
+\end{itemize}
+查找时从开始结点出发，沿链表逐个将结点的值和给定值{\tt key}作比较。
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的查找（按值）}
+%% \input{Chapters/Lst02/Locate_Node_Key} 
+\lstinputlisting[
+  language=C,
+  linerange={3-12},
+  frame=tb,
+]{Chapters/Ch02/Code/LinkList/LocateNodeKey.c}
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的查找（按值）}
+
+\begin{block}{平均时间复杂度}
+算法的执行与形参{\tt key}有关，平均时间复杂度为$O(n)$。
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{插入结点}
+ 
+插入运算是指将值为$e$的新结点插入到表的第$i$个结点的位置上，即插入到$a_{i-1}$与$a_i$之间。因此，必须首先找到$a_{i-1}$所在的结点$p$，然后生成一个数据域为$e$的新结点$q$，$q$作为$p$的直接后继。
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{插入结点}
+  \lstinputlisting[
+    language=C,
+    linerange={3-15},
+    frame=tb,
+  ]{Chapters/Ch02/Code/LinkList/InsertLNode.c}
+%% \input{Chapters/Lst02/Insert_LNode} 
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{插入结点}
+
+\begin{block}{平均时间复杂度}
+设链表长度为$n$，合法的插入位置是$1\le i \le n$。
+算法的时间主要耗费在移动指针$p$上，平均时间复杂度为$O(n)$。
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{删除结点}
+\begin{itemize}
+\item[$\diamond$]
+按序号删除：删除单链表中的第$i$个结点。\\[0.2in]
+\item[$\diamond$]
+按值删除：删除单链表中值为key的第一个结点。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{删除结点（按序号）}
+ \begin{itemize}
+\item 为了删除第$i$个结点$a_i$，必须找到结点的存储地址。
+\item 该存储地址在其直接前驱结点$a_{i-1}$的next域中，因此必须首先找到$a_{i-1}$的存储位置$p$，
+然后令{\ttfamily p->next}指向$a_i$的直接后继结点，即把$a_i$从链上摘下来。
+\item
+最后释放结点$a_i$的空间，将其归还给“存储池”。
+\end{itemize}•
+ 
+ 
+ 设单链表长度为$n$，则删去第$i$个结点仅当$1\le i \le n$时是合法的。当$i=n+1$时，虽然被删结点不存在，但其前驱结点却存在，是终端结点。故判断条件之一是{\ttfamily p->next!=NULL}。
+ 
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除结点（按序号）}
+  \lstinputlisting[
+    language=C,
+    linerange={3-14},
+    frame=tb,
+  ]{Chapters/Ch02/Code/LinkList/DeleteLNodeIndex.c}
+  %% \input{Chapters/Lst02/Delete_LinkList_Index}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除结点（按序号）}
+\begin{block}{时间复杂度}
+时间复杂度为$O(n)$。
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{删除结点（按值）}
+
+ 
+与按值查找相类似，首先要查找值为{\ttfamily key}的结点是否存在？
+\begin{itemize}
+\item 若存在，则删除；
+\item 否则返回{\ttfamily NULL}。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除结点（按值）}
+  \lstinputlisting[
+    language=C,
+    linerange={3-18},
+    frame=tb,
+  ]{Chapters/Ch02/Code/LinkList/DeleteLNodeKey.c}
+  %% \input{Chapters/Lst02/Delete_LinkList_Key} 
+\end{frame}
+
+\begin{frame}[fragile]\ft{删除结点}\fst{按值删除}
+
+  \begin{block}{时间复杂度}
+    时间复杂度为$O(n)$。
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除结点}
+链表实现插入和删除运算，无需移动结点，仅需修改指针，解决了顺序表的插入或删除操作需要移动大量元素的问题。
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除多个结点（按值）}
+\begin{block}{变形之一}
+删除单链表中值为key的所有结点。
+\end{block}
+\pause 
+\begin{block}{基本思想}
+\begin{itemize}
+\item
+从单链表的第一个结点开始，对每个结点进行检查，若结点的值为{\ttfamily key}，则删除之，
+\item
+然后检查下一个结点，直到所有的结点都检查。
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除多个结点（按值）}
+\input{Chapters/Lst02/Delete_LinkList_Node} 
+
+\end{lstlisting}
+
+ 
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除重复结点}
+\begin{block}{变形之二}
+删除单链表中所有值重复的结点，使得所有结点的值都不相同。
+\end{block}
+\pause 
+\begin{block}{基本思想}
+从单链表的第一个结点开始，对每个结点进行检查：
+\begin{itemize}
+\item
+检查链表中该结点的所有后继结点，只要有值和该结点的值相同，则删除之；
+\item
+然后检查下一个结点，直到所有的结点都检查。
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{删除重复结点}
+
+
+\input{Chapters/Lst02/Delete_LinkList_Value} 
+ 
+\end{frame}
+
+
+\begin{frame}\ft{单链表的合并}
+设有两个有序的单链表，它们的头指针分别为$La$、$Lb$，
+将它们合并为以$Lc$为头指针的有序链表。 
+\input{Chapters/Fig02/Merge_Before} 
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}\fst{单链表的合并}
+
+  
+\input{Chapters/Fig02/Merge_After} 
+
+\pause 
+\begin{itemize}
+\item $pa,pb$分别是待考察的两个链表的当前结点；
+\item $pc$是合并过程中合并的链表的最后一个结点。
+\end{itemize}•
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的合并}
+\begin{lstlisting}[language=C]
+LinkList Merge_Linklist(LinkList La, LinkList Lb){
+  LinkList Lc,pa,pb,pc,ptr; 
+  Lc=La; pc=La; pa=La->next; pb=Lb->next;
+  while(pa!=NULL && pb!=NULL){
+    if (pa->data<pb->data){
+      pc->next=pa; pc=pa; pa=pa->next; }
+    if (pa->data<pb->data){
+      pc->next=pb; pc=pb; pb=pb->next; }
+    if (pa->data==pb->data){
+      pc->next=pa; pc=pa; pa=pa->next;
+      ptr=pb; pb=pb->next; free(ptr); }
+  }
+  if(pa!=NULL) pc->next=pa;
+  else pc->next=pb;
+  free(Lb);
+  return(Lc);
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}\fst{单链表的合并}
+\begin{block}{时间复杂度}
+若$La,Lb$两个链表的长度分别为$m,n$，则链表合并的时间复杂度为$O(m+n)$。
+\end{block}
+\end{frame}

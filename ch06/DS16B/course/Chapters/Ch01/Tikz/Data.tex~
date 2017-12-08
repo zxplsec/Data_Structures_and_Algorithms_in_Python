@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{Data}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=4.5cm]
+    {
+      \blue{\Large 数据}: 描述客观事物的符号, 是计算机中可以操作的对象, 是能被计算机识别, 并输入给计算机处理的符号集合.
+    } ;
+
+    \node at (-1,-1.8) [fill=blue!20,draw,rectangle callout,, callout relative pointer={(0.7,0.7)},text width=4.2cm]
+    { 
+      数据包括
+      \begin{itemize}
+      \item  整型、实型等数值类型;
+      \item 字符及声音、图像、视频等非数值类型.
+      \end{itemize}
+    };
+
+    \node at (1.5,-2) [text width=4cm, decorate, decoration=saw, fill=blue!20,draw,circle]
+          {数据就是符号, 必须满足:
+            \begin{itemize}
+            \item 可以输入到计算机中;
+            \item 能被计算机程序处理.
+            \end{itemize}
+          };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

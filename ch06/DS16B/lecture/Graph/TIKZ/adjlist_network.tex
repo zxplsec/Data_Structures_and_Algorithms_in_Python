@@ -1,0 +1,86 @@
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (0,-1) grid (7,3);
+\node[state]   (v0) at (90:1)  {$v_0$};
+\node[state]   (v1) at (90+72:1)   {$v_1$};
+\node[state]   (v2) at (90+2*72:1) {$v_2$};
+\node[state]   (v3) at (90+3*72:1)  {$v_3$};
+\node[state]   (v4) at (90+4*72:1)  {$v_4$};
+\path
+(v0) edge[->,>=latex'] node{6} (v4)
+(v1) edge[->,>=latex'] node{9} (v0)
+     edge[->,>=latex'] node{3} (v2)   
+(v2) edge[->,>=latex'] node{2} (v0)
+     edge[->,>=latex'] node{5} (v3)
+(v3) edge[->,>=latex'] node{1} (v4); 
+
+\def\dd{0.5}
+\foreach \i in {0,1,2,3,4}{
+\draw (2.2,\i*\dd) rectangle(3.2,\i*\dd+\dd);
+\draw (2.8,\i*\dd)-- (2.8,\i*\dd+\dd);
+\node at (2.45,-\i*\dd+4.5*\dd){$v_\i$};
+}
+\node at (2.45,2.5) [above]{\tf data};
+\node at (2.95,2.5) [above=20pt]{\tf firstedge};
+
+
+\def\dd{0.5}
+\foreach \i in {1,2,3,4}{
+\draw[->,>=latex'] (2.95,\i*\dd+0.5*\dd)--(3.4,\i*\dd+0.5*\dd);
+\draw (3.4,\i*\dd) rectangle(4.6,\i*\dd+\dd);
+\draw (3.8,\i*\dd)-- (3.8,\i*\dd+\dd);
+\draw (4.2,\i*\dd)-- (4.2,\i*\dd+\dd);
+\ifthenelse{\i=1 \OR \i=4}{
+\node at (3.6,\i*\dd+0.5*\dd){$4$};
+}{
+\node at (3.6,\i*\dd+0.5*\dd){$0$};
+}
+
+\ifthenelse{\i=1}{
+\node at (4.0,\i*\dd+0.5*\dd){$1$};
+}{
+\ifthenelse{\i=2}{
+\node at (4.0,\i*\dd+0.5*\dd){$2$};
+}{
+\ifthenelse{\i=3}{
+\node at (4.0,\i*\dd+0.5*\dd){$9$};
+}{
+\node at (4.0,\i*\dd+0.5*\dd){$6$};
+}
+
+}
+}
+
+
+}
+
+\node at (3.6,2.5) [above]{\tf adjvtx};
+\node at (4.0,2.5) [above=20pt]{\tf weight};
+\node at (4.4,2.5) [above]{\tf next};
+
+\def\dd{0.5}
+\foreach \i in {2,3}{
+\draw[->,>=latex'] (4.4,\i*\dd+0.5*\dd)--(4.8,\i*\dd+0.5*\dd);
+\draw (4.8,\i*\dd) rectangle(6.0,\i*\dd+\dd);
+\draw (5.2,\i*\dd)-- (5.2,\i*\dd+\dd);
+\draw (5.6,\i*\dd)-- (5.6,\i*\dd+\dd);
+\ifthenelse{\i=2}{
+\node at (5.0,\i*\dd+0.5*\dd){$3$};
+}{
+\node at (5.0,\i*\dd+0.5*\dd){$2$};
+}
+
+\ifthenelse{\i=2}{
+\node at (5.4,\i*\dd+0.5*\dd){$5$};
+}{
+\node at (5.4,\i*\dd+0.5*\dd){$3$};
+}
+
+}
+
+
+
+
+
+
+
+\end{tikzpicture}

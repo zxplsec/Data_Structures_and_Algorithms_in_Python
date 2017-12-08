@@ -1,0 +1,287 @@
+% -*- coding: utf-8 -*-
+% !TEX program = xelatex
+
+\documentclass[12pt,notheorems]{beamer}
+
+\usetheme[style=beta]{epyt} % alpha, beta, delta, gamma, zeta
+
+\usepackage[UTF8,noindent]{ctex}
+\input{Macro/usepackage}
+\usepackage{courier}
+
+
+
+\newcommand{\mylead}[1]{\textcolor{acolor1}{#1}}
+\newcommand{\mybold}[1]{\textcolor{acolor2}{#1}}
+\newcommand{\mywarn}[1]{\textcolor{acolor3}{#1}}
+
+\input{Macro/newcommand}
+
+
+
+%\newtheorem{theorem}{定理}
+%\newtheorem{definition}[theorem]{定义}
+%\newtheorem{example}[theorem]{例子}
+%\newtheorem{dingli}[theorem]{定理}
+%\newtheorem{li}[theorem]{例}
+%
+%\newtheorem*{theorem*}{定理}
+%\newtheorem*{definition*}{定义}
+%\newtheorem*{example*}{例子}
+%\newtheorem*{dingli*}{定理}
+%\newtheorem*{li*}{例}
+
+\renewcommand{\proofname}{证明}
+\newtheorem*{jie}{解}
+\newtheorem*{zhu}{注}
+\newtheorem*{dingli}{定理} 
+\newtheorem*{dingyi}{定义} 
+\newtheorem*{xingzhi}{性质} 
+\newtheorem*{tuilun}{推论} 
+\newtheorem*{li}{例} 
+\newtheorem*{jielun}{结论} 
+\newtheorem*{zhengming}{证明}
+\newtheorem*{wenti}{问题}
+
+
+\renewcommand{\proofname}{证明}
+
+\begin{document}
+
+\title{数据结构与算法}
+\subtitle{树}
+%\subtitle{栈与队列}
+\author{张晓平}
+\institute{武汉大学数学与统计学院}
+
+
+\begin{frame}[plain]\transboxout
+\titlepage
+\end{frame}
+
+\begin{frame}\transboxin
+\begin{center}
+\tableofcontents[]%hideallsubsections]
+\end{center}
+\end{frame}
+
+\AtBeginSection[]{
+\begin{frame}[allowframebreaks]
+\tableofcontents[currentsection]
+\end{frame}
+}
+\AtBeginSubsection[]{
+\begin{frame}[allowframebreaks]
+\tableofcontents[currentsection,currentsubsection,subsectionstyle=show/shaded/hide]
+\end{frame}
+}
+
+
+\input{Chapters/Ch04}
+
+%\section{黑色文字白色背景}
+%
+%\begin{frame}{简要介绍}
+%\mylead{Epyt} 是一个简洁美观的 Beamer 演示主题。它有这些特点：\pause
+%\begin{itemize}[<+->]
+%\item 结构简洁，只有包含必需元素的底栏，没有顶栏和侧栏。
+%\item 内容简洁，列表环境和定理环境可以使用简单形式。
+%\item 配色简洁，仅仅用到几种背景色和前景色。
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{下载安装}
+%\mylead{Epyt} 主题已经包含在主要的 TeX 发行版中。
+%\begin{itemize}
+%  \item 在 MiKTeX 中作为 \mybold{beamertheme-epyt} 宏包。
+%  \item 在 TeXLive 中作为 \mybold{beamertheme-epyt} 宏包。
+%\end{itemize}
+%你可以在包管理器中安装它。当然也可以直接从
+%\href{https://www.ctan.org/pkg/beamertheme-epyt}{CTAN} 中下载并安装。
+%\end{frame}
+%
+%\begin{frame}[fragile]{开始使用}
+%要使用 \mylead{epyt} 主题，可以在导言区中加入下面一行。
+%\begin{lstlisting}
+%\usetheme{epyt}
+%\end{lstlisting}\pause
+%如果要使用中文，可以添加 \verb ctex 宏包，例如：
+%\begin{lstlisting}
+%\usepackage[UTF8,noindent]{ctex}
+%\end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}[fragile]{样式选用}
+%\mylead{Epyt} 主题中包含了多种样式，可以在载入该主题时选用。
+%\begin{lstlisting}
+%\usetheme[style=gamma]{epyt}
+%\end{lstlisting}
+%\pause 在文档中间可以用下面命令切换到另一个样式。
+%\begin{lstlisting}
+%\epytsetup{style=beta}
+%\end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}{可用的样式}
+%\mylead{Epyt} 主题中所有可用的样式如下所列。
+%\begin{description}
+%  \item[alpha] 白色文字，黑色背景
+%  \item[beta]  黑色文字，白色背景
+%  \item[delta] 白色文字，蓝色背景
+%  \item[gamma] 白色文字，绿色背景
+%  \item[zeta]  白色文字，红色背景
+%\end{description}
+%\pause
+%其中默认样式为 \mybold{beta}。这也是此文档当前正在使用的样式。
+%\end{frame}
+%
+%\begin{frame}{预定义的颜色}
+%每种样式都预先定义了五种强调颜色。当前样式的强调颜色如下所示。
+%\begin{flushleft}
+%\textcolor{acolor1}{acolor1}
+%\textcolor{acolor2}{acolor2}
+%\textcolor{acolor3}{acolor3}
+%\textcolor{acolor4}{acolor4}
+%\textcolor{acolor5}{acolor5}
+%\end{flushleft}
+%\pause 每种样式也预先定义了五种填充颜色，如下所示。
+%\begin{flushleft}
+%\colorbox{fcolor1}{fcolor1}
+%\colorbox{fcolor2}{fcolor2}
+%\colorbox{fcolor3}{fcolor3}
+%\colorbox{fcolor4}{fcolor4}
+%\colorbox{fcolor5}{fcolor5}
+%\end{flushleft}
+%\pause 用 tikz 绘图时可以使用这些预先定义的颜色。
+%\end{frame}
+%
+%\epytsetup{style=gamma}
+%
+%\begin{frame}[plain]\transboxout
+%\titlepage
+%\end{frame}
+%
+%\section{白色文字绿色背景}
+%
+%\begin{frame}{预定义的颜色}
+%当前样式预先定义了五种强调颜色，如下所示。
+%\begin{flushleft}
+%\textcolor{acolor1}{acolor1}
+%\textcolor{acolor2}{acolor2}
+%\textcolor{acolor3}{acolor3}
+%\textcolor{acolor4}{acolor4}
+%\textcolor{acolor5}{acolor5}
+%\end{flushleft}
+%当前样式预先定义了五种填充颜色，如下所示。
+%\begin{flushleft}
+%\colorbox{fcolor1}{fcolor1}
+%\colorbox{fcolor2}{fcolor2}
+%\colorbox{fcolor3}{fcolor3}
+%\colorbox{fcolor4}{fcolor4}
+%\colorbox{fcolor5}{fcolor5}
+%\end{flushleft}
+%\end{frame}
+%
+%\begin{frame}[fragile]{有序列表}
+%无序列表前面已经看到，现在来看看有序列表。一个 Beamer 的主题由下列四部分组成：\pause
+%\begin{enumerate}[<+->]
+%\item 外部主题，用 \verb!\usebeameroutertheme! 命令；
+%\item 内部主题，用 \verb!\usebeamerinnertheme! 命令；
+%\item 颜色主题，用 \verb!\usebeamercolortheme! 命令；
+%\item 字体主题，用 \verb!\usebeamerfonttheme! 命令。
+%\end{enumerate}
+%\end{frame}
+%
+%\epytsetup{style=delta}
+%
+%\begin{frame}[plain]\transboxout
+%\titlepage
+%\end{frame}
+%
+%\section{白色文字蓝色背景}
+%
+%\begin{frame}{预定义的颜色}
+%当前样式预先定义了五种强调颜色，如下所示。
+%\begin{flushleft}
+%\textcolor{acolor1}{acolor1}
+%\textcolor{acolor2}{acolor2}
+%\textcolor{acolor3}{acolor3}
+%\textcolor{acolor4}{acolor4}
+%\textcolor{acolor5}{acolor5}
+%\end{flushleft}
+%当前样式预先定义了五种填充颜色，如下所示。
+%\begin{flushleft}
+%\colorbox{fcolor1}{fcolor1}
+%\colorbox{fcolor2}{fcolor2}
+%\colorbox{fcolor3}{fcolor3}
+%\colorbox{fcolor4}{fcolor4}
+%\colorbox{fcolor5}{fcolor5}
+%\end{flushleft}
+%\end{frame}
+%
+%\epytsetup{style=alpha}
+%
+%\begin{frame}[plain]\transboxout
+%\titlepage
+%\end{frame}
+%
+%\section{白色文字黑色背景}
+%
+%\begin{frame}{预定义的颜色}
+%当前样式预先定义了五种强调颜色，如下所示。
+%\begin{flushleft}
+%\textcolor{acolor1}{acolor1}
+%\textcolor{acolor2}{acolor2}
+%\textcolor{acolor3}{acolor3}
+%\textcolor{acolor4}{acolor4}
+%\textcolor{acolor5}{acolor5}
+%\end{flushleft}
+%当前样式预先定义了五种填充颜色，如下所示。
+%\begin{flushleft}
+%\colorbox{fcolor1}{fcolor1}
+%\colorbox{fcolor2}{fcolor2}
+%\colorbox{fcolor3}{fcolor3}
+%\colorbox{fcolor4}{fcolor4}
+%\colorbox{fcolor5}{fcolor5}
+%\end{flushleft}
+%\end{frame}
+%
+%\begin{frame}{例子证明}
+%\begin{example}
+%证明当$x>0$时不等式$\mathrm{e}^x>1+x$成立。
+%\end{example}\pause
+%\begin{proof}
+%令$f(x)=\mathrm{e}^x-x-1$。则当$x>0$时有
+%$$f'(x)=\mathrm{e}^x-1>0.$$
+%因此，当$x>0$时$f(x)>f(0)=0$。得证。
+%\end{proof}
+%\end{frame}
+%
+%\epytsetup{style=zeta}
+%
+%\begin{frame}[plain]\transboxout
+%\titlepage
+%\end{frame}
+%
+%\section{白色文字红色背景}
+%
+%\begin{frame}{预定义的颜色}
+%当前样式预先定义了五种强调颜色，如下所示。
+%\begin{flushleft}
+%\textcolor{acolor1}{acolor1}
+%\textcolor{acolor2}{acolor2}
+%\textcolor{acolor3}{acolor3}
+%\textcolor{acolor4}{acolor4}
+%\textcolor{acolor5}{acolor5}
+%\end{flushleft}
+%当前样式预先定义了五种填充颜色，如下所示。
+%\begin{flushleft}
+%\colorbox{fcolor1}{fcolor1}
+%\colorbox{fcolor2}{fcolor2}
+%\colorbox{fcolor3}{fcolor3}
+%\colorbox{fcolor4}{fcolor4}
+%\colorbox{fcolor5}{fcolor5}
+%\end{flushleft}
+%\end{frame}
+
+\end{document}

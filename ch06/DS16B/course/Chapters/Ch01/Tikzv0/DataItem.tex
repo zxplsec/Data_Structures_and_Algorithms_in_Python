@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DataItem}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=4.5cm]
+    {
+      \blue{\large 数据项}: 一个元素可由若干个数据项组成.
+    } ;
+
+    \node at (-1,-1.6) [fill=blue!20,draw,ellipse callout, callout relative pointer={(0.7,0.7)},text width=5cm]
+    { 
+      如: 人可以有耳、鼻、眼、嘴、手、脚等这些数据项，也可以有姓名、年龄、性别、出生地址、联系电话等数据项.
+    };
+
+    \node at (2,-1.5) [text width=2cm,decorate,decoration=saw,fill=blue!20,draw,circle]
+          {数据项是数据不可分割的最小部分.
+          };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

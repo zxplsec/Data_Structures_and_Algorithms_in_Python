@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{Abstract}
+  \begin{tikzpicture}
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=6cm]{
+      \blue{\large 抽象}\\
+      抽取出事物具有的普遍性的本质。
+    };
+
+    \node at (0,-3) [fill=blue!20,draw,ellipse,text width=7cm]{
+      提炼出问题的特征，忽略非本质的细节，对具体事物做一个概括。\vspace{0.1in}
+
+      抽象是一种思考问题的方式，它隐藏了繁杂的细节，只保留实现目标所必须的信息。
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

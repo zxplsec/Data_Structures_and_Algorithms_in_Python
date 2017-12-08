@@ -1,0 +1,213 @@
+\subsection{一元多项式的表示和相加}
+
+\begin{frame}\ft{一元多项式的表示}
+一元多项式
+$$
+p(x)=p_0+p_1x+p_2x^2+\cd+p_nx^n
+$$
+由$n+1$个系数唯一确定，在计算机中可用线性表
+$$
+(p_0,p_1,p_2,\cd,p_n)
+$$
+表示。既然是线性表，就可以用顺序表和链表来实现。
+\end{frame}
+
+\begin{frame}[fragile]\ft{一元多项式的表示}
+\begin{dingyi}[顺序存储表示的类型]
+\begin{lstlisting}[language=C,basicstyle=\ttfamily\small]
+typedef struct
+{
+  float coef;
+  int expn;
+} ElemType;
+\end{lstlisting}
+\end{dingyi}
+\end{frame}
+
+\begin{frame}[fragile]\ft{一元多项式的表示}
+\begin{dingyi}[链式存储表示的类型]
+\begin{lstlisting}[language=C,basicstyle=\ttfamily\small]
+typedef struct poly
+{
+  float coef;
+  int expn;
+  struct poly *next;
+} Poly;
+\end{lstlisting}
+\end{dingyi}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{一元多项式的相加}
+不失一般性，设有两个一元多项式：
+$$
+\begin{aligned}
+&p(x)=p_0+p_1x+p_2x^2+\cd+p_nx^n\\
+&q(x)=q_0+q_1x+q_2x^2+\cd+q_mx^m(m<n)
+\end{aligned}
+$$
+相加得
+$$
+r(x)=p(x)+q(x),
+$$
+它由线性表
+$$
+((p_0+q_0),(p_1+q_1),(p_2+q_2),\cd,(p_m+q_m),\cd,p_n)
+$$
+唯一表示。
+\end{frame}
+%
+\begin{frame}[fragile]\ft{顺序存储表示的相加}
+
+\begin{dingyi}[顺序表的定义]
+\begin{lstlisting}[language=C,frame=none]
+typedef struct 
+{
+  ElemType a[MAX_SIZE];
+  int length;
+} Sqlist;
+\end{lstlisting}
+\end{dingyi}
+用顺序表示的相加非常简单。访问第五项可写成：
+\begin{lstlisting}[language=C,basicstyle=\ttfamily\small]
+Sqlist L;
+L.a[4].coef;
+L.a[4].expn;
+\end{lstlisting}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{链式存储表示的相加}
+
+当采用链式存储表示时，根据结点类型定义，凡是系数为零的项不在链表中出现，从而可以大大减少链表的长度。 
+ 
+一项多项式相加的实质是
+\begin{itemize}
+\item[$\diamond$]
+指数不同：是链表的合并。
+\item[$\diamond$]
+指数相同：系数相加。当和为0时，去掉结点；当和不为0时，修改结点的系数域。
+\end{itemize}
+\end{frame}
+%
+
+%
+\begin{frame}[fragile]\ft{一元多项式的相加：算法一}
+对两个多项式链表进行相加，生成一个新的相加后的结果多项式链表，
+原来两个多项式仍然存在，不发生任何改变。如果要再对原来两个多项式进行其它操作也不影响。
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]\ft{算法一}
+\begin{lstlisting}[language=C,frame=none,extendedchars=false]
+Poly * add_poly(Poly * La, Poly * Lb)
+{
+  Poly * Lc, * pc, * pa, * pb, * p; 
+  float x;
+  
+  Lc = pc = (Poly *) malloc(sizeof(Poly)); 
+  pa = La->next; pb=Lb->next;
+  
+  while(pa != NULL && pb != NULL)
+  {
+    if (pa->expn < pb->expn)
+    {
+      p=(Poly *) malloc(sizeof(Poly)); 
+      p->coef = pa->coef; p->expn = pa->expn;
+      p->next = NULL;
+      pc->next = p; pc = p; pa = pa->next;
+    } 
+    else if (pa->expn > pb->expn)
+    {
+      p=(Poly *) malloc(sizeof(Poly)); 
+      p->coef = pb->coef; p->expn = pb->expn;
+      p->next = NULL;
+      pc->next = p; pc = p; pb = pb->next;
+    } 
+    if (pa->expn == pb->expn)
+    {
+      x = pa->coef + pb->coef;
+      if(abs(x) <= 1.e-6)
+      {
+        pa = pa->next;  pb = pb->next;  
+      } 
+      else 
+      {
+        p=(Poly *) malloc(sizeof(Poly));
+        p->coef = x; p->expn = pb->expn;
+        p->next = NULL;
+        pc->next = p; pc = p; 
+        pa = pa->next; pb = pb->next;  
+      }
+    }
+  }
+  
+  if (pb != NULL)  
+    while (pb != NULL) 
+    {
+      p = (Poly *) malloc(sizeof(Poly));
+      p->coef = pb->coef; p->expn = pb->expn;
+      p->next = NULL;
+      pc->next = p; pc = p; pb = pb->next;
+    }
+    
+  if (pa != NULL)  
+    while (pa != NULL) {
+      p = (Poly *) malloc(sizeof(Poly));
+      p->coef = pa->coef; p->expn = pa->expn;
+      p->next = NULL;
+      pc->next = p; pc = p; pa = pa->next;
+    }
+}
+\end{lstlisting}
+\end{frame}	
+
+
+
+\begin{frame}[fragile]\ft{一元多项式的相加：算法二}
+在原来两个多项式链表的基础上进行相加，相加后原来两个多项式链表不再存在。当然再要对原来两个多项式进行其它操作就不允许了。
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]\ft{一元多项式的相加：算法二}
+\begin{lstlisting}[language=C,basicstyle=\ttfamily\small,extendedchars=false]
+Poly * add_poly(Poly * a, Poly * b)
+{
+  Poly * Lc, * pc, * pa, * pb, * ptr; 
+  float x;
+  
+  Lc = pc = La; 
+  pa = La->next; pb = Lb->next;
+  
+  while(pa != NULL && pb != NULL)
+  {
+    if (pa->expn < pb->expn)
+    {
+      pc->next = pa; pc = pa; pa = pa->next;
+    } 
+    else if (pa->expn > pb->expn)
+    {
+      pc->next = pb; pc = pb; pb = pb->next;
+    } 
+    else 
+    {
+      x = pa->coef + pb->coef;
+      if(abs(x) <= 1.e-6)
+      {
+        ptr = pa; pa = pa->next; free(ptr);
+        ptr = pb; pb = pb->next; free(ptr);
+      } 
+      else 
+      {
+        pc->next = pa; pa->coef = x; 
+        pc = pa; pa = pa->next;
+        ptr = pb; pb = pb->next; free(pb);
+      }
+    }
+  }
+  
+  if (pa==NULL) 
+    pc->next = pb;
+  else 
+    pc->next = pa;
+    
+  return (Lc);
+}
+\end{lstlisting}
+\end{frame}	

@@ -1,0 +1,13 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+
+    \node [circle,draw] at (0,0) {C}[sibling distance=1.6cm] 
+    child { node[circle,draw]{G}[sibling distance=1.5cm]
+      child {node[circle,draw]{M}}
+      child {node[circle,draw]{N}}
+    };
+
+
+  \end{tikzpicture}
+\end{figure}

@@ -1,0 +1,45 @@
+#include"BiTree.h"
+void print(ElemType item){
+  printf("%d ",item);
+}
+
+int main(void){
+  BiTNode *n1=MakeNode(10,NULL,NULL);
+  BiTNode *n2=MakeNode(20,NULL,NULL);
+  BiTNode *n3=MakeNode(30,n1,n2);
+  BiTNode *n4=MakeNode(40,NULL,NULL);
+  BiTNode *n5=MakeNode(50,NULL,NULL);
+  BiTNode *n6=MakeNode(60,n4,n5);
+  BiTNode *n7=MakeNode(70,NULL,NULL);
+
+  BiTree tree=InitBiTree(n7);
+  SetLChild(tree,n3);
+  SetRChild(tree,n6);
+
+  printf("Depth of BiTree is %d\n",GetDepth(tree));
+
+  printf("PreOrder Traverse:\n");
+  PreOrderTraverse(tree,print); printf("\n");
+
+  printf("InOrder Traverse:\n");
+  InOrderTraverse(tree,print); printf("\n");
+
+  printf("PostOrder Traverse:\n");
+  PostOrderTraverse(GetLChild(tree),print); printf("\n");
+
+  /* printf("LevelOrder Traverse:\n"); */
+  /* LevelOrderTraverse(tree,print); printf("\n"); */
+  
+  SetItem(tree,100);
+  printf("Root: %d\n",GetItem(tree));
+
+  DeleteChild(tree,0);
+  printf("PreOrder Traverse:\n");
+  PreOrderTraverse(tree,print); printf("\n");
+
+  DestroyBiTree(tree);
+  if(IsEmpty(tree))
+    printf("BiTree is empty, succeed to destroy!\n");
+
+}
+

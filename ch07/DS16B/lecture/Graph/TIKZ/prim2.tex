@@ -1,0 +1,32 @@
+\begin{tikzpicture}[scale=1.2,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[circle,draw] (v0)  at (0,0)   {$v_0$};
+\node[circle,draw] (v5)  at (1.5,-1) {$v_5$};
+\node[circle,draw] (v1) at (-1.5,-1) {$v_1$};
+\node[circle,draw] (v2)  at (-2.5,-2.5)   {$v_2$};
+\node[circle,draw] (v8)  at (-1.5,-2.2) {$v_8$};
+\node[circle,draw] (v6)  at (0.1,-1.5) {$v_6$};
+\node[circle,draw] (v3)  at (0.3,-3.5) {$v_3$};
+\node[circle,draw] (v7)  at (0.8,-2.6) {$v_7$};
+\node[circle,draw] (v4)  at (1.8,-3.0) {$v_4$};
+%%
+\path
+(v0) edge node{\scriptsize $10$} (v1)
+     edge node{\scriptsize $11$} (v5)
+(v1) edge node{\scriptsize $18$} (v2)
+     edge node{\scriptsize $16$} (v6)
+     edge node{\scriptsize $12$} (v8)
+(v2) edge node{\scriptsize $8$} (v8)
+     edge node{\scriptsize $22$} (v3)
+(v3) edge node{\scriptsize $21$} (v8)
+     edge node{\scriptsize $24$} (v6)
+     edge node{\scriptsize $16$} (v7)
+     edge node{\scriptsize $20$} (v4)
+(v4) edge node{\scriptsize $7$} (v7)
+     edge node{\scriptsize $26$} (v5)
+(v5) edge node{\scriptsize $17$} (v6)
+(v6) edge node{\scriptsize $19$} (v7);  
+
+\draw[very thick,red](v0)--(v1);
+\draw[very thick,red](v0)--(v5);
+\end{tikzpicture}

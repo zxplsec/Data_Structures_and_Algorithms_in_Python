@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{SetStruct}
+  
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,2)[fill=blue!20,draw,starburst,drop shadow,text width=6cm]
+    {
+      \blue{\large 集合结构}: 其中的元素除了同属于一个集合外，之间没有其他关系.
+    } ;
+    
+    \draw (0,0)circle(1);
+    \draw (0.00,0.00)node[]{1}circle(0.15);
+    \draw (0.55,0.50)node[]{2}circle(0.15);
+    \draw (-.65,-.10)node[]{3}circle(0.15);
+    \draw (-.35,0.30)node[]{4}circle(0.15);
+    \draw (0.80,0.10)node[]{5}circle(0.15);
+    \draw (0.25,-.70)node[]{6}circle(0.15);
+    \draw (-.15,0.70)node[]{7}circle(0.15);
+    \draw (-.45,-.50)node[]{8}circle(0.15);
+    \draw (0.55,-.20)node[]{9}circle(0.15);
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

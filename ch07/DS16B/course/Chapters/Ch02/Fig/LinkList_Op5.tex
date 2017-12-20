@@ -1,0 +1,53 @@
+\begin{figure}
+\centering
+
+\begin{tikzpicture}
+\def \x{0.5}
+
+\foreach \c in {0,-2.5}{
+\foreach \d in {0,5}{
+\filldraw[fill=red!20](\d+0,\c+0)rectangle(\d+\x,\c+\x);  
+\filldraw[fill=red!20](\d+\x,\c+0)rectangle(\d+2*\x,\c+\x); 
+\filldraw[fill=red!20](\d+3*\x,\c+0)rectangle(\d+4*\x,\c+\x);  
+\filldraw[fill=red!20](\d+4*\x,\c+0)rectangle(\d+5*\x,\c+\x); 
+
+ 
+\draw[->](\d-1*\x,\c+0.5*\x)--(\d+0*\x,\c+0.5*\x);
+
+\ifthenelse{  0 = \d \AND   -2 = \c}{
+\draw[->](\d+1.5*\x,\c+0.5*\x)--(\d+1.5*\x,\c-0.5*\x)
+--(5+0.5*\x,\c-0.5*\x)--(5+0.5*\x,\c);
+}{
+\draw[->](\d+1.5*\x,\c+0.5*\x)--(\d+3*\x,\c+0.5*\x);
+}
+
+\draw[->](\d+4.5*\x,\c+0.5*\x)--(\d+5.5*\x,\c+0.5*\x);
+}
+\node [] at (3.7,\c+0.5*\x) {$\cd\cd$};
+
+
+\def\d{0}
+\node [] at (\d+0.5*\x,\c+0.5*\x) {a};
+\node [] at (\d+3.5*\x,\c+0.5*\x) {b};
+
+\draw[->](\d+0.5*\x,\c+2*\x)--(\d+0.5*\x,\c+\x);
+\node [above] at (\d+0.5*\x,\c+2*\x) {q};
+
+\def\d{5}
+\node [] at (\d+0.5*\x,\c+0.5*\x) {x};
+\node [] at (\d+3.5*\x,\c+0.5*\x) {y};
+
+
+\def \d{5}
+\ifthenelse{  0 = \c}{
+\node[below] at (7*\x,\c+0) {操作前};
+}{
+\node[below] at (7*\x,\c-1*\x) {操作后};
+}
+
+\node [above] at (\d+0.5*\x,\c+2*\x) {p};
+\draw[->] (\d+0.5*\x,\c+2*\x)--(\d+0.5*\x,\c+\x);
+}
+\end{tikzpicture}
+\caption{q-\textgreater next=p;}
+\end{figure}

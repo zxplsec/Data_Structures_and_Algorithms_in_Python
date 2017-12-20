@@ -1,0 +1,55 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\def\x{1.2}
+\def\xx{0.75*\x}
+\def\y{0.75}
+
+\foreach \c in {0} {
+\foreach \r in {0,2} {
+\ifthenelse{\r=6}{
+  \node [] at(\r*\x+0.5*\x,\c*\y+0.5*\y){$\cd$};
+}{          
+  \draw[thick] (\r*\x,\c*\y)rectangle(\r*\x+\xx,\c*\y+\y);
+  \draw[thick] (\r*\x+\xx,\c*\y)rectangle(\r*\x+\x,\c*\y+\y);
+}
+%% 
+\ifthenelse{\r=2}{
+  \filldraw[thick] (\r*\x+\xx,\c*\y)rectangle(\r*\x+\x,\c*\y+\y);
+}{
+  \draw[->,very thick] (\r*\x+0.875*\x,\c*\y+0.5*\y)--(\r*\x+1.9*\x,\c*\y+0.5*\y);
+}
+%% 
+\ifthenelse{\r=0}{
+  \draw[->,very thick](\r*\x-1.2*\x,\c*\y+0.5*\y)--node[above]{{\tt front}}(\r*\x-0.2*\x,\c*\y+0.5*\y);
+}{}
+\ifthenelse{\r=2}{
+  \node [] at(\r*\x+0.5*\xx,\c*\y+0.5*\y){$a_1$};
+}{}
+
+\ifthenelse{\r=4}{
+  \node [] at(\r*\x+0.5*\xx,\c*\y+0.5*\y){$a_2$};
+}{}        
+}
+
+
+\pause 
+\def\r{2}
+\draw[snake=brace,raise snake=3pt,very thick](\r*\x+0.0*\x,\c*\y+1.0*\y)--node[above=5pt]{{\tt p=front->next}}node[above=15pt]{{\tt (1)}}
+(\r*\x+1.0*\x,\c*\y+1.0*\y);
+
+\pause 
+\def\r{1}
+\node [] at(\r*\x+0.5*\xx,\c*\y+0.5*\y){\includegraphics[width=0.5cm]{Chapters/Ch03/Tikz/cross.jpg}};
+
+
+\pause 
+\def\r{0}
+\filldraw[thick] (\r*\x+\xx,\c*\y)rectangle(\r*\x+\x,\c*\y+\y);
+\draw[->,thick]  (\r*\x+0.5*\xx,\c*\y-1.1*\y) node[below]{{\tt rear}}--node[left]{{\tt (3)}} (\r*\x+0.5*\xx,\c*\y-0.1*\y) ;
+
+}
+\end{tikzpicture}
+
+%% \caption{}  
+\end{figure}

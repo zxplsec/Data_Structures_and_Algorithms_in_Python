@@ -1,0 +1,25 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+
+    % The graphic
+    \node at (1.0,0)[left,fill=blue!20,draw,starburst,drop shadow,text=blue]
+    (1){
+      {\large 数据元素} 
+    };
+    \node at (1.5,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=6cm]
+    (2){
+      组成数据的、有一定意义的基本单位，在计算机中通常作为整体来处理.
+    };
+    \pause 
+    \node at (0,-2.5) [right,fill=green!20,draw,ellipse callout,callout relative pointer={(-1,0.5)},text width=6cm]
+    (2){ 
+      \begin{itemize}
+      \item  在人类中，数据元素就是人;
+      \item  在畜类中，数据元素为牛、马、猪、狗、羊等.
+      \end{itemize}
+    };
+
+  \end{tikzpicture}  
+\end{figure}
+

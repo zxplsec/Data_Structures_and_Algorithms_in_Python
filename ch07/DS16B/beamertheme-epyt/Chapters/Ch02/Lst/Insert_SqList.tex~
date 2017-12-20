@@ -1,0 +1,14 @@
+\begin{lstlisting} [language=C,breaklines]
+Status Insert_SqList(SqList *L,int i,ElemType e){
+  int j;
+  if (i<0||i>L->length-1) return ERROR;
+  if (L->length>=MAX_SIZE) {
+    printf("`线性表溢出！`\n"); return ERROR;
+  }
+  for (j=L->length-1; j>=i-1; --j)
+    L->elem_array[j+1]=L->elem_array[j];
+  L->elem_array[i-1]=e;
+  L->length++;
+  return OK;
+}
+\end{lstlisting}

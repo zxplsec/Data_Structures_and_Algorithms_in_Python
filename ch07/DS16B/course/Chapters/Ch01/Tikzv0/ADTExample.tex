@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{ADTExample}
+  \begin{tikzpicture}
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow]{
+      例
+    };
+
+    \node at (0,-2) [right,fill=blue!20,draw,ellipse,text width=7cm]{
+      编写计算机绘图软件时，经常会用到坐标，总会出现成对的$x$和$y$，在3D系统中还有$z$出现。我们不妨定义一个叫point的抽象数据类型，
+      它有$x, y, z$三个变量。这样我们可以方便地操作一个point数据变量就能知道这一点的坐标。
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

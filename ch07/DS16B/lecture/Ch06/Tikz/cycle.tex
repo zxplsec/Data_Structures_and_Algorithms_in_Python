@@ -1,0 +1,34 @@
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a) edge[very thick,red](b) edge[->,above,blue,bend right=10]node{4}(b)
+    edge(c)   
+    edge[very thick,red](d) edge[<-,above,blue,bend left=10]node{3}(d)
+(b) edge[very thick,red](c) edge[->,below,blue,bend right=10]node{1} (c)
+(c) edge[very thick,red](d) edge[->,below,blue,bend right=10]node{2} (d);             
+\end{tikzpicture}
+\caption{简单回路}
+\end{minipage}
+%%%%%
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a)edge (b)
+   edge[very thick,red](c) edge[->,blue,bend right=10]node[left]{4}(c)   
+   edge[very thick,red](d) edge[<-,blue,bend left=10]node{3}(d)
+(b)edge[very thick,red](c) edge[->,blue,bend right=10]node[below]{1}(c) edge[<-,blue,bend left=10]node{5}(c)
+(c)edge[very thick,red](d) edge[->,blue,bend right=10]node[below]{2}(d);             
+\end{tikzpicture}
+\caption{非简单回路}
+\end{minipage}  
+

@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DS1}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[draw,fill=blue!20,ellipse callout]
+    {
+      程序设计 = 好的结构 + 好的算法
+    } ;
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

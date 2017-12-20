@@ -1,0 +1,18 @@
+\begin{lstlisting} [language=C,breaklines,backgroundcolor=\color{red!10},frame=tb]
+Status SqListLocateDelete(SqList *L,ElemType x) {
+  int i=0,k;
+  while (i<L->length){
+    if (L->data[i]!=x) i++;
+    else {
+      for (k=i+1;k<L->length;k++)
+        L->data[k-1]=L->data[k];
+      L->length--; break;
+    }
+  }
+  if (i>L->length) {
+    printf("要删除的数据元素不存在！\n");
+    return ERROR;
+  }
+  return OK;
+}
+\end{lstlisting}

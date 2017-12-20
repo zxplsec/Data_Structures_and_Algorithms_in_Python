@@ -1,0 +1,94 @@
+\subsection{向量范数}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[向量范数]
+向量范数是一个$\|\cdot\|:\R^n\to\R$的非负函数，它满足：\\
+\begin{itemize}
+\item[(1)] \textcolor{acolor4}{正定性}：
+$$
+\|x\|\ge 0, \quad \forall~x\in\R^n, ~~
+\mbox{且} ~~
+\|x\|=0 
+~~\Longleftrightarrow~~ 
+x=0
+$$
+\item[(2)] \textcolor{acolor4}{齐次性}：        
+$$
+\|\alpha x\|=|\alpha|\|x\|, \quad \forall~x\in\R^n,~\alpha\in\R
+$$
+\item[(3)] \textcolor{acolor4}{三角不等式}：
+$$
+\|x+y\|\le \|x\|+\|y\|, \quad \forall~x, y\in\R^n
+$$
+\end{itemize}
+\end{dingyi}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+由(2)和(3)易知，
+$\forall~x, y\in\R^n$有
+$$
+\big|\|x\|-\|y\|\big|\le \|x-y\|\le\max_{1\le i\le n}\|e_i\|\sum_{i=1}^n|x_i-y_i|.
+$$
+这说明\textcolor{acolor5}{$\|\cdot\|$作为$\R^n$的实函数是连续的}。
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[$p$范数]
+$$
+\|x\|_p = \left(|x_1|^p+\cd+|x_n|^p\right)^{\frac1p}, ~ p\ge 1
+$$
+\begin{itemize}
+\item $1$范数
+$$
+\|x\|_1 = |x_1|+\cd+|x_n|
+$$
+\item $2$范数
+$$
+\|x\|_2 = \left(|x_1|^2+\cd+|x_n|^2\right)^{\frac12} = \sqrt{x^T x}
+$$
+\item $\infty$范数
+$$
+\|x\|_{\infty} = \max_{i=1,\cd,n}\{|x_i|\}
+$$
+\end{itemize}
+\end{dingyi}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{dingli}[范数等价性]
+设$\|\cdot\|_{\alpha}$和$\|\cdot\|_{\beta}$是$\R^n$的任意两个范数，
+则存在正常数$c_1$和$c_2$使得$\forall~x\in\R^n$有
+$$
+c_1\|x\|_{\alpha}\le\|x\|_{\beta}\le c_2\|x\|_{\alpha}
+$$
+\end{dingli}
+
+$$
+\begin{array}{ccccc}
+\|x\|_{2} &\le& \|x\|_{1} &\le& \sqrt{n} \|x\|_{2},\\[0.2cm]
+\|x\|_{\infty} &\le& \|x\|_{2} &\le& \sqrt{n} \|x\|_{\infty},\\[0.2cm]
+\|x\|_{\infty} &\le& \|x\|_{1} &\le& n\|x\|_{\infty},\\
+\end{array}
+$$
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{dingli}
+设$x^{(k)},~x\in \R^n$，
+则
+$$\lim_{k\to\infty}\|x^{(k)}-x\|=0
+~~\Longleftrightarrow~~
+\lim_{k\to\infty} |x_i^{(k)}-x_i|=0,~i=1,\cd,n.
+$$
+\end{dingli}
+\end{frame}
+

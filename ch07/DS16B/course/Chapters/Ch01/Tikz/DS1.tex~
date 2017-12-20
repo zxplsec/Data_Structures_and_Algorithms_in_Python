@@ -1,0 +1,13 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=2cm]
+    \node [draw,fill=blue!20,rectangle,rounded corners=3mm,text width=10cm] (1){
+      1968年, Donald E. Knuth教授较系统地阐述了数据的逻辑结构和存储结构及其操作, 开创了数据结构的课程体系.
+    };
+    \pause
+    \node [below of=1,draw,fill=red!20,ellipse callout,callout relative pointer={(0,0.5)}]{
+      程序设计 = 好的结构 + 好的算法
+    };
+  \end{tikzpicture} 
+  
+\end{figure}

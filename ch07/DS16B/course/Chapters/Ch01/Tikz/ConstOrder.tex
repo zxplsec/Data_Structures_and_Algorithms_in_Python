@@ -1,0 +1,17 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=2cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue] (1) {
+      常数阶$O(1)$
+    };
+
+    \node [below of=1,fill=red!20,draw,rectangle,rounded corners=4mm,text width=8cm,text=blue]{
+      \begin{lstlisting}[language=C]
+int sum=0,n=100;  //`执行1次`
+sum=(n+1)*n/2;    //`执行1次`
+printf("%d",sum); //`执行1次`
+      \end{lstlisting}
+    };
+  \end{tikzpicture}
+\end{figure}
+

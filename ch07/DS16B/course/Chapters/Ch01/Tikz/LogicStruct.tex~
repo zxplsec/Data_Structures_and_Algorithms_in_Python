@@ -1,0 +1,27 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}
+
+    % The graphic
+    \node at (0,0)[left,fill=blue!20,draw,starburst,drop shadow,text=red,text centered]
+    (1){
+      { 逻辑结构}
+    } ;
+    \node at (0.5,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text=blue,text width=6cm]
+    (2){
+      数据结构中数据元素之间的相互关系。
+    };
+    \pause
+    \node at (0,-3)[right,fill=green!20,draw,rectangle,rounded corners=3mm,text width=4cm]
+    (2){
+      \begin{itemize}
+      \item 集合结构
+      \item 线性结构
+      \item 树形结构
+      \item 图形结构
+      \end{itemize}
+    };
+
+  \end{tikzpicture}  
+\end{figure}
+

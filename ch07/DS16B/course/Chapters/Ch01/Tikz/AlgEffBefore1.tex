@@ -1,0 +1,27 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=2.5cm]
+
+    \node[rectangle split,rectangle split parts=3,rounded corners=3mm,draw,text width=7cm,fill=red!20](1){
+\begin{lstlisting}[language=C,mathescape]
+for(i=1;i<=n;i++)
+  sum+=i;          //`执行$n$次`
+\end{lstlisting}
+\nodepart{two}
+\begin{lstlisting}[language=C]
+sum=(n+1)*n/2;     //`执行$1$次`
+\end{lstlisting}
+\nodepart{three}
+\begin{lstlisting}[language=C]
+for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++){
+    x++;           //`执行$n\times n$次`
+    sum+=x;
+  }
+\end{lstlisting}
+    };
+    
+  \end{tikzpicture}
+\end{figure}
+
+

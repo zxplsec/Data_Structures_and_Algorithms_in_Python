@@ -1,0 +1,95 @@
+\section{0.3.~矩阵分解是设计算法的主要技巧}
+
+%%%%%%%%%%
+\begin{frame}\ft{\secname}
+  \begin{small}
+    \begin{block}{设计算法的基本思想}
+      设法将一个一般的矩阵计算问题转化为一个或多个易于求解的问题，
+      最主要的技巧就是\blue{矩阵分解}，
+      即\blue{将一个给定矩阵分解为几个特殊类型的矩阵的乘积。}
+    \end{block}
+  \end{small}
+\end{frame}
+
+
+%%%%%%%%%%
+\begin{frame}\ft{\secname}
+  \begin{small}
+    \begin{li}
+      $$
+      \left[
+        \begin{array}{cccc}
+          l_{11}  &         &        & \\
+          l_{21}  & l_{22}   &        & \\
+          \vd    & \vd     & \dd    & \\
+          l_{n1}  & l_{n2}   & \cd    &  l_{nn}\\
+        \end{array}
+        \right] \left[
+        \begin{array}{c}
+          x_{1}  \\
+          x_{2}  \\
+          \vd \\
+          x_{n}  
+        \end{array}
+        \right] = \left[
+        \begin{array}{c}
+          b_{1}  \\
+          b_{2}  \\
+          \vd   \\
+          b_{n}  
+        \end{array}
+        \right]
+        $$
+        和
+        $$
+        \left[
+        \begin{array}{ccccc}
+          u_{11} & u_{12}  & \cd & u_{1n} \\
+                & u_{22} & \cd & u_{1n} \\
+                &        & \dd & \vd \\
+                &        &     & u_{nn} \\
+        \end{array}
+        \right] \left[
+        \begin{array}{c}
+          y_{1}  \\
+          y_{2}  \\
+          \vd \\
+          y_{n}  
+        \end{array}
+        \right] = \left[
+        \begin{array}{c}
+          c_{1}  \\
+          c_{2}  \\
+          \vd   \\
+          c_{n}  
+        \end{array}
+        \right]
+      $$
+      易于求解。
+      \end{li}
+      \end{small}
+\end{frame}
+
+
+%%%%%%%%%%
+\begin{frame}\ft{\secname}
+  \begin{small}
+  \begin{li}
+   对于一般的线性方程组$Ax=b$，可先将$A$作分解
+      $$
+      \begin{array}{l}
+        PA=LU \quad
+        P \to \mbox{排列矩阵} \quad
+        L \to \mbox{下三角矩阵} \quad
+        U \to \mbox{上三角矩阵} 
+      \end{array}      
+      $$
+      \pause
+      然后再求
+      $$
+      Ly = Pb, \quad Ux = y
+      $$
+      可得原方程组的解。
+    \end{li}
+  \end{small}
+\end{frame}

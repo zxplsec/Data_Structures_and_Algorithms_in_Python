@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{FuncAymInc2}
+  \begin{tikzpicture}
+    \node at (1.5,1) [right,fill=red!20,draw,ellipse callout,callout relative pointer={(-0.8,0.2)},text width=5cm,text=blue]{
+      最高次项的指数越大，随着$n$的增长，函数结果也会变得增长特别快。
+    };
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

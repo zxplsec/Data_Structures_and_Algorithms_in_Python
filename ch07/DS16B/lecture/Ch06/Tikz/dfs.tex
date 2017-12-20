@@ -1,0 +1,29 @@
+\begin{tikzpicture}[scale=0.5,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (v1)                     {A};
+\node[state]   (v2) [below left  of=v1] {B};
+\node[state]   (v3) [below right of=v1] {F};
+\node[state]   (v4) [below left  of=v2] {C};
+\node[state]   (v5) [below       of=v1] {G};
+\node[state]   (v6) [below right of=v3] {E};
+\node[state]   (v7) [below right of=v5] {H};
+\node[state]   (v8) [right       of=v4] {I};
+\node[state]   (v9) [below       of=v7] {D};
+
+\path
+(v1) edge node{} (v2)
+     edge node{} (v3)
+(v2) edge node{} (v4)
+     edge node{} (v5)
+     edge node{} (v8)
+(v3) edge node{} (v5)
+     edge node{} (v6)
+(v4) edge node{} (v8)
+     edge node{} (v9)
+(v5) edge node{} (v7)
+     edge node{} (v9)
+(v6) edge node{} (v7)
+     edge node{} (v9)
+(v7) edge node{} (v9)
+(v8) edge node{} (v9);                     
+\end{tikzpicture}

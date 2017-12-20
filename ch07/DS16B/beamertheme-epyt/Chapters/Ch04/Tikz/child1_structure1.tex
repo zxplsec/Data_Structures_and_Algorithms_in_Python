@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+  \def\x{1.5}\def\y{0.8}
+  \draw[very thick](0,0)rectangle(7*\x,\y);
+  \foreach \i in {1,2,...,6}
+  \draw[very thick](\i*\x,0)--(\i*\x,\y);
+  \node at (0.5*\x,0.5*\y) [] {\tt data};
+  \node at (1.5*\x,0.5*\y) [] {\tt degree};
+  \node at (2.5*\x,0.5*\y) [] {\tt child1};
+  \node at (3.5*\x,0.5*\y) [] {\tt child2};
+  \node at (4.5*\x,0.5*\y) [] {\tt child3};
+  \node at (5.5*\x,0.5*\y) [] {$\cd$};
+  \node at (6.5*\x,0.5*\y) [] {\tt childd};
+  \tikzstyle{every node}=[]
+  \tikzstyle{information text}=[rounded corners,inner sep=1ex]
+  \draw
+  node at (3.5*\x,0.*\y) [below=0.2cm,text width=10cm,style=information text]
+  {
+    \begin{table}
+      \centering
+      \begin{tabular}{l|l|l} \hline
+         {\tt data} & 数据域 & 存储结点的数据信息  \\[0.1in]
+         {\tt degree} & 度域 & 存储该结点的孩子的个数\\[0.1in]
+         {\tt child1-childd} & 指针域 & 指向该结点的各个孩子的结点  \\\hline
+      \end{tabular}
+      
+    \end{table}
+  };
+\end{tikzpicture}

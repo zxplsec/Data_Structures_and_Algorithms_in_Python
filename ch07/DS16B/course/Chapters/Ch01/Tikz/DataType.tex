@@ -1,0 +1,23 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}
+    \node at (0,0)[left,fill=blue!20,draw,starburst,drop shadow,text=red,text centered]
+    (1){
+      数据类型
+    } ;
+    \node at (1.5,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text=blue,text width=6cm]
+    (2){
+      指一组性质相同的值的集合及定义在此集合上的一些操作的总称。
+    };
+    \pause
+    \node at (2,-4) [fill=blue!20,draw,ellipse,text width=8cm]
+    { \small
+      在C语言中，按照取值的不同，数据类型可分为：\vspace{.1in}
+      \begin{itemize}
+      \item 原子类型：不可分解，包括整型、浮点型、字符型等；
+      \item 由若干个类型组合而成，可再分解。如整型数组由若干个整型数据组成。
+      \end{itemize}
+    };
+
+  \end{tikzpicture}
+\end{figure}

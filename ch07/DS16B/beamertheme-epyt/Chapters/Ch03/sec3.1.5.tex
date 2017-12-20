@@ -1,0 +1,221 @@
+\subsection{栈的应用}
+
+\begin{frame}\ft{\subsecname}
+由于栈“后进先出”的固有特性，故栈是程序设计中常用的工具和数据结构。
+\end{frame}
+
+\begin{frame}\ft{应用1：数制转换}
+十进制整数$n$向其它进制数$d(=2, 8, 16)$的转换是计算机实现计算的基本问题。
+
+\textcolor{acolor5}{转换法则：}
+$$
+n=(n\div d)\times d+ r
+$$
+其中$r$为余数，且$0\le r < d$。
+\end{frame}
+
+\begin{frame}\ft{应用1：数制转换}
+\begin{li}
+$(1348)_{10}=(2504)_8$，其运算过程如下：
+\begin{table}
+\begin{tabular}{ccc}\hline
+$n$ & $n\div 8$ & $r$\\ \hline
+1348 & 168 & 4\\
+168  & 21  & 0\\
+21   & 2   & 5\\
+2    & 0   & 2\\\hline
+\end{tabular}
+\end{table}
+\end{li}
+\end{frame}
+%
+\begin{frame}[fragile,allowframebreaks]\ft{应用1：数制转换（程序）}
+\lstinputlisting[
+language=c,
+]{Chapters/Ch03/Code/App/App1/Convert.c}
+\end{frame}
+%
+
+\begin{frame}\ft{应用2：括号匹配}
+在文字处理软件或编写程序时，常常需要检查一个字符串或一个表达式终端括号是否相匹配？
+\vspace{0.1in}
+
+\pause 
+\textcolor{acolor5}{匹配思想：}
+从左至右扫描一个字符串（或表达式），则\textcolor{acolor1}{每个右括号将于最近遇到的那个左括号相匹配}。可以在从左到右扫描过程中把所遇到的左括号存放到堆栈中，每当遇到一个右括号时，就将它与栈顶的左括号（如果存在）相匹配，同时从栈顶删除该左括号。  
+
+\end{frame}
+
+
+\begin{frame}\ft{应用2：括号匹配}
+\textcolor{acolor5}{算法思想：}
+设置一个栈，当读到左括号时，左括号进栈。当读到右括号时，则从栈中弹出一个元素，与读到的左括号进行匹配，若匹配成功，继续读入；否则匹配失败，返回{\tt FALSE}.    
+
+
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]\ft{应用2：括号匹配（程序）}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/App/App2/MatchBrackets.c}
+\end{frame}
+
+\begin{frame}\ft{前缀、中缀、后缀表达式}
+它们都是对表达式的记法，其区别在于运算符相对操作数的位置不同：
+\begin{itemize}
+\item 前缀表达式：运算符位于其相关操作数的前面；
+\item 中缀表达式：运算符位于其相关操作数的中间；
+\item 后缀表达式：运算符位于其相关操作数的后面。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{前缀、中缀、后缀表达式}
+例如：
+\begin{itemize}
+\item 前缀表达式：$-~\times~+~3~4~5~6$
+\item 中缀表达式：$(3~+~4)~\times ~5 ~- ~6$
+\item 后缀表达式：$3~4~+~5~\times~6~-$
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{前缀、中缀、后缀表达式}
+\textcolor{acolor3}{中缀表达式：}
+人们常用的算术表示方法。
+
+中缀表达式很容易被人的大脑理解和分析，但对计算机来说却是很复杂的。因此计算表达式的值时，通常需要将中缀表达式转换为前缀或后缀表达式，然后进行求值。
+
+\textcolor{acolor5}{对计算机来说，计算前缀或后缀表达式的值非常简单。}
+\end{frame}
+
+\begin{frame}\ft{前缀、中缀、后缀表达式}
+\textcolor{acolor3}{前缀表达式：} 也称“前缀记法、波兰式”，其运算符位于操作数之前。\vspace{0.1in}
+
+\textcolor{acolor3}{后缀表达式：} 也称“后缀记法、逆波兰式”，其运算符位于操作数之后。
+\end{frame}
+
+\begin{frame}\ft{应用3：后缀表达式的计算机求值}
+从左到右扫描表达式，
+\begin{itemize}
+\item[(1)] 遇到操作数，将数字入栈；
+\item[(2)] 遇到运算符，弹出栈顶的两个数；
+\item[(3)] 将这两个数用运算符做相应计算（次顶元素~op~栈顶元素），并将结果入栈；
+\item[(4)] 重复(1)-(3)直到表达式右端，最后运算出的值即为表达式的结果。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{应用3：后缀表达式的计算机求值}
+\begin{li}
+以后缀表达式
+$$
+3~4~+~5~\times~6~-
+$$
+为例，详解整个过程。
+\end{li}
+\end{frame}
+
+\begin{frame}\ft{应用3：后缀表达式的计算机求值}
+\begin{enumerate}
+\item 将{\tt 3}和{\tt 4}入栈；
+\item 遇到{\tt +}，弹出{\tt 4}和{\tt 3}，计算{\tt 3+4=7}，再将{\tt 7}入栈；
+\item 将{\tt 5}入栈；
+\item 遇到{\tt *}，弹出{\tt 5}和{\tt 7}，计算{\tt 7*5=3}，再将{\tt 35}入栈；
+\item 将{\tt 6}入栈；
+\item 遇到{\tt -}，弹出{\tt 6}和{\tt 35}，计算{\tt 35-6=29}，即为最终结果。
+\end{enumerate}
+\end{frame}
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{itemize}
+\item[1] 初始化两个栈：运算符栈{\tt S1}和存储中间结果的栈{\tt S2}；\\[0.1in]
+\item[2] 从左到右扫描中缀表达式；\\[0.1in]
+\item[3] 遇到操作数时，将其压入{\tt S2}；
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{itemize}
+\item[4] 遇到运算符，比较其与{\tt S1}栈顶运算符的优先级：\\[0.1in]
+\begin{itemize}
+\item[4.1] 若{\tt S1}为空，或栈顶运算符为“(”，则压入{\tt S1}；\\[0.1in]
+\item[4.2] 否则，若其优先级高于栈顶运算符，则压入{\tt S1}；\\[0.1in]
+\item[4.3] 否则，将{\tt S1}的栈顶运算符弹出并压入到{\tt S2}中，再次转到4.1与{\tt S1}中新的栈顶运算符做比较；
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{itemize}
+\item[5] 遇到括号时，\\[0.1in]
+\begin{itemize}
+\item[5.1] 如果是“(”，则压入{\tt S1}；\\[0.1in]
+\item[5.2] 如果是“)”，则依次弹出{\tt S1}的栈顶元素，并压入S2，直到遇到“(”为止，此时这一对括号丢弃；
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{itemize}
+\item[6] 重复步骤2-5，直到表达式的最右端；\\[0.1in]
+\item[7] 将{\tt S1}中剩余的运算符依次弹出并压入S2；\\[0.1in]
+\item[8] 依次弹出{\tt S2}中的元素并输出，结果的逆序即为对应的后缀表达式。
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{scriptsize}
+\begin{table}
+\centering
+\caption{{\tt 中缀表达式 1 + ((2 + 3) + 4) * 5}}
+\begin{tabular}{|c|l|l|}\hline
+{\tt 扫描到的字符} & {\tt S2(栈底->栈顶)} & {\tt S1(栈底->栈顶)} \\\hline
+{\tt 1} &   {\tt 1} &         \\\hline 
+{\tt +} &   {\tt 1} &  {\tt +}\\\hline 
+{\tt (} &   {\tt 1} &  {\tt +(}\\\hline 
+{\tt (} &   {\tt 1} &  {\tt +((}\\\hline 
+{\tt 2} &   {\tt 12} &  {\tt +((}\\\hline 
+{\tt +} &   {\tt 12} &  {\tt +((+}\\\hline 
+{\tt 3} &   {\tt 123} &  {\tt +((+}\\\hline 
+{\tt )} &   {\tt 123+} &  {\tt +(}\\\hline 
+{\tt +} &   {\tt 123+} &  {\tt +(+}\\\hline 
+{\tt 4} &   {\tt 123+4} &  {\tt +(+}\\\hline 
+{\tt )} &   {\tt 123+4+} &  {\tt +}\\\hline 
+{\tt *} &   {\tt 123+4} &  {\tt +*}\\\hline 
+{\tt 5} &   {\tt 123+45} &  {\tt +*}\\\hline 
+        &   {\tt 123+45*+} &  \\\hline 
+\end{tabular}
+\end{table}
+\end{scriptsize}
+\end{frame}
+
+
+\begin{frame}\ft{应用4：将中缀表达式转换为后缀表达式}
+\begin{scriptsize}
+\begin{table}
+\centering
+\caption{{\tt 中缀表达式 1 + ((2 + 3) * 4) - 5}}
+\begin{tabular}{|c|l|l|}\hline
+{\tt 扫描到的字符} & {\tt S2(栈底->栈顶)} & {\tt S1(栈底->栈顶)} \\\hline
+{\tt 1} &   {\tt 1} &         \\\hline 
+{\tt +} &   {\tt 1} &  {\tt +}\\\hline 
+{\tt (} &   {\tt 1} &  {\tt +(}\\\hline 
+{\tt (} &   {\tt 1} &  {\tt +((}\\\hline 
+{\tt 2} &   {\tt 12} &  {\tt +((}\\\hline 
+{\tt +} &   {\tt 12} &  {\tt +((+}\\\hline 
+{\tt 3} &   {\tt 123} &  {\tt +((+}\\\hline 
+{\tt )} &   {\tt 123+} &  {\tt +(}\\\hline 
+{\tt *} &   {\tt 123+} &  {\tt +(*}\\\hline 
+{\tt 4} &   {\tt 123+4} &  {\tt +(+}\\\hline 
+{\tt )} &   {\tt 123+4*} &  {\tt +}\\\hline 
+{\tt -} &   {\tt 123+4+} &  {\tt -}\\\hline 
+{\tt 5} &   {\tt 123+4+5} &  {\tt -}\\\hline 
+        &   {\tt 123+4+5-} &  \\\hline 
+\end{tabular}
+\end{table}
+\end{scriptsize}
+\end{frame}
+
+
+
+

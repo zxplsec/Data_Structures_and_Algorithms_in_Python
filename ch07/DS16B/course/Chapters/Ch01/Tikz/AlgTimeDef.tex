@@ -1,0 +1,24 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=3.5cm,text=blue] (1) {
+      {\large 算法时间复杂度}
+    };
+    \node [below of=1,fill=red!20,draw,rectangle,rounded corners=4mm,text width=7.8cm] (2) {
+      在进行算法分析时，语句总的执行次数$T(n)$是关于问题规模$n$的函数，
+      进而分析$T(n)$随$n$的变化情况并确定$T(n)$的数量级。算法的时间复杂度，也就是算法的时间量度，
+      记作
+      $$
+      T(n)=O(f(n)).
+      $$
+      它表示随着$n$的增大，算法执行时间的增长率和$f(n)$的增长率相同，称为算法的渐近时间复杂度，
+      简称为时间复杂度，其中$f(n)$是关于$n$的某个函数。
+    };
+
+    \pause 
+    \node at (1.6,-3.5)[right,fill=green!20,draw,ellipse callout,callout relative pointer={(-0.8,-0.2)},text width=2cm,text=blue]{
+      大O记法
+    };
+  \end{tikzpicture}
+  
+\end{figure}

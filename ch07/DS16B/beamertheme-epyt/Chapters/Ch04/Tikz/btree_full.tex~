@@ -1,0 +1,28 @@
+\begin{tikzpicture}[level distance=10mm]
+\tikzstyle{every node}=[ball color=red!70,circle,text=white]
+\tikzstyle{level 1}=[sibling distance=4cm]
+\tikzstyle{level 2}=[sibling distance=2cm]
+\tikzstyle{level 3}=[sibling distance=1cm]
+\node[circle,draw] {1} 
+  child{node[circle,draw]{2} 
+    child{node[circle,draw]{4} 
+      child{node[circle,draw]{8}}
+      child{node[circle,draw]{9}}
+    }
+    child{node[circle,draw]{5} 
+      child{node[circle,draw]{10}}
+      child{node[circle,draw]{11}}
+    }
+  }
+  child{node[circle,draw]{3} 
+    child{node[circle,draw]{6} 
+      child{node[circle,draw]{12}}
+      child{node[circle,draw]{13}}
+    }
+    child{node[circle,draw]{7} 
+      child{node[circle,draw]{14}}
+      child{node[circle,draw]{15}}
+    }
+  };
+
+\end{tikzpicture}

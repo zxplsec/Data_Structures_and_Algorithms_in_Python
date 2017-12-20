@@ -1,0 +1,12 @@
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (A)                    {A};
+\node[state]   (B) [below left  of=A] {B};
+\node[state]   (C) [below right of=B] {C};
+\node[state]   (D) [below right of=A] {D};
+\path
+(A) edge node{} (D)
+(B) edge node{} (A)
+    edge node{} (C)
+(C) edge node{} (A);                     
+\end{tikzpicture}

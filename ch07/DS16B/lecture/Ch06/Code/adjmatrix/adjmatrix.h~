@@ -1,0 +1,9 @@
+typedef char VertexType;
+typedef int EdgeType;
+#define MAXVERTEX 100
+#define INF 65535
+typedef struct{
+  VertexType vertex[MAXVERTEX];
+  EdgeType e[MAXVERTEX][MAXVERTEX];
+  int numVertices,numEdges;
+}MGraph;

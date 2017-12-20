@@ -1,0 +1,50 @@
+\begin{tikzpicture}[scale=1.0,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[circle,draw] (v0)  at (0,0)   {$v_0$};
+\node[circle,draw] (v5)  at (1.5,-1) {$v_5$};
+\node[circle,draw] (v1) at (-1.5,-1) {$v_1$};
+\node[circle,draw] (v2)  at (-2.5,-2.5)   {$v_2$};
+\node[circle,draw] (v8)  at (-1.5,-2.2) {$v_8$};
+\node[circle,draw] (v6)  at (0.1,-1.5) {$v_6$};
+\node[circle,draw] (v3)  at (0.3,-3.5) {$v_3$};
+\node[circle,draw] (v7)  at (0.8,-2.6) {$v_7$};
+\node[circle,draw] (v4)  at (1.8,-3.0) {$v_4$};
+%%
+\path
+(v0) edge node{\tiny $10$} (v1)
+     edge node{\tiny $11$} (v5)
+(v1) edge node{\tiny $18$} (v2)
+     edge node{\tiny $16$} (v6)
+     edge node{\tiny $12$} (v8)
+(v2) edge node{\tiny $8$} (v8)
+     edge node{\tiny $22$} (v3)
+(v3) edge node{\tiny $21$} (v8)
+     edge node{\tiny $24$} (v6)
+     edge node{\tiny $16$} (v7)
+     edge node{\tiny $20$} (v4)
+(v4) edge node{\tiny $7$} (v7)
+     edge node{\tiny $26$} (v5)
+(v5) edge node{\tiny $17$} (v6)
+(v6) edge node{\tiny $19$} (v7);  
+
+\matrix (am) at (3,-1) [matrix of nodes,left delimiter=|,right delimiter=|,row sep=0.05pt,column sep=5pt,right] 
+  {
+      & \tf begin & \tf end & \tf weight \\
+    \tf edge[0]  & \tf 4& \tf 7 &  \tf 7\\
+    \tf edge[1]  & \tf 2& \tf 8 &  \tf 8\\
+    \tf edge[2]  & \tf 0& \tf 1 &  \tf 10\\
+    \tf edge[3]  & \tf 0& \tf 5 &  \tf 11\\
+    \tf edge[4]  & \tf 1& \tf 8 &  \tf 12\\
+    \tf edge[5]  & \tf 3& \tf 7 &  \tf 16\\
+    \tf edge[6]  & \tf 1& \tf 6 &  \tf 16\\
+    \tf edge[7]  & \tf 5& \tf 6 &  \tf 17\\
+    \tf edge[8]  & \tf 1& \tf 2 &  \tf 18\\
+    \tf edge[9]  & \tf 6& \tf 7 &  \tf 19\\
+    \tf edge[10] & \tf 3& \tf 4 &  \tf 20\\
+    \tf edge[11] & \tf 3& \tf 8 &  \tf 21\\
+    \tf edge[12] & \tf 2& \tf 3 &  \tf 22\\
+    \tf edge[13] & \tf 3& \tf 6 &  \tf 24\\
+    \tf edge[14] & \tf 4& \tf 5 &  \tf 26\\
+  };            
+
+\end{tikzpicture}

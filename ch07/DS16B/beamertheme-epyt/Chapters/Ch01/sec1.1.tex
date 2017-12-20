@@ -1,0 +1,204 @@
+\section{数值计算简介}
+
+%%%%%%%%%%%%%%%%%
+\begin{frame}\frametitle{\secname} %\fst{现代科学的三大手段}
+当今世界科学活动的三种主要方式\\
+
+\begin{itemize}
+\item
+理论
+\item
+实验
+\item
+科学计算
+\end{itemize}
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%%
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+text width=2em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\begin{frame}\ft{\secname}%\fst{解决科学工程问题的步骤}
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=0.5, node distance = 2.0cm, auto]
+  \pause
+  \node [block] (problem) {实\\ 际\\ 问\\ 题};
+
+  \pause
+
+  \node [block, right of=problem] (model) {数\\ 学\\ 模\\ 型};
+  \path [line] (problem) -- (model);
+  \pause
+
+  \node [block, right of=model] (method) {计\\算\\方\\法};
+  \path [line] (model) -- (method);
+  \pause
+
+  \node [block, right of=method] (prog) {程\\ 序\\ 设\\ 计};
+  \path [line] (method) -- (prog);
+  \pause
+
+  \node [block, right of=prog] (comp) {上\\ 机\\ 求\\ 解};
+  \path [line] (prog) -- (comp);
+  \pause
+
+  \draw[decorate, decoration={brace, mirror}, very thick, blue] (0,-3.5) -- (4,-3.5);
+  \draw (2,-4.5) node {应用数学};
+  \pause
+
+  \draw[decorate, decoration={brace, mirror}, very thick, blue] (8,-3.5) -- (16,-3.5);
+  \draw (12,-4.5) node {计算数学};
+\end{tikzpicture}
+\caption{解决科学工程问题的步骤}
+\end{figure}
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}\fst{研究数值方法的必要性}
+
+\begin{li}
+  求解线性方程组
+  $$
+  Ax = b, \quad A \in \R^{n\times n}, \quad b \in \R^n
+  $$
+\end{li}
+\pause
+\begin{dingli}[Crammer法则]
+  $$
+  A\mbox{非奇异}
+  ~~\Longrightarrow~~
+  \mbox{此方程组有唯一解，且}
+  x_i = \frac{|A_i|}{|A|}, ~~ i = 1, \cd, n.
+  $$
+\end{dingli}
+
+\pause
+该结论非常漂亮，它把线性方程组的求解问题归结为计算$n+1$个$n$阶行列式的计算问题。
+
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}\fst{研究数值方法的必要性}
+
+对于行列式的计算
+\begin{dingli}[Laplace展开定理]
+  $$
+  |A| = a_{i1} A_{i1} + a_{i2} A_{i2} +  \cd + a_{in} A_{in}, \quad
+  A_{ij}\mbox{为}a_{ij}\mbox{的代数余子式}
+  $$      
+\end{dingli}
+
+\pause
+该方法的运算量大的惊人，以至于完全不能用于实际计算。
+
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}
+
+设$k$阶行列式所需乘法运算的次数为$m_k$，则
+$$
+m_k = k + k m_{k-1},
+$$
+于是有
+$$
+\begin{array}{ll}
+  &m_n = n + n m_{n-1} \\[0.2cm]
+  &= n + n[(n-1) + (n-1) m_{n-2}] \\[0.2cm]
+  &= \cd \\[0.2cm]
+  &= n + n(n-1) + n(n-1)(n-2) + \cd + n(n-1)\cd 3 \cdot 2\\[0.2cm]
+  &> n!
+\end{array}
+$$
+
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}
+
+  故用Crammer法则和Laplace展开定理求解一个$n$阶线性方程组，所需乘法运算的次数就大于
+$$
+(n+1)n! = (n+1)!.
+$$
+
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}
+在一台百亿次的计算机上求解一个25阶线性方程组，则至少需要
+$$
+\frac{26!}{10^{10}\times 3600 \times 24 \times 365}
+\approx
+\frac{4.0329\times 10^{28}}{3.1526\times 10^{17}}
+\approx
+13\mbox{亿年}
+$$
+\pause
+而用下章介绍的消去法求解，则需要不到一秒钟。
+\end{frame}
+%
+%
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}%\fst{研究对象}
+数值分析的研究对象为： 
+\begin{itemize}
+\item
+线性代数\\
+\item
+曲线拟合\\
+\item
+数值逼近\\
+\item
+微积分\\
+\item
+微分方程\\
+\item
+积分方程\\
+\item
+$\cdots$
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}%\fst{研究任务}
+数值分析的研究任务为： 
+\begin{itemize}
+\item
+算法设计 
+\item
+理论分析
+\item[]
+\begin{itemize}
+\item 算法的收敛性 
+\item 稳定性 
+\item 误差分析
+\end{itemize} 
+
+\item
+复杂度分析
+\item[]
+\begin{itemize}
+\item 时间复杂度 
+\item 空间复杂度
+\end{itemize} 
+\end{itemize}
+
+\end{frame}
+%
+%%%%%%%%%%%%%%%%%
+\begin{frame}\ft{\secname}%\fst{特点}
+数值分析的特点为： 
+\begin{itemize}
+\item
+既有数学的抽象性与严格性，又有广泛的应用性；
+\item
+有自身的研究方法和理论系统；
+\item
+与计算机紧密结合，实用性很强。
+\end{itemize}
+
+\end{frame}

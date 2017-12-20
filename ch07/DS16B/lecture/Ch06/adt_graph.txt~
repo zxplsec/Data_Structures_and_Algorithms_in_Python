@@ -1,0 +1,13 @@
+ADT `图`(graph)
+Data: 
+   `顶点的有穷非空集合与边的集合`
+Operation:
+   CreateGraph(G,V,E): `按照顶点集V和边弧集合E的定义构造图G`
+   DestroyGraph(G): `图G存在则销毁`
+   LocateVertex(G,u): `若图中存在顶点u，则返回在图中的位置`
+   GetVertex(G,v): `返回图G中顶点v的值`
+   PutVertex(G,v,value): `将图G中顶点v赋值value`
+   FirstAdjVertex(G,*v): `返回顶点v的一个邻接顶点，若顶点在G中无邻接顶点返回空`
+   NextAdjVertex(G,v,*w): `返回顶点相对于顶点w的下一个邻接顶点，若w是v的最后个邻接点则返回空`
+   InsertVertex(G,v): `在图中增添新顶点v`
+   DeleteVertex(G,v): `删除图中顶点v及其相关的弧`

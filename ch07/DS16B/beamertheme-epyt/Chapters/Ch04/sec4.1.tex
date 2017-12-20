@@ -1,0 +1,217 @@
+
+\section{树的基本概念}
+
+\subsection{定义和基本术语}
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[树-Tree]
+树是$n(n\ge0)$个结点的有限集合$T$。$n=0$时称为空树。在任意一棵非空树中：
+\begin{itemize}
+\item[(1)]
+有且只有一个特定的称为根(Root)的结点；
+\item[(2)]
+若$n>1$时，其余结点被分为$m(m>0)$个互不相交的子集$T_1,T_2,\cd,T_m$，其中每个子集本身又是一棵树，称其为根的子树(Subtree)。
+\end{itemize}
+\end{dingyi}
+
+\end{frame}
+%
+\begin{frame}\ft{\subsecname}
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{0.8\textwidth}
+\centering
+\input{Chapters/Ch04/Tikz/tree1}        
+\end{minipage}
+ 
+\begin{minipage}[t]{0.33\textwidth}
+\centering
+\input{Chapters/Ch04/Tikz/tree1_1}        
+\end{minipage}\hfill
+\begin{minipage}[t]{0.33\textwidth}
+\centering
+\input{Chapters/Ch04/Tikz/tree1_2}        
+\end{minipage}\hfill
+\begin{minipage}[t]{0.33\textwidth}
+\centering
+\input{Chapters/Ch04/Tikz/tree1_3}        
+\end{minipage}
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{\subsecname}
+\begin{itemize}
+\item $n>0$时，根节点是唯一的，不可能存在多个根结点。\\[0.1in]
+\item $m>0$时，子树的个数没有限制，但它们一定互不相交。
+\end{itemize}
+\end{frame}
+%
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[结点-node]
+树的结点包含一个数据元素及其若干指向其子树的分支。
+\end{dingyi}
+\pause 
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2}
+\end{figure}
+
+\end{frame}
+%
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[结点的度、树的度]
+结点所拥有的子树的棵数称为结点的度。树中结点度的最大值称为树的度。
+\end{dingyi}
+\pause 
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-1}
+\end{figure}
+
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[叶子结点、分支结点]
+度为0的结点称为\textcolor{acolor5}{叶子结点}；
+度不为0的结点称为\textcolor{acolor5}{分支结点}。
+除根结点外，分支结点又称为内部结点。
+\end{dingyi}
+\pause 
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-2}
+\end{figure}
+
+
+\end{frame}
+
+
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[孩子结点、双亲结点、兄弟结点]
+结点的子树的根称为该结点的\textcolor{acolor5}{孩子(child)}，相应地，该结点是其孩子结点的\textcolor{acolor5}{双亲(parent)}。同一双亲的所有子结点互称\textcolor{acolor5}{兄弟(sibling)}。
+\end{dingyi}
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-3}    
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[层次、堂兄弟结点]
+结点的\textcolor{acolor5}{层次(level)}从根开始定义，根为第1层，根的孩子为第2层。若某结点在第$l$层，则其子树的根就在第$l+1$层。 双亲在同一层上的结点互为\textcolor{acolor5}{堂兄弟}。
+\end{dingyi}
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-4}    
+\end{figure}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[结点的层次路径、祖先、子孙]
+从根结点开始，到达某结点p所经过的所有结点构成结点p的\textcolor{acolor5}{层次路径}(有且只有一条)。结点p的层次路径上的所有结点（p除外）称为p的\textcolor{acolor5}{祖先(ancester)} 。以某一结点为根的子树中的任意结点称为该结点的\textcolor{acolor5}{子孙结点(descent)}。
+\end{dingyi}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-5}    
+\end{figure}
+\end{frame}
+
+
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[树的深度-depth]
+树中结点的最大层次值，又称为树的\textcolor{acolor5}{高度}。
+\end{dingyi}
+\input{Chapters/Ch04/Tikz/tree2-6}    
+\begin{figure}
+\centering
+
+\end{figure}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+\begin{dingyi}[有序树和无序树]
+对于一棵树，若其中每一个结点的子树具有一定的次序，则该树称为\textcolor{acolor5}{有序树}，否则称为\textcolor{acolor5}{无序树}。
+\end{dingyi}
+
+\begin{dingyi}[森林-forest]
+\textcolor{acolor5}{森林}是$m(m\ge0)$棵互不相交的树的集合。显然，若将一棵树的根结点删除，剩余的子树就构成了森林。
+\end{dingyi}
+\end{frame}
+%
+\subsection{树的表示形式}
+\begin{frame}\ft{树的表示形式}
+1、倒悬树
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree2-7}    
+\end{figure}
+
+\end{frame}
+%
+\begin{frame}\ft{树的表示形式}
+2、嵌套集合
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree-set}    
+\end{figure}
+
+\end{frame}
+%
+\begin{frame}\ft{树的表示形式}
+3、 广义表形式
+
+$$
+\mbox{(A(B(E(K,L),F), C(G(M,N)), D(H,I,J)))}
+$$
+\end{frame}
+%
+\begin{frame}\ft{线性结构与树型结构的区别}
+\textcolor{acolor5}{线性结构}
+\begin{itemize}
+\item 第一个元素：无前驱
+\item 最后一个元素：无后继
+\item 中间元素：一个直接前驱和一个直接后继
+\end{itemize}
+ 
+\textcolor{acolor5}{树结构}
+\begin{itemize}
+\item 根结点：无双亲，且唯一
+\item 叶结点：无孩子，不唯一
+\item 中间结点：一个双亲多个孩子
+\end{itemize}
+\end{frame}
+
+\subsection{树的抽象数据类型}
+\begin{frame}[fragile]\ft{树的抽象数据类型}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+ADT Tree{
+Data:
+`树由一个根结点和若干棵子树构成。结点有相同数据类型及层次关系。`
+Operation:
+  Init(*T): 
+  Clear(*T):
+  Creat(*T):  
+  IsEmpty(T):
+  Depth(T):
+  Root(T):
+  Value(T, e):
+  Assign(T, e, value):
+  ...
+} ADT Tree
+\end{lstlisting}
+\end{frame}

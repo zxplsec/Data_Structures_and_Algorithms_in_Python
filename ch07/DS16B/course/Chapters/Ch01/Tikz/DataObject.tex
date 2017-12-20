@@ -1,0 +1,24 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+
+    % The graphic
+    \node at (1.0,0)[left,fill=blue!20,draw,starburst,drop shadow,text=blue]
+    (1){
+      {\large 数据对象} 
+    };
+    \node at (2,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=6cm]
+    (2){
+      性质相同的数据元素的集合，它是数据的子集。
+    };
+    \pause 
+    \node at (-2,-3) [right,fill=red!20,draw,ellipse callout,callout relative pointer={(-1,0.5)},text width=8cm]
+    (2){ 
+       所谓性质相同指的是数据元素具有相同数量和类型的数据项。 \vspace{0.1in}
+
+       实际应用中，处理的数据元素通常具有相同性质，在不产生混淆的情况下，将数据对象简称为数据。     
+    };
+
+  \end{tikzpicture}  
+\end{figure}
+

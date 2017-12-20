@@ -1,0 +1,45 @@
+\begin{tikzpicture}[level distance=10mm]
+  \tikzstyle{every node}=[circle,draw]
+  \tikzstyle{level 1}=[sibling distance=2.5cm]
+  \tikzstyle{level 2}=[sibling distance=1.5cm]
+  \tikzstyle{level 3}=[sibling distance=1cm]
+
+  \node[text width=0.3cm] at(2,0) {\tf -}
+  child{node[text width=0.3cm]{\tf +}
+    child{node[text width=0.3cm]{\tf a}}
+    child{node[text width=0.3cm]{\tf *}
+      child{node[text width=0.3cm]{\tf b}}
+      child{node[text width=0.3cm]{\tf -}
+        child{node[text width=0.3cm]{\tf c}}
+        child{node[text width=0.3cm]{\tf d}}}}}
+  child{node[text width=0.3cm]{\tf /}
+    child{node[text width=0.3cm]{\tf e}}
+    child{node[text width=0.3cm]{\tf f}}};
+
+  \tikzstyle{every node}=[]
+  \tikzstyle{information text}=[rounded corners,fill=blue!20!red!40,inner sep=1ex]
+  \pause 
+  \node [right,text width=5cm,style=information text
+  ] at (5,0) {前序序列：
+    \begin{lstlisting}[basicstyle=\tf\small]
+ - + a * b - c d / e f
+    \end{lstlisting}
+  };
+
+  \pause 
+  \node [right,text width=5cm,style=information text
+  ] at (5,-2) {中序序列：
+    \begin{lstlisting}[basicstyle=\tf\small]
+ a + b * c - d - e / f
+    \end{lstlisting}
+  };
+
+  \pause 
+  \node [right,text width=5cm,style=information text
+  ] at (5,-4) {后序序列：
+    \begin{lstlisting}[basicstyle=\tf\small]
+ a b c d - * + e f / -
+    \end{lstlisting}
+  };
+
+\end{tikzpicture}

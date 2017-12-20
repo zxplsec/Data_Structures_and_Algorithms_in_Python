@@ -1,0 +1,363 @@
+\section{选用和设计算法应遵循的原则}
+
+%******
+\begin{frame}\ft{原则1：数值稳定} 
+
+\begin{flushleft}
+一、选用{数值稳定}的计算公式，控制舍入误差的传播
+\end{flushleft}
+若算法不稳定，则数值计算的结果就会严重背离数学模型的真实结果。
+因此在选择数值计算公式来进行近似计算时，应特别注意选用那些在计算过程中不会导致误差迅速增长的计算公式。
+\end{frame}
+
+%******
+\begin{frame}\ft{原则1：数值稳定} 
+\begin{li}
+计算积分
+$$
+I_n = e^{-1} \int_0^1 x^n e^x \,dx, ~~~ n = 0, 1, 2, \cdots
+$$
+\end{li}
+\pause
+$$
+\textcolor{acolor2}{
+\mbox{（算法1）}~\cd\cd~
+\left\{
+\begin{array}{l}
+I_n = 1 - n I_{n-1}, \\[0.3cm]
+I_0 = 1 - e^{-1} \approx 0.6321.
+\end{array}
+\right.
+}
+$$
+\end{frame}
+
+
+%%******
+\begin{frame}[fragile]\ft{原则1：数值稳定} 
+\begin{lstlisting}[language=matlab,title=matlab code,frame=single,backgroundcolor=\color{red!10}]
+t0 = 0.6321;
+for i = 1:9
+    fprintf('%10.5f ', t0);
+    if(mod(i, 3)==0)
+        fprintf('\n');
+    end
+t1 = 1 - i * t0;
+t0 = t1;  
+end
+\end{lstlisting}
+\end{frame}
+
+
+%%******
+\begin{frame}[fragile]\ft{原则1：数值稳定}  
+\begin{lstlisting}[title=running result,frame=single,backgroundcolor=\color{blue!10}]
+0.63210    0.36790    0.26420 
+0.20740    0.17040    0.14800 
+0.11200    0.21600   -0.72800 
+\end{lstlisting}
+
+ 
+\end{frame}
+
+
+\begin{frame}\ft{原则1：数值稳定}  
+由
+$$
+0 < I_n < e^{-1} \max_{0\le x \le 1} (e^x) \int_0^1 x^n \,dx = \frac1{n+1}
+$$
+知
+$$
+I_7 < \frac1{8} = 0.1250,
+~~~ I_8 < \frac1{9} \approx 0.1111,
+$$
+\pause
+\begin{block}{原因}
+$I_0$本身有不超过$0.5\times10^{-4}$的舍入误差，
+此误差在运算中传播、积累很快，传播到$I_7$和$I_8$时，该误差已放大了7与8倍，从而使得$I_7$和$I_8$的结果面目全非。
+\end{block}
+\end{frame}
+
+%******
+\begin{frame}\ft{原则1：数值稳定}
+
+
+$$
+\textcolor{acolor2}{\mbox{（算法2）}~\cd\cd~~ I_{n-1} = \frac1n(1-I_n)}
+$$
+
+
+\pause 
+由
+$$
+I_n > e^{-1} \min_{0\le x \le 1} (e^x) \int_0^1 x^n \,dx = \frac{e^{-1}}{n+1}
+$$
+知
+$$
+\frac{e^{-1}}{n+1} < I_n < \frac1{n+1}.
+$$
+
+$$
+I_7 \approx 0.1124.
+$$
+
+ 
+\end{frame}
+
+
+%******
+\begin{frame}[fragile]\ft{原则1：数值稳定}
+
+\begin{lstlisting}[language=matlab,title=matlab code,frame=single,backgroundcolor=\color{red!10}]
+t0 = 0.1124;
+for i = 7:-1:0
+    fprintf('%10.5f ', t0);
+    if(mod(7-i+1, 3)==0)
+        fprintf('\n');
+    end
+t1 = (1 - t0) / i;
+t0 = t1;    
+end
+\end{lstlisting}
+\end{frame}
+
+
+%******
+\begin{frame}[fragile]\ft{原则1：数值稳定} 
+\begin{lstlisting}[title=running result,frame=single,backgroundcolor=\color{blue!10}]
+0.11240    0.12680    0.14553 
+0.17089    0.20728    0.26424 
+0.36788    0.63212 
+\end{lstlisting}
+
+ 
+\end{frame}
+%
+%
+%*****
+\begin{frame}\ft{原则1：数值稳定}
+
+\begin{dingyi}[数值稳定]
+在数值计算中，误差不会增长的计算格式称为是\textcolor{acolor5}{数值稳定}的，否则就是不稳定的。
+\end{dingyi}
+ 
+\end{frame}
+%
+%
+%******
+\begin{frame}\ft{原则2：简化计算步骤} 
+
+\begin{flushleft}
+二、尽量简化计算步骤，以便减少运算次数
+\end{flushleft}
+\pause 
+节省计算量，提高计算速度，简化逻辑结构，减少误差积累。
+
+ 
+\end{frame}
+
+
+%******
+\begin{frame}\ft{原则2：简化计算步骤}
+
+\begin{li}
+计算多项式
+$$
+P_n(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0
+$$
+\end{li}
+
+
+\begin{itemize}
+\item
+\textcolor{acolor5}{逐项计算}
+\item[]
+共需
+$$
+1+2+\cdots+(n-1)+n=\frac12n(n+1)
+$$
+次乘法和$n$次加法；
+\end{itemize}
+\end{frame}
+
+
+%******
+\begin{frame}\ft{原则2：简化计算步骤}
+\begin{itemize}
+\item
+\textcolor{acolor5}{秦九韶算法}
+$$
+\left\{
+\begin{array}{ll}
+u_0 = a_n, & \\[0.2cm]
+u_k = u_{k-1} x + a_{n-k}, & k = 1, 2, \cdots, n.
+\end{array}
+\right.
+$$
+\item[]
+共需$n$次乘法和$n$次加法。
+\end{itemize}
+\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+\begin{frame}\ft{原则2：简化计算步骤}
+\textcolor{acolor5}{秦九韶}（1208年－1261年），南宋官员、数学家，与\textcolor{acolor5}{李冶、杨辉、朱世杰}并称宋元数学四大家。
+\begin{figure}
+\begin{tabular}{cc}   
+\begin{minipage}{0.35\linewidth}
+\centerline{\includegraphics[width=4.0cm]{Chapters/Ch01/figure/qinjiushao.jpg}}
+\end{minipage}
+\hfill
+\begin{minipage}{.6\linewidth}
+\begin{itemize}
+\item {数学九章}
+\item {大衍求一术}
+\item[] ~~比Gauss的同余理论早554年
+\item  {任意次方程的数值解法}
+\item[] ~~比英国人霍纳早提出572年
+\item  {三斜求积术}
+\item[] ~~海伦公式(公元50年左右)
+\item {秦九韶公式}
+\item {$\cd$}
+\end{itemize}
+\end{minipage}
+\end{tabular}
+\end{figure}
+\end{frame}
+
+%******
+\begin{frame}\ft{原则3：避免两相近数相减} 
+\begin{flushleft}
+三、避免两个相近的数相减
+\end{flushleft}
+\pause 
+数值计算中，两个相近的数相减会造成有效数字的严重丢失。
+\pause 
+
+\textcolor{acolor3}{处理办法}：
+\begin{itemize}
+\item
+因式分解
+\item
+分子分母有理化
+\item
+三角函数恒等式
+\item
+Taylor展开式
+\item
+$\cdots$
+\end{itemize}
+ 
+\end{frame}
+%
+%
+%
+%******
+\begin{frame}\ft{原则3：避免两相近数相减} 
+\begin{li}
+计算（取$4$位有效数字）
+$$
+\sqrt{x+1} -  \sqrt{x} ~~~~ (x = 1000)
+$$
+\end{li}
+\pause
+\begin{itemize}
+\item
+\textcolor{acolor5}{直接计算}
+$$
+\sqrt{1001} -  \sqrt{1000} \approx 31.64 - 31.62 = 0.02
+$$
+只有一个有效数字，损失了三位有效数字；\\[0.2cm]\pause
+\item
+\textcolor{acolor5}{分子有理化}
+$$
+\sqrt{x+1} -  \sqrt{x}  = \frac1{\sqrt{x+1} +  \sqrt{x}} \approx 0.01581
+$$
+没有损失有效数字。
+\end{itemize}
+\end{frame}
+
+%
+%******
+\begin{frame}\ft{原则3：避免两相近数相减} 
+
+\begin{li}
+计算（取$4$位有效数字）
+$$
+A = 10^7(1-\cos 2^{\circ}) ~~~~ (\cos 2^{\circ} = 0.9994)
+$$
+\end{li}
+
+\pause 
+\begin{itemize}
+\item
+\textcolor{acolor5}{直接计算}
+$$
+A \approx 10^7(1-0.9994)  = 6 \times 10^3
+$$
+只有一个有效数字\\[0.2cm]\pause
+\item
+\textcolor{acolor5}{三角恒等式}
+$\textcolor{acolor3}{\boxed{
+  1 - \cos x = 2 \sin^2 \frac x2 
+}}
+$
+$$
+\begin{array}{ll}
+A &= 10^7(1-\cos 2^{\circ})  = 2 \times (\sin 1^{\circ})^2 \times 10^7 \\[0.2cm]
+&\approx 2 \times 0.01745^2 \times 10^7  \approx 6.09 \times 10^3
+\end{array}
+$$
+三位有效数字
+\end{itemize}
+\end{frame}
+%
+%
+%******
+\begin{frame}\ft{原则4：避免绝对值很小的数做分母}%\fst{}
+
+\begin{flushleft}
+四、绝对值太小的数不宜做除数
+\end{flushleft}
+数值计算中，用绝对值很小的数作除数，会使商的数量级增加，甚至在计算机中造成“溢出”停机，
+而且当很小的除数稍有一点误差，会对计算结果影响很大。
+\pause 
+\begin{li}
+$$
+\begin{array}{cl}
+\ds \frac{3.1416}{0.001} & = 3141.6 \\[0.4cm]
+\ds \frac{3.1416}{0.001+0.0001} & = 2856 
+\end{array}
+$$
+\end{li}
+
+\end{frame}
+
+
+
+%******
+\begin{frame}\ft{原则5：防止大数吃小数} 
+
+\begin{flushleft}
+五、合理安排运算次序，防止“大数吃小数”
+\end{flushleft}
+
+\begin{li}
+计算$a, ~b, ~c$的和，其中$a = 10^{12}, ~b = 10, ~c \approx -a$.
+\end{li}
+\pause 
+
+\begin{itemize}
+\item
+$(a+b)+c$
+\item[]
+~~~~结果接近于0； \pause
+\item
+$(a+c)+b$
+\item[]
+~~~~结果接近于10。
+\end{itemize}
+
+ 
+\end{frame}

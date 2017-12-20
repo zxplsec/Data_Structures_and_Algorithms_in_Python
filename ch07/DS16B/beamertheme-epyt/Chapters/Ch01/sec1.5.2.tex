@@ -1,0 +1,619 @@
+\subsection{矩阵范数}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingyi}[矩阵范数]
+矩阵范数是一个$\|\cdot\|:\R^{n\times n}\to\R$的非负函数，它满足：\\
+\begin{itemize}
+\item[(1)] \textcolor{acolor4}{正定性}：
+$$\|A\|\ge0, \quad \forall~A\in\R^{n\times n},  ~
+\mbox{且}~
+\|A\|=0 \Longleftrightarrow A=0;$$\\ 
+\item[(2)] \textcolor{acolor4}{齐次性}：
+$$\|\alpha A\|=|\alpha|\cdot \|A\|, \quad \forall~A\in\R^{n\times n},~\alpha\in\R;$$ 
+\item[(3)] \textcolor{acolor4}{三角不等式}：
+$$\|A+B\|\le \|A\|+\|B\|, \quad \forall~A, B\in\R^{n\times n};$$ 
+\item[(4)] \textcolor{acolor4}{相容性}：
+$$\|AB\|\le \|A\|\cdot \|B\|, \quad \forall~A, B\in\R^{n\times n}.$$
+\end{itemize}
+\end{dingyi}
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{xingzhi}[矩阵范数的性质]
+\begin{itemize}
+\item[$1^{\circ}$]
+$\R^{n\times n}$上的任意两个范数等价；\\[0.5cm]
+\item[$2^{\circ}$]
+矩阵序列的范数收敛等价于元素收敛，即
+$$
+\lim_{k\to\infty}\|A^{(k)}-A\|=0
+\Longleftrightarrow
+\lim_{k\to\infty} a_{ij}^{(k)} = a_{ij}, ~ i,j=1,\cd,n, 
+$$
+其中$A^{(k)} = (a_{ij}^{(k)}), ~A = (a_{ij})$。
+\end{itemize}
+
+\end{xingzhi}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}\fst{矩阵范数与向量范数的相容性}
+
+\begin{dingyi}[矩阵范数与向量范数的相容性]
+若矩阵范数$\|\cdot\|_M$和向量范数$\|\cdot\|_v$满足
+$$
+\|Ax\|_v \le \|A\|_M \|x\|_v, \quad A\in\R^{n\times n},
+\quad x\in\R^n,
+$$
+则称\textcolor{acolor5}{矩阵范数$\|\cdot\|_M$和向量范数$\|\cdot\|_v$相容}。
+\end{dingyi}
+
+\vspace{0.2cm}
+\pause
+
+\textcolor{acolor4}{若无特别说明，总假定矩阵范数和向量范数相容。}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}\fst{从属范数}
+
+\begin{dingli}
+设$\|\cdot\|$是$\R^n$上的一个向量范数，若定义
+$$
+\VERT A\VERT = \max_{\|x\|=1}\|Ax\|,~A\in\R^{n\times n},
+$$
+则$\VERT\cdot\VERT$是$\R^{n\times n}$上的一个矩阵范数。
+\end{dingli}
+\vspace{0.2cm}
+\pause
+
+这样的矩阵范数$\VERT\cdot\VERT$称为\textcolor{acolor4}{从属于向量范数$\|\cdot\|$的矩阵范数}，
+也称\textcolor{acolor4}{由向量范数$\|\cdot\|$诱导出的算子范数}。
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+1、先证$\VERT\cdot\VERT$有意义。\pause 
+$$
+\begin{array}{ll}
+&\left.
+\begin{array}{l}
+\mathcal{D} = \{ x \in \R^n: ~ \|x\| =1 \} \mbox{是} \R^n\mbox{中有界闭集} \\[0.2cm] \pause
+\|\cdot\|\mbox{是}\R^n\mbox{上的连续函数}
+\end{array} \pause 
+\right\} \\[0.4in] \pause 
+\ds \Longrightarrow~~ & 
+\mbox{存在}x_0\in \mathcal{D}\mbox{使得}\|Ax_0\| = \max_{x\in\mathcal{D}} \|Ax\|.
+\end{array}
+$$
+\end{zhengming}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+2、$\forall 0 \ne x \in \R^n$，有
+$$
+\frac{\|Ax\|}{\|x\|} = \left\|A\frac{x}{\|x\|}\right\| \le \VERT A\VERT,         
+$$
+从而有
+$$
+\|Ax\| \le \VERT  A \VERT   \cdot \|x\|, \quad \forall x \in \R^n.
+$$
+\end{zhengming}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+3、验证$\VERT \cdot\VERT $满足矩阵范数的性质(1)-(3)：\pause
+\begin{itemize}
+\item（正定性） 设$A\ne 0$，不妨设$A$的第$i$列非零，即$Ae_i\ne 0$，则
+$$ 0 < \|A e_i\| \le \VERT A\VERT  \cdot \|e_i\|   
+~~\Longrightarrow~~ 
+\VERT  A \VERT  > 0. 
+$$
+\item\pause（齐次性）  $\forall \alpha \in \R$,
+\[
+\VERT \alpha A\VERT  = \max_{\|x\|=1} \| \alpha A x\| = |\alpha| \cdot \max_{\|x\|=1} \|Ax\| = |\alpha| \cdot \VERT A\VERT.
+\]  
+\item\pause（三角不等式） 设$x$满足$\|x\|=1$使得$\|(A+B)x\|=\VERT A+B\VERT $，则
+$$
+\begin{array}{rcl}
+\VERT A+B\VERT  &=& \|(A+B)x\| \le \|Ax\| + \|Bx\| \\
+&\le& \VERT A\VERT \cdot\|x\| + \VERT B\VERT \cdot\|x\| = \VERT A\VERT  + \VERT B\VERT .            
+\end{array}
+$$
+\end{itemize}
+\end{zhengming}
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{proof}
+4、验证$\VERT \cdot\VERT $满足矩阵范数的性质--相容性。
+  设$x$满足$\|x\|=1$使得$\|ABx\|=\VERT AB\VERT $，则
+$$
+\begin{array}{rcl}
+\VERT AB\VERT  &=& \|ABx\| \le \VERT A\VERT  \cdot \|Bx\| \\[0.2cm]
+&\le& \VERT A\VERT \cdot \VERT B\VERT \cdot\|x\| = \VERT A\VERT  \cdot \VERT B\VERT .            
+\end{array}
+$$
+\end{proof}
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+由$\R^n$上的$p$范数可诱导出$\R^{n\times n}$上的算子范数$\|\cdot\|_p$：
+$$
+\|A\|_p = \max_{\|x\|_p=1}\|Ax\|_p, ~~ A \in \R^{n\times n}.
+$$
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+
+\begin{dingli}
+设$A=(a_{ij})\in\R^{n\times n}$，则
+\begin{itemize}
+\item 
+\textcolor{acolor5}{列范数} 
+$$
+\|A\|_1 = \max_{1\le j \le n} \sum_{i=1}^n |a_{ij}|
+$$
+\item
+\textcolor{acolor5}{行范数}  
+$$
+\|A\|_{\infty} = \max_{1\le i \le n} \sum_{j=1}^n |a_{ij}|
+$$
+\item
+\textcolor{acolor5}{谱范数}
+$$
+\|A\|_2 = \sqrt{\lambda_{max}(A^TA)}
+$$
+其中$\lambda_{max}(A^TA)$表示$A^TA$的最大特征值。
+\end{itemize}
+
+\end{dingli}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+$A=0$时定理显然成立，以下设$A\ne 0$。 \pause
+
+\textcolor{acolor4}{（列范数）}设$A = [a_1, \cd, a_n], 
+~\delta = \|a_{j_0}\|_1 = \max_{1\le j \le n}\|a_j\|_1$，则$\forall  x \in \R^n$且$\|x\|_1 = \sum_{i=1}^n |x_i| = 1$，有
+$$
+\begin{aligned}
+\|Ax\|_1 & =\| \sum_{j=1}^n  x_j a_{j}\|_1 \le \sum_{j=1}^n |x_j| \|a_{j}\|_1  \\ 
+&< \sum_{j=1}^n|x_j| \max_{1\le j \le n} \|a_j\|_1 = \|a_{j_0}\|_1 = \delta.
+\end{aligned}
+$$
+因$\|e_{j_0}\|=1$且$\|Ae_{j_0}\|_1 = \|a_{j_0}\|_1 = \delta$
+，故
+$$
+ \|A\|_1 = \max_{\|x\|_1=1}\|Ax\|_1 = \delta = \max_{1\le j \le n} \|a_j\|_1 = \max_{1\le j \le n} \sum_{i=1}^n|a_{ij}|.
+$$
+\end{zhengming}
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+\textcolor{acolor4}{（行范数）}令$\eta = \max_{1\le j \le n} \sum_{j=1}^n |a_{ij}|$，则$\forall  x \in \R^n$且 $\|x\|_{\infty}  = 1$有
+$$
+\|Ax\|_{\infty} =   \max_{1\le i \le n}| \sum_{j=1}^n   a_{ij} x_j| 
+\le \max_{1\le i \le n} \sum_{j=1}^n |a_{ij}||x_j|   
+\le \ds  \max_{1\le i \le n}  \sum_{j=1}^n |a_{ij}|  = \eta.
+$$
+\pause 
+设$A$的第$k$行的1范数最大，即$\eta = \max_{j=1}^n |a_{kj}|$。令
+$$
+\tilde{x} = \left(\mathrm{sgn}(a_{k1}),~\cd,~\mathrm{sgn}(a_{kn})\right)^T,
+$$
+则 \pause 
+$$
+\begin{array}{l}
+A \ne 0 ~\Longrightarrow~ \|\tilde{x}\|_{\infty} = 1 
+~\Longrightarrow~ \|A\tilde{x}\|_{\infty} = \eta
+\end{array}
+$$ 
+\pause
+从而
+$$
+\|A\|_{\infty} = \eta =  \max_{1\le j \le n} \sum_{j=1}^n |a_{ij}|.
+$$
+\end{zhengming}
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+\textcolor{acolor4}{（谱范数）}注意到
+$$\textcolor{acolor5}{\|A\|_2 = \max_{\|x\|_2=1} \|Ax\|_2  = \max_{\|x\|_2=1} \sqrt{x^T(A^TA)x}}.
+$$  
+考察$\textcolor{acolor5}{A^TA}$，因其对称半正定，可设其特征值为
+$\lambda_1 \ge \lambda_2 \ge \cd \ge \lambda_n \ge 0$，特征向量对应为$v_1, \cd, v_n \in \R^n$且$\|v_i\|=1$。\end{zhengming}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{proof} \textcolor{acolor4}{（谱范数）}
+一方面，$\forall x \in \R^n\mbox{且} \|x\|_2 = 1$有$ 
+x = \sum_{i=1}^n \alpha_i v_i$和$\sum_{i=1}^n \alpha_i^2 = 1$，从而
+$$
+x^T A^T A x = \sum_{i=1}^n \lambda_i \alpha_i^2 \le \lambda_1;
+$$
+\pause
+另一方面，取$x=v_1$，则有
+$$
+x^T A^T A x = v_1^T A^T A v_1 = v_1^T \lambda_1 v_1 = \lambda_1.
+$$
+\pause
+于是
+$
+\|A\|_{2} =  \max_{\|x\|_2=1} \|Ax\|_2 = \sqrt{\lambda_1} = \sqrt{\lambda_{max}(A^TA)}.
+$
+\end{proof}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}\fst{谱范数的性质}
+
+\begin{dingli}
+设$A  \in \R^{n\times n}$，则有
+\begin{itemize}
+\item[(1)]
+$$
+\|A\|_2 = \max\left\{|y^TAx|: ~x, y \in \mathbf{C}^n,~ \|x\|_2 = \|y\|_2 = 1\right\}
+$$
+\item[(2)]
+$$
+\|A^T\|_2 = \|A\|_2 = \sqrt{\|A^TA\|_2}
+$$
+\item[(3)]      
+$$
+\|UA\|_2=\|AV\|_2=\|A\|_2, \quad \forall\mbox{正交矩阵}U, V
+$$
+\end{itemize}
+\end{dingli}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingyi}[Frobenius范数]
+$$\textcolor{acolor4}{
+\|A\|_F = \sqrt{\sum_{i,j=1}^n|a_{ij}|^2}
+}
+$$
+\end{dingyi}
+它是向量2范数的自然推广。
+
+\end{frame}
+
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingyi}[谱半径]
+设$A\in \mathbf{C}^{n\times n}$，则称
+$$\textcolor{acolor4}{
+\rho(A)=\max\{|\lambda|:~\lambda\in\lambda(A)\}
+}
+$$
+为$A$的谱半径，其中$\lambda(A)$表示$A$的特征值的全体。
+\end{dingyi}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}\fst{谱半径与矩阵范数的关系}
+
+\begin{dingli}
+设$A\in \mathbf{C}^{n\times n}$，则
+\begin{itemize}
+\item[(1)]
+对$\mathbf{C}^{n\times n}$上的任意矩阵范数$\|\cdot\|$，有
+$$ \textcolor{acolor4}{
+\rho(A) \le \|A\|
+}
+$$
+\item[(2)]
+$\forall \epsilon>0$，存在$C^{n\times n}$上的矩阵范数$\|\cdot\|$使得
+$$ \textcolor{acolor4}{
+\|A\| \le \rho(A) + \epsilon} 
+$$
+\end{itemize}•
+\end{dingli}
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+1、设$A\in \mathbf{C}^{n\times n}$满足
+$$
+x \ne 0, \quad Ax = \lambda x, \quad |\lambda| = \rho(A),
+$$ \pause
+则有
+$$
+\rho(A) \|xe_1^T\| = \|\lambda x e_1^T\| = \|A x e_1^T\| \le \|A\| \cdot \|x e_1^T\|,
+$$
+从而
+$$
+\rho(A) \le \|A\|.
+$$
+\end{zhengming}
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+2、由Jordan分解定理知，存在非奇异阵$X\in \mathbf{C}^{n\times n}$，使得
+$$
+X^{-1} A X = \left[
+\begin{array}{ccccc}
+\lambda_1 & \delta_1 & & & \\
+& \lambda_2 & \delta_2 & & \\
+& & \dd & \dd &\\
+& & & \lambda_{n-1} & \delta_{n-1}  \\
+& & &  & \lambda_{n} 
+\end{array}
+\right], \quad \delta_i = 1 \mbox{或} 0.
+$$ 
+\end{zhengming}
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+$\forall \epsilon > 0$，令$D_{\epsilon} = \mathrm{diag} (1, \epsilon, \cd, \epsilon^{n-1})$，有
+$$
+D_{\epsilon}^{-1}X^{-1} A X D_{\epsilon} = \left[
+\begin{array}{ccccc}
+\lambda_1 & \epsilon\delta_1 & & & \\
+& \lambda_2 & \epsilon\delta_2 & & \\
+& & \dd & \dd &\\
+& & & \lambda_{n-1} & \epsilon\delta_{n-1}  \\
+& & &  & \lambda_{n} 
+\end{array}
+\right].
+$$
+定义
+$$
+\|G\|_{\epsilon} = \| D_{\epsilon}^{-1}X^{-1} G X D_{\epsilon}  \|_{\infty}, \quad G \in \mathbf{C}^{n\times n},
+$$
+则$\|\cdot\|_{\epsilon}$是由向量范数
+$\textcolor{acolor5}{
+\|x\|_* = \| (XD_{\epsilon})^{-1} x \|_{\infty}
+}
+$
+诱导出的算子范数。
+\end{zhengming}
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{proof}
+事实上，
+$$
+\begin{array}{rcl}
+\ds \|G\|_{\epsilon} &=&  \ds  \max_{\|y\|_{\infty}=1} \| D_{\epsilon}^{-1}X^{-1} G X D_{\epsilon}  y\|_{\infty}\\
+&\xlongequal[]{y = (XD_{\epsilon})^{-1}x}&\ds
+\max_{\|\textcolor{acolor5}{(XD_{\epsilon})^{-1}x\|_{\infty} =1}}\| D_{\epsilon}^{-1}X^{-1} G  x\|_{\infty} \\[0.4cm]
+&=& \ds \max_{\textcolor{acolor5}{\|x\|_{*} =1}}\| G  x\|_{*} .
+\end{array}
+$$
+另外，还有
+$$
+\|A\|_{\epsilon} = \| D_{\epsilon}^{-1}X^{-1} A X D_{\epsilon}  \|_{\infty}
+= \max_{1\le i \le n} (|\lambda_i + |\epsilon \delta_i|) \le \rho(A) + \epsilon.
+$$
+\end{proof}
+
+
+\end{frame}
+
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingli}
+设$A\in C^{n\times n}$，则
+$$ 
+\lim_{k\to\infty} A^k =0 \Longleftrightarrow \rho(A)<1
+$$
+\end{dingli}  \pause
+\begin{proof}
+先证必要性：
+$$
+\begin{array}{rl}
+\left.
+\begin{array}{l}
+\lim_{k\to\infty} A^k =0 \\[0.2cm] \pause 
+|\lambda_0| = \rho(A) \pause 
+\end{array}
+\right\}\pause
+&~~\Longrightarrow ~~
+\rho(A)^k = |\lambda_0|^k \le \rho(A^k) \le \|A^k\|_2( \forall k) \\[0.1in]
+& \pause 
+~~\Longrightarrow ~~
+\rho(A) < 1.
+\end{array}
+$$
+再证充分性：  
+$$
+\begin{array}{rcl}
+\rho(A) < 1  
+&~~\Longrightarrow ~~& \pause 
+\mbox{必有算子范数}\|\cdot\|\mbox{使得}\|A\|<1 \\[0.3cm]  
+&~~\Longrightarrow ~~& \pause 
+0 \le \|A^k \| \le \|A\|^k \rightarrow 0, \quad k \rightarrow \infty.
+\end{array}
+$$
+\end{proof}
+
+
+\end{frame}
+
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingli}
+设$A\in \mathbf{C}^{n\times n}$，则
+\begin{itemize}
+\item[(1)]
+$$
+\sum_{k=0}^{\infty}A^k\mbox{收敛}
+~~\Longleftrightarrow~~
+\rho(A)<1
+$$
+\pause
+\item[(2)]
+$$
+\sum_{k=0}^{\infty}A^k\mbox{收敛} 
+~~\Longleftrightarrow~~
+\left\{
+\begin{array}{l}
+\ds \sum_{k=0}^{\infty} A^k = (I-A)^{-1}, \\[0.8cm] 
+\ds  \mbox{存在}\mathbf{C}^{n\times n}\mbox{上的矩阵范数}\|\cdot\|\mbox{使得}\forall m \in \mathbf{N} \\[0.4cm]
+\ds  \qquad\left\|(I-A)^{-1}-\sum_{k=0}^{m} A^k\right\|
+\le \frac{\|A\|^{m+1}}{1-\|A\|}
+\end{array}
+\right.
+$$
+\end{itemize}    
+\end{dingli}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+1、\textcolor{acolor5}{先证必要性：}记$A^k = (a_{ij}^{(k)})$，则
+$$
+\sum_{k=0}^{\infty}A^k = I + A + A^2 + \cd + A^k + \cd,
+$$
+其元素为数项级数
+$$
+\delta_{ij} + a_{ij}^{(1)} + a_{ij}^{(2)} + \cd + a_{ij}^{(k)} + \cd,
+$$
+而数项级数收敛的必要条件是$a_{ij}^{(k)} \to 0, \quad k \to \infty$。\pause 故
+$$
+\begin{array}{rcl}
+\sum_{k=0}^{\infty}A^k\mbox{收敛}
+&~~\Longrightarrow~~& 
+\ds\lim_{m\to\infty} a_{ij}^{(m)}  = 0 \pause 
+~~\Longrightarrow~~
+\lim_{m\to\infty} A^m  = 0   \\[0.3cm] \pause
+&\pause \Longrightarrow~~& \pause 
+\rho(A) < 1.
+\end{array}
+$$
+\end{zhengming}
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+\begin{zhengming}
+1、\textcolor{acolor5}{再证充分性：}
+$$
+\begin{array}{rcl}          
+\rho(A) < 1
+&~~\Longrightarrow~~&
+\lim_{m\to\infty} A^m  = 0 \textcolor{acolor5}{\mbox{且}I-A\mbox{可逆}}\\[0.3cm] 
+&~~\Longrightarrow~~&
+\lim_{m\to\infty}(I-A)\sum_{k=0}^m A^k  = \lim_{m\to\infty} (I - A^m) = I \\[0.3cm]
+&~~\Longrightarrow~~&
+\sum_{k=0}^{\infty}A^k\mbox{收敛，且}(I-A)^{-1} = \sum_{k=0}^m A^k.
+\end{array}
+$$
+\end{zhengming}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{zhengming}
+2、
+$$
+\begin{array}{rcl}
+(I-A)^{-1} - \sum_{k=0}^{m}A^k &~~= ~~&  \sum_{k=m+1}^{\infty}A^k \\[0.4cm]
+~~\Longrightarrow~~
+\left\| (I-A)^{-1} - \sum_{k=0}^{m}A^k\right\| 
+&~~= ~~&  \left\|\sum_{k=m+1}^{\infty}A^k\right\| \\[0.4cm]
+&~~\le~~&  \sum_{k=m+1}^{\infty}\|A\|^k = \ds \frac{\|A\|^{m+1}}{1-\|A\|}
+\end{array}
+$$
+\end{zhengming}
+
+\end{frame}
+
+%%******
+\begin{frame}\ft{\subsecname}
+
+\begin{tuilun}
+设$A\in \mathbf{C}^{n\times n}$，$\mathbf{C}^{n\times n}$上的$\|\cdot\|$满足$\|I\|=1$，则
+$$
+\|A\|<1
+~~\Longrightarrow~~ \pause 
+\left\{
+\begin{array}{l}
+\ds \textcolor{acolor5}{I-A\mbox{可逆}} \\[0.3cm]
+\pause 
+\ds \left\|(I-A)^{-1}\right\|
+\le \frac1{1-\|A\|}
+\end{array}
+\right.
+$$
+\end{tuilun}
+
+\end{frame}
+

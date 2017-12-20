@@ -1,0 +1,351 @@
+\section{树的存储结构}
+
+\begin{frame}\ft{\secname}
+存储结构有两种方式，即顺序存储和链式存储。
+
+\begin{itemize}
+\item 顺序存储使用一段连续的存储单元依次存储各个数据元素。这对于线性表来说非常自然，但对树这样一对多的结构呢？
+\item 树中某个结点的孩子可以有多个，这意味着，无论按何种顺序将树中所有结点存储到数组中，结点的存储位置都无法直接反映其逻辑关系。也就是说简单的顺序存储结构不能满足树的实现要求。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\secname}
+我们可以充分利用顺序存储和链式存储结构的特点，来实现对树的存储结构的表示。
+\end{frame}
+
+\begin{frame}\ft{\secname}
+\begin{itemize}
+\item 双亲表示法
+\item 孩子表示法
+\item 孩子兄弟表示法
+\end{itemize}
+\end{frame}
+ 
+\begin{frame}\ft{双亲表示法}
+假设用一组连续空间来存储树的结点，同时在每个结点中附设一个指示器，以指示其双亲结点在数组中的位置。也就是说，每个结点除了知道自己是谁以外，还需知道其双亲在哪儿。 \vspace{0.1in}
+
+\begin{figure}
+\input{Chapters/Ch04/Tikz/parent}        
+\caption{双亲表示法的结点结构}
+
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{双亲表示法}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch04/Code/Storage/parent.h}
+\end{frame}
+%
+\begin{frame}\ft{双亲表示法}
+由于根结点没有双亲，约定其指针域为$-1$，也就是说，所有结点都存有其双亲的位置。
+\end{frame}
+
+\begin{frame}\ft{双亲表示法}
+\begin{small}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree3}        
+\end{figure}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{table}
+\begin{tabular}{c|c|c}\hline
+ index & data & parent\\\hline
+0&A&-1\\
+1&B&0\\
+2&C&0\\
+3&D&1\\
+4&E&2\\
+5&F&2\\
+6&G&3\\
+7&H&3\\
+8&I&3\\
+9&J&4\\\hline
+\end{tabular}
+\end{table}
+\end{minipage}
+\end{small}
+\end{frame}
+
+\begin{frame}\ft{双亲表示法}
+这样的存储结构，根据结点的parent指针可以很容易找到其双亲结点，时间复杂度为$O(1)$。当parent为$-1$时，表示找到了根结点。 \vspace{0.2in}
+
+但是，若想知道结点的孩子是什么，则必须遍历整个结构。
+\end{frame}
+%
+%
+\begin{frame}\ft{双亲表示法+长子域}
+\textcolor{acolor3}{改进:}
+
+增加一个最左边孩子的域，不妨称之为\textcolor{acolor3}{长子域}，这样就可以很容易找到结点的孩子。若该结点没有孩子，其长子域就设为$-1$。
+\end{frame}
+%
+%
+\begin{frame}\ft{双亲表示法+长子域}
+\begin{small}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree3}        
+\end{figure}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{table}
+\begin{tabular}{c|c|c|c}\hline
+index & data & parent & firstchild\\\hline
+0&A&-1&1\\
+1&B&0 &3\\
+2&C&0 &4\\
+3&D&1 &6\\
+4&E&2 &9\\
+5&F&2 &-1\\
+6&G&3 &-1\\
+7&H&3 &-1\\
+8&I&3 &-1\\
+9&J&4 &-1\\\hline
+\end{tabular}
+\end{table}
+\end{minipage}
+\end{small}
+\end{frame}
+%
+%
+\begin{frame}\ft{双亲表示法+右兄弟域}
+如若关注各兄弟之间的关系，可增加一个右兄弟域来体现兄弟关系，亦即，某个结点若存在右兄弟，则记录下其右兄弟的下标；若不存在，则赋值为$-1$。
+\end{frame}
+
+\begin{frame}\ft{双亲表示法+右兄弟域}
+\begin{small}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/tree3}        
+\end{figure}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{table}
+\begin{tabular}{c|c|c|c}\hline
+index &data &parent &rightsib\\\hline
+0&A&-1&-1\\
+1&B&0 &2\\
+2&C&0 &-1\\
+3&D&1 &-1\\
+4&E&2 &5\\
+5&F&2 &-1\\
+6&G&3 &7\\
+7&H&3 &8\\
+8&I&3 &-1\\
+9&J&4 &-1\\\hline
+\end{tabular}
+\end{table}
+\end{minipage}
+\end{small}
+\end{frame}
+%
+\begin{frame}\ft{双亲表示法+右兄弟域}
+若结点的孩子很多，超过了2个。但我们又关注结点的双亲、结点的孩子以及结点的兄弟，并且对时间遍历要求还比较高，那我们可以把此结构扩展为有双亲域、长子域以及右兄弟域。
+\end{frame}
+%
+\begin{frame}\ft{\secname}
+存储结构的设计是一个非常灵活的过程。一个存储结构设计得是否合理，取决于基于该存储结构的运算是否适合、是否方便，时间复杂度好不好等。
+但也不是越多越好。
+\end{frame}
+%
+%
+%\subsection{孩子表示法}
+%
+\begin{frame}\ft{孩子表示法}
+由于树中每个结点可能有多棵子树，可以考虑用多重链表，即\textcolor{acolor4}{每个结点有多个指针域，其中每个指针指向一颗子树的根结点，该方法称为多重链表表示法。} \vspace{0.2in}
+
+不过，树的每个结点的度，即其孩子是不同的，可以考虑如下两种方案。
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+\textcolor{acolor3}{方案一：}
+指针域的个数等于树的度。
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child1_structure}        
+\end{figure}
+\end{frame}
+%
+
+\begin{frame}\ft{孩子表示法}
+\begin{small}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child1}
+\caption{多重链表表示法1：固定指针域}
+\end{figure}
+\end{small}
+\end{frame}
+%
+%
+\begin{frame}\ft{孩子表示法}
+当各结点的度相差很大时，该方法显然是浪费空间的。不过，当各结点的度相差很小时，开辟的空间得以充分利用，此存储结构的缺点反而成了优点。\vspace{0.2in}
+
+\pause 
+\begin{wenti}
+如果很多指针域为空，为什么不能按需分配呢？
+\end{wenti}
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+\textcolor{acolor3}{方案二：}
+每个结点的指针域的个数等于该结点的度，专门取一个位置来存储结点指针域的个数。
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child1_structure1}        
+\end{figure}
+
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child2}
+\caption{多重链表表示法2：按需分配指针域}
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+该方法克服了空间浪费的缺点，但由于各个结点的链表结构不同，需要维护结点度的值，在运算上会带来时间上的损耗。\vspace{0.2in}
+
+\pause 
+\begin{wenti}
+能否有更好的办法，既可以减少空指针的浪费又能使结点结构相同？
+\end{wenti}\vspace{0.2in}
+
+\pause
+为了遍历整棵树，可以把结点放在一个顺序存储结构的数组中，但每个结点的孩子有多少不确定，可以再对每个结点的孩子建立一个单链表来体现它们的关系。
+\end{frame}
+%
+%
+%
+\begin{frame}\ft{孩子表示法}
+
+把每个结点的孩子排列起来，以单链表做存储结构，$n$个结点有$n$个孩子链表，如果是叶子结点则此单链表为空。
+
+而$n$个结点组成一个线性表，采用顺序存储结构，存放在一个一维数组中。
+\end{frame}
+
+\begin{frame}\ft{孩子表示法}
+为此，设计两种结点结构： \vspace{0.1in}
+
+1、孩子链表的孩子结点：\vspace{0.1in}
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child3_1}        
+\end{figure}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+2、表头数组的表头结点：\vspace{0.1in}
+
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child3_2}        
+\end{figure}
+\end{frame}
+%
+%
+%
+%
+
+\begin{frame}\ft{孩子表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child3}
+%\caption{孩子表示法}
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch04/Code/Storage/child.h}
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+该结构对于查找某个结点的某个孩子，或者找某个结点的兄弟，只需查找该结点的孩子单链表即可。\vspace{0.2in}
+
+若想遍历整棵树，只需对头结点的数组循环即可。
+\end{frame}
+%
+\begin{frame}\ft{孩子表示法}
+\begin{wenti}
+如何知道某个结点的双亲呢？
+\end{wenti}\vspace{0.1in}
+
+\pause
+需遍历整棵树，相对比较麻烦。可以考虑把双亲表示法和孩子表示法结合起来，设计一种所谓的“双亲孩子表示法”。
+\end{frame}
+%
+\begin{frame}\ft{孩子双亲表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/child4}
+\caption{孩子双亲表示法}
+\end{figure}
+\end{frame}
+%
+%
+%
+%\subsection{孩子兄弟表示法}
+\begin{frame}\ft{孩子兄弟表示法}
+\begin{wenti}
+以上分别从双亲的角度和孩子的角度研究了树的存储结构，那么从树结点的兄弟的角度又会如何？
+\end{wenti} \pause \vspace{0.1in}
+
+对于树这样的层级结构来说，只研究结点的兄弟是不行的。\pause \vspace{0.1in}
+
+\textcolor{acolor1}{任何一棵树，其结点的长子如果存在就是唯一的，它的大弟如果存在也是唯一的。因此，可设置两个指针，分别指向该结点的长子和右兄弟。}
+
+\end{frame}
+%
+\begin{frame}\ft{孩子兄弟表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/sibling1_1}
+\caption{孩子兄弟表示法结构定义}
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{孩子兄弟表示法}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch04/Code/Storage/sibling.h}
+\end{frame}
+%
+%
+\begin{frame}\ft{孩子兄弟表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/sibling}
+%\caption{孩子兄弟表示法}
+\end{figure}
+\end{frame}
+%
+\begin{frame}\ft{孩子兄弟表示法}
+该表示法便于查找某个结点的某个孩子。对于某个结点，可通过firstchild找到其长子，再通过长子的rightsib找到其二弟，接着一直找下去，直到找到具体的孩子。 \pause \vspace{0.1in}
+
+若想找某个结点的双亲，该表示法也有缺陷。\vspace{0.05in}
+
+可考虑再增加一个parent指针域来解决快速查找双亲的问题。
+
+\end{frame}
+
+\begin{frame}\ft{孩子兄弟表示法}
+孩子兄弟表示法的最大好处是它把一颗复杂的树变成了一棵二叉树。
+\end{frame}
+
+\begin{frame}\ft{孩子兄弟表示法}
+\begin{figure}
+\centering
+\input{Chapters/Ch04/Tikz/sibling1}
+% \caption{孩子兄弟表示法：二叉树}
+\end{figure}
+\end{frame}

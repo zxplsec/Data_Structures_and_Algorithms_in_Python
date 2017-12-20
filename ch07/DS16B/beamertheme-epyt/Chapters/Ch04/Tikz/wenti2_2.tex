@@ -1,0 +1,11 @@
+\begin{tikzpicture}[scale=0.8]
+
+  \tikzstyle{every node}=[thick,draw]
+
+  \node[circle] at (0,0) {A}[sibling distance=4cm] 
+  child { node[circle]{B}[sibling distance=3cm] 
+    child{ node[ellipse] {D、G}}
+    child{ node[ellipse] {H、E、I}}
+  }
+  child { node[ellipse,text width=1.2cm]{C、J、F}};
+\end{tikzpicture}

@@ -1,0 +1,55 @@
+
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+keywordstyle=\color{blue!70},
+frame=single,
+basicstyle=\ttfamily\bfseries\small,
+commentstyle=\small\color{red},
+rulesepcolor=\color{red!20!green!20!blue!20},
+tabsize=4,
+numbersep=5pt,
+%% backgroundcolor=\color{black!10},
+showspaces=false,
+showtabs=false,
+extendedchars=false,
+escapeinside=``,
+frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+\beginpgfgraphicnamed{bst2}
+
+\begin{tikzpicture}[scale=0.6]
+\tikzstyle{every node}=[circle,draw]
+\tikzstyle{level 1}=[sibling distance=2cm]
+\tikzstyle{level 2}=[sibling distance=2cm]
+
+\node at (0,0) {30} 
+child {node{5}   child {node{2}} child [fill=none] {edge from parent[draw=none]}} 
+child {node{40}};
+
+\end{tikzpicture}
+
+\endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

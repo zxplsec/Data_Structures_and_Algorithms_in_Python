@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+\usetikzlibrary{external} % set up externalization
+\tikzset{external/system call={latex \tikzexternalcheckshellescape -halt-on-error
+-interaction=batchmode -jobname "\image" "\texsource"; 
+dvips -o "\image".ps "\image".dvi &&
+ps2eps -l "\image.ps"}
+\tikzexternalize
+
+\pgfrealjobname{survey}
+\begin{document}
+\beginpgfgraphicnamed{zhuwenda}
+\begin{tikzpicture}
+% The graphic
+\draw[thick] (0,0.2) node[above]{IPO decision} 
+--(0,0) node[below]{$t_1$} node[below=.6in]{Going public or not}
+--(8,0) node[below]{$t_2$} node[below=.3in]{Product $q_1$ (firm I's strategy)} 
+                           node[below=.6in]{Product $q_2$ (firm II's strategy)}
+--(8,0.2)node[above]{Cournot competition};
+
+\end{tikzpicture}
+\endpgfgraphicnamed  
+
+\end{document}
+
+

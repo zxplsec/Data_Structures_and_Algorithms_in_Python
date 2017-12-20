@@ -1,0 +1,359 @@
+%% \begin{frame}
+%% 栈和队列是两种应用非常广泛的数据结构，它们来自线性表数据结构，都是“操作受限”的线性表。栈在计算机的实现有多种方式：
+%% \begin{itemize}
+%% \item[$\diamond$]硬堆栈
+%% \item[] 利用CPU中的某些寄存器组或类似的硬件或使用内存的特殊区域来实现。这些堆栈容量有限，但速度很快。
+%% \item[$\diamond$]软堆栈
+%% \item[] 这类堆栈主要在内存中实现。堆栈容量可以达到很大，在实现方式上，又有动态方式和静态方式两种。
+%% \end{itemize}•
+%% \end{frame}
+
+\section{栈}
+
+\input{Chapters/Ch03/sec3.1.1}
+\input{Chapters/Ch03/sec3.1.2}
+\input{Chapters/Ch03/sec3.1.3}
+\input{Chapters/Ch03/sec3.1.4}
+\input{Chapters/Ch03/sec3.1.5}
+
+
+
+
+
+
+%% \subsubsection{栈的动态顺序存储表示}
+%% \begin{frame}\ft{\subsecname}
+%% 采用动态一维数组来存储栈。所谓动态，指的是栈的大小可以根据需要增加。
+%% \begin{itemize}
+%% \item[$\diamond$]
+%% 用$bottom$表示栈底指针，栈底固定不变；
+%% \item[]
+%% 栈顶随着进栈和退栈操作而变化，用栈顶指针$top$指示当前栈顶位置。
+%% \item[$\diamond$]
+%% 用$top=bottom$作为栈空的标记，每次$top$指向栈顶数组中的下一个存储位置。
+%% \item[$\diamond$] \red{结点进栈}：首先将数据元素保存到栈顶，然后执行$top$加1，使$top$指向栈顶的下一个存储位置。
+%% \item[$\diamond$] \red{结点出栈}：首先执行$top$减1，使$top$指向栈顶元素的存储位置，然后将栈顶元素取出。
+%% \end{itemize}
+%% \end{frame}
+
+
+%% \begin{frame}\ft{\subsecname}
+%% \begin{figure}
+%% \centering
+%% \begin{tikzpicture}
+%%   \tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+%% \def\x{1}
+%% \def\y{0.5}
+
+%% \def\r{8}
+%% \foreach \r in {0,4,8}{
+%% \foreach \c in {1,2,...,5}{
+%% \filldraw[fill=red!20,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+
+%% \ifthenelse{0=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.8*\y)node[left]{$bottom$}--(\r,\c*\y-0.8*\y);
+%% \draw[->,>=stealth] (\r-0.5,\c*\y-0.2*\y)node[left]{$top$}--(\r,\c*\y-0.2*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){空栈};
+%% }
+%% {}
+
+%% \ifthenelse{4=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,\c*\y-0.5*\y){$a$};
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){元素$a$进栈};
+%% }{}
+
+%% \ifthenelse{4=\r \AND 2=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% }{}
+
+%% \ifthenelse{8=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,\c*\y-0.5*\y){$a$};
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){元素$b,c$进栈};
+%% }{}
+
+%% \ifthenelse{8=\r \AND 4=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$b$};
+%% \node[] at (\r+0.5*\x,3*\y-0.5*\y){$c$};
+%% }{}
+
+%% }
+%% }
+
+%% \end{tikzpicture}
+%% \end{figure}
+
+%% \begin{figure}
+%% \centering
+%% \begin{tikzpicture}
+%%   \tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+%% \def\x{1}
+%% \def\y{0.5}
+
+%% \def\r{8}
+%% \foreach \r in {0,4}{
+%% \foreach \c in {1,2,...,5}{
+%% \filldraw[fill=red!20,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+
+ 
+%% \ifthenelse{0=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,\c*\y-0.5*\y){$a$};
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){元素$c$退栈};
+%% }{}
+
+%% \ifthenelse{0=\r \AND 3=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$b$};
+%% }{}
+
+%% \ifthenelse{4=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,\c*\y-0.5*\y){$a$};
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){元素$d,e,f$进栈};
+%% }{}
+%% \ifthenelse{4=\r \AND 5=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y+0.5*\y)node[left]{$top$}--(\r,\c*\y+0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$b$};
+%% \node[] at (\r+0.5*\x,3*\y-0.5*\y){$d$};
+%% \node[] at (\r+0.5*\x,4*\y-0.5*\y){$e$};
+%% \node[] at (\r+0.5*\x,5*\y-0.5*\y){$f$};
+%% }{}
+%% }
+%% }
+%% \end{tikzpicture}
+%% \end{figure}
+%% \end{frame}
+
+
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{栈的初始化}
+%% \begin{lstlisting}[language=C,breaklines]
+%% Status Init_Stack(void) {
+%%   SqStack S;
+%%   S.bottom = (ElemType *) malloc(STACK_SIZE*sizeof(ElemType));
+%%   if(!S.bottom) return ERROR;
+%%   S.top=S.bottom;
+%%   S.stacksize=STACK_SIZE;
+%%   return OK;
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{压栈（元素进栈）}
+%% \begin{lstlisting}[language=C,breaklines]
+%% Status push(SqStack S, ElemType e) {
+%%   if (S.top-S.bottom>=S.stacksize-1){
+%%     S.bottom=(ElemType *) realloc((STACKINCREMENT+STACK_SIZE)*sizeof(ElemType)); /*栈满，追加存储空间*/
+%%     if(!S.bottom) return ERROR;
+%%     S.top=S.bottom+S.stacksize;
+%%     S.stacksize+=STACKINCREMENT;
+%%   }
+%%   *S.top=e; S.top++;
+%%   return OK;
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{弹栈（元素出栈）}
+%% \begin{lstlisting}[language=C,breaklines]
+%% Status pop(SqStack S, ElemType e) {
+%%   if (S.top==S.bottom) 
+%%     return ERROR;    
+%%   S.top--; e=*S.top; 
+%%   return OK;
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+%% \subsubsection{栈的静态顺序存储表示}
+%% \begin{frame}\ft{\subsubsecname}
+%% 采用静态一维数组来存储栈。栈底固定不变，而栈顶则随着进栈和退栈操作变化。
+%% \begin{itemize}
+%% \item[$\diamond$]
+%% 用一个整型变量$top$（称为栈顶指针）来指示当前栈顶位置。\\[0.1in]
+%% \item[$\diamond$]
+%% 用$top=0$表示栈空的初始状态，每次$top$指向栈顶在数组中的存储位置。\\[0.1in]
+%% \item[$\diamond$]
+%% 结点进栈：首先执行$top$加1，使$top$指向新的栈顶位置，然后将数据元素保存到栈顶（$top$所指的当前位置）。\\[0.1in]
+%% \item[$\diamond$]
+%% 结点出栈：首先把$top$指向的栈顶元素取出，然后执行$top$减1，使$top$指向新的栈顶位置。
+%% \end{itemize}
+
+%% \end{frame}
+
+
+%% \begin{frame}\ft{\subsecname}
+%% \begin{figure}
+%% \centering
+%% \begin{tikzpicture}
+%%   \tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+%% \def\x{1}
+%% \def\y{0.5}
+
+%% \def\r{8}
+%% \foreach \r in {0,4,8}{
+%% \foreach \c in {1,2,...,5}{
+%% \ifthenelse{1=\c}{
+%% \filldraw[fill=black,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+%% }{
+%% \filldraw[fill=red!20,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+%% }
+
+%% \ifthenelse{0=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.8*\y)node[left]{$bottom$}--(\r,\c*\y-0.8*\y);
+%% \draw[->,>=stealth] (\r-0.5,\c*\y-0.2*\y)node[left]{$top$}--(\r,\c*\y-0.2*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){空栈};
+%% }
+%% {}
+
+%% \ifthenelse{4=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){1个元素进栈};
+%% }{}
+
+%% \ifthenelse{4=\r \AND 2=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,\c*\y-0.5*\y){$a$};
+%% }{}
+
+%% \ifthenelse{8=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){3个元素进栈};
+%% }{}
+
+%% \ifthenelse{8=\r \AND 4=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$a$};
+%% \node[] at (\r+0.5*\x,3*\y-0.5*\y){$b$};
+%% \node[] at (\r+0.5*\x,4*\y-0.5*\y){$c$};
+%% }{}
+
+%% }
+%% }
+
+%% \end{tikzpicture}
+%% \end{figure}
+
+%% \begin{figure}
+%% \centering
+%% \begin{tikzpicture}
+%%   \tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+%% \def\x{1}
+%% \def\y{0.5}
+
+%% \def\r{8}
+%% \foreach \r in {0,4}{
+%% \foreach \c in {1,2,...,5}{
+%% \ifthenelse{1=\c}{
+%% \filldraw[fill=black,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+%% }{
+%% \filldraw[fill=red!20,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+%% }
+ 
+%% \ifthenelse{0=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){元素$c$退栈};
+%% }{}
+
+%% \ifthenelse{0=\r \AND 3=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$a$};
+%% \node[] at (\r+0.5*\x,3*\y-0.5*\y){$b$};
+%% }{}
+
+%% \ifthenelse{4=\r \AND 1=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$bottom$}--(\r,\c*\y-0.5*\y);
+%% \node[below] at (\r+0.5*\x,\c*\y-\y){栈满};
+%% }{}
+%% \ifthenelse{4=\r \AND 5=\c}
+%% {\draw[->,>=stealth] (\r-0.5,\c*\y-0.5*\y)node[left]{$top$}--(\r,\c*\y-0.5*\y);
+%% \node[] at (\r+0.5*\x,2*\y-0.5*\y){$a$};
+%% \node[] at (\r+0.5*\x,3*\y-0.5*\y){$b$};
+%% \node[] at (\r+0.5*\x,4*\y-0.5*\y){$d$};
+%% \node[] at (\r+0.5*\x,5*\y-0.5*\y){$e$};
+%% }{}
+%% }
+%% }
+%% \end{tikzpicture}
+%% \end{figure}
+%% \end{frame}
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{栈的类型定义}
+%% \begin{lstlisting}
+%% #define MAX_STACK_SIZE 100
+%% #typedef int ElemType;
+%% typedef struct sqstack{
+%%   ElemType stack_array[MAX_STACK_SIZE];
+%%   int top;
+%% } SqStack;
+
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{栈的初始化}
+%% \begin{lstlisting}
+%% SqStack Init_Stack(void){
+%%   SqStack S;
+%%   S.bottom=S.top=0;
+%%   return (S);
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{压栈（元素进栈）}
+%% \begin{lstlisting}
+%% Status push(SqStack S, ElemType e){
+%%   if (S.top==MAX_STACK_SIZE-1)
+%%     return ERROR;
+%%   S.top++;
+%%   S.stack_array[S.top]=e;
+%%   return OK;
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{block}{弹栈（元素出栈）}
+%% \begin{lstlisting}
+%% Status push(SqStack S, ElemType *e){
+%%   if (S.top==0)
+%%     return ERROR;
+%%   *e=S.stack_array[S.top];
+%%   S.top--;
+%%   return OK;
+%% }
+%% \end{lstlisting}
+%% \end{block}
+%% \end{frame}
+
+
+%% \begin{frame}[fragile]\ft{基本操作的实现}
+%% \begin{itemize}
+%% \item[$\diamond$]
+%% 当栈满时做进栈运算必定产生空间溢出，简称“上溢”。上溢是一种出错状态，应设法避免。\\[0.2in]
+%% \item[$\diamond$]
+%% 当栈空时做退栈运算也将产生溢出，简称“下溢”。下溢则可能是正常现象，因为栈在使用时，其初态或终态都是空栈，所以下溢常用来作为控制转移的条件。
+%% \end{itemize}
+%% \end{frame}
+

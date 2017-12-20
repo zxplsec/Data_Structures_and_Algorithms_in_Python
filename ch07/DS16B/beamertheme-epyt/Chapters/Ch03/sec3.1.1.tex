@@ -1,0 +1,66 @@
+\subsection{基本概念和抽象数据类型}
+\begin{frame}\ft{\subsecname}
+  \begin{dingyi}[栈]
+    栈(Stack)是限定仅在表尾进行插入和删除操作的线性表。
+  \end{dingyi}
+  \begin{itemize}
+  \item[$\diamond$] 允许进行插入、删除操作的一端称为栈顶(top)，另一端称为栈底(bottom)；\\[0.1in]
+  \item[$\diamond$] 不含任何数据元素的栈称为空栈；\\[0.1in]
+  \item[$\diamond$] 栈又称后进先出(Last In First out)的线性表，简称LIFO结构。
+  \end{itemize}•
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \begin{itemize}
+  \item 栈是一种特殊的线性表，仍具有前驱后继关系。\\[0.1in]
+  \item 栈限制了插入和删除的位置，这些操作始终只在栈顶进行。于是栈底是固定的，最先进栈的只能在栈底。
+  \end{itemize}
+\end{frame}
+%
+
+\begin{frame}\ft{\subsecname}
+设栈$S=(a_1,a_2,\cd,a_n)$，称$a_1$为栈底元素，$a_n$为栈顶元素。
+
+  \input{Chapters/Ch03/Tikz/Stack/Stack}
+
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+  \begin{itemize}
+  \item 栈的插入操作叫做进栈，也称压栈、入栈。\\[0.1in]
+  \item 栈的删除操作叫做出栈，也称弹栈。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+  \input{Chapters/Ch03/Tikz/Stack/PushStack}
+
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+
+  \input{Chapters/Ch03/Tikz/Stack/PopStack}
+
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname}   
+\begin{lstlisting}[mathescape=true]
+    ADT Stack{
+      Data:
+      `同线性表。元素具有相同的数据类型，相邻元素有前驱、后继关系。`
+      Operation:
+      Init(*S):     `初始化操作，创建一个空栈S`
+      Destroy(*S):  `若栈存在，销毁之`
+      Clear(*S):    `将栈清空`
+      IsEmpty(S):   `若栈为空，返回true；否则返回false`
+      GetTop(S,*e): `若栈存在且非空，用e返回栈顶元素`
+      Push(*S,e):   `若栈存在，插入新元素e并称为栈顶元素`
+      Pop(*S,*e):   `删除栈顶元素，并用e返回其值`
+      Length(S):   `返回元素个数`
+    } ADT Stack
+  \end{lstlisting}
+\end{frame}

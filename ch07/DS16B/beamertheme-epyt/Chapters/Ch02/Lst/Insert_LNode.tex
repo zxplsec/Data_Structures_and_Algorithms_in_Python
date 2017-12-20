@@ -1,0 +1,15 @@
+\begin{lstlisting}[language=C]
+void Insert_LNode(LinkList L, int i, ElemType e) {
+  int j=0; LinkList p,q;  
+  p=L->next;
+  while (p!=NULL&&j<i-1){
+    p=p->next;  j++;
+  }
+  if (j!=i-1) printf("i`太大或`i`为`0!\n");
+  else {
+    q=(LNode *)malloc(sizeof(LNode));
+    q->data=e; q->next=p->next;
+    p->next=q;;
+  }
+}
+\end{lstlisting}

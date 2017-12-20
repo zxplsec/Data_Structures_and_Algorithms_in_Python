@@ -1,0 +1,65 @@
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a) edge[very thick,red] (b)
+    edge (c)   
+    edge[very thick,red] (d)
+(b) edge (c)
+(c) edge (d);             
+\end{tikzpicture}
+\end{minipage}
+%%%%%
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a) edge (b)
+    edge (c)   
+    edge (d)
+(b) edge[very thick,red] (c)
+(c) edge[very thick,red] (d);             
+\end{tikzpicture}
+\end{minipage} \vspace{0.1in}
+
+
+
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a) edge[very thick,red] (b)
+    edge[very thick,red] (c)   
+    edge (d)
+(b) edge (c)
+(c) edge[very thick,red] (d);             
+\end{tikzpicture}
+\end{minipage}
+%%%%%
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.2,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (180:1) {$b$};
+\node[state]   (c) at (270:1) {$c$};
+\node[state]   (d) at   (0:1) {$d$};
+\path
+(a) edge (b)
+    edge[very thick,red] (c)   
+    edge[very thick,red] (d)
+(b) edge[very thick,red] (c)
+(c) edge (d);             
+\end{tikzpicture}
+\end{minipage}

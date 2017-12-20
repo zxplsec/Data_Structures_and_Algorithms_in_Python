@@ -1,0 +1,83 @@
+\section{0.2.~研究数值方法的必要性}
+
+%%%%%%
+\begin{frame}\ft{\secname}
+\begin{small}
+对于线性方程组
+$$
+Ax = b,
+$$
+\begin{dingli}[Crammer法则]
+若$A$非奇异，则此方程组有唯一解，且
+$$
+x_i = \frac{|A_i|}{|A|}, ~~ i = 1, 2, \cd, n.
+$$
+其中$A_i$是将$A$的第$i$列换为$b$而得的矩阵。
+\end{dingli}
+
+\pause
+该结论非常漂亮，它把线性方程组的求解问题归结为计算$n+1$个$n$阶行列式的计算问题。
+\end{small}
+\end{frame}
+
+%%%%%%
+\begin{frame}\ft{\secname}
+\begin{small}
+对于行列式的计算
+\begin{dingli}[Laplace展开定理]
+若$A$非奇异，则此方程组有唯一解，且
+$$
+|A| = a_{i1} A_{i1} + a_{i2} A_{i2} +  \cd + a_{in} A_{in}
+$$
+其中$A_{ij}$是元素$a_{ij}$的代数余子式。
+\end{dingli}
+
+\pause
+该方法的运算量大的惊人，以至于完全不能用于实际计算。
+\end{small}
+\end{frame}
+
+%%%%%%
+\begin{frame}\ft{\secname}
+\begin{small}
+设$k$阶行列式所需乘法运算的次数为$m_k$，则
+$$
+m_k = k + k m_{k-1},
+$$
+于是有
+$$
+\begin{array}{ll}
+m_n &= n + n m_{n-1} \\[0.2cm]
+    &= n + n[(n-1) + (n-1) m_{n-2}] \\[0.2cm]
+    &= \cd \\[0.2cm]
+    &= n + n(n-1) + n(n-1)(n-2) + \cd + n(n-1)\cd 3 \cdot 2\\[0.2cm]
+    &> n!
+\end{array}
+$$
+故用Crammer法则和Laplace展开定理求解一个$n$阶线性方程组，所需乘法运算的次数就大于
+$$
+(n+1)n! = (n+1)!.
+$$
+
+\end{small}
+\end{frame}
+
+%%%%%%
+\begin{frame}\ft{\secname}
+\begin{small}
+在一台百亿次的计算机上求解一个25阶线性方程组，则至少需要
+$$
+\frac{26!}{10^{10}\times 3600 \times 24 \times 365}
+\approx
+\frac{4.0329\times 10^{28}}{3.1526\times 10^{17}}
+\approx
+13\mbox{亿年}
+$$
+\pause
+\vspace{0.1in}
+
+而用下章介绍的消去法求解，则需要不到一秒钟。
+\end{small}
+\end{frame}
+
+

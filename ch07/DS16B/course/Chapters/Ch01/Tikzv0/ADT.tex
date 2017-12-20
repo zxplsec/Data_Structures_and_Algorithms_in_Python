@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{ADT}
+  \begin{tikzpicture}
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=7.5cm]{
+      \blue{\large 抽象数据类型(Abstract Data Type, ADT)}\\
+      指一个数学模型及定义在该模型上的一组操作。
+    };
+
+    \node at (0,-3) [fill=blue!20,draw,ellipse,text width=7cm]{
+      ADT的定义仅取决于它的一组逻辑特性，而与其在计算机内部如何表示和实现无关。\vspace{0.1in}
+
+      抽象的意义在于数据类型的数学抽象特性。
+    };
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

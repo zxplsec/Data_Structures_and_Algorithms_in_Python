@@ -1,0 +1,35 @@
+\begin{tikzpicture}[scale=1.5,->,>=stealth',node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-1,-1) grid (5,3);
+\node[state]   (v0) at (90:1)  {$v_0$};
+\node[state]   (v1) at (90+72:1)   {$v_1$};
+\node[state]   (v2) at (90+2*72:1) {$v_2$};
+\node[state]   (v3) at (90+3*72:1)  {$v_3$};
+\node[state]   (v4) at (90+4*72:1)  {$v_4$};
+\path
+
+(v1) edge node{9} (v0);   
+
+\matrix (am) at (3,0) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=10pt,column sep=10pt,right] 
+  {
+    0 & \infty & \infty & \infty & \infty\\
+    9 & 0 & \infty & \infty & \infty \\
+    \infty & \infty & 0 & \infty & \infty \\
+    \infty & \infty & \infty & 0 & \infty\\
+    \infty & \infty & \infty & \infty & \infty\\
+  };
+  \node at (am-1-1) [above=10pt] {$v_0$}; 
+  \node at (am-1-2) [above=10pt] {$v_1$};       
+  \node at (am-1-3) [above=10pt] {$v_2$};       
+  \node at (am-1-4) [above=10pt] {$v_3$};
+  \node at (am-1-5) [above=10pt] {$v_4$};
+  \node at (am-1-1) [left=18pt] {$v_0$}; 
+  \node at (am-2-1) [left=18pt] {$v_1$};       
+  \node at (am-3-1) [left=18pt] {$v_2$};       
+  \node at (am-4-1) [left=18pt] {$v_3$};             
+  \node at (am-5-1) [left=18pt] {$v_4$};             
+\matrix (v) at (3,2) [matrix of math nodes,left delimiter=(,right delimiter=),row sep=10pt,column sep=10pt,right]{
+  v_0 & v_1 & v_2 & v_3 & v_4\\
+};
+
+
+\end{tikzpicture}

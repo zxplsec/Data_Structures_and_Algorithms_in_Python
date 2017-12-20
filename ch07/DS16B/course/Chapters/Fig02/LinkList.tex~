@@ -1,0 +1,11 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\foreach \i in {1,2}
+\filldraw[fill=red!20] (\i-1,0)rectangle(\i,1);
+\node [] at (0.5,0.5) {data};
+\node [] at (1.5,0.5) {next};
+\node [right] at (3.5,1) {data: 数据域，存放结点的值};
+\node [right] at (3.5,0.2) {next: 指针域，存放结点的直接后继的地址};
+\end{tikzpicture}
+\end{figure}

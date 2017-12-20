@@ -1,0 +1,82 @@
+\begin{tikzpicture}[scale=1]
+  \def\x{0.6} \def\y{0.6}
+  %% \draw[dashed,step=\x] (0*\x,0*\y) grid (16*\x,12*\y);
+
+  \foreach \i in {0,4,8,13}{
+    \def\j{0}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  }
+  \def\i{0}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{G};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \def\i{4}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{H};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \def\i{8}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{I};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \def\i{13}\def\j{0}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{J};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  
+  \foreach \i in {3,8,12}{
+    \def\j{3}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  }
+
+
+  \def\i{3}\def\j{3}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{D};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \def\i{8}\def\j{3}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{E};
+
+  
+  \def\i{12}\def\j{3}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{F};
+  \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \foreach \i in {2,7}{
+    \def\j{6}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  }
+
+  \def\i{2}\def\j{6}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{B};
+
+  \def\i{7}\def\j{6}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{C};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+
+  \foreach \i in {1}{
+    \def\j{9}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+  }
+  \def\i{1}\def\j{9}
+  \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{A};
+  \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+
+  \draw[blue,thick,->,>=latex](2.5*\x,9.5*\y)--(2.5*\x,7.0*\y);
+  \draw[blue,thick,->,>=latex](3.5*\x,6.5*\y)--(3.5*\x,4.0*\y);
+  \draw[blue,thick,->,>=latex](8.5*\x,6.5*\y)--(8.5*\x,4.0*\y);
+  \draw[blue,thick,->,>=latex](4.5*\x,6.5*\y)--(7.0*\x,6.5*\y);
+  \draw[blue,thick,->,>=latex](4.5*\x,3.5*\y)--(0.5*\x,1.0*\y);
+  \draw[blue,thick,->,>=latex](9.5*\x,3.5*\y)--(13*\x,0.5*\y);
+  \draw[blue,thick,->,>=latex](10.5*\x,3.5*\y)--(12*\x,3.5*\y);
+  \draw[blue,thick,->,>=latex](2.5*\x,0.5*\y)--(4.0*\x,0.5*\y);
+  \draw[blue,thick,->,>=latex](6.5*\x,0.5*\y)--(8.0*\x,0.5*\y);
+  
+  
+\end{tikzpicture}

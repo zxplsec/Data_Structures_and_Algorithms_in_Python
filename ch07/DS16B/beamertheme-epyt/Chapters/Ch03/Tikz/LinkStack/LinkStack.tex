@@ -1,0 +1,45 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+\def\x{1}
+\def\y{0.6}
+
+\foreach \r in {0,4}{
+\ifthenelse{\r=4}{
+\foreach \c in {6,4,2,0}{
+\draw[thick,fill=red!10,rounded corners](\r*\x,\c*\y)rectangle(\r*\x+1.5*\x,\c*\y+\y);
+\draw[thick] (\r*\x+\x,\c*\y)--(\r*\x+\x,\c*\y+\y);
+\ifthenelse{6=\c}{\node[]at(\r*\x+0.5*\x,\c*\y+0.5*\y){$a_4$};}{}
+\ifthenelse{4=\c}{\node[]at(\r*\x+0.5*\x,\c*\y+0.5*\y){$a_3$};}{}
+\ifthenelse{2=\c}{\node[]at(\r*\x+0.5*\x,\c*\y+0.5*\y){$a_2$};}{}
+\ifthenelse{0=\c}{
+\node[]at(\r*\x+0.5*\x,\c*\y+0.5*\y){$a_1$};            
+}{}
+
+\ifthenelse{6=\c}{
+\draw[->,thick] (\r*\x-0.6*\x,\c*\y+0.5*\y)node[left]{{\tt top}} --(\r*\x-0.1*\x,\c*\y+0.5*\y);
+}{}
+
+\draw[->,thick] (\r*\x+1.25*\x,\c*\y+0.5*\y) --(\r*\x+1.25*\x,\c*\y-0.9*\y);
+
+\ifthenelse{\c=0} {
+\filldraw[thick] (\r*\x+\x,\c*\y-1.5*\y) rectangle (\r*\x+1.5*\x,\c*\y-\y);
+\node[below] at (\r*\x+0.75*\x,\c*\y-2*\y) {非空栈};
+}
+
+}
+}
+%{\foreach \c in {6}{
+%\draw[thick,fill=red!10,rounded corners](\r*\x,\c*\y)rectangle(\r*\x+1.5*\x,\c*\y+\y);
+%\draw[thick] (\r*\x+\x,\c*\y)--(\r*\x+\x,\c*\y+\y);
+%\draw[->,>=stealth] (\r*\x-0.5*\x,\c*\y+0.5*\y)node[left]{{\tt top}} --(\r*\x,\c*\y+0.5*\y);
+%
+%\draw[->,thick] (\r*\x+1.25*\x,\c*\y+0.5*\y) --(\r*\x+1.25*\x,\c*\y-0.9*\y);
+%\filldraw[thick] (\r*\x+\x,\c*\y-1.5*\y) rectangle (\r*\x+1.5*\x,\c*\y-\y);
+%\node[below] at (\r*\x+0.75*\x,\c*\y-2*\y) {空栈};
+%}
+%}
+}
+\end{tikzpicture}
+\end{figure}

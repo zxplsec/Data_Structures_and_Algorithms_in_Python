@@ -1,0 +1,28 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}
+    The graphic
+    \node at (0,0)[fill=red!20,draw,starburst,drop shadow,text width=0.5cm]{
+      两种算法的比较
+    };
+    \pause
+    \node at (1.5,1.5) [right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=4cm]{
+\begin{lstlisting}[mathescape=true]
+int i,sum=0,n=100;
+for (i=1;i<=n;i++)
+  sum=sum+i;
+printf("%d",sum);
+\end{lstlisting}
+};
+    \node at (1.5,-1.5) [right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=4cm]{
+\begin{lstlisting}[mathescape=true]
+int i,sum=0,n=100;
+sum=(n+1)*n/2;
+printf("%d",sum);
+      \end{lstlisting}
+    };
+  \end{tikzpicture}
+  
+\end{figure}
+
+

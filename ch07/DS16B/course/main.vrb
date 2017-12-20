@@ -1,0 +1,4 @@
+\ft{\subsecname}\fst{单链表的合并}
+\begin{block}{时间复杂度}
+若$La,Lb$两个链表的长度分别为$m,n$，则链表合并的时间复杂度为$O(m+n)$。
+\end{block}

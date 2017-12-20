@@ -1,0 +1,54 @@
+\begin{tikzpicture}[scale=0.5,node distance=2cm,semithick,inner sep=1pt,bend angle=45]
+  %\draw[help lines] (-3,-3) grid (3,0);
+  \node[state]   (A)                    {A};
+  \node[state]   (B) [below left  of=A] {B};
+  \node[state]   (F) [below right of=A] {F};
+  \node[state]   (C) [below left  of=B] {C};
+  \node[state]   (G) [below       of=A] {G};
+  \node[state]   (E) [below right of=F] {E};
+  \node[state]   (H) [below right of=G] {H};
+  \node[state]   (I) [right       of=C] {I};
+  \node[state]   (D) [below       of=H] {D};
+
+  \path
+  (A) edge  (B) edge  (F)
+  (B) edge  (C) edge  (G) edge  (I)
+  (F) edge  (G) edge  (E)
+  (C) edge  (I) edge  (D)
+  (G) edge  (H) edge  (D)
+  (E) edge  (H) edge  (D)
+  (H) edge  (D)
+  (I) edge  (D);
+
+  \pause 
+  \draw[->,>=latex',red] (A)to[bend right=8](B); \pause 
+  \draw[->,>=latex',red] (B)to[bend right=8](C); \pause 
+  \draw[->,>=latex',red] (C)to[bend right=8](D); \pause 
+  \draw[->,>=latex',red] (D)to[bend right=8](E); \pause 
+  \draw[->,>=latex',red] (E)to[bend right=8](F); \pause
+  \draw[->,>=latex',red,densely dashed] (F)to[bend right=8](A); \pause
+  \draw[->,>=latex',red,densely dashed] (A)to[bend right=8](F); \pause
+  \draw[->,>=latex',red] (F)to[bend right=8](G); \pause
+  \draw[->,>=latex',red,densely dashed] (G)to[bend right=8](B); \pause
+  \draw[->,>=latex',red,densely dashed] (B)to[bend right=8](G); \pause
+  \draw[->,>=latex',red,densely dashed] (G)to[bend right=8](D); \pause
+  \draw[->,>=latex',red,densely dashed] (D)to[bend right=8](G); \pause
+  \draw[->,>=latex',red] (G)to[bend right=8](H); \pause
+  \draw[->,>=latex',red,densely dashed] (H)to[bend right=8](D); \pause
+  \draw[->,>=latex',red,densely dashed] (D)to[bend right=8](H); \pause
+  \draw[->,>=latex',red,densely dashed] (H)to[bend right=8](E); \pause
+  \draw[->,>=latex',red,densely dashed] (E)to[bend right=8](H); \pause
+  \draw[->,>=latex',blue](H)to[bend right=8](G); \pause
+  \draw[->,>=latex',blue](G)to[bend right=8](F); \pause
+  \draw[->,>=latex',blue](F)to[bend right=8](E); \pause
+  \draw[->,>=latex',blue](E)to[bend right=8](D); \pause
+  \draw[->,>=latex',red] (D)to[bend right=8](I); \pause
+  \draw[->,>=latex',red,densely dashed] (I)to[bend right=8](B); \pause
+  \draw[->,>=latex',red,densely dashed] (B)to[bend right=8](I); \pause
+  \draw[->,>=latex',red,densely dashed] (I)to[bend right=8](C); \pause
+  \draw[->,>=latex',red,densely dashed] (C)to[bend right=8](I); \pause
+  \draw[->,>=latex',blue](I)to[bend right=8](D); \pause
+  \draw[->,>=latex',blue](D)to[bend right=8](C); \pause
+  \draw[->,>=latex',blue](C)to[bend right=8](B); \pause
+  \draw[->,>=latex',blue](B)to[bend right=8](A); \pause
+\end{tikzpicture}

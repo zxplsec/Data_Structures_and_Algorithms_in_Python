@@ -1,0 +1,101 @@
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (0,-1) grid (7,3);
+\node[state]   (v0) at (30:1)  {$v_0$};
+\node[state]   (v1) at (0:0)   {$v_1$};
+\node[state]   (v2) at (-40:1) {$v_2$};
+\node[state]   (v3) at (-5:1.8)  {$v_3$};
+\path
+(v0) edge[->,>=latex'] (v3)
+(v1) edge[->,>=latex']  (v0)
+       edge[->,>=latex',bend right=10] (v2)
+(v2) edge[->,>=latex',bend right=10] (v1)
+       edge[->,>=latex']  (v0);   
+
+\def\dd{0.5}
+\foreach \i in {0,1,2,3}{
+\draw (2.2,\i*\dd) rectangle(3.2,\i*\dd+\dd);
+\draw (2.8,\i*\dd)-- (2.8,\i*\dd+\dd);
+\node at (2.45,-\i*\dd+3.5*\dd){$v_\i$};
+}
+\node at (2.45,2) [above]{\tf data};
+\node at (2.95,2) [above=10pt]{\tf firstedge};
+
+
+\def\dd{0.5}
+\foreach \i in {1,2,3}{
+\draw[->,>=latex'] (2.95,\i*\dd+0.5*\dd)--(3.4,\i*\dd+0.5*\dd);
+\draw (3.4,\i*\dd) rectangle(4.4,\i*\dd+\dd);
+\draw (3.9,\i*\dd)-- (3.9,\i*\dd+\dd);
+\ifthenelse{\i=3}{
+\node at (3.65,\i*\dd+0.5*\dd){$3$};
+}{
+\node at (3.65,\i*\dd+0.5*\dd){$0$};
+}
+}
+
+\node at (3.65,2) [above]{\tf adjvex};
+\node at (4.15,2) [above=10pt]{\tf next};
+
+\def\dd{0.5}
+\foreach \i in {1,2}{
+\draw[->,>=latex'] (4.15,\i*\dd+0.5*\dd)--(4.6,\i*\dd+0.5*\dd);
+\draw (4.6,\i*\dd) rectangle(5.6,\i*\dd+\dd);
+\draw (5.1,\i*\dd)-- (5.1,\i*\dd+\dd);
+\ifthenelse{\i=2}{
+\node at (4.85,\i*\dd+0.5*\dd){$2$};
+}{
+\node at (4.85,\i*\dd+0.5*\dd){$1$};
+}
+}
+
+
+
+
+%%%%%%%%%%%
+
+\def\yy{-2.7}
+
+
+\foreach \i in {0,1,2,3}{
+\draw (2.2,\i*\dd+\yy) rectangle(3.2,\i*\dd+\dd+\yy);
+\draw (2.8,\i*\dd+\yy)-- (2.8,\i*\dd+\dd+\yy);
+\node at (2.45,-\i*\dd+3.5*\dd+\yy){$v_\i$};
+}
+\node at (2.45,2+\yy) [above]{\tf data};
+\node at (2.95,2+\yy) [above=10pt]{\tf firstedge};
+
+
+\def\dd{0.5}
+\foreach \i in {0,1,2,3}{
+\draw[->,>=latex'] (2.95,\i*\dd+0.5*\dd+\yy)--(3.4,\i*\dd+0.5*\dd+\yy);
+\draw (3.4,\i*\dd+\yy) rectangle(4.4,\i*\dd+\dd+\yy);
+\draw (3.9,\i*\dd+\yy)-- (3.9,\i*\dd+\dd+\yy);
+\ifthenelse{\i=2}{
+\node at (3.65,\i*\dd+0.5*\dd+\yy){$2$};
+}{
+\ifthenelse{\i=0}{
+\node at (3.65,\i*\dd+0.5*\dd+\yy){$0$};
+}{
+\node at (3.65,\i*\dd+0.5*\dd+\yy){$1$};
+}
+}
+}
+
+\node at (3.65,2+\yy) [above]{\tf adjvex};
+\node at (4.15,2+\yy) [above=10pt]{\tf next};
+
+\def\dd{0.5}
+\foreach \i in {3}{
+\draw[->,>=latex'] (4.15,\i*\dd+0.5*\dd+\yy)--(4.6,\i*\dd+0.5*\dd+\yy);
+\draw (4.6,\i*\dd+\yy) rectangle(5.6,\i*\dd+\dd+\yy);
+\draw (5.1,\i*\dd+\yy)-- (5.1,\i*\dd+\dd+\yy);
+\node at (4.85,\i*\dd+0.5*\dd+\yy){$2$};
+
+}
+
+
+
+
+
+
+\end{tikzpicture}

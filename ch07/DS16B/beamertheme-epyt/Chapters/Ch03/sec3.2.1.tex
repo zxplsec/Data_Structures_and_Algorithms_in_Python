@@ -1,0 +1,37 @@
+
+\subsection{基本概念和抽象数据类型}
+\begin{frame}\ft{\subsecname} 
+\begin{dingyi}
+队列({\tt Queue})是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。
+\end{dingyi}
+\end{frame}
+
+\begin{frame}\ft{\subsecname} 
+\begin{itemize}
+\item 队列是一种先进先出({\tt First in First Out, FIFO})的线性表。\\[0.1in]
+\item 允许插入的一端叫队尾，允许删除的一端叫队头。
+\end{itemize}
+\end{frame}
+
+\begin{frame}\ft{\subsecname} 
+\input{Chapters/Ch03/Tikz/SqQueue/Queue}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname} 
+  \begin{lstlisting} 
+    ADT `队列`(Queue)
+    Data
+       `同线性表。元素具有相同的类型，相邻元素具有前驱和后继关系`
+    Operation:
+       Init(*Q):
+       Destroy(*Q):
+       Clear(*Q):
+       IsEmpty(Q):
+       GetHead(Q, *e):
+       Enter(*Q, e):
+       Delete(*Q, *e):
+       Length(Q):
+  \end{lstlisting}
+\end{frame}
+
+

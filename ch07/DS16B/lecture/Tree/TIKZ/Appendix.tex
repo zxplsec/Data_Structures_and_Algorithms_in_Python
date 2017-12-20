@@ -1,0 +1,242 @@
+\section*{附录A: 分数阶Lapace算子的几种等价性定义}
+\begin{dingli}
+$$
+-\mathcal F^{-1}(|\xi|^\alpha\hat u(\xi))=-\frac1{2\cos\frac{\pi\alpha}2}\left[\tensor*[_{-\infty}]{D}{_x^\alpha}u(x)+\tensor*[_x]{D}{_\infty^\alpha}u(x)\right]
+$$
+\end{dingli}
+\begin{proof}
+先回顾一下Fourier变换的定义
+$$
+\begin{aligned}
+\hat u(\xi) = \mathcal F[u(x)] = \int_{-\infty}^\infty u(x) e^{-ix\xi}\,dx, \quad 
+u(x) = \mathcal F^{-1}[\hat u(\xi)] = \frac1{2\pi}\int_{-\infty}^\infty \hat u(\xi) e^{ix\xi}\,d\xi,
+\end{aligned}
+$$
+1、先证$\alpha\in(0,1)$的情形。假设当$x\to\pm\infty$时$u(x)\to0$，利用分部积分公式有
+$$
+\begin{aligned}
+\hat u(\xi) &= \int_{-\infty}^\infty u(\eta) e^{-i\eta\xi}\,d\eta \\
+&=\frac1{-i\xi} \int_{-\infty}^\infty u(\eta) \,de^{-i\eta\xi}\\
+&=\frac1{-i\xi} \left[e^{-i\eta\xi}u(\eta)\big|_{-\infty}^\infty-\int_{-\infty}^\infty e^{-i\eta\xi}u^\prime(\eta) \,d\eta\right]\\
+&=\frac 1{i\xi}   \int_{-\infty}^\infty e^{-i\eta\xi}u^\prime(\eta) \,d\eta.
+\end{aligned}
+$$
+于是
+$$
+\begin{aligned}
+-(-\Delta)^{\frac\alpha2}u(x)&=-\mathcal F^{-1}(|\xi|^\alpha\hat u(\xi))\\
+&=-\frac1{2\pi} \int_{-\infty}^\infty |\xi|^\alpha\hat u(\xi) e^{ix\xi}\,d\xi\\
+&=-\frac1{2\pi i} \int_{-\infty}^\infty \frac{|\xi|^\alpha}\xi   e^{ix\xi}\,d\xi \int_{-\infty}^\infty e^{-i\eta\xi}u^\prime(\eta) \,d\eta\\
+&=\frac i{2\pi}  \int_{-\infty}^\infty u^\prime(\eta)   \,d\eta \int_{-\infty}^\infty \frac{|\xi|^\alpha}\xi   e^{i(x-\eta)\xi}\,d\xi
+\end{aligned}
+$$
+因
+$$
+\begin{aligned}
+\int_{-\infty}^\infty\frac{|\xi|^\alpha}\xi   e^{i(x-\eta)\xi}\,d\xi &= \int_{0}^\infty \xi^{\alpha-1}   e^{i(x-\eta)\xi}\,d\xi-\int_{0}^\infty \xi^{\alpha-1}   e^{i(\eta-x)\xi}\,d\xi
+\end{aligned}
+$$
+又因
+$$
+\mathcal L(\xi^{\alpha-1})=\int_0^\infty e^{-s\xi}\xi^{\alpha-1}\,d\xi=\frac{\Gamma(\alpha)}{s^\alpha}, 
+$$
+故有
+$$
+\begin{aligned}
+\int_{-\infty}^\infty\frac{|\xi|^\alpha}\xi   e^{i(x-\eta)\xi}\,d\xi &= \left[\frac{\Gamma(\alpha)}{[i(\eta-x)]^\alpha} - \frac{\Gamma(\alpha)}{[i(x-\eta)]^\alpha}\right]\\
+&= \Gamma(\alpha)\left[[i(\eta-x)]^{-\alpha} - [i(x-\eta)]^{-\alpha}\right]\\
+\end{aligned}
+$$
+因$bi=|b|e^{i\frac{sign(b) \pi}2}$，故$i(\eta-x)=|\eta-x|e^{ i\frac{sign(\eta-x)\pi}2}, i(x-\eta)=|\eta-x|e^{i\frac{sign(x-\eta)\pi}2}$，从而有
+$$
+\begin{aligned} 
+\left[i(\eta-x)\right]^{-\alpha}=|\eta-x|^\alpha e^{i\frac{-sign(\eta-x)\alpha\pi}2}&=|\eta-x|^{-\alpha}\left[ \cos \frac{-sign(\eta-x)\alpha\pi}2+i\sin \frac{-sign(\eta-x)\alpha\pi}2 \right] \\
+&=|\eta-x|^{-\alpha}\left[ \cos \frac{\alpha\pi}2-sign(\eta-x)i\sin \frac{\alpha\pi}2 \right]\\
+&=|\eta-x|^{-\alpha}\left[ \cos \frac{\alpha\pi}2+sign(x-\eta)i\sin \frac{\alpha\pi}2 \right], \\
+\left[i(x-\eta)\right]^{-\alpha}=|\eta-x|^\alpha e^{i\frac{-sign(x-\eta)\alpha\pi}2}&=|\eta-x|^\alpha\left[ \cos \frac{-sign(x-\eta)\alpha\pi}2+i\sin \frac{-sign(x-\eta)\alpha\pi}2 \right]\\
+&=|\eta-x|^{-\alpha}\left[ \cos \frac{\alpha\pi}2-sign(x-\eta)i\sin \frac{\alpha\pi}2 \right]
+\end{aligned}
+$$
+于是
+$$
+[i(\eta-x)]^{-\alpha} - [i(x-\eta)]^{-\alpha}=2i \frac{sign(x-\eta)}{|x-\eta|^\alpha}\sin\frac{\alpha\pi}2,
+$$
+故
+$$
+\begin{aligned}
+\int_{-\infty}^\infty\frac{|\xi|^\alpha}\xi   e^{i(x-\eta)\xi}\,d\xi &= 2\Gamma(\alpha)i   \frac{sign(x-\eta)}{|x-\eta|^\alpha}\sin\frac{\alpha\pi}2,
+\end{aligned}
+$$
+注意到$\Gamma(\alpha)\Gamma(1-\alpha)=\frac{\pi}{\sin\alpha\pi}$
+$$
+\begin{aligned}
+-(-\Delta)^{\frac\alpha2}u(x)&=-\frac{\Gamma(\alpha)\sin\frac{\alpha\pi}2}{\pi}\int_{-\infty}^\infty u^\prime(\eta)\frac{sign(x-\eta)}{|x-\eta|^\alpha}   \,d\eta\\
+&=-\frac{\Gamma(\alpha)\sin \alpha\pi}{2\pi\cos\frac{\alpha\pi}2}\int_{-\infty}^\infty u^\prime(\eta)\frac{sign(x-\eta)}{|x-\eta|^\alpha}   \,d\eta\\
+&=-\frac{\Gamma(\alpha)}{2\Gamma(\alpha)\Gamma(1-\alpha)\cos\frac{\alpha\pi}2}\int_{-\infty}^\infty u^\prime(\eta)\frac{sign(x-\eta)}{|x-\eta|^\alpha}   \,d\eta\\
+&=-\frac{1}{2\cos\frac{\alpha\pi}2}\left[\frac1{\Gamma(1-\alpha)}\int_{-\infty}^x \frac{u^\prime(\eta)}{(x-\eta)^\alpha}   \,d\eta-\frac1{\Gamma(1-\alpha)}\int_{x}^\infty\frac{ u^\prime(\eta)}{(\eta-x)^\alpha}   \,d\eta\right].
+\end{aligned}
+$$
+当$\alpha\in(0,1)$时，有
+$$
+\tensor*[_a]{D}{_x^\alpha} u(x)=\frac{u(a)(x-a)^{-\alpha}}{\Gamma(1-\alpha)}+\frac1{\Gamma(1-\alpha)}\int_{a}^x \frac{u^\prime(\eta)}{(x-\eta)^\alpha}   \,d\eta,
+$$
+若$u(x)\to 0, ~~x\to-\infty$，则有
+$$
+\tensor*[_{-\infty}]{D}{_x^\alpha} u(x)=\frac1{\Gamma(1-\alpha)}\int_{-\infty}^x \frac{u^\prime(\eta)}{(x-\eta)^\alpha}   \,d\eta,
+$$
+类似地也有
+$$
+\tensor*[_x]{D}{_\infty^\alpha} u(x)=\frac{-1}{\Gamma(1-\alpha)}\int_x^{\infty} \frac{u^\prime(\eta)}{(\eta-x)^\alpha}   \,d\eta,
+$$
+于是有
+$$
+-(-\Delta)^{\frac\alpha2}u(x)=-\frac{1}{2\cos\frac{\alpha\pi}2}\left[\tensor*[_a]{D}{_x^\alpha} u(x)+\tensor*[_x]{D}{_\infty^\alpha} u(x)\right], \quad \alpha\in(0,1).
+$$\vskip.2in
+
+\noindent 2、再证$\alpha\in(1,2)$的情形。假设当$x\to\pm\infty$时$u(x)\to0$，利用两次分部积分公式有
+$$
+\begin{aligned}
+\hat u(\xi) &= \int_{-\infty}^\infty u(\eta) e^{-i\eta\xi}\,d\eta =\frac 1{(i\xi)^2}   \int_{-\infty}^\infty e^{-i\eta\xi}u^{\prime\prime}(\eta) \,d\eta.
+\end{aligned}
+$$
+于是
+$$
+\begin{aligned}
+-(-\Delta)^{\frac\alpha2}u(x)&=-\mathcal F^{-1}(|\xi|^\alpha\hat u(\xi))=-\frac1{2\pi} \int_{-\infty}^\infty |\xi|^\alpha\hat u(\xi) e^{ix\xi}\,d\xi\\
+&=\frac1{2\pi} \int_{-\infty}^\infty \frac{|\xi|^\alpha}{\xi^2}   e^{ix\xi}\,d\xi \int_{-\infty}^\infty e^{-i\eta\xi}u^{\prime\prime}(\eta) \,d\eta\\
+&=\frac 1{2\pi}  \int_{-\infty}^\infty u^\prime(\eta)   \,d\eta \int_{-\infty}^\infty  |\xi|^{\alpha-2}    e^{i(x-\eta)\xi}\,d\xi.
+\end{aligned}
+$$
+因
+$$
+\begin{aligned}
+\int_{-\infty}^\infty |\xi|^{\alpha-2}   e^{i(x-\eta)\xi}\,d\xi &= \int_{0}^\infty \xi^{\alpha-2}   e^{i(x-\eta)\xi}\,d\xi+\int_{0}^\infty \xi^{\alpha-2}   e^{i(\eta-x)\xi}\,d\xi
+\end{aligned}
+$$
+又因
+$$
+\mathcal L(\xi^{\alpha-2})=\int_0^\infty e^{-s\xi}\xi^{\alpha-2}\,d\xi=\frac{\Gamma(\alpha-1)}{s^{\alpha-1}}, 
+$$
+故有
+$$
+\begin{aligned}
+\int_{-\infty}^\infty|\xi|^{\alpha-2}   e^{i(x-\eta)\xi}\,d\xi  
+&= \Gamma(\alpha-1)\left[[i(\eta-x)]^{1-\alpha} + [i(x-\eta)]^{1-\alpha}\right],
+\end{aligned}
+$$
+因$bi=|b|e^{i\frac{sign(b) \pi}2}$，故$i(\eta-x)=|\eta-x|e^{ i\frac{sign(\eta-x)\pi}2}, i(x-\eta)=|\eta-x|e^{i\frac{sign(x-\eta)\pi}2}$，从而有
+$$
+\begin{aligned} 
+\left[i(\eta-x)\right]^{1-\alpha}&=|\eta-x|^{1-\alpha} e^{i\frac{-sign(\eta-x)(1-\alpha)\pi}2}\\
+&=|\eta-x|^{1-\alpha}\left[ \cos \frac{-sign(\eta-x)(1-\alpha)\pi}2+i\sin \frac{-sign(\eta-x)(1-\alpha)\pi}2 \right] \\
+&=|\eta-x|^{1-\alpha}\left[ \cos \frac{(1-\alpha)\pi}2-sign(\eta-x)i\sin \frac{(1-\alpha)\pi}2 \right]\\
+&=|\eta-x|^{1-\alpha}\left[ \cos \frac{(1-\alpha)\pi}2+sign(x-\eta)i\sin \frac{(1-\alpha)\pi}2 \right], \\
+\left[i(x-\eta)\right]^{1-\alpha}&=|\eta-x|^{1-\alpha}e^{i\frac{-sign(x-\eta)(1-\alpha)\pi}2}\\
+&=|\eta-x|^{1-\alpha}\left[ \cos \frac{-sign(x-\eta)(1-\alpha)\pi}2+i\sin \frac{-sign(x-\eta)(1-\alpha)\pi}2 \right]\\
+&=|\eta-x|^{1-\alpha}\left[ \cos \frac{(1-\alpha)\pi}2-sign(x-\eta)i\sin \frac{(1-\alpha)\pi}2 \right]
+\end{aligned}
+$$
+于是
+$$
+[i(\eta-x)]^{1-\alpha} + [i(x-\eta)]^{1-\alpha}=2\cos\frac{(1-\alpha)\pi}2\frac{1}{|x-\eta|^{\alpha-1}}=2\sin\frac{\alpha\pi}2\frac{1}{|x-\eta|^{\alpha-1}},
+$$
+故
+$$
+\begin{aligned}
+\int_{-\infty}^\infty |\xi|^{\alpha-2}   e^{i(x-\eta)\xi}\,d\xi &= 2\Gamma(\alpha-1)\sin\frac{\alpha\pi}2   \frac{1}{|x-\eta|^{\alpha-1}},
+\end{aligned}
+$$
+注意到$\Gamma(\alpha-1)\Gamma(2-\alpha)=\frac{\pi}{\sin(\alpha-1)\pi}=\frac{-\pi}{\sin\alpha\pi}$，从而有
+$$
+\begin{aligned}
+-(-\Delta)^{\frac\alpha2}u(x)&=\frac{\Gamma(\alpha-1)\sin\frac{\alpha\pi}2}{\pi}\int_{-\infty}^\infty \frac{u^\prime(\eta)}{|x-\eta|^{\alpha-1}}   \,d\eta\\
+&=\frac{\Gamma(\alpha-1)\sin \alpha\pi}{2\pi\cos\frac{\alpha\pi}2}\int_{-\infty}^\infty \frac{u^\prime(\eta)}{|x-\eta|^{\alpha-1}}   \,d\eta\\
+&=-\frac{\Gamma(\alpha-1)}{2\Gamma(\alpha-1)\Gamma(2-\alpha)\cos\frac{\alpha\pi}2}\int_{-\infty}^\infty  \frac{u^\prime(\eta)}{|x-\eta|^{\alpha-1}}   \,d\eta\\
+&=-\frac{1}{2\cos\frac{\alpha\pi}2}\left[\frac1{\Gamma(2-\alpha)}\int_{-\infty}^x \frac{u^{\prime\prime}(\eta)}{(x-\eta)^{\alpha-1}}   \,d\eta+\frac1{\Gamma(2-\alpha)}\int_{x}^\infty\frac{ u^{\prime\prime}(\eta)}{(\eta-x)^{\alpha-1}}   \,d\eta\right].
+\end{aligned}
+$$
+当$\alpha\in(1,2)$时，有
+$$
+\tensor*[_a]{D}{_x^\alpha} u(x)=\frac{u(a)(x-a)^{-\alpha}}{\Gamma(1-\alpha)}+\frac{u^\prime(a)(x-a)^{1-\alpha}}{\Gamma(2-\alpha)}+\frac1{\Gamma(2-\alpha)}\int_{a}^x \frac{u^{\prime\prime}(\eta)}{(x-\eta)^{\alpha-1}}   \,d\eta,
+$$
+若$u(x),u^\prime(x)\to 0, ~~x\to-\infty$，则有
+$$
+\tensor*[_{-\infty}]{D}{_x^\alpha} u(x)=\frac1{\Gamma(2-\alpha)}\int_{a}^x \frac{u^{\prime\prime}(\eta)}{(x-\eta)^{\alpha-1}}   \,d\eta,
+$$
+类似地也有
+$$
+\tensor*[_x]{D}{_\infty^\alpha} u(x)=\frac{1}{\Gamma(2-\alpha)}\int_x^{\infty} \frac{u^{\prime\prime}(\eta)}{(\eta-x)^{\alpha-1}}   \,d\eta,
+$$
+于是有
+$$
+-(-\Delta)^{\frac\alpha2}u(x)=-\frac{1}{2\cos\frac{\alpha\pi}2}\left[\tensor*[_{-\infty}]{D}{_x^\alpha} u(x)+\tensor*[_x]{D}{_\infty^\alpha} u(x)\right], \quad \alpha\in(1,2).
+$$
+\end{proof}
+
+
+\begin{dingli}
+\begin{equation}  
+-\mathcal F^{-1}(|\xi|^\alpha\hat u(\xi)) = \frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{u(x-z)+u(x+z)-2u(x)}{|z|^{1+\alpha}}\,dz.
+\end{equation}
+其中
+$$
+C_{1,\alpha}=\frac{\alpha 2^{\alpha-1}\Gamma(\frac{1+\alpha}2)}{\pi^{1/2}\Gamma(\frac{2-\alpha}2)}.
+$$
+\end{dingli}
+\begin{proof}
+因
+\begin{equation}\label{FL_fourier}
+\begin{aligned}
+ & \mathcal F\left[\frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{u(x-z)+u(x+z)-2u(x)}{|z|^{1+\alpha}}\,dz\right] 
+= \frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{\mathcal F\left[u(x-z)+u(x+z)-2u(x)\right]}{|z|^{1+\alpha}}\,dz\\[0.1in]
+=& \frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{e^{-  i \xi  z}\hat u(\xi)+e^{ i \xi  z}\hat u(\xi)-2\hat u(\xibd)}{|z|^{1+\alpha}}\,dz\\[0.1in]
+=& \frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{\left(e^{-  i \xi   z}+e^{  i \xi  z}-2\right)\hat u(\xi) }{|z|^{1+\alpha}}\,dz\\[0.1in]
+=&  C_{1,\alpha} \int_{-\infty}^\infty\frac{ \cos \xi z-1}{|z|^{1+\alpha}}\,dz\cdot \hat u(\xi):= C_{1,\alpha} J(\xi) \hat u(\xi)
+\end{aligned}
+\end{equation}
+其中
+$$
+\begin{aligned}
+J(\xi) = \int_{-\infty}^\infty\frac{ \cos \xi z-1}{|z|^{1+\alpha}}\,dz\xlongequal[]{y=\xi z} -|\xi|^\alpha \int_{-\infty}^\infty\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy.
+\end{aligned}
+$$
+以下证明上述积分是可积的。事实上，可做如下分解
+$$
+\int_{\mathbb R} \frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy = \int_{-1}^1\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy + \int_{\mathbb R\backslash [-1,1]}\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy,
+$$
+而
+$$
+\begin{aligned}
+\int_{-1}^1\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy \le \int_{-1}^1\frac{ y^2 }{|y|^{1+\alpha}}\,dy = \int_{-1}^1y^{1-\alpha}\,dy < \infty
+\end{aligned}
+$$
+及
+$$
+\begin{aligned}
+\int_{\mathbb R\backslash [-1,1]}\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy \le \int_{\mathbb R\backslash [-1,1]}\frac{2 }{|y|^{1+\alpha}}\,dy < \infty.
+\end{aligned}
+$$
+取
+$$
+C_{1,\alpha}=\left(\int_{-\infty}^\infty\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy\right)^{-1},
+$$
+则有
+$$
+J(\xi)=-\frac{|\xi|^\alpha}{C_{1,\alpha}}
+$$
+从而有
+$$
+\mathcal F\left[\frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{u(x-z)+u(x+z)-2u(x)}{|z|^{1+\alpha}}\,dz\right] = -|\xi|^\alpha \hat u(\xi),
+$$
+即
+$$
+\frac{C_{1,\alpha}}2 \int_{-\infty}^\infty \frac{u(x-z)+u(x+z)-2u(x)}{|z|^{1+\alpha}}\,dz=-\mathcal F^{-1}\left[|\xi|^\alpha \hat u(\xi)\right].
+$$
+以下只需说明
+$$
+\int_{-\infty}^\infty\frac{ 1-\cos y }{|y|^{1+\alpha}}\,dy=\frac{\pi^{1/2}\Gamma(\frac{2-\alpha}2)}{\alpha 2^{\alpha-1}\Gamma(\frac{1+\alpha}2)}.
+$$
+\end{proof}
+
+
+

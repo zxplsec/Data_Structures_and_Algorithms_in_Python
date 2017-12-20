@@ -1,0 +1,34 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+
+    % The graphic
+    \node at (1,0)[left,fill=blue!20,draw,starburst,drop shadow,text=blue,text centered]
+    (1){
+      {\large 数据} 
+    };
+    \node at (2,0)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=7cm]
+    (2){
+      描述客观事物的符号, 是计算机中可以操作的对象, 是能被计算机识别, 并输入给计算机处理的符号集合.
+    };
+    \pause
+    \node at (-1,-3) [right,fill=red!20,draw,rectangle,rounded corners=3mm,text width=5cm]
+    (3){ \small 
+      数据包括
+      \begin{itemize}
+      \item  整型、实型等数值类型;
+      \item 字符及声音、图像、视频等非数值类型.
+      \end{itemize}
+    };
+    \pause
+    \node at (4.8,-4) [right,fill=green!20,decorate,decoration=saw,draw,circle,text width=5cm,]
+    (3){\small 数据就是符号, 必须满足:
+      \begin{itemize}
+      \item 可以输入到计算机中;
+      \item 能被计算机程序处理.
+      \end{itemize}
+    };
+
+  \end{tikzpicture}
+  
+\end{figure}

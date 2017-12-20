@@ -1,0 +1,375 @@
+\section{线性方程组的敏度分析}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\textcolor{acolor5}{线性方程组的敏感性问题}
+
+考察线性方程组
+$$
+Ax=b,
+$$
+若给$A$和$b$以微小的扰动，其解会有何影响。
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{li}
+$$
+\left[
+\begin{array}{cc}
+2.0002 & 1.9998\\
+1.9998 & 2.0002
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+4\\
+4
+\end{array}
+\right]
+\pause
+\textcolor{acolor3}{~\rightarrow ~x=(1~1)^T}.
+$$
+\pause
+$$
+\left[
+\begin{array}{cc}
+2.0002 & 1.9998\\
+1.9998 & 2.0002
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+4{+0.0002}\\
+4{-0.0002}
+\end{array}
+\right]~~
+\pause
+\textcolor{acolor3}{~\rightarrow ~\tilde{x}=(1.5~0.5)^T}.
+$$
+\end{li}
+
+\pause 
+
+$$
+\frac{\|\tilde{x}-x\|_{\infty}}{\|x\|_{\infty}}=\frac12,~~~~~
+\frac{\|\delta b\|_{\infty}}{\|b\|_{\infty}}=\frac1{20000}.
+$$
+
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+考察非奇异线性方程组$Ax = b$。
+$$
+\begin{array}{l}
+\left.
+\begin{array}{l}
+A \rightarrow A+\delta A\\[0.2cm]
+b \rightarrow b+\delta b
+\end{array}
+\right\}
+~\Longrightarrow~
+x \rightarrow x + \delta x.
+\end{array}
+$$
+\pause 
+$$
+(A+\delta A)(x + \delta x) = b + \delta b
+$$
+$$
+\Longrightarrow (A+\delta A) \delta x  =  \delta b - \delta A x
+$$
+\pause 
+\textcolor{acolor3}{
+只要$\|A^{-1}\|\cdot\|\delta A\|<1$，就有$A+\delta A$可逆，并且
+$$
+\|(I + A^{-1}\delta A)^{-1}\|\le \frac1{1-\|A^{-1}\|\cdot \|\delta A\|}.
+$$
+}
+\pause 
+于是
+$$
+\delta x = (A+\delta A)^{-1} (\delta b - \delta A x)
+= (I+A^{-1}\delta A)^{-1} A^{-1} (\delta b - \delta A x).
+$$
+
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+由
+$$
+\delta x 
+= (I+A^{-1}\delta A)^{-1} A^{-1} (\delta b - \delta A x) 
+$$
+可得
+$$
+\begin{array}{rcl}
+\|\delta x\| 
+&\le&  
+\| (I+A^{-1}\delta A)^{-1}\| \cdot \| A^{-1} \| (\|\delta b \| + \|\delta A\|\cdot \| x\|)\\[0.4cm]  
+& \pause 
+\le & \pause \ds \frac{\| A^{-1} \|}{1-\|A^{-1}\|\cdot \|\delta A\|}(\|\delta b \| + \|\delta A\|\cdot \| x\|)
+\end{array}
+$$
+\pause 
+由$ \|b\|\le \|A\|\cdot\|x\|$可知 \pause 
+$$
+\frac{\|\delta x\|}{\|x\|} \le \frac{\| A^{-1} \|\cdot \| A \|}{1-\|A^{-1}\|\cdot \|\delta A\|}
+\left(\frac{\|\delta A \|}{\|A\|} + \frac{\|\delta b \|}{\|b\|}\right).
+$$
+
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{dingli}
+\textcolor{acolor5}{条件：}
+\begin{itemize}
+\item 
+$\|\cdot\|$满足条件$\|I\|=1$, $A\in \R^{n\times n}$非奇异，$b\in \R^{n}$非零
+\item
+$\delta A\in \R^{n\times n}$满足$\|A^{-1}\|\cdot\|\delta A\|<1$
+\item
+$$ \left\{
+\begin{array}{cl}
+Ax = b & {\rightarrow \mbox{解为}x} \\[0.2cm]
+(A+\delta A)(x + \delta x) = b + \delta b & {\rightarrow \mbox{解为} x+\delta x}
+\end{array}
+\right.
+$$
+\end{itemize}
+\pause 
+\textcolor{acolor5}{结论：}
+$$
+\frac{\|\delta x\|}{\|x\|}
+\le
+\frac{\kappa(A)}{1-\kappa(A)\frac{\|\delta A\|}{\|A\|}}
+\left(
+\frac{\|\delta A \|}{\|A\|} + \frac{\|\delta b \|}{\|b\|}
+\right),
+$$
+
+
+\end{dingli}
+
+
+
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+$$
+\begin{array}{l}
+\frac{\|\delta A\|}{\|A\|}\mbox{较小} \\[0.3cm] \pause 
+\Longrightarrow ~~ \frac{\kappa(A)}{1-\kappa(A)\frac{\|\delta A\|}{\|A\|}} \approx
+\kappa(A) \\[0.3cm] \pause 
+\Longrightarrow ~~
+\textcolor{acolor3}{
+\frac{\|\delta x\|}{\|x\|}
+\le \kappa(A)\left(
+\frac{\|\delta A \|}{\|A\|} + \frac{\|\delta b \|}{\|b\|}
+\right)}
+\end{array}
+$$
+
+\vspace{0.2cm}
+\pause
+
+\textcolor{acolor5}{结论}
+\begin{itemize}
+\item 
+$x$的相对误差由$b$和$A$的相对误差之和放大$\kappa(A)$倍得来 \pause 
+\item
+若$\kappa(A)$不大，则扰动对解的影响也不会太大 \pause 
+\item
+若$\kappa(A)$很大，则扰动对解的影响可能会太大
+\end{itemize}
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{dingyi}[条件数]
+$\kappa(A) =\| A^{-1} \|\cdot \| A \|$称为线性方程组$Ax=b$的\textcolor{acolor3}{条件数}。
+\end{dingyi}
+\vspace{0.2cm}
+\pause
+
+条件数在一定程度上刻画了扰动对解的影响程度。\pause 
+\begin{itemize}
+\item
+{若$\kappa(A)$很大，则我们就说该线性方程组的求解问题是病态的，或者说$A$是病态的；} \pause 
+\item
+{若$\kappa(A)$很小，则我们就说该线性方程组的求解问题是良态的，或者说$A$是良态的。}
+\end{itemize}
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\textcolor{acolor5}{条件数与范数有关}，$\R^{n\times n}$上任意两种范数下的条件数$\kappa_{\alpha}(A)$与$\kappa_{\beta}(A)$都是等价的，即存在常数$c_1$和$c_2$，
+使得
+$$
+c_1 \kappa_{\alpha}(A) \le \kappa_{\beta}(A) \le c_2 \kappa_{\alpha}(A).
+$$
+
+例如，
+$$
+\begin{array}{rcl}
+\frac1n \kappa_2(A) \le & \kappa_1(A) & \le n \kappa_2(A), \\[0.2cm]
+\frac1n \kappa_{\infty}(A) \le & \kappa_2(A) & \le n \kappa_{\infty}(A), \\[0.2cm]
+\frac1{n^2} \kappa_1(A) \le & \kappa_{\infty}(A) & \le n^2 \kappa_2(A).
+\end{array}
+$$
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{tuilun}
+\textcolor{acolor5}{条件：}
+\begin{itemize}
+\item 
+$\|\cdot\|$满足条件$\|I\|=1$，$A\in \R^{n\times n}$非奇异，$b\in \R^{n}$非零
+\item
+$\delta A\in \R^{n\times n}$满足$\|A^{-1}\|\cdot\|\delta A\|<1$
+\end{itemize}
+\pause 
+\textcolor{acolor5}{结论}
+\begin{itemize}
+\item $A+\delta A$也非奇异
+\item
+$$
+\frac{\|(A+\delta A)^{-1} - A^{-1}\|}{\|A^{-1}\|}
+\le
+\frac{\kappa(A)}{1-\kappa(A)\frac{\|\delta A\|}{\|A\|}}
+\frac{\|\delta A \|}{\|A\|}.
+$$
+\end{itemize}
+
+\end{tuilun}
+\vspace{0.2cm}
+\pause
+
+\textcolor{acolor3}{这表明$\kappa(A) =\| A^{-1} \|\cdot \| A \| $可当做矩阵求逆问题的条件数。}
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{tuilun}[条件数的几何意义]
+设$A\in\R^{n\times n}$非奇异，则
+$$
+\min\left\{\frac{\|\delta A\|_2}{\|A\|_2}: A+\delta A\mbox{奇异}\right\}
+= \frac1{\| A^{-1} \|_2\cdot \| A \|_2}
+= \frac1{\kappa_2(A)},
+$$
+即在谱范数下，一个矩阵的条件数的倒数正好等于该矩阵与全体奇异矩阵所成集合的相对距离。
+\end{tuilun}
+\vspace{0.2cm}
+\pause
+
+\textcolor{acolor3}{当$A\in\R^{n\times n}$十分病态时，它与一个奇异矩阵非常接近。}
+
+
+\end{frame}
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+\begin{zhengming}
+只需证
+$$
+\min\left\{\|\delta A\|_2: A+\delta A\mbox{奇异}\right\}
+= \frac1{\| A^{-1} \|_2}.
+$$
+\pause 
+事实上，{当$\|A^{-1}\|_2\cdot\|\delta A\|_2<1$时，$A+\delta A$可逆}，于是若$A+\delta A$奇异，则必有
+$$
+\|A^{-1}\|_2\cdot\|\delta A\|_2\ge 1
+$$
+\pause 
+即
+$$\textcolor{acolor5}{
+\min\left\{\|\delta A\|_2: A+\delta A\mbox{奇异}\right\} \ge \frac1{\|A^{-1}\|_2}.
+}
+$$
+\end{zhengming}
+
+\end{frame}
+
+
+%%%%
+%%%%
+\begin{frame}\ft{\secname}
+
+\begin{zhengming}
+存在$x\in\R^{n}$满足$\|x\|_2=1$使得$\|A^{-1}x\|_2=\|A^{-1}\|_2$。
+令
+$$
+y = \frac{A^{-1}x}{\|A^{-1}x\|_2}, ~~
+\delta A = - \frac{xy^T}{\|A^{-1}\|_2},
+$$ \pause 
+则有$\|y\|_2 =1$，且 \pause 
+$$
+\begin{array}{cc}
+(A+\delta A)y = Ay + \delta Ay 
+= \frac{x}{\|A^{-1}x\|_2} - \frac{x}{\|A^{-1}\|_2} = 0 \\[0.4cm] \pause 
+\|\delta A\|_2 = \max_{\|z\|_2=1}\left\|\frac{xy^T}{\|A^{-1}\|_2} z\right\|_2
+= \frac{\|x\|_2}{\|A^{-1}\|_2}\max_{\|z\|_2=1}|y^Tz|=\frac1{\|A^{-1}\|_2},  
+\end{array}
+$$
+\pause 
+这说明找到了一个$\delta A\in\R^{n\times n}$使得$A+\delta A$奇异，
+且$\|\delta A\|_2 = \|A^{-1}\|_2^{-1}$。
+\end{zhengming}
+\end{frame}
+

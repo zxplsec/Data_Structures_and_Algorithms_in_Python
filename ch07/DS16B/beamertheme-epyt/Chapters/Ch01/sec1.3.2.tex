@@ -1,0 +1,230 @@
+\subsection{误差与有效数字}
+
+\subsubsection{绝对误差与绝对误差限}
+%*******
+\begin{frame}\ft{\subsecname}
+
+\begin{dingyi}[绝对误差与绝对误差限]
+设某个量的精确值为$x$，其近似值为$x^{\star}$，则称
+$$
+E(x) = x - x^{\star}
+$$
+为近似值$x^{\star}$的\textcolor{acolor5}{绝对误差}，简称\textcolor{acolor5}{误差}。
+若存在$\eta>0$，使得
+$$
+|E(x)=|x - x^{\star}|\le\eta
+$$
+则称$\eta$为近似值$x^{\star}$的\textcolor{acolor5}{绝对误差限}，简称\textcolor{acolor5}{误差限}或\textcolor{acolor5}{精度}。
+\end{dingyi}
+
+\rule{\textwidth}{.5mm}
+$\eta$越小，表示近似值$x^{\star}$的精度越高。
+$$
+x^{\star} - \eta \le x \le x^{\star} +  \eta
+~~\mbox{或}~~
+x = x^{\star} \pm \eta
+$$
+
+\end{frame}
+
+
+%*******
+\begin{frame}\ft{\subsecname} 
+
+
+
+\begin{li}
+用毫米刻度的直尺量一长度为$x$的物体，测得其近似值为$x^{\star}=84$mm。
+\end{li}
+\vspace{0.3cm}
+\pause
+
+因直尺以mm为刻度，其误差不超过$0.5$mm，即有
+$$
+|x-84|\le0.5 \mbox{~mm}
+~~\mbox{或}~~
+x=84\pm0.5\mbox{~mm}
+$$
+
+\end{frame}
+
+%*******
+\begin{frame}\ft{\subsecname}\fst{\subsubsecname}
+
+\begin{li}
+测量$100$m和$10$m的两个长度，若它们的绝对误差均为$1$cm，显然前者的测量更为精确。
+\end{li}
+
+\pause
+\vspace{0.3cm}
+由此可见，决定一个量的近似值的精确度，\textcolor{acolor3}{除了绝对误差外，还必须考虑该量本身的大小}，为此引入相对误差的概念。
+
+\end{frame}
+
+%*******
+\begin{frame}\ft{\subsecname}\fst{\subsubsecname}
+
+
+\begin{dingyi}[相对误差与相对误差限]
+近似值$x^{\star}$的\textcolor{acolor5}{相对误差}是绝对误差与精确值之比，即
+$$
+E_r(x) = \frac{E(x)}{x} = \frac{x-x^{\star}}{x}.
+$$
+%\pause
+实际中精确值$x$一般无法知道，通常取
+$$\textcolor{acolor5}{
+E_r(x) = \frac{E(x)}{x^{\star}} = \frac{x-x^{\star}}{x^{\star}}.
+}
+$$
+%\pause
+若存在$\delta>0$，使得
+$$
+|E_r(x)|=|\frac{x-x^{\star}}{x^{\star}}|\le\delta,
+$$
+则称$\delta$为近似值$x^{\star}$的\textcolor{acolor5}{相对误差限}。
+\end{dingyi}
+
+
+\end{frame}
+
+
+
+%*******
+\begin{frame}\ft{\subsecname}\fst{\subsubsecname}
+
+\begin{li}
+当$|x-x^{\star}|\le 1$cm时，测量$100$m物体时的相对误差为
+$$
+|E_r(x)|=\frac{1}{10000}=0.01\%,
+$$
+测量$10$m物体时的相对误差为
+$$
+|E_r(x)|=\frac{1}{1000}=0.1\%.
+$$
+\end{li}
+
+
+\end{frame}
+ 
+%*******
+\begin{frame}[fragile]\ft{\subsecname} 
+
+\begin{dingyi}[有效数字]
+若近似值$x^{\star}$的绝对误差限是某一位的半个单位，就称其精确到这一位，
+且从该位直到$x^{\star}$的第一位非零数字共有$n$位，则称近似值$x^{\star}$有$n$位有效数字。
+\end{dingyi}
+
+\pause
+\begin{table}
+\begin{tabular}{|l|l|}\hline
+给定数& 具有5位有效数字的近似值 \\ \hline
+$358.467$            & $358.47$\\
+$0.00427511$         & $0.0042751$\\
+\textcolor{acolor5}{$8.000034$}  & \textcolor{acolor5}{$8.0000$}\\
+$8.000034\times10^3$ & $8000.0$\\\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+%
+%
+%
+%*******
+\begin{frame}\ft{\subsecname} 
+
+
+任何一个实数$x$经四舍五入后得到的近似值$x^{\star}$都可写成
+$$\textcolor{acolor3}{
+x^{\star} = \pm0.\alpha_1\alpha_2\cd\alpha_n\times 10^m.
+}
+$$
+当其绝对误差限满足
+$$
+|x-x^{\star}|\le \frac12 \times 10^{m-n}
+$$
+时，则称近似值$x^{\star}$具有$n$位有效数字，其中$m$为整数，
+$\alpha_1$为1到9中的一个数字，$\alpha_1,\cdots,\alpha_n$是0到9中的数字。
+
+
+\end{frame}
+
+
+
+%*******
+\begin{frame}\ft{\subsecname}\fst{\subsubsecname}
+
+\begin{li}
+验证$e=2.718281828459046\cd$的近似值$2.71828$具有$6$位有效数字
+\end{li}
+\begin{jie}
+$$
+\begin{array}{ll}
+&2.71828=0.271828\times 10  \\[0.1in]
+\pause
+&~~ \Longrightarrow~~ m =1 , n = 6. \\[0.2in]
+\pause
+&\because
+|e-2.71828| = 0.000001828\cd < \frac12 \times 10^{-5}, \\[0.2cm]
+\pause
+&\therefore
+\mbox{它具有$6$位有效数字}
+\end{array}
+$$
+\end{jie}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%% 
+\begin{frame}\ft{\subsecname} 
+\begin{jielun}[1]
+设某数$x$的近似值为$x^{\star}$，则
+$$
+x^{\star}\mbox{有}n\mbox{位有效数字}
+~~\Longrightarrow~~
+|x-x^{\star}|\le \frac12 \times 10^{m-n}.
+$$
+\end{jielun}    
+
+\pause 
+\rule{\textwidth}{0.3mm}
+\textcolor{acolor5}{当$m$一定时，有效数字位数$n$越多，其绝对误差限越小。}
+
+
+\end{frame}
+
+
+
+%*******
+\begin{frame}\ft{\subsecname}\fst{\subsubsecname}
+
+
+\begin{jielun}[2]
+设某数$x$的近似值$x^{\star}$形如
+$$
+x^{\star} = \pm0.\alpha_1\alpha_2\cd\alpha_n \times 10^m,
+$$
+则
+\begin{itemize}
+\item
+$ 
+x^{\star}\mbox{有}n\mbox{位有效数字}
+~\Rightarrow~
+E_r^{\star}(x)\le \frac1{2\alpha_1}\times 10^{-(n-1)};
+$\\[0.2in]
+\item
+$ 
+E_r^{\star}(x)\le \frac1{2(\alpha_1+1)}\times 10^{-(n-1)}
+~\Rightarrow~
+x^{\star}\mbox{至少有}n\mbox{位有效数字}.
+$
+\end{itemize}
+\end{jielun}
+
+\pause
+\rule{\textwidth}{0.3mm}
+
+\textcolor{acolor5}{有效数字的位数越多，相对误差限就越小。}
+
+\end{frame}
+

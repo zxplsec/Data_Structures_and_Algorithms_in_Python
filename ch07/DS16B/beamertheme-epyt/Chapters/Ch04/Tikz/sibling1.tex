@@ -1,0 +1,85 @@
+\begin{tikzpicture}[scale=1]
+  \def\x{0.6} \def\y{0.6}
+  %% \draw[dashed,step=\x] (0*\x,0*\y) grid (16*\x,11*\y);
+
+  \foreach \i in {0}{
+    \def\j{0}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{I};
+    \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+    \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  }
+
+  \foreach \i in {0,4,8}{
+    \def\j{2}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \ifthenelse{\i = 0} {
+      \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{H};
+      \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x+0.5*\x,\j*\y-\y);
+      \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+    }{
+      \ifthenelse{\i = 4} {
+        \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{J};
+        \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+        \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+      }{
+        \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{F};
+        \node at(\i*\x+1.5*\x,\j*\y+0.5*\y)[]{$\land$};
+        \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+      }
+    }
+  }
+  \foreach \i in {0,6}{
+    \def\j{4}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \ifthenelse{\i = 0} {
+      \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{G};
+      \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x+0.5*\x,\j*\y-\y);
+      \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+    }{
+      \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{E};
+      \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x-1.5*\x,\j*\y-\y);
+      \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(\i*\x+2.5*\x,\j*\y-\y);
+    };
+  }
+  
+  \foreach \i in {0,6}{
+    \def\j{6}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \ifthenelse{\i = 0} {
+      \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{D};
+      \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x+0.5*\x,\j*\y-\y);
+      \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+    }{
+      \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{C};
+      \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x+0.5*\x,\j*\y-\y);
+      \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+    };
+  }
+
+
+  \foreach \i in {3}{
+    \def\j{8}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{B};
+    \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x-2.5*\x,\j*\y-\y);
+    \draw[blue,thick,->,>=latex] (\i*\x+2.5*\x,\j*\y+0.5*\y)--(\i*\x+3.5*\x,\j*\y-\y);
+  }
+
+  \foreach \i in {3}{
+    \def\j{10}
+    \draw[very thick](\i*\x,\j*\y)rectangle(\i*\x+3*\x,\j*\y+\y)
+    (\i*\x+\x,\j*\y)--(\i*\x+\x,\j*\y+\y) (\i*\x+2*\x,\j*\y)--(\i*\x+2*\x,\j*\y+\y);
+    \node at(\i*\x+0.5*\x,\j*\y+0.5*\y)[]{A};
+    \draw[blue,thick,->,>=latex] (\i*\x+1.5*\x,\j*\y+0.5*\y)--(\i*\x+0.5*\x,\j*\y-\y);
+    \node at(\i*\x+2.5*\x,\j*\y+0.5*\y)[]{$\land$};
+  }
+
+  
+  
+\end{tikzpicture}

@@ -1,0 +1,45 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\def\x{1}
+\def\xx{0.75*\x}
+\def\y{0.75}
+
+\foreach \c in {0} {
+\foreach \r in {0,2,4,6} {
+\ifthenelse{\r=4}{
+  \node [] at(\r*\x+0.5*\x,\c*\y+0.5*\y){$\cd$};
+}{        
+  \ifthenelse{\r=0}{
+  \draw[thick,fill=green!10,rounded corners] (\r*\x,\c*\y)rectangle(\r*\x+1.5*\x,\c*\y+\y);
+  \draw[thick] (\r*\x+\x,\c*\y)--(\r*\x+\x,\c*\y+\y);
+  }{
+  \draw[thick,fill=red!10,rounded corners] (\r*\x,\c*\y)rectangle(\r*\x+1.5*\x,\c*\y+\y);
+  \draw[thick] (\r*\x+\x,\c*\y)--(\r*\x+\x,\c*\y+\y);
+  }
+}
+%% 
+\draw[->,very thick] (\r*\x+1.25*\x,\c*\y+0.5*\y)--(\r*\x+1.9*\x,\c*\y+0.5*\y);
+
+%% 
+\ifthenelse{\r=0}{
+  \draw[->,very thick](\r*\x+0.75*\xx,\c*\y-1.0*\y)node[below]{{\tt front}}--(\r*\x+0.75*\xx,\c*\y-0.2*\y);
+  \draw[snake=brace,raise snake=3pt,thick] (\r*\x+0.0*\x,\c*\y+1.0*\y)--node[above=5pt]{\footnotesize{头结点}}(\r*\x+1.5*\x,\c*\y+1.0*\y);
+}{}
+\ifthenelse{\r=2}{
+  \node [] at(\r*\x+0.5*\xx,\c*\y+0.5*\y){$a_1$};
+  \draw[snake=brace,raise snake=3pt,thick] (\r*\x+0.0*\x,\c*\y+1.0*\y)--node[above=5pt]{\footnotesize{队头}}(\r*\x+1.5*\x,\c*\y+1.0*\y);
+}{}
+\ifthenelse{\r=6}{
+  \node [] at(\r*\x+0.5*\xx,\c*\y+0.5*\y){$a_n$};
+  \filldraw[black!80] (\r*\x+2*\x,\c*\y+0.25*\y)rectangle(\r*\x+2.5\x,\c*\y+0.75*\y);
+  \draw[->,very thick](\r*\x+0.75*\xx,\c*\y-1.0*\y)node[below]{{\tt rear}}--(\r*\x+0.75*\xx,\c*\y-0.2*\y);
+  \draw[snake=brace,raise snake=3pt,thick] (\r*\x+0.0*\x,\c*\y+1.0*\y)--node[above=5pt]{\footnotesize{队尾}}(\r*\x+1.5*\x,\c*\y+1.0*\y);
+}{}
+
+}
+}
+\end{tikzpicture}
+
+%% \caption{}  
+\end{figure}

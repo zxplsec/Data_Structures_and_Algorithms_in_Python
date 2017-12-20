@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=1.5,node distance=3cm,semithick,bend angle=45,minimum size=0.1cm,draw,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at  (90:1) {$a$};
+\node[state]   (b) at (170:1) {$b$};
+\node[state]   (c) at (260:1) {$c$};
+\node[state]   (d) at (350:1) {$d$};
+\path
+(a) edge[->,>=stealth',bend left=10]  (b)
+    edge[<-,>=stealth',bend right=10] (b)
+    edge[->,>=stealth',bend left=10]  (c)
+    edge[<-,>=stealth',bend right=10] (c) 
+    edge[->,>=stealth',bend left=10]  (d)
+    edge[<-,>=stealth',bend right=10] (d)
+(b) edge[->,>=stealth',bend left=10]  (c)
+    edge[<-,>=stealth',bend right=10] (c)
+    edge[->,>=stealth',bend left=10]  (d)
+    edge[<-,>=stealth',bend right=10] (d)
+(c) edge[->,>=stealth',bend left=10]  (d)
+    edge[<-,>=stealth',bend right=10] (d);             
+\end{tikzpicture}

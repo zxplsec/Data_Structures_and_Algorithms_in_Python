@@ -1,0 +1,25 @@
+\begin{figure}  
+  \centering
+  \begin{tikzpicture}[scale=1.5]
+    \tikzstyle{state}=[draw,circle]
+
+        % The graphic
+    \node at (2.5,2)[left,fill=blue!20,draw,starburst,drop shadow,text=red,text centered]
+    (1){
+      {顺序存储结构}
+    } ;
+    \node at (3.5,2)[right,fill=blue!20,draw,rectangle,rounded corners=3mm,text=blue,text width=6cm]
+    (2){
+      把数据元素存放在连续的存储单元里，其数据间的逻辑关系与物理关系一致。
+    };
+    \pause 
+    \def\xx{0.8}
+    \draw[very thick] (0,0)--(9*\xx,0);
+    \foreach \i in {0,...,9} 
+    \draw[very thick] (\i*\xx,0)--(\i*\xx,1*\xx);      
+    \foreach \i in {1,...,9} 
+    \draw[thick] (\i*\xx-0.5*\xx,0.5*\xx)node[]{\i}circle(0.5*\xx);
+
+    
+  \end{tikzpicture}
+\end{figure}

@@ -1,0 +1,54 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \tikzstyle{information text}=[rounded corners,fill=blue!10,inner sep=1ex]
+    \def\x{0.8}
+    \def\y{0.75}
+
+    \foreach \c in {0}{
+      \ifthenelse{\c=0}{
+        \def\r{0}
+        \draw[very thick](\r*\x,\c*\y)--(\r*\x+5*\x,\c*\y);
+        \draw[very thick](\r*\x,\c*\y+\y)--(\r*\x+5*\x,\c*\y+\y);        
+        \foreach \r in {0,1,2,3,4}{                   
+          \node[]at(\r*\x+0.5*\x,\c*\y-0.5*\y){\small $\r$};
+        }
+
+        \foreach \r in {1,2,3,4,5}{         
+          \draw[](\r*\x-\x,\c*\y+0.1*\y)rectangle(\r*\x-0.1*\x,\c*\y+0.9*\y);
+        }
+        \foreach \r in {1,2,3,4}{         
+          \node[]at(\r*\x-0.5*\x,\c*\y+0.5*\y){$a_{\r}$};
+        }
+
+        \def\r{4}
+        \draw[<-,very thick](\r*\x-0.3*\x,\c*\y+0.7*\y)--(\r*\x-0.2*\x,\c*\y+1.5*\y) node[above]{ 队尾};
+
+        \pause 
+        \def\r{1}
+        \node[]at(\r*\x-0.5*\x,\c*\y+0.5*\y){\includegraphics[width=0.5cm]{Chapters/Ch03/Tikz/cross.jpg}};
+
+        \pause
+        \def\rr{8}
+        \draw[very thick,->](\rr*\x-2.8*\x,\c*\y+0.5*\y)--node[above]{出队列}(\rr*\x-0.2*\x,\c*\y+0.5*\y);
+        \pause
+        
+        \draw[very thick](\rr*\x,\c*\y)--(\rr*\x+5*\x,\c*\y);
+        \draw[very thick](\rr*\x,\c*\y+\y)--(\rr*\x+5*\x,\c*\y+\y);
+        \foreach \r in {0,1,2,3,4}{                   
+          \node[]at(\r*\x+\rr*\x+0.5*\x,\c*\y-0.5*\y){\small $\r$};
+        }
+
+        \def\rr{7}
+        \foreach \r in {2,3,4,5,6}{         
+          \draw[](\r*\x+\rr*\x-\x,\c*\y+0.1*\y)rectangle(\r*\x+\rr*\x-0.1*\x,\c*\y+0.9*\y);
+        }
+        \foreach \r in {2,3,4}{         
+          \node[]at(\r*\x+\rr*\x-0.5*\x,\c*\y+0.5*\y){$a_{\r}$};
+        }
+        \def\r{4}
+        \draw[<-,very thick](\r*\x+\rr*\x-0.3*\x,\c*\y+0.7*\y)--(\r*\x+\rr*\x-0.2*\x,\c*\y+1.5*\y) node[above]{ 队尾};
+        }
+    }
+  \end{tikzpicture}
+\end{figure}

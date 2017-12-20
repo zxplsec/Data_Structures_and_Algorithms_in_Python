@@ -1,0 +1,119 @@
+\subsection{顺序栈}
+
+% \begin{frame}\ft{\subsecname}
+%   既然栈是线性表的特例，那么栈的顺序存储其实是线性表顺序存储的简化。
+%   栈的顺序存储结构简称顺序栈，。根据数组是否可以根据需要增大，又可分为静态顺序栈和动态顺序栈。
+% \begin{itemize}
+% \item[$\diamond$]
+% 静态顺序栈实现简单，但不能根据需要增大栈的存储空间；
+% \item[$\diamond$]
+% 动态顺序栈可以根据需要增大栈的存储空间，但实现稍微复杂。
+% \end{itemize}
+
+% \end{frame}
+
+\begin{frame}\ft{\subsecname}
+  既然栈是线性表的特例，那么栈的顺序存储其实是线性表顺序存储的简化。
+  栈的顺序存储结构简称顺序栈，用数组来实现。 \vskip.1in
+
+  \pause
+  \begin{wenti}
+    对于栈，用数组哪一端作为栈顶或栈底会比较好？
+  \end{wenti} \vskip.1in
+
+  \pause
+  下标为0的一端作为栈底比较好，因为首元素都存在栈底，变化最小。
+\end{frame}
+%
+%
+\begin{frame}[fragile]\ft{\subsecname}
+  \begin{lstlisting}[title=栈的结构定义,language=C]
+    #define MAXSIZE 100
+    typedef int ElemType;
+    typedef struct SqStack{
+      ElemType data[MAXSIZE];
+      int top;
+    }SqStack;
+  \end{lstlisting}
+
+  \begin{itemize}
+  \item {\tt top}用于指示栈顶元素在数组中的位置，它必须小于存储栈的长度{\tt StackSize};
+  \item 当栈存在一个元素时，{\tt top == 0}，因此通常把空栈的判定条件定为{\tt top == -1}.
+  \end{itemize}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+  \input{Chapters/Ch03/Tikz/SqStack/SqStack}
+\end{frame}
+%
+\begin{frame}\ft{\subsecname}
+  \input{Chapters/Ch03/Tikz/SqStack/PushSqStack}
+\end{frame}
+%
+\begin{frame}[fragile]\ft{\subsecname}
+  \lstinputlisting[
+    title={\tt Push.c},
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Push.c}
+\end{frame}
+
+\begin{frame}\ft{\subsecname}
+  \input{Chapters/Ch03/Tikz/SqStack/PopSqStack}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname}
+  \lstinputlisting[
+    title={\tt Pop.c},
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Pop.c}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{center}
+  \textcolor{acolor5}{\Large 顺序栈之完整程序}
+\end{center}
+\end{frame}
+\begin{frame}[fragile,allowframebreaks]\ft{\tt SqStack.h}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/SqStack.h}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt Init.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Init.c}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt PrintS.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/PrintS.c}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt Push.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Push.c}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt Pop.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Pop.c}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt Clear.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Clear.c}
+\end{frame}
+
+\begin{frame}[fragile]\ft{\tt Destroy.c}
+  \lstinputlisting[
+    language=C,
+  ]{Chapters/Ch03/Code/SqStack/Destroy.c}
+\end{frame}
+

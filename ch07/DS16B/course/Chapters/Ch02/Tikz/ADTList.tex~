@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{ADTList}
+  \begin{tikzpicture}
+    % The graphic
+    %% \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=1cm]{
+    %%   ADT标准格式
+    %% };
+
+    \node at (0,0) [right,fill=blue!20,draw,rectangle,rounded corners=3mm,text width=9cm]{
+\begin{lstlisting}[mathescape=true]
+  ADT List{
+    `数据对象：` $\mathrm D=\{a_i|a_i\in \mathrm{ElemSet},i=1,2,\cdots,n,n\ge0\}$
+    `数据关系：` $\mathrm R=\{\langle a_{i-1},a_i\rangle|a_{i-1},a_i\in \mathrm D, i=2,3,\cdots,n\}$
+    `基本操作：`
+    InitList(&L)
+    `操作结果：构造一个空的线性表L`
+    ListLength(L)
+    `初始条件：线性表L已存在`
+    `操作结果：若L为空表, 则返回0, 否则返回线性表的长度`
+    ...
+    GetElem(L,i,&e)
+    `初始条件：线性表L已存在,`$1\le i \le \mathrm{ListLength(L)}$
+    `操作结果：用e返回L中第i个数据元素的值`
+    ListInsert(L,i,&e)
+    `初始条件：线性表L已存在,`$1\le i \le \mathrm{ListLength(L)}$
+    `操作结果：在线性表L中的第i个位置插入元素e`
+    ...
+  } ADT List
+\end{lstlisting}
+};
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

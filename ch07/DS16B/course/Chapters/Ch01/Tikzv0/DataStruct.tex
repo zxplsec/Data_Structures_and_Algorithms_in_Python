@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{DataStruct}
+  \begin{tikzpicture}[scale=2,cap=round]
+
+    % The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=4.5cm]
+    {
+      \blue{\large 数据结构}: 相互之间存在一种或多种特定关系的数据元素的集合.
+    } ;
+
+    \node at (0,-1.5) [fill=blue!20,draw,rectangle callout,, callout relative pointer={(0,0.7)},text width=6cm]
+    {       
+      计算机中，数据元素并不是孤立、杂乱无序的，而是具有内在联系的; \\ \vspace{0.1in}
+      
+      数据元素之间存在的一种或多种特定关系，就是数据的组织形式.
+    };
+
+
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}

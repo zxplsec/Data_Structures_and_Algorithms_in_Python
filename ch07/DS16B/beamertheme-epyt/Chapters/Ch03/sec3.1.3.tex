@@ -1,0 +1,59 @@
+\subsection{两栈共享空间}
+
+\begin{frame}\ft{\subsecname}
+\begin{wenti}
+设有两个相同类型的栈，为它们各自开辟数组空间，极有可能第一个栈满，而另一个栈还有很多空闲空间。
+请问如何更有效地利用存储空间？
+\end{wenti}
+\pause
+可以用一个数组来存储两个栈，实现两栈共享空间。
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+\input{Chapters/Ch03/Tikz/SqStack/ShareSqStack}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+\begin{itemize}
+\item   让一个栈的栈底为数组的始端，另一个栈的栈底为数组的末端。
+这样，两个栈如果增加元素，就是两端点向中间延伸。 \\
+\item 设{\tt top1}和{\tt top2}分别是栈1和栈2的栈顶指针，只要它们俩不碰面，两个栈就可以一直使用。
+\end{itemize}
+\end{frame}
+%
+%
+\begin{frame}\ft{\subsecname}
+栈满的情形：
+\begin{itemize}
+\item 栈1为空({\tt top1 == -1})，栈1为满({\tt top2 == 0})
+\item 栈2为空({\tt top2 == n})，栈1为满({\tt top1 == n-1})
+\item 一般情形： 两个栈见面即栈满，亦即{\tt top1+1 == top2}。
+\end{itemize}
+\end{frame}
+%
+%
+\begin{frame}[fragile]\ft{\subsecname：{\tt Share\_SqStack.h}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/ShareSqStack/Share_SqStack.h}
+
+\end{frame}
+
+\begin{frame}[fragile]\ft{\subsecname：{\tt Push.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/ShareSqStack/Push.c}
+
+\end{frame}
+
+
+\begin{frame}[fragile]\ft{\subsecname：{\tt Pop.c}}
+\lstinputlisting[
+language=C,
+]{Chapters/Ch03/Code/ShareSqStack/Pop.c}
+
+\end{frame}
+%
+%

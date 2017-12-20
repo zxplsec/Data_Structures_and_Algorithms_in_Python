@@ -1,0 +1,33 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node [fill=red!20,draw,rectangle split,rectangle split parts=2,rounded corners=4mm,text width=6cm,text=blue]
+    (1){
+      \begin{lstlisting}[language=C,frame=no]
+int i,j;        
+for (i=0;i<n;i++)
+  function(i);
+      \end{lstlisting}
+      \nodepart{two}
+      \begin{lstlisting}[language=C,frame=no]
+void function(int i){
+  int j;
+  for (j=i;j<n;j++)
+    //`时间复杂度为$O(1)$的语句块`
+}
+      \end{lstlisting}
+    }; 
+    \node [below right of=1,fill=orange!40,draw,ellipse callout,callout relative pointer={(-2,0.6)},text width=3.5cm,text=blue]
+    (2) {
+      请分析时间复杂度.
+    };
+    \pause 
+    \node [below of=1,fill=green!40,draw,ellipse callout,callout relative pointer={(-0.7,1.8)},text width=1cm,text=blue]
+    (2) {
+      $
+      O(n^2)
+      $
+    };
+
+  \end{tikzpicture}
+\end{figure}

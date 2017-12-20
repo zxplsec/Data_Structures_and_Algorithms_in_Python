@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{listings}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily\bfseries\small,
+  commentstyle=\small\color{red},
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  tabsize=4,
+  numbersep=5pt,
+  %% backgroundcolor=\color{black!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no
+}
+
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{AlgProp}
+  \begin{tikzpicture}
+    The graphic
+    \node at (0,0)[fill=blue!20,draw,starburst,drop shadow,text width=0.8cm]{
+      算法特性
+    };
+
+    \node at (0,2) [right,fill=red!20,draw,rectangle callout,callout relative pointer={(-0.6,-0.5)},rounded corners=3mm,text width=3cm]{
+      \blue{输入}\\
+      有零个或多个输入
+    };
+    \node at (2,0.8) [right,fill=red!20,draw,ellipse callout,callout relative pointer={(-1.4,-0.3)},text width=3.6cm]{
+      \blue{输出}\\
+      至少有一个或多个输出
+    };
+    \node at (2,-1) [right,fill=red!20,draw,rectangle callout,callout relative pointer={(-1,0.1)},rounded corners=3mm,text width=5cm]{
+      \blue{有穷性}\\
+      在执行有限步后，会自动结束而不出现无限循环，并且每一步在可接受的时间内完成
+    };
+
+    \node at (1,-3.5) [right,fill=red!20,draw,ellipse callout,callout relative pointer={(-2.2,1.5)},text width=4cm]{
+      \blue{确定性}\\
+      每一步都有确定的含义，不出现二义性
+    };
+    \node at (-2,-3) [right,fill=red!20,draw,rectangle callout,callout relative pointer={(0.3,0.7)},rounded corners=3mm,text width=2.5cm]{
+      \blue{可行性}\\
+      每一步都必须可行，能通过执行有限次数完成
+    };
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

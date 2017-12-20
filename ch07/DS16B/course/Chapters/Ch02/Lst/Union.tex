@@ -1,0 +1,13 @@
+\begin{lstlisting}[frame=tb,backgroundcolor=\color{red!10}]
+void union(List *La,List Lb){
+  int La_len,Lb_len,i;
+  ElemType e;
+  La_Len=ListLength(La);
+  Lb_Len=ListLength(Lb);
+  for(i=1;i<=Lb_len;i++){
+    GetElem(Lb,i,e);
+    if(!LocateElem(La,e))
+      ListInsert(La,++La_len,e);
+  }
+} 
+\end{lstlisting}

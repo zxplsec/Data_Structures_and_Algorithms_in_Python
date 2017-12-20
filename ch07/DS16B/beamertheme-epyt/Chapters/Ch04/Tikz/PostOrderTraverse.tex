@@ -1,0 +1,38 @@
+\begin{tikzpicture}[scale=0.8]
+
+  %% \tikzstyle{every node}=[ball color=red!70,circle,text=white]
+
+  %% \node [circle,draw] at (0,0) {A}; 
+
+  \node [circle,draw] at (0,0) (A) {A}[sibling distance=2.4cm] 
+  child { node[circle,draw](B){B}[sibling distance=2.1cm]
+    child {node[circle,draw](D){D}[sibling distance=1.8cm]
+      child {node[circle,draw](G){G}}
+      child {node[circle,draw](H){H}}
+    }
+    child[fill=none] {edge from parent[draw=none]}
+  }
+  child { node[circle,draw](C){C}[sibling distance=2.1cm]
+    child {node[circle,draw](E){E}[sibling distance=1.8cm]
+      child[fill=none] {edge from parent[draw=none]}  
+      child {node[circle,draw](I){I}}
+    }
+    child {node[circle,draw](F){F}}          			
+  };
+  \pause 
+  \draw[thick,blue,densely dashed,->,>=latex] (G)..controls +(0:1cm)    and +(180:1cm)..  node[] {\textcolor{acolor3} 1}(H);\pause     
+  \draw[thick,blue,densely dashed,->,>=latex] (H)..controls +(80:1cm)   and +(-30:1cm)..  node[] {\textcolor{acolor3} 2}(D);\pause     
+  \draw[thick,blue,densely dashed,->,>=latex] (D)..controls +(100:1cm)  and +(190:1cm)..  node[] {\textcolor{acolor3} 3}(B);\pause     
+  \draw[thick,blue,densely dashed,->,>=latex] (B)..controls +(260:1cm)  and +(160:1.5cm)..node[] {\textcolor{acolor3} 4}(I);\pause     
+  \draw[thick,blue,densely dashed,->,>=latex] (I)..controls +(100:1cm)  and +(-30:1cm)..  node[] {\textcolor{acolor3} 5}(E);\pause
+  \draw[thick,blue,densely dashed,->,>=latex] (E)..controls +(0:1cm)    and +(180:1cm)..  node[] {\textcolor{acolor3} 6}(F);\pause
+  \draw[thick,blue,densely dashed,->,>=latex] (F)..controls +(80:1cm)   and +(-30:1cm)..  node[] {\textcolor{acolor3} 7}(C);\pause
+  \draw[thick,blue,densely dashed,->,>=latex] (C)..controls +(80:1cm)   and +(-30:1cm)..  node[] {\textcolor{acolor3} 8}(A);\pause
+
+  \node [below=1] at (H) {
+    \begin{lstlisting}
+      `后序遍历结果：` G H D B I E F C A
+    \end{lstlisting}
+  };
+  
+\end{tikzpicture}

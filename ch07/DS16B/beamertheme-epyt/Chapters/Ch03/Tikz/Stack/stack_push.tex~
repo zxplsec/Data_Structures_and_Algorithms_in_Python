@@ -1,0 +1,45 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \tikzstyle{information text}=[rounded corners,fill=blue!20,inner sep=1ex]
+    \def\x{1.5}
+    \def\y{0.7}
+    \def\r{2}
+
+    \draw[xshift=0.cm,yshift=5.5cm]
+    node[right,text width=7cm,style=information text]
+    {
+      设栈$S=(a_1,a_2,\cd,a_n)$，称$a_1$为栈底元素，$a_n$为栈顶元素。
+    };
+    %\node[right]at(0,8*\y) {};
+    \pause 
+
+    \foreach \c in {1,2,...,6}{
+      \filldraw[fill=red!40,fill opacity=0.5] (\r+0,\c*\y-\y)rectangle(\r+\x,\c*\y);
+      \ifthenelse{\c=3 \OR \c=5}{
+        \node [] at (\r+0.5*\x,\c*\y-0.5*\y) {$\cd$};
+      }{
+        \ifthenelse{\c=1 \OR \c=2}{
+          \node [] at (\r+0.5*\x,\c*\y-0.5*\y) {$a_\c$};
+          \ifthenelse{\c=1}{
+            \draw[->,>=stealth] (\r-0.7*\x,\c*\y-0.5*\y) node[left] {\tf{bottom}}--(\r+0,\c*\y-0.5*\y);
+          }{}
+        }{
+          \ifthenelse{4=\c }{
+            \node [] at (\r+0.5*\x,\c*\y-0.5*\y) {$a_i$};
+          }{
+            \node [] at (\r+0.5*\x,\c*\y-0.5*\y) {$a_n$};
+            \draw[->,>=stealth] (\r-0.7*\x,\c*\y-0.5*\y) node[left] {\tf{top}}--(\r+0,\c*\y-0.5*\y);
+            %% \draw[->,>=stealth] (\r-0.7*\x,\c*\y+0.5*\y) node[above] {进栈(push)}--(\r+0.3*\x,\c*\y+0.5*\y)--(\r+0.3*\x,\c*\y);
+            %% \draw[<-,>=stealth] (\r+1.7*\x,\c*\y+0.5*\y) node[above] {出栈(pop)}--(\r+0.7*\x,\c*\y+0.5*\y)--(\r+0.7*\x,\c*\y);
+          }
+        }
+      }
+    }
+
+    %% \draw[xshift=0.2cm,yshift=2.5cm]
+    %% node[right,text width=5cm,style=information text]{
+    %%   栈中元素按$a_1,a_2,\cd,a_n$的次序进栈，退栈的第一个元素应为栈顶元素，即栈的修改是按后进先出的原则进行的。
+    %% };
+  \end{tikzpicture}
+\end{figure}

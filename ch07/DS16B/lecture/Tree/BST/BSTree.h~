@@ -1,0 +1,12 @@
+
+typedef int iType;
+typedef struct {
+  int key;
+  iType item;
+} ElemType;
+
+
+typedef struct BSTNode {
+
+
+} BSTree, BSTNode;

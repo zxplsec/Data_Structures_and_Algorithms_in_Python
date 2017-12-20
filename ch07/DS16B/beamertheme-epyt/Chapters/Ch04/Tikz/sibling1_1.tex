@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+  \def\x{2.5}\def\y{0.8}
+  \draw[very thick](0,0)rectangle(3*\x,\y) (\x,0)--(\x,\y) (2*\x,0)--(2*\x,\y);
+  \node at (0.5*\x,0.5*\y) [] {\tt data};
+  \node at (1.5*\x,0.5*\y) [] {\tt firstchild};
+  \node at (2.5*\x,0.5*\y) [] {\tt rightsib};
+
+  \tikzstyle{every node}=[]
+  \tikzstyle{information text}=[rounded corners,inner sep=1ex]
+  \draw
+  node at (1.5*\x,0*\y) [below=0.5cm,text width=10cm,style=information text]
+  {
+    \begin{table}
+      \centering
+      \begin{tabular}{l|l|l} \hline
+         {\tt data} & 数据域 & 结点的数据信息 \\[0.1in]
+         {\tt firstchild} & 指针域 &长子的存储地址\\[0.1in]
+         {\tt rightsib} & 指针域 &大弟结点的存储地址 \\\hline
+      \end{tabular}
+      
+    \end{table}
+  };
+\end{tikzpicture}

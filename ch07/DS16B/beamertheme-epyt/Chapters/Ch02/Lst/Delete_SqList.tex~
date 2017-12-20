@@ -1,0 +1,19 @@
+\begin{lstlisting} [language=C,breaklines]
+ElemType Delete_SqList(SqList *L, int i) {
+  int j; ElemType x;
+  if (L->length==0) {
+    printf("`线性表为空！`\n"); return ERROR;
+  }
+  if (i<0||i>L->length)  {
+    printf("`要删除的数据元素不存在！`\n"); 
+    return ERROR;
+  }
+  else {
+    x = L->elem_array[i-1];
+    for (j=i; j<L->length; j++)
+      L->elem_array[j-1]=L->elem_array[j];
+      L->length--;
+      return x;
+  }
+}
+\end{lstlisting}

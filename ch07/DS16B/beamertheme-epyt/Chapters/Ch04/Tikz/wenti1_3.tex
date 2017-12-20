@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=0.8]
+
+  \tikzstyle{every node}=[thick,draw]
+
+  %% \node [circle,draw] at (0,0) {A}; 
+
+  \node[circle] at (0,0) {A}[sibling distance=3cm] 
+  child { node[circle]{B}
+    child{ node[circle] {C}}
+    child[fill=none] {edge from parent[draw=none]}  
+  }
+  child { node[circle]{D}
+    child{ node[circle] {E}}
+    child{ node[circle] {F}}
+  };
+\end{tikzpicture}

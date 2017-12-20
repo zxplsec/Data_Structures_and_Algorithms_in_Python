@@ -1,0 +1,21 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=4cm]
+    \node [fill=blue!20,draw,starburst,drop shadow,text width=2cm,text=blue] (1) {
+      {\large 最坏情况}
+    };
+    \node [below left of=1,fill=red!20,draw,rectangle,rounded corners=4mm,text width=5.5cm] (2) {
+      在$n$维随机数组中查找某个数字，
+      \begin{itemize}
+      \item 最好情况是出现在第一个位置，时间复杂度为$O(1)$;
+      \item 最坏情况是出现在最后一个位置，时间复杂度为$O(n)$.
+      \end{itemize}
+    };
+
+    \pause 
+    \node at (3,-5)[text width=4.5cm,decorate,decoration=saw,fill=blue!20,draw,circle]{
+      最坏情况运行时间是一种保证，亦即运行时间将不会再坏了。在应用中，这是一种最重要的需求，通常，除非特别指定，我们提到的运行时间都是最坏情况的运行时间。
+    };
+  \end{tikzpicture}
+  
+\end{figure}

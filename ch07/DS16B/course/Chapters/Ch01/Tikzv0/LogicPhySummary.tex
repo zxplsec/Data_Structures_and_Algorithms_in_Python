@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{LogicPhySummary}
+  \begin{tikzpicture}
+  \node[copy shadow,fill=blue!20,draw=blue,thick,text width=7cm] at (3.5,0) {
+    逻辑结构是面向问题的，而物理结构是面向计算机的，我们的目标是将数据及其逻辑关系存储到计算机的内存中。
+  };
+\end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

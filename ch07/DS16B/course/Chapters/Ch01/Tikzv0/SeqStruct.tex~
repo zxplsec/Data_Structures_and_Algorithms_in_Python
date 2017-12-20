@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{CJK} 
+\usepackage{graphics}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc,shadows}
+\usetikzlibrary{decorations.markings,scopes}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\purple}{\textcolor{purple}}
+
+
+\pgfrealjobname{survey}
+\begin{document}
+\begin{CJK}{UTF8}{gkai} 
+  \beginpgfgraphicnamed{SeqStruct}
+  \begin{tikzpicture}[scale=1.5]
+    \tikzstyle{state}=[draw,circle]
+
+        % The graphic
+    \node at (0,2)[right,fill=blue!20,draw,starburst,drop shadow,text width=6.5cm]{
+      \blue{\large 顺序存储结构} \\
+      把数据元素存放在连续的存储单元里，其数据间的逻辑关系与物理关系一致。
+    } ;
+
+    %% \node at (-1,-2) [fill=blue!20,draw,ellipse callout, callout relative pointer={(0.,0.7)},text width=5.5cm]{ 
+    %%   数据的存储结构应正确反映数据元素之间的逻辑关系。如何存储数据元素之间的逻辑关系，是实现物理结构的重点和难点。
+    %% };
+
+    %% \node at (2.5,-1.3) [text width=1.5cm,decorate,decoration=saw,fill=blue!20,draw,circle,text=red]{
+    %%   顺序存储 链式存储
+    %% };
+    
+    \draw[very thick] (0,0)--(9,0);
+    \foreach \i in {0,...,9} 
+    \draw[very thick] (\i,0)--(\i,1);      
+    \foreach \i in {1,...,9} 
+    \draw[thick] (\i-0.5,0.5)node[]{\i}circle(0.5);
+
+    
+  \end{tikzpicture}
+  \endpgfgraphicnamed  
+\end{CJK}
+
+\end{document}
+
+

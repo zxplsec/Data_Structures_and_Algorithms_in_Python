@@ -1,0 +1,8 @@
+\begin{lstlisting} [language=C,frame=tb,backgroundcolor=\color{red!10}]
+Status SqListInit(SqList *L) {
+  L->data=(ElemType *) malloc(MAX_SIZE*sizeof(ElemType));
+  if(!L->data) return ERROR;
+  L->length=0;
+  return OK;
+}
+\end{lstlisting}

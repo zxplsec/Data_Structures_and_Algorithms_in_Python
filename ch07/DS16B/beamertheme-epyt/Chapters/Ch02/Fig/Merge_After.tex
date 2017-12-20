@@ -1,0 +1,47 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=0.9]
+\def \x{1}
+\def \y{0.6}
+
+\foreach \c in {0,-2}{
+\foreach \d in {0,2,4,6,8,10}{
+\ifthenelse{  8 = \d }{
+\node[left] at (\d+\x,\c+0.5*\y) {$\cd$};
+}{
+\filldraw[fill=red!20](\d+0,\c+0)rectangle(\d+\x,\c+\y);  
+\filldraw[fill=red!20](\d+\x,\c+0)rectangle(\d+1.3*\x,\c+\y); 
+}
+\ifthenelse{   2 = \d \AND   0 = \c \OR  0 = \d \AND   0 = \c \OR 10 = \d}{
+
+}{\draw[->,>=stealth] (\d+1.15*\x,\c+0.5*\y)--(\d+1.95*\x,\c+0.5*\y);}
+
+\ifthenelse{ 0 = \c }{
+\node[]at( 2.5,\c+0.5*\y){$-7$};
+\node[]at( 4.5,\c+0.5*\y){$3$}; 
+\node[]at( 6.5,\c+0.5*\y){$12$};
+\node[]at(10.5,\c+0.5*\y){$23$};
+\draw[->,>=stealth] (4.5,\c+1.5*\y) node[above] {$pa$}--(4.5,\c+1.1*\y);
+\draw[->,>=stealth] (0.5,\c+1.5*\y)node[above] {$La$} --(0.5,\c+1.1*\y);
+}{
+\node[]at( 2.5,\c+0.5*\y){$-2$};
+\node[]at( 4.5,\c+0.5*\y){$4$}; 
+\node[]at( 6.5,\c+0.5*\y){$9$};
+\node[]at(10.5,\c+0.5*\y){$15$};
+\draw[->,>=stealth] (4.5,\c-0.5*\y) node[below] {$pb$}--(4.5,\c-0.1*\y);
+\draw[->,>=stealth] (2.5,\c-0.5*\y) node[below] {$pc$}--(2.5,\c-0.1*\y);
+\draw[->,>=stealth] (0.5,\c-0.5*\y) node[below] {$Lb$}--(0.5,\c-0.1*\y);
+}
+
+\ifthenelse{ 0 = \c }{
+\draw[->,>=stealth,red] (-.5*\x,\c+0.5*\y) node [left] {$Lc$}--(-0.1,\c+0.5*\y);
+\draw[->,>=stealth,red] (0+1.15*\x,\c+0.5*\y) --(0+1.95*\x,\c+0.5*\y);
+\draw[->,>=stealth,red] (2+1.15*\x,\c+0.5*\y) --(2+1.75*\x,\c+0.5*\y)
+--(2+1.75*\x,\c-2+2*\y)--(2+0.25*\x,\c-2+2*\y)--(2+0.25*\x,\c-2+1.1*\y);
+}{}
+}
+}
+
+\end{tikzpicture}
+\caption{合并了值为$-7,-2$的结点后的示意图}
+\end{figure}

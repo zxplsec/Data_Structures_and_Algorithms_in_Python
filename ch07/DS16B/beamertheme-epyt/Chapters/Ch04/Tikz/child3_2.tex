@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+  \def\x{3}\def\y{0.8}
+  \draw[very thick](0,0)rectangle(2*\x,\y) (\x,0)--(\x,\y);
+  \node at (0.5*\x,0.5*\y) [] {\tt data};
+  \node at (1.5*\x,0.5*\y) [] {\tt firstchild};
+
+  \tikzstyle{every node}=[]
+  \tikzstyle{information text}=[rounded corners,inner sep=1ex]
+  \draw
+  node at (0.5*\x,0*\y) [below=0.2cm,text width=10cm,style=information text]
+  {
+    \begin{table}
+      \centering
+      \begin{tabular}{l|l|l} \hline
+         {\tt data} & 数据域 & 存储结点的数据信息  \\[0.1in]
+         {\tt firstchild} & 头指针域 & 存储该结点的孩子链表的头指针 \\\hline
+      \end{tabular}
+      
+    \end{table}
+  };
+\end{tikzpicture}

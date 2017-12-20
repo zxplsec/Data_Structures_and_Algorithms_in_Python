@@ -1,0 +1,16 @@
+\begin{lstlisting}[language=C]
+void Delete_LinkList_value(LNode *L) {
+  LNode *p=L->next, *q, *ptr;  
+  while (p!=NULL){
+    *q=p; *ptr=p->next;
+    while(ptr!=NULL){
+      if (ptr->data==p->data){
+        q->next=ptr->next; free(ptr); ptr=q->next;
+      } else {
+        q=ptr; ptr=ptr->next;
+      }
+    }
+    p=p->next;
+  }
+}
+\end{lstlisting}

@@ -1,0 +1,23 @@
+
+\begin{tikzpicture}[scale=1.2,->,>=stealth',node distance=3cm,semithick,inner sep=1pt,bend angle=45,auto]
+%\draw[help lines] (-3,-3) grid (3,0);
+\node[state]   (a) at (135:1.5) {$a$};
+\node[state]   (b) at (180:2.3) {$b$};
+\node[state]   (c) at (225:1.8) {$c$};
+\node[state]   (d) at     (0:0) {$d$};
+\node[state]   (e) at  (45:1.8) {$e$};
+\node[state]   (f) at (350:2.5) {$f$};
+\node[state]   (g) at (315:1.5) {$g$};
+\path
+(b) edge (a)  
+    edge (c) 
+(a) edge (d)
+(c) edge (a)
+(e) edge (d)
+    edge (g) 
+(f) edge (e)
+    edge (g)
+(g) edge (c)
+    edge (d);
+\end{tikzpicture}
+

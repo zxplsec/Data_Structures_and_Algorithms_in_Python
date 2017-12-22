@@ -15336,116 +15336,100 @@ a.anchor-link {
 </div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Each Vertex uses a dictionary to keep track of the vertices to which it is connected, </span>
-<span class="c1"># and the weight of each edge.</span>
-<span class="k">class</span> <span class="nc">Vertex</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">key</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connectedTo</span> <span class="o">=</span> <span class="p">{}</span>
-    
-    <span class="c1"># The addNeighbor method is used add a connection from this vertex to another. </span>
-    <span class="k">def</span> <span class="nf">addNeighbor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbr</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connectedTo</span><span class="p">[</span><span class="n">nbr</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
-
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; connectedTo: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">connectedTo</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>    <span class="c1"># The getConnections method returns all of the vertices in the adjacency list, </span>
-    <span class="c1"># as represented by the connectedTo instance variable. </span>
-    <span class="k">def</span> <span class="nf">getConnections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connectedTo</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">getId</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
-    
-    <span class="c1"># The getWeight method returns the weight of the edge from this vertex </span>
-    <span class="c1"># to the vertex passed as a parameter.</span>
-    <span class="k">def</span> <span class="nf">getWeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nbr</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connectedTo</span><span class="p">[</span><span class="n">nbr</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Graph</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">numVertices</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">addVertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">numVertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numVertices</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">newVertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">newVertex</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">addVertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_vertices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numVertices</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">newVertex</span> <span class="o">=</span> <span class="n">Vertex</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">newVertex</span>
         <span class="k">return</span> <span class="n">newVertex</span>
-</pre></div>
 
-</div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">def</span> <span class="nf">getVertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">getVertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span>
+    <span class="k">def</span> <span class="nf">addEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frm</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">frm</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="n">frm</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">addEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">:</span>
-            <span class="n">nv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">:</span>
-            <span class="n">nv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">addNeighbor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">cost</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">frm</span><span class="p">]</span><span class="o">.</span><span class="n">addNeighbor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">to</span><span class="p">],</span> <span class="n">cost</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">to</span><span class="p">]</span><span class="o">.</span><span class="n">addNeighbor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertDict</span><span class="p">[</span><span class="n">frm</span><span class="p">],</span> <span class="n">cost</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getVertices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vert_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">setPrevious</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+
+    <span class="k">def</span> <span class="nf">getPrevious</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section></section><section><section>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>    <span class="c1"># The getVertices method returns the names of all of the vertices in the graph. </span>
-    <span class="k">def</span> <span class="nf">getVertices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vertList</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 adjacent: [1, 4, 5]
+1 adjacent: [2, 0]
+2 adjacent: [3, 1, 5]
+3 adjacent: [4, 2, 5]
+4 adjacent: [3, 5, 0]
+5 adjacent: [3, 4, 2, 0]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15489,65 +15473,81 @@ a.anchor-link {
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>为了跟踪进度，BFS 将每个顶点着色为白色，灰色或黑色。当它们被构造时，所有顶点被初始化为白色。白色顶点是未访问的顶点。当一个顶点最初被访问时它变成灰色的，当 BFS 完全访问完一个顶点时，它被着色为黑色。这意味着一旦顶点变黑色，就没有与它相邻的白色顶点。另一方面，灰色节点可能有与其相邻的一些白色顶点，表示仍有额外的顶点要探索。</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>BFS 从起始顶点开始，颜色从灰色开始，表明它正在被访问。另外两个值，即距离和前导，对于起始顶点分别初始化为 0 和 None 。最后，放到一个队列中。下一步是开始系统地检查队列前面的顶点。我们通过迭代它的邻接表来探索队列前面的每个新节点。当检查邻接表上的每个节点时，检查其颜色。</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>如果它是白色的，顶点未被访问，有四件事情发生：</p>
-<ol>
-<li>新的，未访问的顶点 <code>nbr</code>，被着色为灰色。</li>
-<li><code>nbr</code> 的前驱被设置为当前节点 <code>currentVert</code></li>
-<li>到 <code>nbr</code> 的距离设置为到 <code>currentVert + 1</code> 的距离</li>
-<li><code>nbr</code> 被添加到队列的末尾。 将 <code>nbr</code> 添加到队列的末尾有效地调度此节点以进行进一步探索，但不是直到 <code>currentVert</code> 的邻接表上的所有其他顶点都被探索。</li>
-</ol>
-
-</div>
-</div>
-</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[142]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="k">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Vertex</span>
-<span class="kn">from</span> <span class="nn">pythonds.basic</span> <span class="k">import</span> <span class="n">Queue</span>
-
-<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-  <span class="n">start</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-  <span class="n">start</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-  <span class="n">vertQueue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-  <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">vertQueue</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="n">currentVert</span> <span class="o">=</span> <span class="n">vertQueue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">nbr</span> <span class="ow">in</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">nbr</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;white&#39;</span><span class="p">):</span>
-        <span class="n">nbr</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-        <span class="n">nbr</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="n">currentVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">nbr</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="n">currentVert</span><span class="p">)</span>
-        <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">nbr</span><span class="p">)</span>
-    <span class="n">currentVert</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">==</span> <span class="p">[]</span>
+    
+    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">aGraph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">vertQueue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+    <span class="n">start</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+    <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">vertQueue</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">currentVert</span> <span class="o">=</span> <span class="n">vertQueue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nbr</span> <span class="ow">in</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nbr</span><span class="o">.</span><span class="n">visited</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">nbr</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+                <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">nbr</span><span class="p">)</span>
+                <span class="n">nbr</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">vert_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+1
+4
+5
+2
+3
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15585,20 +15585,384 @@ a.anchor-link {
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">aGraph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">start</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">start</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">visited</span><span class="p">:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">aGraph</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+            
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">vert_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+1
+2
+3
+4
+5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Dijkstra&#31639;&#27861;&#65306;&#21333;&#28304;&#28857;&#33267;&#25152;&#26377;&#20854;&#23427;&#39030;&#28857;&#65288;&#36793;&#26435;&#20540;&#38750;&#36127;&#65289;">Dijkstra&#31639;&#27861;&#65306;&#21333;&#28304;&#28857;&#33267;&#25152;&#26377;&#20854;&#23427;&#39030;&#28857;&#65288;&#36793;&#26435;&#20540;&#38750;&#36127;&#65289;<a class="anchor-link" href="#Dijkstra&#31639;&#27861;&#65306;&#21333;&#28304;&#28857;&#33267;&#25152;&#26377;&#20854;&#23427;&#39030;&#28857;&#65288;&#36793;&#26435;&#20540;&#38750;&#36127;&#65289;">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>给定有向图$G=(V,E)$，每条边$e$的权值函数$w(e)&gt;0$，以及源点$v_0$，找出由源点$v_0$到图中其它所有顶点的最短路径。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>要找出上图列出的最短路径，可用贪婪算法(Greedy alogrithom)。</p>
+<p>用$S$记录已找到最短路径的顶点（包括$v_0$），对不在$S$中的顶点$w$，令 <code>distance[w]</code> 表示从$v_0$开始，途径$S$中的顶点到$w$的最短路径长度。有以下观察：</p>
+<ul>
+<li><p>如果下一条最短路径将达到$u$，那么从$v_0$到$u$的最短路径只能途经$S$中的顶点。</p>
+</li>
+<li><p>由 <code>distance</code> 的定义可知，顶点$u$是所有当前不在$S$中而相距$S$最近的顶点，即<code>distant[u]</code>最小。如果有多于一个这样的顶点，则从中人选一个。</p>
+</li>
+<li><p>一旦选定$u$，则$u$归入$S$中。$u$的加入，有可能减少从$v_0$出发，途经$S$中顶点，到达目前还不在$S$中的某顶点$w$的路径长度。如果有这样路径的话，则该路径一定经过$u$。因此，应将原路径$v_0\to w$修改为$v_0\to u \to w$，即由$v_0$途经$S$中的顶点到$u$，然后直接到$w$，并将$w$的原路径长度 <code>distance[w]</code> 修改为 <code>distance[u]+length(&lt;u, w&gt;)</code></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>为了跟踪从源点到每个终点的总成本，我们将使用顶点类中的 <code>distance</code> 实例变量。</p>
+<p><code>distance</code> 包含从源点到终点的最小权重路径的当前总权重。</p>
+<p>该算法遍历图中的每个顶点；在顶点上迭代的顺序由优先级队列控制。用于确定优先级队列中对象顺序的值为<code>distance</code>。</p>
+<p>首次创建顶点时，<code>distance</code> 被设置为非常大的数。</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstraa.png' width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstrab.png' width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstrac.png' width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstrad.png'  width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstrae.png' width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='images/dijkstraf.png' width=800></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[219]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">BinHeap</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">percUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percUp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">percDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">:</span>
+            <span class="n">mc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">minChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">mc</span>
+
+    <span class="k">def</span> <span class="nf">minChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">delMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percDown</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">retval</span>
+
+    <span class="k">def</span> <span class="nf">buildHeap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alist</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="n">alist</span><span class="p">[:]</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">percDown</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[237]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">aGraph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;&#39;&#39;Dijkstra&#39;s shortest path&#39;&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># Set the distance for the start node to zero </span>
+    <span class="n">start</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># Put tuple pair into the priority queue</span>
+    <span class="n">pq</span> <span class="o">=</span> <span class="n">BinHeap</span><span class="p">()</span>
+    <span class="n">unvisited_queue</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(),</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">aGraph</span><span class="p">]</span>
+    <span class="n">pq</span><span class="o">.</span><span class="n">buildHeap</span><span class="p">(</span><span class="n">unvisited_queue</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">pq</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Pops a vertex with the smallest distance </span>
+        <span class="n">uv</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">delMin</span><span class="p">()</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">uv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">current</span><span class="o">.</span><span class="n">setVisited</span><span class="p">()</span>
+
+        <span class="c1">#for next in v.adjacent:</span>
+        <span class="k">for</span> <span class="nb">next</span> <span class="ow">in</span> <span class="n">current</span><span class="o">.</span><span class="n">adjacent</span><span class="p">:</span>
+            <span class="c1"># if visited, skip</span>
+            <span class="k">if</span> <span class="nb">next</span><span class="o">.</span><span class="n">visited</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">new_dist</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()</span> <span class="o">+</span> <span class="n">current</span><span class="o">.</span><span class="n">getWeight</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">new_dist</span> <span class="o">&lt;</span> <span class="nb">next</span><span class="o">.</span><span class="n">getDistance</span><span class="p">():</span>
+                <span class="nb">next</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="n">new_dist</span><span class="p">)</span>
+                <span class="nb">next</span><span class="o">.</span><span class="n">setPrevious</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;updated : current = </span><span class="si">%s</span><span class="s1"> next = </span><span class="si">%s</span><span class="s1"> new_dist = </span><span class="si">%s</span><span class="s1">&#39;</span> \
+                        <span class="o">%</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="nb">next</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="nb">next</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;not updated : current = </span><span class="si">%s</span><span class="s1"> next = </span><span class="si">%s</span><span class="s1"> new_dist = </span><span class="si">%s</span><span class="s1">&#39;</span> \
+                        <span class="o">%</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="nb">next</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span> <span class="nb">next</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()))</span>
+
+        <span class="c1"># Rebuild heap</span>
+        <span class="c1"># 1. Pop every item</span>
+        <span class="k">while</span> <span class="n">pq</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pq</span><span class="o">.</span><span class="n">delMin</span><span class="p">()</span>
+        <span class="c1"># 2. Put all vertices not visited into the queue</span>
+        <span class="n">unvisited_queue</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(),</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">aGraph</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">visited</span><span class="p">]</span>
+        <span class="n">pq</span><span class="o">.</span><span class="n">buildHeap</span><span class="p">(</span><span class="n">unvisited_queue</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[241]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">shortest</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; make shortest path from v.previous&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">previous</span><span class="p">:</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">previous</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+        <span class="n">shortest</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">previous</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[242]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addVertex</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>  
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Graph data:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+            <span class="n">vid</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+            <span class="n">wid</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;( </span><span class="si">%s</span><span class="s1"> , </span><span class="si">%s</span><span class="s1">, </span><span class="si">%3d</span><span class="s1">)&#39;</span>  <span class="o">%</span> <span class="p">(</span> <span class="n">vid</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">getWeight</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+
+    <span class="n">dijkstra</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">getVertex</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">getVertex</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">))</span> 
+
+    <span class="n">target</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">getVertex</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">getId</span><span class="p">()]</span>
+    <span class="n">shortest</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;The shortest path : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">path</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Graph data:
+( f , e,   9)
+( f , c,   2)
+( f , a,  14)
+( a , c,   9)
+( a , b,   7)
+( a , f,  14)
+( c , f,   2)
+( c , a,   9)
+( c , d,  11)
+( c , b,  10)
+( d , e,   6)
+( d , c,  11)
+( d , b,  15)
+( e , f,   9)
+( e , d,   6)
+( b , c,  10)
+( b , a,   7)
+( b , d,  15)
+Dijkstra&#39;s shortest path
+updated : current = a next = c new_dist = 9
+updated : current = a next = b new_dist = 7
+updated : current = a next = f new_dist = 14
+not updated : current = b next = c new_dist = 9
+updated : current = b next = d new_dist = 22
+updated : current = c next = f new_dist = 11
+updated : current = c next = d new_dist = 20
+updated : current = f next = e new_dist = 20
+not updated : current = d next = e new_dist = 20
+The shortest path : [&#39;a&#39;, &#39;c&#39;, &#39;f&#39;, &#39;e&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>需要注意的是，Dijkstra的算法只有当权重都是正数时才起作用。如果你在图的边引入一个负权重，算法永远不会退出。</p>
+
+</div>
+</div>
 </div></section></section>
 </div>
 </div>

@@ -1,0 +1,160 @@
+%This is a LaTeX template for homework assignments
+\documentclass[8pt]{article}
+\usepackage[top=1in, bottom=1in, left=1.1in, right=1.1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{CJK}
+\usepackage{enumerate}
+\usepackage{ifthen}
+\usepackage{listings}
+\lstset{
+  language=python,
+  keywordstyle=\color{blue!70},
+  frame=single,
+  basicstyle=\ttfamily,
+  commentstyle=\color{red},
+  breakindent=0pt,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  rulecolor=\color{black},
+  tabsize=4,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  backgroundcolor=\color{red!10},
+  showspaces=false,
+  showtabs=false,
+  extendedchars=false,
+  escapeinside=``,
+  frame=no,
+}
+
+\usepackage{fourier}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,snakes,backgrounds,shapes,shadows}
+\usetikzlibrary{matrix,fit,positioning,decorations.pathmorphing}
+
+
+
+\newcommand{\tf}{\ttfamily}
+
+
+\newlength{\la}
+\newlength{\lb}
+\newlength{\lc}
+\newlength{\ld}
+\newlength{\lhalf}
+\newlength{\lquarter}
+\newlength{\lmax}
+\newcommand{\xx}[4]{\\[.5pt]%
+\settowidth{\la}{A.~#1~~}
+\settowidth{\lb}{B.~#2~~}
+\settowidth{\lc}{C.~#3~~}
+\settowidth{\ld}{D.~#4~~}
+%%
+\ifthenelse{\lengthtest{\la>\lb}}
+{\setlength{\lmax}{\la}}
+{\setlength{\lmax}{\lb}}
+\ifthenelse{\lengthtest{\lmax<\lc}}
+{\setlength{\lmax}{\lc}}
+{}
+\ifthenelse{\lengthtest{\lmax<\ld}}
+{\setlength{\lmax}{\ld}}
+{}
+%%
+\setlength{\lhalf}{0.5\linewidth}
+\setlength{\lquarter}{0.25\linewidth}
+%%
+\ifthenelse{\lengthtest{\lmax>\lhalf}}
+{\noindent{}A.~#1 \\ B.~#2 \\ C.~#3 \\ D.~#4 }
+{
+\ifthenelse{\lengthtest{\lmax>\lquarter}}
+{\noindent
+\makebox[\lhalf][l]{A.~#1~~}%
+\makebox[\lhalf][l]{B.~#2~~}\\
+\makebox[\lhalf][l]{C.~#3~~}%
+\makebox[\lhalf][l]{D.~#4~~}
+}%
+{\noindent
+\makebox[\lquarter][l]{A.~#1~~}%
+\makebox[\lquarter][l]{B.~#2~~}%
+\makebox[\lquarter][l]{C.~#3~~}%
+\makebox[\lquarter][l]{D.~#4~~}
+}
+}
+}
+
+
+
+\begin{document}
+\begin{CJK}{UTF8}{gkai}
+\begin{center}
+{\Large \bf  武汉大学数学与统计学院2017-2018学年第一学期期末考试\\[0.1in]
+  数据结构与算法（A卷）} \vspace{0.1in}
+
+姓名: \line(1,0){100} ~~~~~~ 学号: \line(1,0){100}
+
+\end{center}
+
+
+\begin{enumerate} %\line(1,0){20}
+\item Python相关
+  \begin{enumerate}
+  \item 给定长(\lstinline{length})和宽(\lstinline{width})，编写长方形(\lstinline{Rectangle})的类，并求其面积和周长。
+  \item 仔细阅读以下程序，写出运行结果：
+    
+  \end{enumerate}
+\item 编写程序，实现栈的抽象数据类型。
+\item 二叉树
+  \begin{enumerate}
+  \item 编写代码，实现队列类：
+    \begin{lstlisting}
+class Queue:
+    def __init__(self):
+        self.items = []
+    def isEmpty(self):
+        _______________
+    def enqueue(self, item):
+        _______________
+    def dequeue(self):
+        _______________    
+    def size(self):
+        _______________
+    \end{lstlisting}
+  \item 编写代码，利用结点-引用方式来实现二叉树类：
+    \begin{lstlisting}
+class BinaryTree(object):
+    def __init__(self, rootObj):
+        self.data = rootObj
+        self.lchild = None
+        self.rchild = None
+    \end{lstlisting}
+  \item 编写代码，实现二叉树的中序遍历：
+    \begin{lstlisting}
+def inorder(root):
+    ...
+    \end{lstlisting}
+  \item 编写代码，利用队列类实现二叉树的层序遍历：
+    \begin{lstlisting}
+def levelorder(root):
+    if root == None:
+       return 
+    q = Queue()
+    node = root
+    q.enqueue(node)
+    while not q.isEmpty():
+        node = q.dequeue()
+        print(node.data)
+        if node.lchild != None
+            q.enquque(node.lchild)
+        if node.rchild != None:
+            q.enqueue(node.rchilde)
+      \end{lstlisting}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\end{CJK}
+\end{document}
